@@ -448,29 +448,29 @@ def email_ver(request):
 
 # Start cms project page code 
 from account.views import cut
-# def cms_html_page(request):
-#     product = product_home.objects.all()   
-#     data = HomePage.objects.all()
-#     data1 = LEFTSIDEHomePage.objects.all()
-#     data2 = LEFTSIDEWITHSTICKYNOTEHomePage.objects.all()
-#     data3 = RIGHTSIDEHomePage.objects.all()
-#     data4 = RIGHTSIDEWITHSTICKYNOTEHomePage.objects.all()
-#     main_data = blog_categories_and_Sub_categories_sub.objects.all()
-#     main_data1 = blog_categories_and_Sub_categories.objects.all()
-#     return render(request,'cms_html_page.html',{'product':product,'main_page1':data,"main_data":main_data,"main_data1":main_data1,"main_data2":data1,"main_data3":data2,"main_data4":data3,"main_data5":data4})
+def cms_html_page(request):
+    product = product_home.objects.all()   
+    data = HomePage.objects.all()
+    data1 = LEFTSIDEHomePage.objects.all()
+    data2 = LEFTSIDEWITHSTICKYNOTEHomePage.objects.all()
+    data3 = RIGHTSIDEHomePage.objects.all()
+    data4 = RIGHTSIDEWITHSTICKYNOTEHomePage.objects.all()
+    main_data = blog_categories_and_Sub_categories_sub.objects.all()
+    main_data1 = blog_categories_and_Sub_categories.objects.all()
+    return render(request,'cms_html_page.html',{'product':product,'main_page1':data,"main_data":main_data,"main_data1":main_data1,"main_data2":data1,"main_data3":data2,"main_data4":data3,"main_data5":data4})
 
 
-# def income_tax_blog_page(request):
-#     blog_cat = request.GET.get('blog_category',None)
-#     print(blog_cat)
-#     data = HomePage.objects.all()
-#     data1 = LEFTSIDEHomePage.objects.all()
-#     data2 = LEFTSIDEWITHSTICKYNOTEHomePage.objects.all()
-#     data3 = RIGHTSIDEHomePage.objects.all()
-#     data4 = RIGHTSIDEWITHSTICKYNOTEHomePage.objects.all()
-#     main_data = blog_categories_and_Sub_categories_sub.objects.all()
-#     main_data1 = blog_categories_and_Sub_categories.objects.all()
-#     return render(request,'blog_pages/income_tax.html',{'blog_cat':blog_cat,'main_page1':data,"main_data":main_data,"main_data1":main_data1,"main_data2":data1,"main_data3":data2,"main_data4":data3,"main_data5":data4})
+def income_tax_blog_page(request):
+    blog_cat = request.GET.get('blog_category',None)
+    print(blog_cat)
+    data = HomePage.objects.all()
+    data1 = LEFTSIDEHomePage.objects.all()
+    data2 = LEFTSIDEWITHSTICKYNOTEHomePage.objects.all()
+    data3 = RIGHTSIDEHomePage.objects.all()
+    data4 = RIGHTSIDEWITHSTICKYNOTEHomePage.objects.all()
+    main_data = blog_categories_and_Sub_categories_sub.objects.all()
+    main_data1 = blog_categories_and_Sub_categories.objects.all()
+    return render(request,'blog_pages/income_tax.html',{'blog_cat':blog_cat,'main_page1':data,"main_data":main_data,"main_data1":main_data1,"main_data2":data1,"main_data3":data2,"main_data4":data3,"main_data5":data4})
 from mytaxboard_api.models import *
 
 def chat_new_page(request):
