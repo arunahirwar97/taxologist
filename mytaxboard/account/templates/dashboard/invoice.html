@@ -1,0 +1,513 @@
+<html>
+    {% include 'includes/cssfiledesign.html' %}
+    {% load mathfilters %}
+
+<body>
+<div class="main-content">
+    <div class="justify-content-center row">
+        <div class="col-sm-9">
+            <div class="card">
+                <div>
+                    <div class="p-0 card-header">
+                        <div class="row">
+                            <div class="col">
+                                <img class="ml--3" src="/static/svg/invoice/invoice-up.svg" alt="error" width="280" height="auto">
+                            </div>
+                            <div class="text-center p-3 col">
+                                <h4 style="font-family: Alata; font-size: 60px; color: rgb(74, 110, 191);">TAX INVOICE</h4>
+                            </div>
+                        </div>
+                        <div class="mx-3 row">
+                            <div class="pb-3 col-7">
+                                <img src="/static/svg/invoice/mytaxboard-logo.svg" alt="error" width="200" height="auto">
+                            </div>
+                            <div class="text-right col">
+                                <div>
+                                    <p class="text-dark font-weight-600" style="font-size: 20px;">INVOICE NO.: {%for i in transaction_data%}{{i.order_id}}{%endfor%} </p>
+                                    {%for i in transaction_data%}
+                                    <p class="text-dark font-weight-600" style="font-size: 20px;">DATE : {{i.made_on.date}} </p>
+                                    {%endfor%}
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <div class="m-3 row">
+                            <div class="col-7">
+                                {%for i in transaction_data%}
+                                {%if i.company_name|length > 1 %}
+                                <h5 class="font-weight-bold" style="color: rgb(57, 119, 197);">Buyer</h5>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">{{i.company_name}}</p>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">{{i.company_add }} {{i.pin_code}}</p>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">+91 {{i.fname}}</p>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">GSTIN:{{i.gstin}}</p>
+                                {%endif%}
+                                {%endfor%}
+                            </div>
+
+                            {% comment %} <div class="col">
+                                <h5 class="font-weight-bold" style="color: rgb(57, 119, 197);">Payment Info</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">Account No.</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">119305500860</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">A/c Name</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">Absolute Complaince Pvt. Ltd.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">IFSC Code</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">ICICI0001193</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">Bank Name</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">ICICI</p>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="p-0 card-body">
+                        <div class="table-responsive">
+                            <table class="align-items-center table">
+                                <thead>
+                                    <tr>
+                                        <th style="font-size: 15px; color: rgb(57, 119, 197);">Receipt<br> No.</th>
+                                        <th style="font-size: 15px; color: rgb(57, 119, 197);">Plan Name</th>
+                                        <th style="font-size: 15px; color: rgb(57, 119, 197);">Item</th>
+                                        <th style="font-size: 15px; color: rgb(57, 119, 197);">Price</th>
+                                        <th style="font-size: 15px; color: rgb(57, 119, 197);"></th>
+                                        <th style="font-size: 15px; color: rgb(57, 119, 197);">Qty</th>
+                                        <th style="font-size: 15px; color: rgb(57, 119, 197);">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+ 
+                                        {%for i in transaction_data%}
+                                        <td style="color: black; font-size: 15px;">{{i.id}}</td>
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan%}
+                                        {% if i.plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.plan_name}}</td>
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_ind%}
+                                        {% if i.ind_popular_plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.ind_popular_plan_name}}</td>
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_buss%}
+                                        {% if i.buss_popular_plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.buss_popular_plan_name}}</td>
+                                        {%endif%}
+                                        {%endfor%}
+
+
+                                        {%for i in transaction_data%}
+                                        <td style="color: black; font-size: 15px;">{{i.plan_id}}</td>
+                                        {%endfor%}
+
+
+
+                                        {%for i in pricing_plan%}
+                                        {% if i.plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.regullar_price}}</td>
+                                        <td style="color: black; font-size: 15px;"></td>
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_ind%}
+                                        {% if i.ind_popular_plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.ind_popular_regullar_price}}</td>
+                                        <td style="color: black; font-size: 15px;"></td>
+                                        
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_buss%}
+                                        {% if i.buss_popular_plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.buss_popular_regullar_price}}</td>
+                                        <td style="color: black; font-size: 15px;"></td>
+                                        
+                                        {%endif%}
+                                        {%endfor%}
+                                        
+                                        
+                                        {%for i in transaction_data%}
+                                        <td style="color: black; font-size: 15px;">{{i.total_plan}}</td>
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan%}
+                                        {% if i.plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.regullar_price}}</td>
+                                        <td style="color: black; font-size: 15px;"></td>
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_ind%}
+                                        {% if i.ind_popular_plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.ind_popular_regullar_price}}</td>
+                                        <td style="color: black; font-size: 15px;"></td>
+                                        
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_buss%}
+                                        {% if i.buss_popular_plan_id|length > 1 %}
+                                        <td style="color: black; font-size: 15px;">{{i.buss_popular_regullar_price}}</td>
+                                        <td style="color: black; font-size: 15px;"></td>
+                                        
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {% comment %} {%for i in pricing_plan%}
+                                        <td style="color: black; font-size: 15px;">{{i.regullar_price}}</td>
+                                        {%endfor%} {% endcomment %}
+
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td colspan="5"></td>
+                                        <td style="color: black; font-size: 15px;">
+                                            
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">Discount {%for i in pricing_plan%}({{i.discount}}%){%endfor%} : </span>
+                                        </td>
+                                        <td colspan="2" style="color: black; font-size: 15px;">
+                                        {%for i in pricing_plan%}
+                                        {% if i.plan_id|length > 1 %}
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">{{i.total_discount}}</span>
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_ind%}
+                                        {% if i.ind_popular_plan_id|length > 1 %}
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">{{i.ind_popular_total_discount}}</span>
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        {%for i in pricing_plan_buss%}
+                                        {% if i.buss_popular_plan_id|length > 1 %}
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">{{i.buss_popular_total_discount}}</span>
+                                        {%endif%}
+                                        {%endfor%}
+                                            {% comment %} {%for i in pricing_plan%}
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">{{i.total_discount}} </span>
+                                            {%endfor%} {% endcomment %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5"></td>
+                                        <td style="color: black; font-size: 15px;">
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">Sub Total:</span>
+                                        </td>
+                                        <td colspan="2" style="color: black; font-size: 15px;">
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">
+                                                
+                                                {%for i in pricing_plan%}
+                                                {% if i.plan_id|length > 1 %}
+                                                {{i.our_price}}
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_ind%}
+                                                {% if i.ind_popular_plan_id|length > 1 %}
+                                                {{i.ind_popular_our_price}}
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_buss%}
+                                                {% if i.buss_popular_plan_id|length > 1 %}
+                                                {{i.buss_popular_our_price}}
+                                                {%endif%}
+                                                {%endfor%}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5"></td>
+                                        <td style="color: black; font-size: 15px;">
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">Total GST (
+                                                {%for i in pricing_plan%}
+                                                {% if i.plan_id|length > 1 %}
+                                                {{i.gst}}
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_ind%}
+                                                {% if i.ind_popular_plan_id|length > 1 %}
+                                                {{i.ind_popular_gst}}
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_buss%}
+                                                {% if i.buss_popular_plan_id|length > 1 %}
+                                                {{i.buss_popular_gst}}
+                                                {%endif%}
+                                                {%endfor%}
+                                                %) : </span>
+                                        </td>
+                                        <td colspan="2" style="color: black; font-size: 15px;">
+                                            
+                                            <span style="color: black; font-size: 15px; font-weight: 600;">
+                                                {%for i in pricing_plan%}
+                                                {% if i.plan_id|length > 1 %}
+                                                {{i.total_gst}}
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_ind%}
+                                                {% if i.ind_popular_plan_id|length > 1 %}
+                                                {{i.ind_popular_total_gst}}
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_buss%}
+                                                {% if i.buss_popular_plan_id|length > 1 %}
+                                                {{i.buss_popular_total_gst}}
+                                                {%endif%}
+                                                {%endfor%}
+                                                </span>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5"></td>
+                                        <td style="color: black; font-size: 20px; font-weight: 600;">Total :</td>
+                                                {%for i in pricing_plan%}
+                                                {% if i.plan_id|length > 1 %}
+                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{i.total_price_and_gst}}</td>
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_ind%}
+                                                {% if i.ind_popular_plan_id|length > 1 %}
+                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{i.ind_popular_total_price_and_gst}}</td>
+                                                {%endif%}
+                                                {%endfor%}
+        
+                                                {%for i in pricing_plan_buss%}
+                                                {% if i.buss_popular_plan_id|length > 1 %}
+                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{i.buss_popular_total_price_and_gst}}</td>
+                                        
+                                                {%endif%}
+                                                {%endfor%}
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" class="p-0">
+                                            <div class="table-responsive">
+                                                <table class="align-items-center table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="font-size: 15px; color: rgb(57, 119, 197);"></th>
+                                                            <th style="font-size: 15px; color: rgb(57, 119, 197);">SGST</th>
+                                                            <th style="font-size: 15px; color: rgb(57, 119, 197);">CGST</th>
+                                                            <th style="font-size: 15px; color: rgb(57, 119, 197);">IGST</th>
+                                                            <th style="font-size: 15px; color: rgb(57, 119, 197);"></th>
+                                                            <th style="font-size: 15px; color: rgb(57, 119, 197);"></th>
+                                                            <th style="font-size: 15px; color: rgb(57, 119, 197);"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="color: black; font-size: 15px; font-weight: 600;">Tax %:</td>
+                                                            <td style="color: black; font-size: 15px;">9%</td>
+                                                            <td style="color: black; font-size: 15px;">9%</td>
+                                                            <td style="color: black; font-size: 15px;">18%</td>
+                                                            <td style="color: black; font-size: 15px;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: black; font-size: 15px; font-weight: 600;">Amount :</td>
+                                                            {% for i in transaction_data%}
+                                                                {%if i.state == "Madhya Pradesh"%}
+                                                                    
+                                                                
+                                                                {%for j in pricing_plan%}
+                                                                {% if j.plan_id|length > 1 %}
+                                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{j.total_gst|div:2}}</td>
+                                                                <td style="color: black; font-size: 15px;"> {{j.total_gst|div:2}}</td>
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 15px;"></td>
+                                                                {%endif%}
+                                                                {%endfor%}
+                        
+                                                                {%for j in pricing_plan_ind%}
+                                                                {% if j.ind_popular_plan_id|length > 1 %}
+                                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{j.ind_popular_total_gst|div:2}}</td>
+                                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{j.ind_popular_total_gst|div:2}}</td>
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 15px;"></td>
+                                                                {%endif%}
+                                                                {%endfor%}
+                        
+                                                                {%for j in pricing_plan_buss%}
+                                                                {% if j.buss_popular_plan_id|length > 1 %}
+                                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{j.buss_popular_total_gst|div:2}}</td>
+                                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{j.buss_popular_total_gst|div:2}}</td>
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 15px;"></td>
+                                                                {%endif%}
+                                                                {%endfor%}
+                                                              
+                                                                {%endif%}
+                                                                {%if i.state != "Madhya Pradesh"%}
+                                                                {%for j in pricing_plan%}
+                                                                {% if j.plan_id|length > 1 %}
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 15px;"> {{j.total_gst}}</td>
+                                                                <td style="color: black; font-size: 15px;"></td>
+                                                                {%endif%}
+                                                                {%endfor%}
+                        
+                                                                {%for j in pricing_plan_ind%}
+                                                                {% if j.ind_popular_plan_id|length > 1 %}
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{j.ind_popular_total_gst}}</td>
+                                                                <td style="color: black; font-size: 15px;"></td>
+                                                                {%endif%}
+                                                                {%endfor%}
+                        
+                                                                {%for j in pricing_plan_buss%}
+                                                                {% if j.buss_popular_plan_id|length > 1 %}
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 15px;">0</td>
+                                                                <td style="color: black; font-size: 20px; font-weight: 600;">{{j.buss_popular_total_gst}}</td>
+                                                                <td style="color: black; font-size: 15px;"></td>
+                                                                {%endif%}
+                                                                {%endfor%}
+                                                                  
+                                                                {%endif%}
+                                                            {%endfor%}
+                                                            
+                                                            
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="8"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="m-3 row">
+                            <div class="col-7">
+                                <h5 class="font-weight-bold" style="color: rgb(57, 119, 197);">Sailer</h5>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">MytaxBoard Private Limited</p>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">B115, PRIYADARSHNI SOCIETY BAGSEWANIYA, BAGMUGALIYA BHOPAL MP 462026</p>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">+91 9993777025</p>
+                                <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">GSTIN:Nill</p>
+                            </div>
+                            <div class="col">
+                                <h5 class="font-weight-bold" style="color: rgb(57, 119, 197);">Payment Info</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">Account No.</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">119305500860</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">A/c Name</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">Absolute Complaince Pvt. Ltd.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">IFSC Code</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">ICICI0001193</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">Bank Name</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-dark font-weight-600 mb-0" style="font-size: 15px;">ICICI Bank</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-0 card-footer">
+                        <div class="ml-3 row">
+                            <div class="col-8">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="mb-0" style="font-family: Alata; font-size: 40px; color: rgb(57, 119, 197);">Thank you for your</h4>
+                                        <h4 class="" style="font-family: Alata; font-size: 40px; color: rgb(57, 119, 197);">business </h4>
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="font-weight-bold" style="color: rgb(57, 119, 197);">Terms &amp; Conditions</h5>
+                                                <a href="https://mytaxboard.in/terms_and_conditions">
+                                                    <p style="color: black; font-size: 15px;">https://mytaxboard.in/terms_and_conditions</p>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <h5 class="font-weight-bold" style="color: rgb(57, 119, 197);">Support</h5>
+                                                <a href="mailto:care@mytaxboard.in">
+                                                    <p style="color: black; font-size: 15px;">https://mytaxboard.in/terms_and_conditions</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right col">
+                                <img class="" src="/static/svg/invoice/invoice-down.svg" alt="error" width="200" height="auto" style="position: absolute; bottom: -75px; right: -5px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a onclick="window.print()" class="btn btn-primary btn-sm">Print</a>
+        </div>
+    </div>
+</div>
+{% comment %} 
+<table style="width:100%">
+    <tr>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Country</th>
+    </tr>
+    <tr>
+      <td>Alfreds Futterkiste</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>Centro comercial Moctezuma</td>
+      <td>Francisco Chang</td>
+      <td>Mexico</td>
+    </tr>
+  </table> {% endcomment %}
+</body>
+</html>

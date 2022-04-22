@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-client_id" content={%for i in login_id%}{{i.login_id}}{%endfor%}>
+
+  {% include 'includes/cssfiledesign.html' %}
+
+</head>
+
+<style>
+  strong{
+    background-color:red;
+  }
+  @media(max-width:576px){
+    .remove_img{
+      display: none;
+    }
+  }
+</style>
+{% block content %}
+
+<section style="background: linear-gradient(104.34deg, #6683EC 10.63%, rgba(56, 144, 133, 0.2) 91.07%), linear-gradient(244.68deg, #11CDEF 16.78%, rgba(255, 255, 255, 0) 82.86%); width:100%; height:100vh;" >
+  <div class="container">
+    <div class=" pt-4">  
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-6 bg-white">
+          <div class="container ">
+            <div class="col"style="width: 26rem; height:15;">
+              <div class="card border-0 shadow-none mb-0">
+                <div class="card-header bg-white pb-2"> 
+                  <div class="d-md-none py-3 mb-3">
+                    <a href="/">
+                      <img src="/static/svg/logo/my_taxboard_edged.svg" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="text-dark text-center mb-1"><p class="font-weight-bolder">Log in</p></div>
+                  <div class="btn-wrapper text-center" style="display: flex; justify-content: center; align-items: center;">
+                    <a class="display: flex; justify-content: center; align-items: center;">
+                      <div class="row" >
+                        <div class="col-sm-12 text-center m-0 p-0 g-signin2"
+                         data-onsuccess="onSignIn" 
+                         data-accesstype="online"
+                         data-scope="https://www.googleapis.com/auth/plus.login"
+                         data-theme="dark"
+                         style="width:240px;height:40px;color:white;font-weight:bold;"
+                         >
+                        </div>
+                      </div>
+                    </a> 
+                  </div>
+                </div>
+    
+              <div class="card shadow-none px-lg-4 py-lg-1">
+                <div class="text-center text-dark mb-4">
+                  <p>Or login with credentials</p>
+                </div>
+                <div class="text-center text-red mb-4" style="height:20px;">
+                  
+                  {% if error %}
+                    <small>{{error}}</small>  
+                  {% endif %}
+                  
+                </div>
+                
+                <form role="form" method="POST" >{% csrf_token %}
+                  
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input  class="form-control text-dark" name="username" placeholder="Email" type="email">
+                    </div>
+                  </div>
+                  
+                  
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input class="form-control text-dark" name="password" placeholder="Password" type="password">
+                      </div>
+                    </div>
+  
+                    </div>
+    
+                    <div class="text-center">
+                      <a href="busi_forget_password" class="display-block" role="button"><span class="small">Forgot Password</span></a>
+                      <br>  
+                      <button type="submit" class="btn btn-primary my-2">Login</button>
+                      <br>                    
+                    <div class="mb-3">
+                     <span class="small text-center text-dark">Not Registered yet ?  <a href="{% url 'business_signup' %}" role="button">Create an Account </span></a>
+                    </div>
+                  </div>
+                </form>
+    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 bg-blue text-center mx-auto d-none d-md-block">
+          <a class="text-white float-right" href="/"><i class="fa fa-times" aria-hidden="true" style="font-size: 20px;margin-top: 10px;"></i>
+          </a>
+          <img class="mt-8 remove_img" src="/static/assets_design/img/home/Animation.svg" class="img-fluid w-75" alt="">
+            <br>
+            <br>
+          <img class="mt-2" src="/static/svg/logo/login_signup_logo.svg" class="img-fluid" width="200" height="70" alt="">
+
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+  
+{% endblock content %}
+
+
+
+{% block script %}
+
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      $.ajax(
+        {
+          url: "ajax_call_for_login_and_signup_for_business_using_javascript",
+          data:{
+            'name':profile.getName(),
+            'email':profile.getEmail(),
+            'image':profile.getImageUrl(),
+            'uid':profile.getId(),
+  
+          },
+          success: function(result) 
+          {
+            
+          location.href = 'business_dashboard';
+          }
+       });
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  {% endblock script %}
+
+  </html>

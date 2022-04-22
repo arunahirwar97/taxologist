@@ -1,0 +1,226 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+
+{% block content %}
+<style>
+
+div.scroll {
+  
+  height: 720px;
+  margin-right: 10px;
+  overflow: scroll;
+}
+  .container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height:550px; /* 4:3 Aspect Ratio */
+  }
+  .container1{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height:160px; /* 4:3 Aspect Ratio */
+  
+  }
+  
+  #tag{
+    margin-bottom: 1.1rem;
+
+  }
+  .responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  </style>
+  
+
+<section>
+
+  <div class="mt-3">
+    <div class="row ">
+      <div class="col-sm-9 ">
+        <div class="card card-nav-tabs">
+          <div class="card-body">
+            {% comment %} <h1>Bussiness videos</h1> {% endcomment %}
+            <div class="container">
+              <iframe class="responsive-iframe" height="400" width="1000" src="{{request.GET.video_url }}">
+              </iframe> 
+            </div>
+            <h2>{{request.GET.title|safe }}</h2>
+            <h2></h2>
+            <h4>{{request.GET.description|safe }}</h4>
+          </div>
+        </div>
+      </div>
+          <div class="col-sm-3 ">
+            <div class="card card-nav-tabs">
+              <div class="card scroll ">
+            {% if category_name == 'gst_category' and category_name != 'income_category' %}  
+            {% for i in gst_category %}     
+            {% if i.unique_sub_category_name == "GST1" or i.unique_sub_category_name == "GST2" or i.unique_sub_category_name == "GST3" or i.unique_sub_category_name == "GST4"%}
+              {% if i.video_url == request.GET.video_url %}
+              <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=gst_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4" style="background-color:green;">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+              {% else %} 
+              <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=gst_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>hffgthrtg{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+              {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% elif category_name == 'income_category' %}  
+            {% for i in income_tax_category %}     
+
+            {% if i.unique_sub_category_name == "ITC1" or i.unique_sub_category_name == "ITC2" or i.unique_sub_category_name == "ITC3" or i.unique_sub_category_name == "ITC4"%}
+              {% if i.video_url == request.GET.video_url %}
+                <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=gst_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4" style="background-color:green;">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+              {% else %}
+              <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=income_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+              {% endif %}
+            {% endif %}
+            {% endfor %}
+
+            {% elif category_name == 'register_category' %}  
+            {% for i in registration_category %}     
+            {% if i.unique_sub_category_name == "REG1" or i.unique_sub_category_name == "REG2" or i.unique_sub_category_name == "REG3" or i.unique_sub_category_name == "REG4"%}
+
+              <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=register_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+              {% endif %}
+            {% endfor %}
+
+            {% elif category_name == 'roc_category' %}  
+            {% for i in roc_filling_category %}     
+            {% if i.unique_sub_category_name == "ROC1" or i.unique_sub_category_name == "ROC2" or i.unique_sub_category_name == "ROC3" or i.unique_sub_category_name == "ROC4"%}
+
+              <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=roc_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+              {% endif %}
+            {% endfor %}
+
+            {% elif category_name == 'doc_category' %}  
+            {% for i in documentation_category %}     
+            {% if i.unique_sub_category_name == "DOC1" or i.unique_sub_category_name == "DOC2" or i.unique_sub_category_name == "DOC3" or i.unique_sub_category_name == "DOC4"%}
+              <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=doc_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+                {% endif %}
+            {% endfor %}
+
+            {% elif category_name == 'tra_category' %}  
+            {% for i in trademark_category %}    
+            {% if i.unique_sub_category_name == "TRA1" or i.unique_sub_category_name == "TRA2" or i.unique_sub_category_name == "TRA3" or i.unique_sub_category_name == "TRA4"%}
+
+              <a href="{% url 'videos' %}?video_url={{i.video_url}}&&title={{i.title|safe}}&&description={{i.description}}&&category=tra_category&&unique_sub_category_name={{i.unique_sub_category_name}}&&with_unique_sub_sub_category_name={{i.with_unique_sub_sub_category_name}}">
+                <div class="row pl-4 pt-4">
+                  <div class="col-5 ">
+                    <img src=https://mytaxboard-production-files.s3.amazonaws.com/media/{{ i.video_image }}" class="card-img-top">
+                  </div>
+                  <div id="tag" class="col-7">
+                    <h2>{{i.title|safe }}</h2>
+                    <h4>{{i.sort_description|safe }}</h4>
+                  </div>
+                </div>  
+                </a>
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+              </div>
+            </div>
+
+        </div>
+    
+                <!-- <div class="col border-left mt-2">
+                  <div class="card-profile-stats text-center mt-4">
+                    <h1>Bussiness videos</h1>
+                    <iframe width="320" height="150" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                    </iframe>                    
+                    <h2>Workshop</h2>
+                    <h4>Topic</h4>
+                </div>
+              </div> -->
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</section>
+{% block script %}
+
+
+
+
+{% endblock script %}
+{% endblock content %}

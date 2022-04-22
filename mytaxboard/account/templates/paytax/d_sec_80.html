@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<body>
+
+<!-- head -->
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 active" href="{% url 'paytax_deduction' %}#personal" >Section 80 Deductions</a>
+  </li>
+  <!-- <li class="nav-item"></li> -->
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_more_deduction' %}#tabs-text-2" >More Deductions</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_other_deduction' %}#tabs-text-2" >Other Deductions</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_investment_detail' %}#tabs-text-2" >Investment Details</a>
+  </li>
+</ul>
+
+<!-- head -->
+  <!--First-->
+  <div class="container mt-6">
+    <div class="row">
+      <div class="col-md-9">
+
+        <div class="container">
+          <fieldset>
+            <legend class="text-dark">Investments under Section 80C</legend>
+            <div class="text-small">
+              <p>You can claim a deduction of upto Rs. 1,50,000 under this section.
+                Add up all your 80C deduction and specify total amount here. <a href="">Read More..</a> </p>
+            </div>
+            <div class="form-group ">
+              <div class="col-md-6">
+                <b class="text-dark">Investment for Section 80C</b>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="small mt-3 text-dark">
+                <p class="">Section 80C includes contributions to LIC / Insurance premium, PPF, EPF, NSC, ELSS Mutual
+                  Funds, Children school fees, Payment of Principal in Housing Loan & other eligible items. </p>
+              </div>
+
+              <div class="card text-dark text-white avbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="card-body">
+                  <p> <b>PRO-TIP:</b> For the current financial year, try to invest Rs. 1,50,000 in 80C to maximise on
+                    tax savings.</p>
+                </div>
+              </div>
+
+
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card" style="width: 20rem;">
+          <div class="card-body">
+            <p class="card-text text-dark">It is mandatory to fill<b>Investment Details</b>for ITR filing with
+              investment/ deposit/ payments done between <b>1st Apr 2020 to 31st Jul 2020 </b> to claim any deductions
+            </p>
+            <a href="javascript:;" class="card-link">Get Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--First End-->
+
+
+
+  <!--Second-->
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+
+        <div class="container">
+          <fieldset>
+            <legend class="text-dark">Section 80TTA: Deduction for Interest earned on Savings Bank Account</legend>
+            <div class="form-group ">
+              <div class="col-md-6">
+                <b class="text-dark">Interest earned on Savings Bank Account</b>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="small mt-3 text-dark">
+                <p class="">You do not need to enter a value for the 80TTA deduction here.
+                  ClearTax automatically picks it up from your <a href="">declared interest income from Saving Bank
+                    account and Post office deposits.. </a> </p>
+              </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card" style="width: 20rem;">
+          <div class="card-body">
+            <p class="card-text text-dark">The Tax Department does not require you to submit documents related to
+              deductions while e-Filing.</p>
+            <p class="card-text text-dark"> Just keep the documents / receipts in case the Tax Department requests you
+              for them later on.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Second End-->
+
+
+  <!--Third-->
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+
+        <div class="container">
+          <fieldset>
+            <legend class="text-dark">Section 80G : Donations to charitable organizations</legend>
+            <div class="form-group ">
+              <div class="col-md-6">
+                <p class="text-dark">The government requires itemized details of donations for Section 80G.</p>  
+              </div>
+              
+              <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top" data-content="This is a very beautiful popover, show some love.">
+                
+               Add or Remove Donation under Section 80G
+              </button>
+
+          </fieldset>
+        </div>
+      </div>
+    <div class="col-md-3">
+      <div class="card text-center" style="width: 20rem;">
+        <div class="card-body">
+          <b class="card-title">Get a tax expert to file your return</b>
+          <p class="card-text text-dark">Filing return yourself is Free. If you need an expert's help, you can opt for our paid plans starting ₹799.</p>
+          <a href="javascript:;" class="btn btn-primary">See Plans</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container ml-4 mb-2">
+<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">save</a></div>
+
+</div>
+</body>
+{% endblock content %}

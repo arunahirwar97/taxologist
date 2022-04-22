@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<!-- head -->
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active"  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 active" href="{% url 'paytax_taxpaid_tds' %}#personal" >TDS</a>
+  </li>
+  <!-- <li class="nav-item"></li> -->
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_self_tax_payment' %}#tabs-text-2" >Self Tax Payment</a>
+  </li>
+</ul>
+
+<!-- head -->
+
+<div class="container mt-9">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Taxes Deducted/Collected at Source</h4>
+    </div>
+    <div class="col-md-4">
+      <p>Do not have any TDS/TCS entries?</p>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-primary btn-sm">Go To Next</button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="card text-dark text-white avbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="card-body">
+      <h5 class="text-white">Do you have a Form 26AS? <a href="" class="text-white">Click here to upload your Form 26AS</a> and avoid manual entry.</h4>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <b class="text-dark">TDS on Salary Income</b>
+        </div>
+        <div class="col-md-4">
+          
+
+        </div>
+      </div>
+      <p class="text-dark mt-3 small">These are your Salary TDS entries. If you have more entries to add, please add them on Income from Salary Page.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <b class="text-dark">Non Salary TDS</b>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-primary btn-sm">+ Add entry</button>
+
+        </div>
+      </div>
+      <p class="text-dark mt-3 small">In this section, add TDS entries on interest income, professional or consulting income, etc. (Other than TDS on Salary and Sale of Immovable Property).</p>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <b class="text-dark">TDS on Sale/Rent of Immovable Property</b>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-primary btn-sm">+ Add entry</button>
+
+        </div>
+      </div>
+      <p class="text-dark mt-3 small">If you sell/rent land, house, property or building etc (immovable property) etc, the buyer/tenant may have deducted TDS at the rate of 1% on the sale price of the property/rental and issued you a TDS certificate.You need to specify those TDS deduction details here.</p>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <b class="text-dark">Taxes Collected at Source (TCS)</b>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-primary btn-sm">+ Add entry</button>
+        </div>
+      </div>
+      <p class="text-dark mt-3 small">In this section, you can add TCS entries (For example - on purchase of cars).</p>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

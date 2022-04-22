@@ -1,0 +1,1150 @@
+{% extends 'base_for_another_page.html' %}
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load social_share %}
+
+{% block content %}
+<style>
+    @media(max-width: 576px){
+        .img-height{
+          height:200px
+        }
+        .img1{
+            display: none;
+        }
+        body{
+          max-width:100%;
+          width:100%;
+          margin:0px;
+          padding:0px;
+        }
+        .admin_user_text{
+          color:rgb(0,0,0);
+          font-size:16px;
+        }   
+    }
+    .fa {
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      border-radius:50%;
+    }
+    
+    .fa:hover {
+        opacity: 0.7;
+    }
+    .fa-facebook {
+      background: #45bbff;
+      color: white;
+    }
+    .fa-instagram {
+      background: #cb2027;
+      color: white;
+    }
+    .fa-linkedin {
+      background: #007bb5;
+      color: white;
+    }
+    
+    
+     {% comment %} end normal mobile  {% endcomment %}
+    
+    
+    @media(min-width:576px ) and (max-width:768px) 
+      {
+        {% comment %} #Home_1{padding-top: 150px;} {% endcomment %}
+        .base_body {
+            {% comment %} background-image: url('../../static//svg/Home_bg_svg_ipad.svg');
+            background-repeat: no-repeat; {% endcomment %}
+            {% comment %} background-position: right -170px top ; {% endcomment %}
+            {% comment %} padding-top: 150px; {% endcomment %}
+            z-index:200px;
+            padding-left:4%;          
+            padding-right:4%; 
+          }
+          .img_add{
+          display:none;
+        }
+        .text_size{
+          font-size:14px;
+        }
+        .admin_user_text{
+          color:rgb(0,0,0);
+          font-size:16px;
+        }
+        .img-height{
+          height:230px
+        }
+      }
+    
+    
+    
+    @media(min-width:769px) and (max-width:1025px) 
+      {
+        .base_body {
+    
+            {% comment %} background-image: url('../../static//svg/Home_bg_svg.svg');
+            background-repeat: no-repeat;
+            background-position: right -290px top ; {% endcomment %}
+            {% comment %} padding-top: 150px; {% endcomment %}
+            z-index:200px;
+            padding-left:7%;          
+            padding-right:7%;    
+          }
+          .img_add{
+          display:none;
+        }
+        .text_size{
+          font-size:16px;
+        }
+        #products_icon{
+          display:none;
+        }
+        #d_none{
+          display:none;
+        }
+        .admin_user_text{
+          color:rgb(255,255,255);
+          font-size:16px;
+        }
+        .img-height{
+          height:260px
+        }
+    }
+    
+    
+    
+    
+    
+    @media(min-width:1025px)
+      {
+        .base_body {
+            {% comment %} background-image: url('../../static//svg/Home_bg_svg.svg');
+            background-repeat: no-repeat;
+            background-position: right -100px top ; {% endcomment %}
+            {% comment %} padding-top: 150px; {% endcomment %}
+            z-index:200px;
+            padding-left:3%;          
+            padding-right:3%; 
+          }
+        .img_add{
+          display:none;
+        }
+        .text_size{
+          font-size:21px;
+        }
+        #d_none{
+          display:none;
+        }
+        .admin_user_text{
+          color:rgb(255,255,255);
+          font-size:16px;
+        }
+        .img-height{
+          height:300px
+        }
+      }
+    
+    
+      .container {
+        max-width: 1350px;
+      }
+    
+
+  .content-set{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+  }
+  .home{
+    color: #08c;
+  }
+  .zoom {
+    transition: transform .2s;
+  }
+  .nav-btn{
+    color: #1d9df0;
+    background-color: white;
+  }
+  .na-btn:active{
+    background-color: #1d9df0;
+    color: white;
+  }
+
+  .sidenav1 {
+    position: reletive;
+    top: 0;
+    background-color: #111;
+    overflow-x: hidden;
+  }
+  
+  .sidenav1 a, .dropdown-btn1 {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .sidenav1 a:hover, .dropdown-btn1:hover {
+    color: #f1f1f1;
+  }
+  
+  .dropdown-container1 {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+  }
+  .richtext-image {
+    width:100%;
+  }
+  iframe{
+    width: 100%;
+    height: 25em;
+  }
+</style>
+<!--Fisrt Page -->
+
+{# Check if there are tags #}
+
+<section class="">
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center" >
+
+
+            {% comment %} {%for i in main_page1%}
+            <img style="width:100%; " src="/media/{{i.title_image1}}" alt="Error" class="img-fluid rounded img-height">
+            {%endfor%} {% endcomment %}
+            {% image page.title_image width-680  as tmp_photo %}
+            <img style="width:100%; " src="{{ tmp_photo.url }}" class="img-fluid rounded img-height" alt="Responsive image"/>
+          </div>
+          <nav aria-label="breadcrumb" role="navigation" class="mt-3 bg-white">
+            <ol class="breadcrumb bg-white p-0 mb-0">
+              <li class="breadcrumb-item"><a href="/cms_html_page">Home</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'income_tax_blog_page' %}?blog_category={{page.blog_category}}">{{page.blog_category}}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{page.title|richtext}}</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id='main-page'>
+  <div class="pb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 d-none d-md-block">
+          <div class="form-group mb-3">
+            <div class="input-group mb-4">
+              <input class="form-control" placeholder="Search" type="text">
+              <div class="btn btn-default py-2 px-3">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="font-weight-600 pt-4">Categories</h5>
+            <ul class="navbar-nav">
+              {%for j in main_data1 %}
+              
+              <li class="nav-item">
+                <a class="nav-link active collapsed" href="#aaa{{forloop.counter}}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-dashboards">
+                  
+                  <span class="nav-link-text">{{j.main_category}}</span><i class="ml-3 fas fa-caret-down"></i>
+
+                </a>
+                
+                <div class="collapse mr-4" id="aaa{{forloop.counter}}" style="">
+                  <ul class="nav nav-sm flex-column  pl-3">
+                      {%for i in main_data %}
+                      {%if j.main_category == i.main_category.main_category %}
+                        
+                      <li class="nav-item">
+                      <a href="{{i.sub_categories_links}}" class="nav-link">
+                        <span class="sidenav-normal"> {{i.sub_categories}} </span>
+                      </a>
+                    </li>
+                    
+                    {%endif%}
+                {%endfor%}
+                  </ul>
+                </div>
+              </li>
+            {%endfor%}
+              
+            </ul>
+            {% comment %} <ul class="nav nav-list flex-column mb-5">									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Design (2)</a>
+              </li>									
+              <li class="nav-item">										
+                <a class="nav-link active" href="#">Photos (4)</a>										
+                <ul style="list-style-type:disc;">											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Animals</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Business</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Sports</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">People</a>
+                  </li>										
+                </ul>									
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Videos (3)</a>
+              </li>									<li class="nav-item">
+                <a class="nav-link" href="#">Lifestyle (2)</a>
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Technology (1)</a>
+              </li>								
+            </ul> {% endcomment %}
+            <div>	
+              <div class="nav-wrapper">
+                <ul class="list-group list-group-horizontal nav nav-pills nav-fill" id="tabs-icons-text" role="tablist" style="list-style-type:none">
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">Popular</a>
+                    </li>
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Recents</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}											
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}			
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                      </ul>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}																
+                          												
+                      </ul>  
+                    </div>
+                  </div>
+                </div>
+              </div>															
+            </div>
+            {% comment %} <div class="pt-3">
+              <h5 class="font-weight-600">About Us</h5>
+              <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+            </div> {% endcomment %}
+          </div>
+        </div>
+        <div class="col-md-8">
+          {% comment %} {%for i in main_page1 %} {% endcomment %}
+            <h1 class="font-weight-bold mt--2 ">
+              <b>{{page.title|richtext}}</b>
+            </h1>
+            
+            <div class="row ">
+              <div class="col-sm-8" style="color:black">  
+                <p>
+                  {%for i in main_page1%}
+                    {%if i.title == page.title %}
+                    Updated on :  {{i.select_box_date}} - {{i.select_box_time}} {{i.enter_blog_time_read}} min read.
+                    {%endif%}
+                  {%endfor%}
+                </p>
+              </div>
+            </div>
+            <div class="mx-3">
+              <p class="">{{page.body|richtext }}</p>
+            </div>
+            <div class="post-meta">
+              <span>
+                <i class="far fa-user"></i> 
+                By {{page.writter_name|richtext}}&nbsp; &nbsp;  
+              </span>
+              {% comment %} <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span> {% endcomment %}
+              {% comment %} <span class="d-block mt-3"><a href="#" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span> {% endcomment %}
+            </div>
+          {% comment %} {%endfor%} {% endcomment %}
+
+          {% comment %} <div class="mb-5">
+            <div class="text-center">
+              <img src="https://www.okler.net/previews/porto/9.3.0/img/blog/wide/blog-2.jpg" class="img-fluid rounded" alt="Responsive image"/>
+            </div>
+            <h2 class="font-weight-600 mt-3 mb-2">
+              <a href="#" style="color:#5e72e4">Creative Business</a>
+            </h2>
+            <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <div class="post-meta">
+              <span><i class="far fa-user"></i> By <a href="#" style="color:#5e72e4">Bob Doe</a>&nbsp; &nbsp;  </span>
+              <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span>
+              <span class="d-block mt-3"><a href="#" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+            </div>
+          </div>
+          <div class="mb-5">
+            <div class="text-center">
+              <img src="https://www.okler.net/previews/porto/9.3.0/img/blog/wide/blog-3.jpg" class="img-fluid rounded" alt="Responsive image"/>
+            </div>
+            <h2 class="font-weight-600 mt-3 mb-2">
+              <a href="#" style="color:#5e72e4">Unlimited Ways</a>
+            </h2>
+            <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <div class="post-meta">
+              <span><i class="far fa-user"></i> By <a href="#" style="color:#5e72e4">Bob Doe</a>&nbsp; &nbsp;  </span>
+              <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span>
+              <span class="d-block mt-3"><a href="#" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+            </div>
+          </div>
+          <div class="mb-5">
+            <div class="text-center">
+              <img src="https://www.okler.net/previews/porto/9.3.0/img/blog/wide/blog-5.jpg" class="img-fluid rounded" alt="Responsive image"/>
+            </div>
+            <h2 class="font-weight-600 mt-3 mb-2">
+              <a href="#" style="color:#5e72e4">The Blue Sky</a>
+            </h2>
+            <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <div class="post-meta">
+              <span><i class="far fa-user"></i> By <a href="#" style="color:#5e72e4">Bob Doe</a>&nbsp; &nbsp;  </span>
+              <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span>
+              <span class="d-block mt-3"><a href="#" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+            </div>
+          </div>
+          <div class="mb-5">
+            <div class="text-center">
+              <img src="https://www.okler.net/previews/porto/9.3.0/img/blog/wide/blog-6.jpg" class="img-fluid rounded" alt="Responsive image"/>
+            </div>
+            <h2 class="font-weight-600 mt-3 mb-2">
+              <a href="#" style="color:#5e72e4">Night Life</a>
+            </h2>
+            <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <div class="post-meta">
+              <span><i class="far fa-user"></i> By <a href="#" style="color:#5e72e4">Bob Doe</a>&nbsp; &nbsp;  </span>
+              <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span>
+              <span class="d-block mt-3"><a href="#" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+            </div>
+          </div>
+          <div class="mb-5">
+            <div class="text-center">
+              <img src="https://www.okler.net/previews/porto/9.3.0/img/blog/wide/blog-7.jpg" class="img-fluid rounded" alt="Responsive image"/>
+            </div>
+            <h2 class="font-weight-600 mt-3 mb-2">
+              <a href="#" style="color:#5e72e4">Another World Perspective
+              </a>
+            </h2>
+            <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <div class="post-meta">
+              <span><i class="far fa-user"></i> By <a href="#" style="color:#5e72e4">Bob Doe</a>&nbsp; &nbsp;  </span>
+              <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span>
+              <span class="d-block mt-3"><a href="#" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+            </div>
+          </div> {% endcomment %}
+        </div>
+        <div class="col-md-2">
+          <div class="row my-3">
+            <div class="col-sm-12">
+              <h5 class="font-weight-600">Share this Block</h5>
+              <div class="row my-3">
+                <div class="col-sm-3">
+                  {% comment %} <a href="" class="fa fa-facebook"></a> {% endcomment %}
+                  {% post_to_facebook object_or_url '<i class="fa fa-facebook-square" style="font-size:30px;"></i>' %}
+                </div>
+                <div class="col-sm-3"> 
+                  {% post_to_whatsapp object_or_url  '<i class="fa fa-whatsapp" style="font-size:30px;"></i>' %}
+                </div>
+              {% comment %} <div class="col-auto">
+                {% post_to_twitter  object_or_url  "<i class='fa fa-twitter-square' style='font-size:30px;'></i>" %}
+              </div> {% endcomment %}
+                <div class="col-sm-3 text-center mt-3 ml-1">
+                  {% post_to_linkedin object_or_url %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% comment %} <div class="my-3">
+            <ul class="pl-0" style="list-style-type:none;">
+              <li class="mb-3">
+                <div class="row">
+                  <div class="col-sm-2 pl-0 py-2" >																																											
+                    <i class="fab fa-twitter false rounded p-1" style="font-size:25px; color:white; background-color:#5e72e4"></i>																																							
+                  </div>													
+                  <div class="col-sm-10 pl-0">														
+                    <p class="text-mute mb-0" style="font-size:16px; font-family: poppins,Arial,sans-serif"> If you have any suggestions for the next updates, let us know.</p>														
+                    <div class="post-meta">
+                      <p style="font-family: 'Open Sans', sans-serif; font-size: 13px; font-weight: bold; color:#5e72e4">01:05 PM Sep 18th</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="mb-3">
+                <div class="row" style="width:100%">
+                  <div class="col-sm-2 pl-0 py-2" >																																											
+                    <i class="fab fa-twitter false rounded p-1" style="font-size:25px; color:white; background-color:#5e72e4"></i>																																							
+                  </div>													
+                  <div class="col-sm-10 pl-0">														
+                    <p class="text-mute mb-0" style="font-size:16px; font-family: poppins,Arial,sans-serif"> We have just updated Porto Admin. Check the changelog for more information.</p>														
+                    <div class="post-meta">
+                      <p style="font-family: 'Open Sans', sans-serif; font-size: 13px; font-weight: bold; color:#5e72e4">01:04 PM Sep 18th</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div> {% endcomment %}
+          <div class="row">
+            <div class="col-sm-12">
+              <h5 class="font-weight-600 pt-4 mb-2">Tags</h5>
+              <div class="mb-3 pb-1">
+                {% if page.tags.count %}
+                  {% for tag in page.tags.all %}
+                    <a href="#">
+                      <span class="badge badge-default">{{ tag }}</span>
+                    </a>                
+                    {% comment %} <a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a><br /> {% endcomment %}
+                  {% endfor %}
+                {% endif %}
+                {% comment %} <a href="#">
+                  <span class="badge badge-default">Design</span>
+                </a>
+                <a href="#">
+                  <span class="badge badge-default">Brand</span>
+                </a>
+                <a href="#">
+                  <span class="badge badge-default">Video</span>
+                </a>
+                <a href="#">
+                  <span class="badge badge-default">Business</span>
+                </a>
+                <a href="#">
+                  <span class="badge badge-default">Travel</span>
+                </a>
+                <a href="#">
+                  <span class="badge badge-default">Entertainment</span>
+                </a> {% endcomment %}
+              </div>
+              {% comment %} <a href="3" target="_blank" class="my-4 d-block">									
+                <img alt="Porto" class="img-fluid" src="https://assets1.cleartax-cdn.com/s/img/2017/03/17122757/NRIfinal-1024x341.png">								
+              </a> {% endcomment %}
+            </div>
+          </div>
+          {% comment %} <div class="row mb-4">
+            <div class="col-sm-12">
+              <h5 class="font-weight-600">Instagram Photos</h5>
+          
+              <div class="row mx-0">
+                <div class="col-6 col-xl-4 px-0">
+                  <a href="#" target="_blank">
+                    <span class="thumb-info thumb-info-lighten thumb-info-centered-info thumb-info-no-borders">
+                      <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202106/photo-1611262588024-d12430b989_1200x768.jpeg?cKq2xcBMBm5eaadsXhYdeAAaFJXk5745&size=770:433" class="img-fluid" alt="error">
+                    </span>
+                  </a>
+                </div>
+                <div class="col-6 col-xl-4 px-0">
+                  <a href="#" target="_blank">
+                    <span class="thumb-info thumb-info-lighten thumb-info-centered-info thumb-info-no-borders">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgGLrNqeyQYU1L4apymgzGzAQpv6prp_rTvw&usqp=CAU" class="img-fluid" alt="error">                 
+                    </span>
+                  </a>
+                </div>
+                <div class="col-6 col-xl-4 px-0">
+                  <a href="#" target="_blank">
+                    <span class="thumb-info thumb-info-lighten thumb-info-centered-info thumb-info-no-borders">
+                      <img src="https://assets-global.website-files.com/5db0d55a083f4bf9f19d2e4e/5f30d059ad68f2e142612b5e_DXCDwOtAQqqfZH9xc4uR_bigstock--189644005.jpeg" class="img-fluid" alt="error">
+                    </span>
+                  </a>
+                </div>
+                <div class="col-6 col-xl-4 px-0">
+                  <a href="#" target="_blank">
+                    <span class="thumb-info thumb-info-lighten thumb-info-centered-info thumb-info-no-borders">
+                      <img src="https://s3-us-west-2.amazonaws.com/jumpermedia.co/uploads/2017/02/e8af52_5ce5a1d8fc284843b04b5df6f025c25c.png" class="img-fluid" alt="">
+                    </span>
+                  </a>
+                </div>
+                <div class="col-6 col-xl-4 px-0">
+                  <a href="#" target="_blank">
+                    <span class="thumb-info thumb-info-lighten thumb-info-centered-info thumb-info-no-borders">
+                      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBYWFRgVFRYYGRgaGBEYGBgcGhgYGBgYGBgZGRgYGBkcIS4lHB4rHxgYJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QGBISHjQhJCE0NDQ0NDQxNDQ0MTQ0NDY2NDQ0NDQ0NDQ0NDE0ND00NDQ0NDQxNDExMTQxNDQ0NDE0Mf/AABEIAMkA+wMBIgACEQEDEQH/xAAbAAADAAMBAQAAAAAAAAAAAAACAwQAAQUGB//EAEYQAAIBAgIFCAcEBwcFAQAAAAECAAMREiEEEzFBUSJhcYGRobHBBQYyQlLR8GJygpIUQ5OywtLhByMkM3Pj8VNjg6LDFf/EABkBAQEBAQEBAAAAAAAAAAAAAAABAgMEBf/EACIRAQEBAQACAgMBAQEBAAAAAAABEQISIQMEMUFRImEjE//aAAwDAQACEQMRAD8A0qRgSGEjEWejrpZApTj1pCbW0cizl100lajebTR5YqQgknkmJhSjFpylKcPVTF6MQPQ4Q6VM7JeKYmxTAk1RUwAIwTSiMCzKgImgIy03q5NMpRE0Y8JNlIxdSjogtSN5Xq4Lm0zWoitI67m86DPwEir0iTLz+fZaSHmYt8EUzAamZ2jnTkrgZbpLXqd8YaZG6LWlxmpiUmlthuvDsjymUBAAc5fIwnVi2e2TVKE6FdM7iLwHfL5Z7JNcwpEuktqpaTtPRx1rHXOJ8E3hjbTeGdZ0zjtmnMWmZ0FpCMSgJ8y/I9GIqdEypKUrShHChM3vTEISEKcuWhCWhJ5GJFSYKZlur4Q1SNTEa0DGrSlQSGEjRKKMzDaUlIJSU1L1TDePNOCUjEtJxGZijCkWyyyFrC8Wz3mau8xqBksi89UtlEQwEcaLTWqjDUzrwiStpfqoBpS6iEgmLZDLSk09OXRA622xZTmlzqYrVG81KDVMtkB0lSJYZw1pAzN6WRx9LTLZOeUznp6mh3kVfQgs3x8snpeuLfbjrSh6iXPT4RerM7+esSY9CtKOSnL/ANHmlSfP11KRIwLGhYSpCFYYQpx6oISrLImkinDFK0cFm8M1iaSKcw05QqibKyyJqU05sUJaqTZSXBAaUBklzLBwCNiZXPNOL1M6ToIhkk8srXjsTCjaYV4xlVuEQSZndakwt04Rb0spShtNlwYES88xlEr1QOyAdGMupiFkhBeaOamd8aqCVELU4BFt06DJlFilAjKzV+aXarmhfo0y1ECo0J6Y3y/VCLdJLFnTk6QnARWDmnSqUYjUmdOevSV6FaoMaqgydVjFE4KfgmFIKHnj1eajJOrMwJKQRDCiaRMoMPDHYJrDKFBTMsY601LqYEGGDBJgkygjaCzQGabZcpFlqepUiszNumc05CgliAALknIATEjd69N4YLpM0DS6dQEo6uAbG20HgRtHXKSRF5svs56lmxCwmlWUOm+bFOSVaWKcMPaNAiqizTGklsRhijARJQBELSHpTESUFYOGNiewBRNEiGRAaXU9lsBAdIbCLYTOnsl0i8MaywMMa06oSEBGBZsJMNBCwgIYpwtXNSIUGMIPCwTAs1iMVjGq0WIQMuAiZkwGYBA0YJEO0IjKNTElRInOXDnmFFkaxETOD61VsNNQdhLE8+ECw756OrYXJIAG0k2AHEmeN9cKyVlRVbEqFy1rgEkAKA2/fsvPR9fje5v4eb7PUnx2a896mad/jbD2XFRSB0YhfjygO+fSyZ8h9WKqUNKR3FlUv7OZuVZQSDtGd+OU+uaNXSouNHDrxB7jvB5jO/3fj/1LJ6xx+n3PG87+xLKMGUEJDRZ4vF7dKKxeGVFIQSPFNRKhjgJWKYm8AjE1HhmysqKCYEEniuoikWyTommIJSS8rOnMZIOGdJqcW1GZ8bGvKVzmSBq5e1GL1MnsyLVhCaCQws1OTWTQhBYeGakZ0vFNkzeCZq5rE0N5sCGEhBJcNCqwSI7DN6uTF0iEDHBJmrlxNIMBhKjTgMkmJrxvr1peCmi3tiZmPOEANu1geoTxOn+ll1XJOZ8J3/7WKmEUh9moe1lB/dnzE1WAwnIi4I6Mp9j6nxc//OWvm/YtvdVjSbtee19TNJanpIU+y4VekMrkX/Egz5+efPtCN6oU7z5Xnp/Q+lE6dRAv/maKoHEErn0WZu2ej5ud4s/45cTw7lfZFaHcRq0IWpnwX1ysU0THijNijCJbmFcynUwtWIMTLeGBHauaKwpJmGNKQSkyFkwTGEQSIsUowYwiDaYsUoVDxhCoeM561YwVZuM4uFQ8ZvWHjIhVhCpLKYt1h4zNYeMjFSFrJdTFesPGb1h4yQVJvWS7DFesPGb1p4yMVJvHGwxXrDxma08ZLrZmtjYYpNU8YJqt8Rk5qQTUjYPmv9rOknW01OY1V+13HlPAek9KVnZhYXdyBsuCxIsNwn0j+1bQHqJo7oDfWGkbAWGtw4Sx3DEoHDlc88PpXqnWtdqlIc2I+SmfW+D5eZ8U95fby9fDvdrnUXAcuvKG3LMgW3jmne9VULadSWm2Pl0ji2CyKrPa+4BWA42Ek9Eerjhh/fUwdm1h1ZrPfeo/q3qKtWtUUhgVVLEYTiUFmUWBvnvy5R6tfL9jic337z8MT4r5Znr17fQ1qniYYqHjIlqRgefH9PYqFQ8ZvWHjJRUm8chinGeMzGeMn1kzWQKMfPMx88n1kzWQqjHzzMUn1o+rzNYJNMPLc80TEmpNayS1cMJmrxZqTWKYtakcJasMVJx00iNXSPrObxHWFSGKk5a14xa/T3yDoipN6yc/Xc82Kx+v+Y1cdDWwxUnPFUQhUjUxfrJgqSHWTYqxq4vFSbxyEVZvWx5GLcUzFI9dCVydkeRiT1kqW0XSDYH+6q5EXGakbDPkS0xfIohzOFhhuN5vst2T656Z0Vqmj1aa5s9Ooq7PaKnDv42nx7RqmLkcoMbjaSATycrm4Nzstlxns+td5rl36pvo7RGxl7L7VrgArv37O+fWPVOqToy3AWzOoAFsgeHSSei0+beumjjR9PKU8KI6UXwKFVVsChAysPYvs2mfQvVIE6MjZnGztw2HAMt2SCPnu8Tr+nM949EGhYhJxi5+7zhY7cfrqni11xQrfVpuIV+num7x5Jh1x/zebBHN2xAeZrhLph5b6zmF+iJ1wmGqI0w8Mfr/AIglzw7ooVRumGqOeTVw25+hNNeINb73d5zDX+9M2hmI/QmsX1aKar0zWt6ZGo8YtWMWr0yLFDWrPXeXPVy1OnsJjVfp75z9b0dhjEqA/wDE53lXQV+nthKV+HPq7pGKvC3j5w1qniOw/OZsVWh5vCMx2+r+EjWr9ZzbaRbeOs2mcVdimw0iWtfeOpj5SiirNzDib2kDg0NGvw6zaMoogzNz0gDsF5QNITeV6L5yKWlAnaRb658pVf7vh5xJ0pPiXtPymNpA5j2/KA1h0dRnxb1Z0L/F0lLXK1UuSMyUcEnrw8Z9gaqOA3c3iJ8bqVTQ0177Uru3MQHxqbc4seuez613yk/jl8n6dr+05f8AFUGw/qhytzYXY4erEPzie59T1/wlG+fJc3yyu7G3Vs6p4X+06uDXoKLXFN2y4O9hs+4Z7b1ZIGi0b29i+0e8xbjzx8l/8eTmf6r0DuAP6SGrUN8iOsf1EbjFv6/IxbOPq88ddW0qX4dx8I0ODx75NiG4+NrzBV3XHb84MV4vq/ym8fN328ZOrnn8u+Epvwhk7H0d0wP1dd4kPwPZM1tjbvINvACNU6/T3+Ey46+i8Wan1sEW72F8zJoeD0+HfaCbfVvlFLVHP2Wgs/VCmMV+jY+MG68e8/OTmvmRnbjcfMzNb97tjB4h6/X2fOa1p4Dry7pJiE01W3DrYL3T6l4cNV61uFufk27zGKT8Q6MI8pCtVTw7Qe+A9ZBtDdNgR2zF4XXWNdvhW3G4B7CkoTSLjYez6vOIlcNYIzXOwKhJPQMM7GiaC7WLGw5rFj2Gw7Jy65k/LUumLW2AC1+AtfqvnL6Gi1DYlWA57A/lZryjRwiAWp2+0SxbpuJTTrg35LDgQal7dk4dX+Njo0kA9hz0hXvz5A2EMMoFwjDopv5WgnSgLArU6dw/N8psaUPicbd9M+UxgoTSBwcDjgfzExtLX4yOweKxIrg543HWm3otNGtn7ZHTgJv1ERgadJXfVt1p/LFmpc31qkbvYPhGU3b4weoZf+021R72xDm5DW6yGMuAGf7dPsB/iE+Wevmiuum4wq2qKhUrsdkAVrgE4SOSOyfVgHtymS/MjHvxTwfrppdB6gpMQ1RLIoQ4HLOVNtvJGS5nibcZ2+C3nrWepsx5n1hqvpGmUkIOM09DRlC2wu6qzAC5JsXO22d8hafW6OiMqqi4AFVVUGmDyVAAzx808X6K9FlNPsQpOCmSoDMobAt2xk/Ff3erfPctR+zTv9fYmvn62TmfiROZm6Tqn+x+zUecwo/wp1AfKA9MD3KXds/JEOg+Clw4fwTztnMH3ovh5ROBgb4E7f6TNWPgonmuf5IjSKQFv7qjmbXLEW6P7sm/NAoSqwIDKmHKwFrjnuTKQwtfMjZvt2jOc5dEG6nStxGfjSjqGj4fZVF42AF+AJFME75LBZrdmzPZu75ov184BPaRkOuT1Xw2OG+z2QbDjttMWrc3z7dnZcXkwUK5FiQRzbT3TZrjm5r2EkZyF2M23OwuB0Db2TSaUCOSwvbZa5y+zcGMFbPe+zvg6wgWA8AJMtU4bk5DmK9obZAxgWAwrfYMh2Z5xgp1rcD3QCzfF+78pK7npETrF4jum5ya8IOPl/QQ1q5e0OggfOS02LbMLdBHmJ0qHo4kXJS/wlrgdNhn1GfV66k/LzyX9NUKuM4QGvzeORnZ0TQ0A5bsTwXd0kybQdFqIc2XCb5IALHcdg77zp0KRA5TDpa1+6eX5O/46c8/0+iiAWAI42JJ6+ImkAxEWAFhYjFcnPaN27fvhLu5WI7uRs64QJ2nBfq7bATz1tQuj2vd8t2bgj/2hJTPxHpZ2+cnQ8ybtin5WhM6qLnBu2m1uuxtJgrpg7jf/wAjeEahIv8Az992E561ha4QNbg1/ICHj2Eplz7fHLskxV2ve/vG/DA3bycoVOo59pX5rFLdk5623o3EXqC47XjQ43q9rWFmHk8Yix78HHMVQ99oJQE+zl/pjyiCgPuP1v8AN4INvdcbPfW378B70gATgH7Ik+M8V6epI9VTg2EbEInra1SykjH+YN4MZ5LTnOMnl9l/KdPj3S/h3vR2A1C2DlYFAJpEm3VOsrA7Mj/oOO82nmvRdVgP1mf2f6TsppJ3vUH4L/wTPU9oeyc658ab/O3GLFE5+xb7j+FpttJ/7lXL/t2/gi/0w7NZV/Z/7cmK2aB+wPwMIrAfsdjjuhNpB3Van7P/AG4IZv8Aq1vyKP8A5RgBkP2Ox4FROOD8r/K0Zjb/AK2kfs1PhSgVH41dJ6dX/tiMC00RNoVOpH28ctkeWcLcAk7lCuDbje22Tmx/W6R2EeCTGRLf5mldrjr9mXP6ilK7AZ3Jy5JtfgN23mz2dc2lYkkHZkbZq2W0W+RklPVq2LHUYkEcsu22x9ki26aeqGHtbrbcJHPc5iPE1e9W2ZII2Xy288Q+kBDhG/cb26icj1SdaXO/RiyHOCBe8nSkRiW5ZTuYXseIJBN+7mmueYWrQoJJF7DbYnLhtJA7M5vXL8dPr29eU5CVwj4sDKRkGHJUDiwNgB1StdNBzDA/iHmZu8VNiKiCgsFAHAZDuyhY2+Edx7iYrHb2QfDvCkwtYx2W67+OGdbEh6Ut5S/5bd0caK29oId3Jv3b5Mrt7xHUzfKU03Nsr9k59StNUtGA9uqzf+MC/wCVL98op0ha4xgfdcH+kGmgObJ+JhbwMppup5KtnzHLtzmLRMRbazdZbzmEbeUPzL3cI6scO1lPTc+UnSshOfcbeMgYtYD9Yo6ag/mim0hb8qqnTrF82jkKHY7g8LoYxXa+0kfh+YkCv0obqifmQ98amkHc4P5T3CaeqMuSDfnGzovlNNg5+oAjukFK1nHvE9S+U21ZwdvcsRSRGF8vxUxNulLetIngaa37LRkCtOqOB75/CPnOJWLk7Df7s6FanSO1KO0+6gMBKFK2SJ1BfIeE6c5EoNDdwdlx0WE7VKuwGwDu7pzKGjJe4U8MqZOfUuU6lHQRbO/H2f6THWKBtLe9vke6C+kvv5s8h5xjaEue63T5TR0RfiHaw77iT0B1z7M/H+KKGlNwa+ewHv5VjDNBDkChPDWMT2YoH/5y8APxH+aPQH9KNrWOW3k2/iif0s7OUB0D+aP/AENPsn8THzi20Jd1h1tNf5AHSSRvP4c+b3oFTT2AzxEZbj85jaOg94dpHiJj0Ftcg2257O05GWYJ19IhtoOfTbxjTYi9+Oew+MYtNdoReu3ymFQNhRetZfX6CdZuxlRutY/ODUqvuTEL55gMRx3Abf6Qq1ZRnrFH3bHxFpK9XLkEXv7wuD+XZfjOnM/4zVQcXuE3C+aXB3E5kX3QMbDYX7Ek1LTW2EC9/dYErntsRiAy3X2ZSlfSHFV69vXlN5Z+tT8/tAXqbkQ3vYXI39ELBXyOBPzv5JL63sjpP7pkdP2lmqCx1rZIgNx7x2XztyeEqOnsosaY2bLr4G0yl7MZ8/Oc7FFR0tsPJoPzWNEDqu4m1019mpqE8L0fJ52fd6hOZ7x65yuNFvp7EWNJx+U/usZE+lZ3wOOcIx7wJ1KnsP8AceK0r3PvP4GJBDT9JIDYpWOz9VVOfUtoSekbH2HHTSqA261nSMnrbe3zkuaFD0igzIIyO1GHiIL+kqWRxKOk2yldPY33G/dMPQtnUPARg59P0lo421qV/wDUX5wv0ui36+kRu5Sgr1YiD05Tr8PrdB0n3erzjBx20igD7dM5Wyde7PKC+kUtzL2qT4SvSd3X4STS/ZHQPOIN0dKpce/5TpJpdK1gxHWT5zzEyt7M1eYmvSiql/a7d8J6y/GegXHnPI7j9boh/KTwhr2bumy7fmk5Vb7rbxn88xPGptH1vjj5Dxl8E16lQcWZGHOwAIPNnfyjroBt78PiM549dolPut1y3k16N6ifEO0RL1U+LvE4KbpQ/sdYjDV76Qh97vEWa6fGB2ec5tDaemUL7XUZvENbSUz5Yv0gec0dIpkf5ovxBXzmtw6o6ltm4EO9NhYuDz4lB5iLbIdPSbADXHIAbRGV9nVJ5uI//9k=" class="img-fluid" alt="">
+                    </span>
+                  </a>
+                </div>
+                <div class="col-6 col-xl-4 px-0">
+                  <a href="#" target="_blank">
+                    <span class="thumb-info thumb-info-lighten thumb-info-centered-info thumb-info-no-borders">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOo-0qisjbSL10niLhG9Wy_ThKjuXnALFuJg&usqp=CAU" class="img-fluid" alt="">
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div> {% endcomment %}
+          
+          <div class="row d-none d-md-block">
+            <div class="col-sm-12">
+              <h5 class="font-weight-600 mt-3">Find us on Facebook</h5>
+              <div class="row">
+                <div class="col-auto">																																											
+                  <i class="fab fa-facebook-square" style="font-size:40px; color:#3a5897"></i>
+                </div>											
+                <div class="col pl-0">														
+                  <a href="https://www.facebook.com/My-Taxboard-106770335212522/" target="_blank">
+                    <p class="text-primary mb-0" style="font-size:14px; font-family: poppins,Arial,sans-serif">MytaxBoard</p>
+                  </a>														
+                  <div class="post-meta">
+                    <span class="badge-default px-3" style="padding:2px; border-radius:20px; font-size:12px; background-color: #1d9df0">follow page</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 d-md-none">
+          <div class="form-group mb-3">
+            <div class="input-group mb-4">
+              <input class="form-control" placeholder="Search" type="text">
+              <div class="btn btn-default py-2 px-3">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="font-weight-600 pt-4">Categories</h5>
+            <ul class="navbar-nav">
+              {%for j in main_data1 %}
+              
+              <li class="nav-item">
+                <a class="nav-link active collapsed" href="#aaa{{forloop.counter}}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-dashboards">
+                  
+                  <span class="nav-link-text">{{j.main_category}}</span><i class="ml-3 fas fa-caret-down"></i>
+
+                </a>
+                
+                <div class="collapse mr-4" id="aaa{{forloop.counter}}" style="">
+                  <ul class="nav nav-sm flex-column  pl-3">
+                      {%for i in main_data %}
+                      {%if j.main_category == i.main_category.main_category %}
+                        
+                      <li class="nav-item">
+                      <a href="{{i.sub_categories_links}}" class="nav-link">
+                        <span class="sidenav-normal"> {{i.sub_categories}} </span>
+                      </a>
+                    </li>
+                    
+                    {%endif%}
+                {%endfor%}
+                  </ul>
+                </div>
+              </li>
+            {%endfor%}
+              
+            </ul>
+            {% comment %} <ul class="nav nav-list flex-column mb-5">									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Design (2)</a>
+              </li>									
+              <li class="nav-item">										
+                <a class="nav-link active" href="#">Photos (4)</a>										
+                <ul style="list-style-type:disc;">											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Animals</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Business</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Sports</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">People</a>
+                  </li>										
+                </ul>									
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Videos (3)</a>
+              </li>									<li class="nav-item">
+                <a class="nav-link" href="#">Lifestyle (2)</a>
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Technology (1)</a>
+              </li>								
+            </ul> {% endcomment %}
+            <div>	
+              <div class="nav-wrapper">
+                <ul class="list-group list-group-horizontal nav nav-pills nav-fill" id="tabs-icons-text" role="tablist" style="list-style-type:none">
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1 active" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-13" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">Popular</a>
+                    </li>
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-24" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Recents</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tabs-icons-text-13" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}											
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}			
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                      </ul>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-icons-text-24" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}																
+                          												
+                      </ul>  
+                    </div>
+                  </div>
+                </div>
+              </div>															
+            </div>
+            {% comment %} <div class="pt-3">
+              <h5 class="font-weight-600">About Us</h5>
+              <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center my-4">
+        <!-- twitter -->
+        <div class="col text-center">
+          <h3 class="text-center font-weight-bold"><b>Follow Us</b></h3>
+          <div class="mt-3 text-center">
+            <!-- twitter -->
+            <a target="_blank" href="https://twitter.com/my_taxboard">
+              <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0)">
+                      <path
+                          d="M39.3638 7.2344C38.4751 7.6285 37.5525 7.93941 36.6058 8.16449C37.649 7.17326 38.4332 5.93343 38.8757 4.54957C39.002 4.15449 38.5729 3.81287 38.2162 4.0244C36.8992 4.80557 35.4806 5.39159 33.9997 5.76637C33.9138 5.78812 33.8251 5.79914 33.7362 5.79914C33.4664 5.79914 33.2042 5.69898 32.9979 5.5172C31.4223 4.12855 29.3959 3.36377 27.292 3.36377C26.3816 3.36377 25.4624 3.50567 24.5599 3.78556C21.7637 4.65284 19.6062 6.95939 18.9293 9.80514C18.6753 10.8725 18.6066 11.9409 18.7248 12.9805C18.7383 13.1 18.6819 13.1834 18.6471 13.2225C18.5859 13.291 18.4992 13.3303 18.4092 13.3303C18.3992 13.3303 18.3888 13.3299 18.3786 13.3289C12.2578 12.7602 6.7383 9.81138 2.83684 5.02568C2.6379 4.78157 2.25638 4.81151 2.09781 5.08351C1.3338 6.39423 0.930053 7.89337 0.930053 9.41885C0.930053 11.7567 1.86931 13.9599 3.50079 15.566C2.81471 15.4033 2.15067 15.1471 1.53383 14.8045C1.2354 14.6387 0.868223 14.8518 0.864029 15.1931C0.821314 18.6662 2.85469 21.7565 5.90076 23.1481C5.83942 23.1496 5.77807 23.1502 5.71663 23.1502C5.23379 23.1502 4.7449 23.1036 4.26372 23.0117C3.92765 22.9475 3.64532 23.2663 3.74967 23.5921C4.73837 26.6789 7.3961 28.9541 10.5766 29.4707C7.93696 31.2426 4.8631 32.1773 1.66382 32.1773L0.666446 32.1767C0.359147 32.1767 0.0992454 32.377 0.0209335 32.6746C-0.056208 32.9678 0.0858846 33.277 0.347932 33.4295C3.95301 35.5275 8.06511 36.6364 12.2415 36.6364C15.8972 36.6364 19.3168 35.9109 22.4053 34.4802C25.2368 33.1686 27.7388 31.2937 29.8421 28.9076C31.8013 26.6848 33.3334 24.1188 34.3956 21.2811C35.4082 18.5761 35.9435 15.6897 35.9435 12.9341V12.8028C35.9434 12.3604 36.1435 11.944 36.4926 11.6606C37.8175 10.5849 38.9712 9.31869 39.9216 7.89708C40.1725 7.52171 39.7767 7.05125 39.3638 7.2344Z"
+                          fill="#76A9EA" />
+                  </g>
+                  <defs>
+                      <clipPath id="clip0">
+                          <rect width="40" height="40" fill="white" />
+                      </clipPath>
+                  </defs>
+              </svg>
+
+            </a>
+            <!-- linked in -->
+            <a target="_blank" href="https://www.linkedin.com/company/mytaxboard/" class="mx-4">
+              <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d="M36.3817 0H3.61832C1.62 0 0 1.62 0 3.61832V36.3816C0 38.38 1.62 40 3.61832 40H36.3816C38.38 40 40 38.38 40 36.3816V3.61832C40 1.62 38.38 0 36.3817 0ZM12.3777 34.5386C12.3777 35.1202 11.9063 35.5916 11.3247 35.5916H6.84241C6.26084 35.5916 5.78942 35.1202 5.78942 34.5386V15.749C5.78942 15.1674 6.26084 14.696 6.84241 14.696H11.3247C11.9063 14.696 12.3777 15.1674 12.3777 15.749V34.5386ZM9.08356 12.9248C6.73183 12.9248 4.82534 11.0183 4.82534 8.6666C4.82534 6.31487 6.73183 4.40838 9.08356 4.40838C11.4353 4.40838 13.3418 6.31487 13.3418 8.6666C13.3418 11.0183 11.4354 12.9248 9.08356 12.9248ZM35.8021 34.6235C35.8021 35.1581 35.3686 35.5916 34.8339 35.5916H30.0241C29.4894 35.5916 29.0559 35.1581 29.0559 34.6235V25.8101C29.0559 24.4953 29.4416 20.0487 25.62 20.0487C22.6557 20.0487 22.0544 23.0923 21.9337 24.4581V34.6235C21.9337 35.1581 21.5003 35.5916 20.9655 35.5916H16.3136C15.779 35.5916 15.3454 35.1581 15.3454 34.6235V15.6642C15.3454 15.1295 15.779 14.696 16.3136 14.696H20.9655C21.5002 14.696 21.9337 15.1295 21.9337 15.6642V17.3035C23.0329 15.6539 24.6664 14.3807 28.1444 14.3807C35.8462 14.3807 35.8021 21.5761 35.8021 25.5296V34.6235Z"
+                      fill="#0077B7" />
+              </svg>
+
+            </a>
+            <!-- facebook -->
+            <a target="_blank" href=" https://www.facebook.com/My-Taxboard-106770335212522/">
+              <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d="M34.6095 0H5.39008C2.41328 0 0 2.41318 0 5.39008V34.6097C0 37.5866 2.41318 39.9998 5.39008 39.9998H19.801L19.8255 25.706H16.112C15.6294 25.706 15.2377 25.3158 15.2359 24.8332L15.2181 20.2257C15.2162 19.7405 15.6091 19.3462 16.0943 19.3462H19.8011V14.8942C19.8011 9.72768 22.9564 6.91449 27.5653 6.91449H31.3472C31.8311 6.91449 32.2234 7.30677 32.2234 7.79074V11.6758C32.2234 12.1596 31.8314 12.5517 31.3477 12.552L29.0268 12.5531C26.5203 12.5531 26.035 13.7441 26.035 15.492V19.3463H31.5425C32.0673 19.3463 32.4744 19.8045 32.4126 20.3256L31.8665 24.9331C31.8142 25.374 31.4404 25.7062 30.9964 25.7062H26.0596L26.035 40H34.6097C37.5865 40 39.9997 37.5868 39.9997 34.61V5.39008C39.9996 2.41318 37.5864 0 34.6095 0Z"
+                      fill="#475993" />
+              </svg>
+
+            </a>
+            <!-- youtube -->
+            <a target="_blank" href="https://www.youtube.com/channel/UCQugFs4WzBuodqpj8oBryDA" class="mx-4">
+              <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d="M31.6925 5.84766H8.30749C3.71938 5.84766 0 9.56704 0 14.1551V25.8452C0 30.4333 3.71938 34.1527 8.30749 34.1527H31.6925C36.2806 34.1527 40 30.4333 40 25.8452V14.1551C40 9.56704 36.2806 5.84766 31.6925 5.84766ZM26.0742 20.5689L15.1363 25.7857C14.8448 25.9247 14.5082 25.7122 14.5082 25.3893V14.6298C14.5082 14.3023 14.8537 14.0901 15.1457 14.2381L26.0837 19.7809C26.4089 19.9457 26.4032 20.4121 26.0742 20.5689Z"
+                      fill="#F61C0D" />
+              </svg>
+
+            </a>
+            <!-- instagram -->
+            <a href="https://www.instagram.com/mytaxboard/" target="_blank">
+              <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M28.0838 0H11.9162C5.34559 0 0 5.34559 0 11.9162V28.0838C0 34.6544 5.34559 40 11.9162 40H28.0838C34.6544 40 40 34.6544 40 28.0838V11.9162C39.9999 5.34559 34.6543 0 28.0838 0ZM35.976 28.0838C35.976 32.4425 32.4425 35.976 28.0838 35.976H11.9162C7.5575 35.976 4.024 32.4425 4.024 28.0838V11.9162C4.024 7.55743 7.5575 4.024 11.9162 4.024H28.0838C32.4425 4.024 35.976 7.55743 35.976 11.9162V28.0838Z"
+                    fill="url(#paint0_linear)" />
+                <path
+                    d="M19.9997 9.6543C14.2952 9.6543 9.6543 14.2952 9.6543 19.9996C9.6543 25.704 14.2952 30.3451 19.9997 30.3451C25.7042 30.3451 30.3451 25.7041 30.3451 19.9996C30.3451 14.2952 25.7042 9.6543 19.9997 9.6543ZM19.9997 26.3211C16.5085 26.3211 13.6783 23.491 13.6783 19.9997C13.6783 16.5085 16.5085 13.6783 19.9997 13.6783C23.491 13.6783 26.3211 16.5085 26.3211 19.9997C26.3211 23.4909 23.4909 26.3211 19.9997 26.3211Z"
+                    fill="url(#paint1_linear)" />
+                <path
+                    d="M30.3657 12.2114C31.7348 12.2114 32.8447 11.1015 32.8447 9.73239C32.8447 8.36329 31.7348 7.25342 30.3657 7.25342C28.9966 7.25342 27.8867 8.36329 27.8867 9.73239C27.8867 11.1015 28.9966 12.2114 30.3657 12.2114Z"
+                    fill="url(#paint2_linear)" />
+                <defs>
+                    <linearGradient id="paint0_linear" x1="20" y1="39.8836" x2="20" y2="0.310687"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#E09B3D" />
+                        <stop offset="0.3" stop-color="#C74C4D" />
+                        <stop offset="0.6" stop-color="#C21975" />
+                        <stop offset="1" stop-color="#7024C4" />
+                    </linearGradient>
+                    <linearGradient id="paint1_linear" x1="19.9997" y1="39.8833" x2="19.9997" y2="0.310411"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#E09B3D" />
+                        <stop offset="0.3" stop-color="#C74C4D" />
+                        <stop offset="0.6" stop-color="#C21975" />
+                        <stop offset="1" stop-color="#7024C4" />
+                    </linearGradient>
+                    <linearGradient id="paint2_linear" x1="30.3657" y1="39.8837" x2="30.3657" y2="0.310837"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#E09B3D" />
+                        <stop offset="0.3" stop-color="#C74C4D" />
+                        <stop offset="0.6" stop-color="#C21975" />
+                        <stop offset="1" stop-color="#7024C4" />
+                    </linearGradient>
+                </defs>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<!--Main Footer End-->
+{% include "includes/footer.html" %}
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+  /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+  var dropdown = document.getElementsByClassName("dropdown-btn1");
+  var i;
+  
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+    } else {
+    dropdownContent.style.display = "block";
+    }
+    });
+  }
+  </script>
+{% endblock script %}

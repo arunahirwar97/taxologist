@@ -1,0 +1,91 @@
+{% extends 'dashboard_base.html' %}
+
+{% block content %}
+
+<div class="mt-5 justify-content-center row">
+    <div class="col-md-10">
+        {% if messages%}
+
+        {%for message in messages%}
+                    <div class="container mt-3 message alert alert-{{message.tags}} text-center text-danger">{{message}}</div>
+        {%endfor%}
+     
+        {%endif%}
+        <form class="" method="post">
+          {%csrf_token%}
+            <div class="form-group">
+                <label for="pass1">Enter old Password</label>
+                <div class="row">
+                    <div class="col">
+                        <input name="oldpassword1" id="pass3"  pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Enter New Password" message="Your password must contain atleast 8 character, Uppercase, lowercase, Number and Special Character." required="" type="password" class="form-control" style="border-color: rgb(67, 161, 246); font-size: 18px; color: black;">
+                    </div>
+                    <div class="col-auto px-0 my-auto col" onclick="myFunction3()">
+                        <i class="fas fa-eye" style="font-size: 16px;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pass1">Enter New Password</label>
+                <div class="row">
+                    <div class="col">
+                        <input name="password1" id="pass1" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Enter New Password" message="Your password must contain atleast 8 character, Uppercase, lowercase, Number and Special Character." required="" type="password" class="form-control" style="border-color: rgb(67, 161, 246); font-size: 18px; color: black;">
+                    </div>
+                    <div class="col-auto px-0 my-auto col" onclick="myFunction()">
+                        <i class="fas fa-eye" style="font-size: 16px;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="pass2">Enter New Password Again</label>
+                <div class="row"><div class="col">
+                    <input name="password2" id="pass2" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Enter New Password" message="Your password must contain atleast 8 character, Uppercase, lowercase, Number and Special Character." required="" type="password" class="form-control" style="border-color: rgb(67, 161, 246); font-size: 18px; color: black;">
+                </div>
+                <div class="col-auto px-0 my-auto col" onclick="myFunction1()">
+                    <i  class="fas fa-eye" id="one" style="font-size: 16px;"></i>
+                </div>
+            </div>
+            <p class="text-red"></p>
+        </div>
+        <div class="text-center form-group">
+            <button type="submit" class="btn btn-rounded btn btn-secondary" style="background-color: rgb(67, 161, 246); color: white; border-radius: 20px;">Submit</button>
+            <button type="button" class="btn btn-rounded btn btn-secondary" style="background-color: rgb(67, 161, 246); color: white; border-radius: 20px;">Cancel</button>
+        </div>
+    </form>
+</div>
+  <script>
+    {% comment %} $("#one").hide(); {% endcomment %}
+  
+  
+    function myFunction() {
+      var x = document.getElementById("pass1");
+      if (x.type === "password") {
+        {% comment %} <i class="fa fa-eye-slash" aria-hidden="true"></i> {% endcomment %}
+  
+        x.type = "text";
+        
+      } else {
+        x.type = "password";
+      }
+    }
+    function myFunction1() {
+      var x = document.getElementById("pass2");
+      if (x.type === "password") {
+        {% comment %} <i class="fa fa-eye-slash" aria-hidden="true"></i> {% endcomment %}
+        {% comment %} $("#one").addClass("fa-eye-slash"); {% endcomment %}
+        {% comment %} $("#one").removeClass("fa fa-eye"); {% endcomment %}
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }   
+    function myFunction3() {
+        var x = document.getElementById("pass3");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+      </script>
+
+{% endblock content %}

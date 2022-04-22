@@ -1,0 +1,33 @@
+{% extends 'dashboard_base_for_business.html' %}
+{% load static %}
+{% block style %}
+
+
+{% endblock style %}
+
+
+{% block content %}
+ <!-- Main content -->
+    <div class="container">
+      <div class="row mt-5">
+          <div class="col-sm-6 text-center card-body" style="display: flex; justify-content: center; align-items: center;">
+            <h1> currently Maintainance Work </h1>
+          </div>
+          <div class="col-sm-6 card-body" style="display: flex; justify-content: center; align-items: center;">
+          <img  src="/static/svg/maintainance.svg " class="img-fluid"  alt="">
+              
+          </div>
+        </div>
+    </div>
+  
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+    $('.nav-item a').removeClass('btn btn-primary text-white');
+    $('.file_return-item a').addClass('btn btn-primary text-white');
+    
+</script>
+{% endblock script %}

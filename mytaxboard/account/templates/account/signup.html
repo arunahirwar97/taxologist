@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-client_id" content={%for i in login_id%}{{i.login_id}}{%endfor%}>
+  {% include 'includes/cssfiledesign.html' %}
+
+
+</head>
+<style>
+  .span_cross {
+    content: "\292B";
+  }
+  @media(max-width:576px){
+    .remove_img{
+      display: none;
+    }
+  }
+</style>
+
+{% block content %}
+<section style="background: linear-gradient(104.34deg, #6683EC 10.63%, rgba(56, 144, 133, 0.2) 91.07%), linear-gradient(244.68deg, #11CDEF 16.78%, rgba(255, 255, 255, 0) 82.86%); width:100%; height:100vh;">
+  
+  <div class="container" >
+    <div class="pt-2">
+    <br>
+    <br>
+      <div class="row" >
+        <div class="col-md-6 bg-white">
+          <div class="container pt-3">
+            <div class="col"style="width: 26rem; height:15;">
+              <div class="card border-0 shadow-none mb-0">
+                <div class="card-header bg-white pb-2"> 
+                  <div class="d-md-none py-3 mb-3">
+                    <a href="/">
+                      <img src="/static/svg/logo/my_taxboard_edged.svg" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="text-muted text-center mb-1"><p class="font-weight-bolder">Signup</p></div>
+                  <div class="btn-wrapper text-center" style="display: flex; justify-content: center; align-items: center;">
+                    <a class="display: flex; justify-content: center; align-items: center;">
+                      <div class="row" >
+                        <div class="col-sm-12 text-center m-0 p-0 g-signin2"
+                         data-onsuccess="onSignIn" 
+                         data-accesstype="online"
+                         data-scope="https://www.googleapis.com/auth/plus.login"
+                         data-theme="dark"
+                         style="width:240px;height:40px;color:white;font-weight:bold;"
+                         >
+                        </div>
+                      </div>
+                    </a> 
+                  </div>
+                </div>
+    
+              <div class="card shadow-none px-lg-3 py-lg-1">
+                <div class="text-center text-dark mb-2">
+                  <p >Or login with credentials</p>
+                </div>
+                <div class="text-center text-red mb-2">
+                  
+                  {% if error %}
+                    <small>{{error}}</small>  
+                  {% endif %}
+                  
+                </div>
+                
+                <form role="form" method="POST" id="register">{% csrf_token %}
+                  
+                  <div class="form-group ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" name="username" placeholder="Email" type="email" required>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="form-control" id="password" name="password" placeholder="Password" type="password" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="form-control" id="pass_conf" name="password_confirm" placeholder="Password confirm" type="password" required>
+                    </div>
+                  </div>
+  
+                    </div>
+                    <div style="width:100%;display: flex; justify-content: center; align-items: center;" >
+                      <div class="custom-control custom-checkbox mb-3 " >
+                        <input class="custom-control-input" id="customCheck2" type="checkbox" >
+                        <label class="custom-control-label" for="customCheck2">I agree with the Privacy Policy</label>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                     <span class="small ">If you have already an account <a href="{% url 'login' %}" role="button">click here </span></a>
+                      <br>  
+                      <button type="submit" class="btn btn-primary my-3">Signup</button>
+                    </div>
+    
+                </form>
+    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 bg-blue text-center mx-auto d-none d-md-block">
+          <a class="text-white float-right" href="/"><i class="fa fa-times" aria-hidden="true" style="font-size: 20px;margin-top: 10px;"></i>
+          </a>
+          <img class="mt-8 remove_img" src="/static/assets_design/img/home/Animation.svg" class="img-fluid w-75" alt="">
+            <br>
+            <br>
+          <img class="mt-2" src="/static/svg/logo/login_signup_logo.svg" class="img-fluid" width="200" height="70" alt="">
+
+        </div>
+      </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+{% block script %}
+  <script>
+
+    let form = document.forms.register;
+
+    function myfunction(){
+      //password = document.getElementById("password").value;
+      //password_conf = document.getElementById("pass_conf").value;
+      //if (password != password_conf){
+        //alert("password does not match....");
+      //}
+      //else{
+        //alert("password matched.....");
+      //}
+      form.password.setCustomValidity("");
+      form.password_conf.setCustomValidity("");
+      
+      if(form.password.value != form.password_conf.value)
+      {
+          form.password_conf.setCustomValidity("this password does not match our other password");
+      }
+    }
+    
+  </script>
+
+  
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      $.ajax(
+        {
+          url: "ajax_call_for_login_using_javascript",
+          data:{
+            'name':profile.getName(),
+            'email':profile.getEmail(),
+            'image':profile.getImageUrl(),
+            'uid':profile.getId(),
+  
+          },
+          success: function(result) 
+          {
+            
+            location.href = 'bluer';
+          }
+       });
+    }
+  </script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock script %}
+
+</html>

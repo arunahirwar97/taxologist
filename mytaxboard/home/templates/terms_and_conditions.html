@@ -1,0 +1,51 @@
+{% extends 'base_for_another_page.html' %}
+
+
+{% block content %}
+<section class="mt-5">
+  <div class="container p-5">
+    <div class="row">
+      <div class="col-lg-12 col-12">
+        <h1 class="text-center display-2 font-weight-600">Terms & Conditions.</h1>  
+        <div class="mt-5">
+          <h2 class="display-3 font-weight-600">{%for i in page_data%}{%if i.page == 'TAC' and i.title_condition == 'TAC_CONDITION' %}{{i.title}}{%endif%}{%endfor%}
+            </h2>
+          <p class="lead h5">          
+            {%for i in page_data %}
+            {%if i.page == 'TAC' %}
+            {{i.Paragraph|safe}}
+            <br>
+            {%endif%}
+            {%endfor%}
+          </p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section> 
+<!--Second Page End-->
+<section class="mt-5">
+  <div class="bg-dark mt-4 pl-6 pr-6">
+    <div class="container text-center px-4">
+      <h2 class="py-6 text-white">
+        {%for i in topic%}
+        {{i}}
+        {%endfor%}
+      </h2>
+      {%for i in review_database1 %}
+      <div class="text-left ml-2 text-white ">
+        <h5 class="text-white font-weight-600 mt-3">
+          {{i.question}}
+        </h5>
+        <p class="font-weight-400">{{i.answer}}</p>
+      </div>
+          
+        {% endfor %}
+    </div>
+    <div class="p-4"></div>
+  </div>
+</section>
+{% include "includes/footer.html" %}
+
+{% endblock content %}

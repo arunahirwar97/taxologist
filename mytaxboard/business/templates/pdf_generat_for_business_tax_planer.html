@@ -1,0 +1,201 @@
+<html>
+	{% include 'includes/cssfiledesign.html' %}
+	{% load static %}
+
+
+<body class="g-sidenav-show g-sidenav-pinned bg-white p-0 m-0" style="" >
+    <div  id="root">
+		<div class="main-content">
+			<div class="justify-content-center row">
+				<div class="col-sm-12">
+					<div class="card">
+						<div style="overflow: hidden;">
+							<div class="p-0 card-header">
+								<div class="row">
+									<div class="col-auto col">      
+										<img class="ml--3" src="/static/svg/invoice/invoice-up.svg" alt="error" width="280" height="auto">
+									</div>
+									<div class="text-right pr-5 col">                                		<img src="/static/svg/invoice/mytaxboard-logo.svg" alt="error" width="200" height="auto">
+										<h4 style="font-family: Alata; font-size: 60px; color: rgb(74, 110, 191);">TAX PLANNER REPORT</h4>
+									</div>
+								</div>
+								<div class="mx-3 row">
+									<div class="col-8">
+										{%for i in header_data%}
+										
+											<div class="row">
+												<div class="col">
+													<p class="text-dark font-weight-600" style="font-size: 20px;">Name</p>
+												</div>
+												<div class="col-auto col">
+													<p class="text-dark font-weight-600" style="font-size: 20px;">:</p>
+												</div>
+												<div class="col-8">
+													<p class="text-dark font-weight-600" style="font-size: 20px;">{{i.name}}</p>
+												</div>
+											</div>
+										
+										<div class="row">
+											<div class="col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">Tax Plan Name</p>
+											</div>
+											<div class="col-auto col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">:</p>
+											</div>
+											<div class="col-8">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">{{i.tax_plan_name}}</p>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">Pan Number</p>
+											</div>
+											<div class="col-auto col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">:</p>
+											</div>
+											<div class="col-8">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">{{i.pan_card_number}}</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">Plan Code</p>
+											</div>
+											<div class="col-auto col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">:</p>
+											</div>
+											<div class="col-8">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">{{i.plan_code}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">Date</p>
+											</div>
+											<div class="col-auto col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">:</p>
+											</div>
+											<div class="col-8">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">{{i.current_date}}</p>
+											</div>
+										</div>
+										
+
+										<div class="row">
+											<div class="col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">Year</p>
+											</div>
+											<div class="col-auto col">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">:</p>
+											</div>
+											<div class="col-8">
+												<p class="text-dark font-weight-600" style="font-size: 20px;">{{i.year}}</p>
+											</div>
+										</div>
+
+										
+									</div>
+									{%endfor%}
+
+								</div>
+							</div>
+							
+							<div class="card-body">
+								{% for i in main_head%}
+								<div class="row">
+									<div class="text-center py-3 col">
+										<h5 class="font-weight-bold mb-0" style="color: rgb(57, 119, 197); font-size: 35px;">{{i}}</h5>
+									</div>
+								</div>
+								{%for j in block_head%}
+										{%for k in question_and_answer_data%}
+
+										{%if k.main_heading == i and k.block_heading == j%}
+								<div class="row {{j|cut:" "}}" id="arun">
+									<div class="text-center py-3 col">
+										<p class="font-weight-600 text-info text-center" style="font-size: 28px;">{{j}}</p>
+									</div>
+								</div>
+
+								<div class="table-responsive">
+									<table class="align-items-center table">
+										<tbody>
+											<tr>
+												<div class="row mx-1 mt-5">
+													<div class="col-sm-11 p-0"> 
+                                                        <h5 class="font-weight-bold mr-auto ">Q.{{forloop.counter}} {{k.question}}</h5>
+                                                    </div>
+                                                    <div class="col-sm-1 p-0"> 
+                                                        <h5 class="font-weight-bold ">{% if k.user_answer == "Yes"%}{{k.user_answer}}<i class="fas fa-check-circle text-success ml-3" style="font-size: 22px; margin-right: 10px;"></i>{%elif k.user_answer == "No"%}{{k.user_answer}}<i class="fas fa-times-circle text-danger ml-3" style="font-size: 22px; margin-right: 10px;"></i>{%endif%}</h5></div>
+													</div>
+                                                    <div class="p-3" style="border: 2px solid rgb(50, 50, 93); border-radius: 10px;">
+														<p class="font-weight-500" style="font-size: 18px;">{{k.answer}}</p>
+													</div>
+												</div>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+									{%endif%}
+									{%endfor%}
+								{%endfor%}
+								{%endfor%}
+
+							</div>
+							
+							<footer>
+								<div class="px-0 pt-6 card-footer">
+									<div class="row">
+										<div class="text-right col">                                
+											<img class="" src="/static/svg/invoice/invoice-down.svg" alt="error" width="200" height="auto" style="position: absolute; bottom: -75px; right: -5px;">
+										</div>
+									</div>
+								</div>
+							</footer>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<h1 onclick="printDiv('root')" style="text-align:center;background-color:green;"><a href="" >Download </a></h1>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+
+	{% for i in main_head%}
+	{%for j in block_head%}
+	setTimeout(function(){$(".{{j|cut:" "}}").not(':first').remove();},);
+	{%endfor%}
+	{%endfor%}
+</script>
+{% comment %} <script>
+	function printFunction() { 
+	  window.print(); 
+	  var divContents = document.getElementById("root").innerHTML;
+	  var a = window.open('', '', '');
+	  a.document.write(divContents);
+	  a.print();
+	}
+  </script> {% endcomment %}
+  <script>
+	function printDiv(divName){
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+
+		document.body.innerHTML = printContents;
+
+		window.print();
+
+		document.body.innerHTML = originalContents;
+
+	}
+</script>
+  </html>

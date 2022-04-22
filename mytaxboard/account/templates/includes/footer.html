@@ -1,0 +1,88 @@
+<style>
+  @media(max-width:576px){
+    .data{
+      text-align:center;
+    }
+  }
+}
+
+</style>
+<section class="bg-dark pt-5 pb-2 pl-6 pr-6" id="base_footer">
+  <div class="container">
+    <div class="row data">
+    <div class="col-sm">
+      <img class="" src="../../static/assets_design/img/how its work/footerlogo.svg" alt="" width="200px" height="100px">        
+    </div>
+    
+    <div class="col-sm">
+    <div style="list-style-type:none;"> 
+      {% for i in links%}
+        {%if i.title_col == '1' %}
+          <li><a href={{i.title_link}} class="text-white">{{i.title_name}}</a></li>
+        {%endif%}
+      {%endfor%} 
+    </div>
+    </div>
+
+    <div class="col-sm">
+    <div style="list-style-type:none;"> 
+      {% for i in links%}
+        {%if i.title_col == '2' %}
+          <li><a href={{i.title_link}} class="text-white">{{i.title_name}}</a></li>
+        {%endif%}
+      {%endfor%} 
+    </div>
+    </div>
+
+    <div class="col-sm">
+    <div style="list-style-type:none;"> 
+      {% for i in links%}
+        {%if i.title_col == '3' %}
+          <li><a href={{i.title_link}} class="text-white">{{i.title_name}}</a></li>
+        {%endif%}
+      {%endfor%} 
+    </div>
+    </div>
+
+    <div class="col-sm">
+    <div style="list-style-type:none;"> 
+      {% for i in links%}
+        {%if i.title_col == '4' %}
+          <li><a href={{i.title_link}} class="text-white">{{i.title_name}}</a></li>
+        {%endif%}
+      {%endfor%} 
+    </div>
+    </div>
+  <div class="container mt-5">
+    <div class="content" style="display: flex; justify-content: center; align-items: center;">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="text-center text-white">
+                Copyright © 2021 Absolute Compliance Private Limited
+              </p>
+            </div>
+          </div>
+          <div class="row" style="display: flex; justify-content: center; align-items: center;">
+            
+              <a class="text-white" href="{% url 'terms_and_conditions' %}" class="nav-link">
+                Terms & conditions
+              </a>
+            
+              <p class="text-white mb-0 d-none d-md-block font-wieght-600">|</p>
+           
+              <a class="text-white" href="{% url 'privacy_policy' %}" class="nav-link">
+                Privacy policy
+              </a>
+            </div>
+          </div>
+        </div>  
+      </div>
+        
+    </div>
+  
+  </section>
+  <!--Main Footer-->
+  
+  

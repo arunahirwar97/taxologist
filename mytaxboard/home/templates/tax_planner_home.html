@@ -1,0 +1,105 @@
+{% extends 'base_for_another_page.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <style>
+        .container {
+            max-width: 1350px;
+        }
+        .middle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+    <section class="base_padding" style="background-color:#067ae5">
+        <div class="container pb-5">
+            <div class="row justify-content-center py-5 ">
+                <h1 class="text-white font-weight-bold d-none d-md-block" style="letter-spacing:2px; font-size:6vw"><b>Tax Planner</b></h1>
+                <h1 class="text-white font-weight-bold d-md-none"><b>Tax Planner</b></h1>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 middle">
+                    <h5 class="text-white text-center d-none d-md-block font-weight-bold px-3" style="font-size:3vw">CLICK ON GET STARTED TO PLAN YOUR TAXES.</h5>
+                    <h5 class="text-white text-center d-md-none font-weight-bold pb-3 px-3">CLICK ON GET STARTED TO PLAN YOUR TAXES.</h5>
+                </div>
+                <div class="col-sm-6 px-5 text-center">
+                    <img class="img-fluid" style="border-radius:10px" src="../../static/assets_design/img/home/gif 1.gif" alt="start" >
+                </div>
+            </div>
+            <div class="row middle">
+                <div class="col-sm-7 d-none d-md-block">
+                    <img class="img-fluid"  src="../../static/assets_design/img/home/line1.svg" alt="line">
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-sm-6 px-5 text-center d-none d-md-block">
+                    <img class="img-fluid" style="border-radius:10px" src="../../static/assets_design/img/home/gif 2.gif" alt="self Employee">
+                </div>
+                <div class="col-sm-6 middle">
+                    <h5 class="text-white text-center d-none d-md-block font-weight-bold " style="font-size:3vw">SIGN IN WITH GOOGLE OR CREATE AN ACCOUNT.</h5>
+                    <h5 class="text-white text-center d-md-none font-weight-bold pt-5 pb-3">SIGN IN WITH GOOGLE OR CREATE AN ACCOUNT.</h5>
+                </div>
+                <div class="col-sm-6 px-5 text-center d-md-none">
+                    <img class="img-fluid" style="border-radius:10px" src="../../static/assets_design/img/home/gif 2.gif" alt="self Employee">
+                </div>
+            </div>
+            <div class="row middle mx-3">
+                <div class="col-sm-7 d-none d-md-block">
+                    <img class="img-fluid"  src="../../static/assets_design/img/home/line2.svg" alt="self Employee">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 middle">
+                    <h5 class="text-white text-center d-none d-md-block font-weight-bold" style="font-size:3vw">CLICK ON TAX PLANNER FROM DASHBOARD SIDEBAR.</h5>
+                    <h5 class="text-white text-center d-md-none font-weight-bold pt-5 pb-3">CLICK ON TAX PLANNER FROM DASHBOARD SIDEBAR.</h5>
+                </div>
+                <div class="col-sm-6 px-5 text-center">
+                    <img class="img-fluid" style="border-radius:10px" src="../../static/assets_design/img/home/gif 3.gif" alt="self Employee">
+                </div>
+            </div>
+            <div class="row middle mx-3">
+                <div class="col-sm-7 d-none d-md-block">
+                    <img class="img-fluid"  src="../../static/assets_design/img/home/line1.svg" alt="self Employee">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 text-center px-5 d-none d-md-block">
+                    <img class="img-fluid" style="border-radius:10px" src="../../static/assets_design/img/home/gif 4.gif" alt="self Employee">
+                </div>
+                <div class="col-sm-6 middle">
+                    <h5 class="text-white text-center d-none d-md-block font-weight-bold" style="font-size:3vw">ANSWER SIMPLE QUESTIONS AND HIT FINISH.</h5>
+                    <h5 class="text-white text-center d-md-none font-weight-bold pt-5 pb-3">ANSWER SIMPLE QUESTIONS AND HIT FINISH.</h5>
+                </div>
+                <div class="col-sm-6 text-center px-5 d-md-none">
+                    <img class="img-fluid" style="border-radius:10px" src="../../static/assets_design/img/home/gif 4.gif" alt="self Employee">
+                </div>
+            </div>
+            <div class="row middle mx-3">
+                <div class="col-sm-7 d-none d-md-block">
+                    <img class="img-fluid"  src="../../static/assets_design/img/home/line2.svg" alt="self Employee">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 middle">
+                    <h5 class="text-white text-center d-none d-md-block font-weight-bold" style="font-size:3vw">GET YOUR TAX PLAN REPORT</h5>
+                    <h5 class="text-white text-center d-md-none font-weight-bold pt-5 pb-3">GET YOUR TAX PLAN REPORT</h5>
+                </div>
+                <div class="col-sm-6 text-center px-5">
+                    <img class="img-fluid" style=" border-radius:10px" src="../../static/assets_design/img/home/gif 5.gif" alt="self Employee">
+                </div>
+            </div>
+            <div class="row text-center py-5 mt-5">
+                <div class="col">
+                    <button type="button" class="btn btn-white font-weight-700 " data-toggle="modal" data-target="#signuu_model" style="color:#067ae5">
+                        Get Started 
+                      </button>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+

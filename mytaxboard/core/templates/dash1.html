@@ -1,0 +1,30 @@
+<div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="form-control" id="password" name="password" placeholder="Password" type="password" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" class="form-control" id="pass_conf" name="password_confirm" placeholder="Password confirm" type="password" required>
+                    </div>
+                  </div>
+  
+                    </div>
+                    <div style="width:100%;display: flex; justify-content: center; align-items: center;" >
+                      <div class="custom-control custom-checkbox mb-3 " >
+                        <input class="custom-control-input" id="customCheck2" type="checkbox" >
+                        <label class="custom-control-label" for="customCheck2">I agree with the Privacy Policy</label>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                     <span class="small ">If you have already an account <a href="{% url 'login' %}" role="button">click here </span></a>
+                      <br>  
+                      <button type="submit" class="btn btn-primary my-4">Signup</button>
+                    </div>

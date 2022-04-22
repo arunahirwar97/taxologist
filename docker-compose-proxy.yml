@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+  
+    volumes:
+      - ./mytaxboard:/mytaxboard
+      - static_data:/vol/web
+    environment:
+      - DB_HOST=db
+      - DB_NAME=app
+      - DB_USER=mytaxboard
+      - DB_PASS=mytaxboard
+      - ALLOWED_HOSTS=127.0.0.1
+      - USE_S3=TRUE
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
+    depends_on:
+      - db
+  proxy:
+    image: proxy:latest
+    depends_on:
+      - app
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_data:/vol # /vol for production and /vol/static for local run 
+
+  db:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=mytaxboard
+      - POSTGRES_PASSWORD=mytaxboard
+    
+volumes:
+  static_data:
+
+# docker-compose -f docker-compose-proxy.yml up

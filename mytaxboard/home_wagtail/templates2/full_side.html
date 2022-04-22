@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static cms_tags static menu_tags  %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+<meta name="description" content="{% page_attribute "meta_descrition" %}">
+
+{% block content %}
+<style>
+    ul.no-bullets {
+        list-style-type: none;
+        /* Remove bullets */
+        padding: 0;
+        /* Remove padding */
+        margin: 0;
+        /* Remove margins */
+    }
+</style>
+<div class="container mt-6 py-5 ">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb bg-white">
+            <!-- <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:;">Blogs</a></li> -->
+            <!-- {% show_breadcrumb %} -->
+            {% show_menu 0 100 100 100  "breadcrumb.html" %}
+            {{ node.title }}
+
+
+        </ol>
+    </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h5><b class="text-primary">CATEGORY</b></h5>
+            <div>
+
+                <div class="accordion-1">
+                    <div class="accordion pt-2 mt-2" id="accordionExample">
+                        {% for i in "werf"%}
+                        <div class="card">
+                            <div class="card-header p-2" id="heading-{{forloop.counter}}">
+                                <h5 class="d-flex align-items-center">
+                                    <button class="btn btn-link text-primary text-left m-0 p-0" type="button"
+                                        data-toggle="collapse" data-target="#collapse-{{forloop.counter}}"
+                                        aria-expanded="false" aria-controls="collapse-{{forloop.counter}}">
+                                        <i class="ni ni-bold-down mt-1 mr-2 float-left"></i>
+                                        How do I order?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapse-{{forloop.counter}}" class="collapse"
+                                aria-labelledby="heading-{{forloop.counter}}" data-parent="#accordionExample">
+                                <!-- show -->
+                                <div class="p-2 opacity-8">
+                                    <div class="list-group border-0">
+                                        <a href="#" class="list-group-item border-0 list-group-item-action">
+                                            Cras justo odio
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action border-0">Dapibus ac
+                                            facilisis in</a>
+                                        <a href="#" class="list-group-item list-group-item-action border-0">Morbi leo
+                                            risus</a>
+                                        <a href="#" class="list-group-item list-group-item-action border-0">Porta ac
+                                            consectetur ac</a>
+                                        <a href="#" class="list-group-item list-group-item-action border-0"
+                                            tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h2><b>{% page_attribute "title" %}</b> </h2>
+            {% page_attribute "page_type" %}
+            {% page_attribute "author" %}
+            <p>{% placeholder 'content' or %}
+                <p>no content</p>
+                {% endplaceholder%}
+            </p>
+            
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
+                            </i></span>
+                    </div>
+                    <input type="search" class="form-control" placeholder="Search" type="text">
+                </div>
+            </div>
+            <b class="text-center text-primary">
+                POPULAR ARTICLES
+            </b>
+            <div>
+                <ul class="no-bullets">
+                    <a href="#" class="text-decoration-none text-dark text-left">
+                        <li class="border-bottom p-3">How to save taxes in a small business
+                        </li>
+                    </a>
+                    <a href="#" class="text-decoration-none text-dark  text-left">
+                        <li class="border-bottom p-3">Complete GST guide beginners
+                        </li>
+                    </a>
+
+                </ul>
+            </div>
+
+            <div class="container  mt-3 py-3">
+                <b class="text-center text-primary">
+                    INTERESTED
+                </b>
+                <div>
+                    <ul class="no-bullets">
+                        <a href="#" class="text-decoration-none text-dark text-left">
+                            <li class="border-bottom p-3">How to save taxes in a small business
+                            </li>
+                        </a>
+                        <a href="#" class="text-decoration-none text-dark  text-left">
+                            <li class="border-bottom p-3">Complete GST guide beginners
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container  mt-3 py-3">
+                <b class="text-center text-primary mt-3">
+                    RECENT ARTICLES
+                </b>
+                <div>
+                    <ul class="no-bullets">
+                        <a href="#" class="text-decoration-none text-dark text-left">
+                            <li class="border-bottom p-3">How to save taxes in a small business</li>
+                        </a>
+                        <a href="#" class="text-decoration-none text-dark  text-left">
+                            <li class="border-bottom p-3">Complete GST guide beginners
+                            </li>
+                        </a>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

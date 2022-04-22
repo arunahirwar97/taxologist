@@ -1,0 +1,184 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+
+{% block content %}
+<section>
+    <div class="tables-1 mt-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center">
+              <h2 class="title mb-4">Find out more details</h2>
+              <div class="section-space"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mx-auto">
+              <div>
+                <div class="card card-plain">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-pricing">
+                        <thead class="text-primary">
+                          <tr>
+                            <th>
+                              <h5 class="mb-0">Space individual</h5>
+                            </th>
+                            <th class="text-center">
+                              <p>Team</p>
+                              <h4 class="desc"> $39</h4>
+                              <a href="javascript:void(0)" class="btn btn-outline-success btn-sm">Choose Plan</a>
+                            </th>
+                            <th class="text-center">
+                              <p>Growth</p>
+                              <h4 class="desc"> $79</h4>
+                              <a href="javascript:void(0)" class="btn btn-outline-success btn-sm">Choose Plan</a>
+                            </th>
+                            <th class="text-center">
+                              <p>Enterprise</p>
+                              <h4 class="desc"> $99</h4>
+                              <a href="javascript:void(0)" class="btn btn-success btn-sm">Choose Plan</a>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              Community support
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              100+ Example Pages
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              50+ Section Examples
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              Multiple use
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-danger">
+                                <i class="fas fa-times text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              upon request
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              Custom messages
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-success">
+                                <i class="ni ni-check-bold text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-danger">
+                                <i class="fas fa-times text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-danger">
+                                <i class="fas fa-times text-white"></i>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              Multiple requests
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-danger">
+                                <i class="fas fa-times text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-danger">
+                                <i class="fas fa-times text-white"></i>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="badge badge-circle badge-danger">
+                                <i class="fas fa-times text-white"></i>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+{% endblock content %}
+
+
+{% block script %}
+
+<script>
+    $('.nav-item a').removeClass('btn btn-primary text-white');
+    $('.setting-item a').addClass('btn btn-primary text-white');
+    </script>
+
+{% endblock script %}

@@ -1,0 +1,93 @@
+{%load static%}
+<html lang="en" type="text/html" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-W79KFC6');</script>
+      <!-- End Google Tag Manager -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X0TQB86GS"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-2X0TQB86GS');
+      </script>
+  <title>Dashboard</title>
+  <!-- Favicon -->
+</head>
+<style>
+    .border-space{
+      border-top: 1px solid #BBBBBB;
+    }
+
+    .dropdown-toggle{
+      margin-left: 3px;
+    }
+    body{
+      overflow-x:hidden;
+    }
+    html{
+      overflow-x:hidden;
+    }
+    @media(max-width:576px){
+      body{
+      max-width:100%;
+      overflow-x:hidden;
+      text-align:center;
+    }
+    }
+</style>
+{% block style %}
+  
+{% endblock style %}
+{% comment %} css dashboard file {% endcomment %}
+{% include 'includes/cssfiledashboard.html' %}
+
+<body type="text/html">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W79KFC6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  {% comment %} topnavbar file {% endcomment %}
+
+  {% comment %} leftsidebar  {% endcomment %}
+  {% include 'includes/leftsidebar.html' %}
+
+ 
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+
+  {% include 'includes/topnavbar.html' %}
+
+      {% block content %}
+    
+      {% endblock content %}
+  
+  
+  </div>
+
+  {% comment %} js dashboard file {% endcomment %}
+  {% include 'includes/jsfiledashboard.html' %}
+
+  {% block script %}
+
+  {% endblock script %}
+  <script type="text/javascript">
+    (function(w, d, s, u) {
+      w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
+      var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
+      j.async = true; j.src = 'https://chat.absolutecompliance.in/livechat/rocketchat-livechat.min.js?_=201903270000';
+      h.parentNode.insertBefore(j, h);
+    })(window, document, 'script', 'https://chat.absolutecompliance.in/livechat');
+    </script>
+</body>
+
+</html>

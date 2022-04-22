@@ -1,0 +1,40 @@
+{% extends 'dashboard_base_for_business.html' %}
+{% load static %}
+{% block style %}
+
+
+{% endblock style %}
+
+
+{% block content %}
+ <!-- Main content -->
+  <div class="container mt-7">
+      <div class="row">
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-8">
+              <div class="card" style="background-color: blueviolet;">
+ <h3 class="display-4 text-white text-center mt-3">We are going to launch our advance chart.</h3>
+            <p class="font-weight-500 text-white text-center">Powered By MyTaxBoard</p>
+              </div>
+           
+              
+        </div>
+        <div class="col-md-2">
+              
+        </div>
+      </div>
+  </div>
+  
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+    $('.nav-item a').removeClass('btn btn-primary text-white');
+    $('.advance_chart-item a').addClass('btn btn-primary text-white');
+    $('.advance_chart-item a .one').attr('src','/static/svg/dashboard_base/dashbaord_w.svg');
+    </script>
+{% endblock script %}

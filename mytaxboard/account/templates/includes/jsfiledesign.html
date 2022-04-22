@@ -1,0 +1,76 @@
+{% load static %}
+<!-- Theme JS -->
+  
+  <script src="./assets_design/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assets_design/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assets_design/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="./assets_design/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+  <script src="./assets_design/js/plugins/moment.min.js"></script>
+  <script src="./assets_design/js/argon-design-system.js?v=1.0.0" type="text/javascript"></script>
+
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="./assets_design/js/plugins/bootstrap-switch.js"></script>
+
+  <!-- Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="./assets_design/js/plugins/nouislider.min.js"></script>
+
+  <!--  Plugin for the Carousel, full documentation here: http://jedrzejchalubek.com/  -->
+  <script src="./assets_design/js/plugins/glide.js"></script>
+
+  <!--	Plugin for Select, full documentation here: https://joshuajohnson.co.uk/Choices/ -->
+  <script src="./assets_design/js/plugins/choices.min.js" type="text/javascript"></script>
+
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="./assets_design/js/plugins/bootstrap-switch.js"></script>
+
+  <!--  Plugin for the DateTimePicker, full documentation here: https://flatpickr.js.org/ -->
+  <script src="./assets_design/js/plugins/bootstrap-datetimepicker.js"></script>
+
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <script src="./assets_design/js/plugins/bootstrap-tagsinput.js"></script>
+
+  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="./assets_design/js/plugins/jasny-bootstrap.min.js"></script>
+
+  <!-- Plugin for Headrom, full documentation here: https://wicky.nillia.ms/headroom.js/  -->
+  <script src="./assets_design/js/plugins/headroom.min.js"></script>
+
+  <!--  Google Maps Plugin    -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+  <script src="./assets_design/js/argon-design-system.js?v=1.0.0" type="text/javascript"></script>
+
+
+  
+
+  <script>
+    // Carousel
+    new Glide('.glide', {
+      type: 'carousel',
+      startAt: 0,
+      focusAt: 2,
+      perTouch: 1,
+      perView: 4
+    }).mount();
+
+
+    // Testimonial Carousel
+    new Glide('.testimonial-glide', {
+      type: 'carousel',
+      startAt: 0,
+      focusAt: 2,
+      perTouch: 1,
+      perView: 4
+    }).mount();
+
+    ArgonKit.initGoogleMaps();
+    ArgonKit.initGoogleMaps2();
+  </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "argon-design-system-pro"
+      });
+  </script>

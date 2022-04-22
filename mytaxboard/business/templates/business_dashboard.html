@@ -1,0 +1,2384 @@
+{% extends 'dashboard_base_for_business.html' %}
+{% load static %}
+{% block style %}
+<style>
+  .container{
+    max-width: 1350px;
+  }
+  .font_size{
+    color:black;font-size:25px;
+  }
+  .current {
+  background-color: #5e72e4;
+}
+
+.page-link1{
+    line-height: 1.25;
+    {% comment %} position: relative; {% endcomment %}
+    display: block;
+    margin-left: -1px;
+    padding: .5rem .75rem;
+    color: #8898aa;
+    border: 1px solid #dee2e6;
+    border-radius: 50%!important;
+    margin: 0 4px;
+
+}
+  {% comment %} .plus-main{
+    padding-top:100px;
+    margin-left:100 px;
+    font-size:27;
+  } {% endcomment %}
+
+
+* {
+  box-sizing: border-box;
+}
+
+{% comment %} .bg-image {
+  /* The image used */
+  
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} {% endcomment %}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  position: absolute;
+
+  {% comment %} color: white;
+  font-weight: bold;
+  {% comment %} border: 2px solid white; {% endcomment %}
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 80%;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-right:5px;
+  padding-left:5px; 
+  text-align: center;
+}
+
+
+  .container{
+    max-width: 1350px;
+  }
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+  background-color: yellow;
+  padding: 50px;
+  font-size: 20px;
+}
+
+@media(min-width:576px) and (max-width:1025px) 
+  {
+    #d_none{
+      display:none;
+    }
+}
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<!-- Main content -->
+
+<div class="main-content " id="panel" >
+
+  {% comment %} <div class="container">
+    <div class=" card mt-2">
+      <div class="pb-3 card-body">
+          <div class="row">
+              <div class="col-md-10">
+                  <p class="font-weight-bold mb-0" style="font-size: 20px;">
+                      PLEASE FIRST REGISTER YOUR SELF
+                      <span>
+                          <i class="fas fa-arrow-right ml-3 text-info" style="font-size: 25px;"></i>
+                      </span>
+                  </p>
+              </div>
+              <div class="col-md-2 mm col">
+                  <button type="button" class="btn btn-success" style="border-radius: 30px;">
+                      <a href="{% url 'business_registration_for_income_tax_dashbaord' %}"><h6 class="text-white font-weight-bold mb-0">REGISTER NOW</h6></a>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div> {% endcomment %}
+    <div class="card mt-5">
+      <div class="m-3 pl-4">
+        <div class="row">
+          
+         
+          {% if xmldata %}
+                <div class="col-sm-4 p-1" >
+                  <div class="row">
+                    <div class="col-sm-5 pl-0 pr-0">
+                      <h2 class="">LEGAL NAME -</h2>
+                    </div>
+                    <div class="col-sm-7 pl-0 pr-0">
+                      <span id="selectcities1" style="font-size:20px;color:black" ></span>
+                    </div>
+                  </div>  
+                </div>
+                <div class="col-sm-3 p-1 pl-0 pr-0" >
+                    <h2 class="">GST- <select class="form-control-sm"  style="border:0px;height:40px;width:auto; background:white;font-size:.9375rem;"  id="selectcountries"> <option>Select </option>
+                                                {% for xmldata in xmldata_gstin %}
+                                                <option >{{xmldata}}</option>
+                                                {% endfor %}
+                                                {% for xmldata in reg_data %}
+                                                <option>{{xmldata.gst_number}}</option>
+                                                {% endfor %}
+                                                {% for xmldata in add_client_data %}
+                                                <option>{{xmldata.gst_number}}</option>
+                                                {% endfor %}
+                                      </select>
+                    </h2>
+                </div>        
+          {% elif reg_data %}
+              
+                <div class="col-sm-4 pt-1 pb-1">
+                    <div class="row">
+                      <div class="col-sm-5 pl-0 pr-0">
+                        <h2 class="">LEGAL NAME -</h2>
+                      </div>
+                      <div class="col-sm-7 pl-0 pr-0">
+                        <span id="selectcities111" style="font-size:20px;color:black;"></span>
+                      </div>
+                    </div>  
+                </div>
+                
+                <div class="col-sm-3 p-1" >
+                    <h2 class="">GST- <select  class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;" id="selectcountries1"> <option>Select </option>
+                                          {% for xmldata in reg_data %}
+                                          <option>{{xmldata.gst_number}}</option>
+                                          {% endfor %}
+                                          {% for xmldata in add_client_data %}
+                                          <option>{{xmldata.gst_number}}</option>
+                                          {% endfor %}
+                                      </select>
+                    </h2>
+                </div>       
+            {% elif data1 %} 
+             <h2 class="">LEGAL NAME - {{data1.name}} <span class="ml-5">PAN - {{data1.pancard}}</span></h2>
+            {% endif %}
+          {% if xmldata %}
+          
+            <div class="col-sm-2 p-1" >
+                  <h2 class=""> AY- <select  id="selectcities" class="form-control-sm" style="border:0px;height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                      </select><span > <a href="{% url 'xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+              :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;">  <i class="ni ni-fat-add"></i></span> </a>
+                  </h2>
+            </div>
+            <div class="col-sm-2 p-1" >
+              <h2 class="">Months- <select  id="months_data" class="form-control-sm" style="border:0px;height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                  </select><span > <a href="{% url 'xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+          :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;">  <i class="ni ni-fat-add"></i></span> </a>
+              </h2>
+        </div>
+          {% elif reg_data %}
+            <div class="col-sm-4 p-1" style="padding-left:0px;padding-bottom:0px;">
+                  <h2 class=""> AY-  <select class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                              {% comment %} {% for xmldata in reg_data %}
+                                              <option>  {{ xmldata.assessmentyear }} </option>
+                                              {% endfor %} {% endcomment %}
+                                      </select><span > <a href="{% url 'xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+              :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;">  <i class="ni ni-fat-add"></i></span> </a>
+                  </h2>
+            </div>
+          {% elif data1 %}
+          
+            <div class="col-sm-4 p-1" style="padding-left:0px;padding-bottom:0px;">
+                  <h2 class=""> AY-  <select class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                              {% for xmldata in data1 %}
+                                              <option>  {{ xmldata.assessmentyear }} </option>
+                                              {% endfor %}
+                                      </select><span > <a href="{% url 'xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+              :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;"><i class="ni ni-fat-add"></i></span> </a>
+                  </h2>
+            </div>
+          {% endif %}        
+          <div class="col-sm-1 p-1">
+              <span  class="d-md-inline-block"><a href="{% url 'business_gst_dahsboard_add_client' %}" class="btn btn-outline" style="padding-top:.1rem;padding-bottom:.0rem;padding-left:0.1rem;padding-right:0.1px;"> <span class="btn-inner--icon" style="font-size:27px;display:flex;"><i class="ni ni-single-02 p-0 m-0"></i><i class="ni ni-fat-add p-0 m-0" style="display:flex;"></i></a></span>
+          </div>
+        </div>
+
+    </div> 
+  </div>
+  
+{% comment %} Start Condition {% endcomment %}
+    <div class="row mt-4" id="xml_file_data_show">
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+              <h5 class="card-title text-uppercase text-muted mb-3">GST PAID</h5>
+            <div class="row">
+              <div class="col-md-4">
+              
+                <div  class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+              </div>  
+              <div class="col-md-8" >
+              
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+
+                <span class="h2 font-weight-bold mb-0" data-id ="arun" id="TotalTaxPayable"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0" >No Data</span>
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                
+              </div> 
+                                    
+              </div>
+
+         
+                  
+              {% comment %} <div class="col-auto">
+              
+                <div style="margin-top:20px;" class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                  <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+              </div>
+               {% endcomment %}
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+            <h5 class="card-title text-uppercase text-muted mb-3">ITC</h5>
+            <div class="row">
+              <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                </div>
+              </div> 
+              <div class="col-md-8" >
+
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id= "TDS"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                  <span class="h2 font-weight-bold mb-0">No Data</span>
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+              </div>                  
+              </div>
+              
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+              <h5 class="card-title text-uppercase text-muted mb-3">CASE LEGAL</h5>
+
+            <div class="row">
+            <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+            </div> 
+            <div class="col-md-8" >
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id="TotalChapVIADeductions"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0">No Data</span>
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                  
+              </div>
+              {% comment %} <div class="col-auto">
+                <div style="margin-top:20px;" class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                  <i class="ni ni-money-coins"></i>
+                  <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+              </div> {% endcomment %}
+            </div>
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+            <h5 class="card-title text-uppercase text-muted mb-3">CREDIT LEGAL</h5>
+            <div class="row">
+            <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                </div>
+            </div> 
+            <div class="col-md-8" >
+                
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id="TCS"></span>
+                {% endfor %}
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0">No Data</span>
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                  
+              </div>
+              {% comment %} <div class="col-auto">
+                <div style="margin-top:20px;" class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                  <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                  <i class="ni ni-chart-bar-32"></i>
+                </div>
+              </div> {% endcomment %}
+            </div>
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+
+
+<section class="container">
+
+
+
+
+</section>
+      <section class="container">
+        <div class="mt">
+          <div class="row">
+            <div class="col-md-8">
+              <!--* Card header *-->
+              <!--* Card body *-->
+              <!--* Card init *-->
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <!-- Surtitle -->
+                    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                      <li class="col-4">
+                        <h6 class="surtitle">Overview</h6>
+                        <!-- Title -->
+                        <h5 class="h3 mb-0">Tax Paid</h5>
+                      </li>  
+                      <li class="nav-item col-4">
+                            <a class="nav-link mb-sm-3 mb-md-0 active" id="year-data-tab" data-toggle="tab" href="#year-data-1" role="tab" aria-controls="year-data" aria-selected="true">Year </a>
+                        </li>
+                        <li class="col-4">
+                            <a class="nav-link mb-sm-3 mb-md-0" id="months-data-tab" data-toggle="tab" href="#year-data-1" role="tab" aria-controls="month-data" aria-selected="false">Months</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Card body -->
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="year-data-1" role="tabpanel" aria-labelledby="year-data-tab">
+                        <!-- Card body -->
+                        <div class="card-body">
+                          <div class="chart">
+                            <!-- Chart wrapper -->
+                            <canvas id="chart-bars" class="chart-canvas"></canvas>
+                            <canvas id="chart-bars12" class="chart-canvas"></canvas>
+                            <canvas id="chart-bars123" class="chart-canvas"></canvas>
+                          </div>
+                        </div>
+                  </div>
+                  <div class="tab-pane fade" id="month-data-2" role="tabpanel" aria-labelledby="months-data-tab">
+                        <!-- Card body -->
+                        <div class="card-body">
+                          <div class="chart">
+                            <!-- Chart wrapper -->
+                            <canvas id="chart-bars1" class="chart-canvas"></canvas>
+                          </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      <div class="col-md-4">
+              <!--* Card header *-->
+              <!--* Card body *-->
+              <!--* Card init *-->
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                    <li class="col-4">
+                      <h6 class="surtitle">Overview</h6>
+                      <!-- Title -->
+                      <h5 class="h3 mb-0">Tax Paid</h5>
+                    </li>  
+                    <li class="nav-item col-4">
+                          <a class="nav-link mb-sm-3 mb-md-0 active" id="year-data-tab-pie" data-toggle="tab" href="#year-data-1-pie" role="tab" aria-controls="year-data" aria-selected="true">Year </a>
+                      </li>
+                      <li class="col-4">
+                          <a class="nav-link mb-sm-3 mb-md-0" id="months-data-tab-pie" data-toggle="tab" href="#month-data-2-pie" role="tab" aria-controls="month-data" aria-selected="false">Months</a>
+                      </li>
+                  </ul>
+                </div>
+                <!-- Card body -->
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="year-data-1-pie" role="tabpanel" aria-labelledby="year-data-tab">
+                        <!-- Card body -->
+                        <div class="card-body">
+                          <div class="chart">
+                            <!-- Chart wrapper -->
+                            <canvas id="chart-doughnut" class="chart-canvas" onclick="removeData();">
+                              <span id="TotalIncomeOfHP"  change="updatedata();"></span>
+                              <span id="TotalChapVIADeductions12"  change="updatedata();"></span>
+                              <span id="NetSalary"  change="updatedata();"></span>
+                              <span id="IncomeOthSrc"  change="updatedata();"></span>
+                              <span id="CapitalGain"  change="updatedata();"></span>
+                          </div>
+                        </div>
+                  </div>
+                  {% comment %} <div class="tab-pane fade" id="month-data-2-pie" role="tabpanel" aria-labelledby="months-data-tab">
+                        <!-- Card body -->
+                        <div class="card-body">
+                          <div class="chart">
+                            <!-- Chart wrapper -->
+                            <canvas id="chart123" class="chart-canvas"></canvas>
+                          </div>
+                        </div>
+                  </div> {% endcomment %}
+
+
+                {% comment %} <div class="card-body">
+                  <div class="chart" id="chart123">
+                    <!-- Chart wrapper -->
+
+                    <canvas id="chart-doughnut" class="chart-canvas" onclick="removeData();">
+                    <span id="TotalIncomeOfHP"  change="updatedata();"></span>
+                    <span id="TotalChapVIADeductions12"  change="updatedata();"></span>
+                    <span id="NetSalary"  change="updatedata();"></span>
+                    <span id="IncomeOthSrc"  change="updatedata();"></span>
+                    <span id="CapitalGain"  change="updatedata();"></span>
+                    </canvas>
+                  </div>
+                </div> {% endcomment %}
+              </div>
+        </div>
+      
+            
+          </div>
+        </div>
+
+      </section>
+    </div>
+    
+{% comment %} End conditions  {% endcomment %}
+{% comment %} Image bluer code start {% endcomment %}
+<div id="xml_file_data_hide">
+    <div class="row mt-4 bg-image " >
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+              <h5 class="card-title text-uppercase text-muted mb-3">GST PAID</h5>
+            <div class="row">
+              <div class="col-md-4">
+              
+                <div  class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+              </div>  
+              <div class="col-md-8" >
+              
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+
+                <span class="h2 font-weight-bold mb-0" data-id ="arun" id="TotalTaxPayable"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0" >No Data</span>
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                
+              </div> 
+                                    
+              </div>
+
+         
+                  
+              {% comment %} <div class="col-auto">
+              
+                <div style="margin-top:20px;" class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                  <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+              </div>
+               {% endcomment %}
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+            <h5 class="card-title text-uppercase text-muted mb-3">ITC</h5>
+            <div class="row">
+              <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                </div>
+              </div> 
+              <div class="col-md-8" >
+
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id= "TDS"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                  <span class="h2 font-weight-bold mb-0">No Data</span>
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+              </div>                  
+              </div>
+              
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+              <h5 class="card-title text-uppercase text-muted mb-3">CASE LEGAL</h5>
+
+            <div class="row">
+            <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+            </div> 
+            <div class="col-md-8" >
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id="TotalChapVIADeductions"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0">No Data</span>
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                  
+              </div>
+              {% comment %} <div class="col-auto">
+                <div style="margin-top:20px;" class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                  <i class="ni ni-money-coins"></i>
+                  <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+              </div> {% endcomment %}
+            </div>
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+            <h5 class="card-title text-uppercase text-muted mb-3">CREDIT LEGAL</h5>
+            <div class="row">
+            <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                </div>
+            </div> 
+            <div class="col-md-8" >
+                
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id="TCS"></span>
+                {% endfor %}
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0">No Data</span>
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                  
+              </div>
+              {% comment %} <div class="col-auto">
+                <div style="margin-top:20px;" class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                  <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                  <i class="ni ni-chart-bar-32"></i>
+                </div>
+              </div> {% endcomment %}
+            </div>
+            <!-- <p class="mt-3 mb-0 text-sm">
+              <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+              <span class="text-nowrap">Since last month</span>
+            </p> -->
+          </div>
+        </div>
+      </div>
+
+      
+      {% comment %} <div class="col-xl-7">
+        <!--* Card header *-->
+        <!--* Card body *-->
+        <!--* Card init *-->
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Surtitle -->
+            <h6 class="surtitle">Users</h6>
+            <!-- Title -->
+            <h5 class="h3 mb-0">Audience overview</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart">
+              <!-- Chart wrapper -->
+              <canvas id="chart-doughnut" class="chart-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div> {% endcomment %}
+
+
+{% comment %} <div class="col-xl-8 mb-5 mb-xl-0">
+          <div class="card bg-gradient-default shadow">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                  <h2 class="text-white mb-0">Sales value</h2>
+                </div>
+                <div class="col">
+                  <ul class="nav nav-pills justify-content-end">
+                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-pie" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
+                      <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
+                        <span class="d-none d-md-block">Month</span>
+                        <span class="d-md-none">M</span>
+                      </a>
+                    </li>
+                    <li class="nav-item" data-toggle="chart" data-target="#chart-bar-stacked" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
+                      <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
+                        <span class="d-none d-md-block">Week</span>
+                        <span class="d-md-none">W</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Chart -->
+              <div class="chart">
+                <!-- Chart wrapper -->
+                <canvas id="chart-pie" class="chart-canvas"></canvas>
+              </div>
+              <div class="chart">
+                <!-- Chart wrapper -->
+                <canvas id="chart-bar-stacked" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div> {% endcomment %}
+       
+      <section class="container">
+        <div class="mt">
+          <div class="row">
+            <div class="col-md-8">
+              <!--* Card header *-->
+              <!--* Card body *-->
+              <!--* Card init *-->
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <!-- Surtitle -->
+                  <h6 class="surtitle">Overview</h6>
+                  <!-- Title -->
+                  <h5 class="h3 mb-0">Tax Paid</h5>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="chart">
+                    <!-- Chart wrapper -->
+                    <canvas id="chart-bars" class="chart-canvas"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      <div class="col-md-4">
+              <!--* Card header *-->
+              <!--* Card body *-->
+              <!--* Card init *-->
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <!-- Surtitle -->
+                  <h6 class="surtitle">Overview</h6>
+                  <!-- Title -->
+                  <h5 class="h3 mb-0">Tax Paid</h5>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="chart" id="chart123">
+                    <!-- Chart wrapper -->
+
+                    <canvas id="chart-doughnut" class="chart-canvas" onclick="removeData();">
+                    <span id="TotalIncomeOfHP"  change="updatedata();"></span>
+                    <span id="TotalChapVIADeductions12"  change="updatedata();"></span>
+                    <span id="NetSalary"  change="updatedata();"></span>
+                    <span id="IncomeOthSrc"  change="updatedata();"></span>
+                    <span id="CapitalGain"  change="updatedata();"></span>
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+        </div>
+      
+            
+          </div>
+        </div>
+
+      </section>
+    
+     
+      </div>  
+
+
+
+</div>
+{% comment %} image bluer code finished {% endcomment %}
+      <div id="xml_file_data_hide1">
+      <section class="section section-md pt-lg-1" >
+      </div>
+      <section class="section section-md pt-lg-1">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3" style="padding-bottom: 1.5rem !important;padding-bottom: 1.5rem !important;margin-bottom:2px;">
+                  <div class="card card-lift--hover shadow border-0">
+                    <div class="card-body py-2 text-center">
+                      <p class="description mt-4">
+                        <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/dashboard1.png" alt="">
+                      </p>
+                      <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Genrate Report</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3" style="margin-bottom:1px;">
+                  <div class="card card-lift--hover shadow border-0">
+                    <a  href="{% url 'advance_chart' %}" >
+                      <div class="card-body py-2 text-center">
+                        <p class="description mt-4">
+                          <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/dashboardpiechart.png" alt="">
+                        </p>
+                        <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Advance Chart</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="card card-lift--hover shadow border-0">
+                    <a  href="{% url 'tax_planner' %}" >
+                      <div class="card-body py-2 text-center">
+                        <p class="description mt-4">
+                          <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/planner.png" alt="">
+                        </p>
+                        <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Tax Planner</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="card card-lift--hover shadow border-0">
+                    <a  href="{% url 'expert_assistant_2' %}" >
+                      <div class="card-body py-2 text-center">
+                        <p class="description mt-4">
+                          <img class="pr-lg-3 pl-lg-3"  src="/static/assets_design/img/headphones 1.png" alt="">
+                        </p>
+                        <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Expert Service</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="container mb-5">
+        <div class="my-5 ">
+          <div class="card card-body" style="border-radius: 20px;background: linear-gradient(#1171EF, #11CDEF);">
+            <div class="row align-items-center">
+              <div class="col-md-8 text-white p-4">
+                <p class=" text-white display-3">Start Filling your taxes now</p>
+                <div class=" text-white display-4">Get your maximum refund with all the credits and deductions you deserve​</div>
+              </div>
+              <div class="col-1"></div>
+              <div class="col-md-3 text-center">
+                <a class="btn btn-lg btn-white" href="{% url 'services' %}"><b class="text-primary" style="font-size: 20px;"> Service
+     </b></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+
+
+
+{% endblock content %}
+  <!-- Argon JS -->
+
+{% block script %}
+
+
+  
+<script>
+var SalesChart = (function() {
+
+	// Variables
+
+	var $chart = $('#chart-sales');
+
+	// Methods
+
+	function init($this) {
+		var salesChart = new Chart($this, {
+			type: 'line',
+			options: {
+				scales: {
+        
+					yAxes: [
+          {
+        id: "A",
+        type: "linear",
+        position: "left",
+        ticks: {
+              stepSize: 100000,
+              fontColor: "blue",
+                    },
+        gridLines: {
+              display:false,
+						},
+      }, {
+        id: "B",
+        type: "linear",
+        position: "right",
+        ticks: {
+              fontColor: "red",
+                    },
+
+        gridLines: {
+						
+              display:false,
+						},
+      },
+          {
+					
+            scaleLabel: {
+                display: true,
+                labelString: 'Amount in thousands'
+                
+              },
+
+
+					}]
+				}
+			},
+			data: {
+        labels: [{% for label in assessmentyear %} '{{ label }}', {% endfor %}],
+				datasets: [{
+					label: ['Total Income'] ,
+          yAxisID:'A',
+					data: [{% for i in total_income %} {{ i }} , {% endfor %}]
+				},
+        {
+					label: ['TotalTaxPayable'] ,
+          borderColor:'red',
+          yAxisID:'B',
+					data: [{% for j in TotalTaxPayable %} {{ j }} , {% endfor %}]
+				}
+        
+        ]
+			}
+		});
+
+		// Save to jQuery object
+
+		$this.data('chart', salesChart);
+
+	};
+
+
+	// Events
+
+	if ($chart.length) {
+		init($chart);
+	}
+
+})();
+</script>
+<script>
+var SalesChart = (function() {
+
+	// Variables
+
+	var $chart = $('#chart-sales1')	;
+	// Methods
+	function init($this) {
+		var salesChart = new Chart($this, {
+			type: 'line',
+			options: {
+				scales: {
+					yAxes: [{
+						gridLines: {
+							color: Charts.colors.gray[200],
+							zeroLineColor: Charts.colors.gray[200],
+						},
+
+            scaleLabel: {
+                display: true,
+                labelString: 'Amount in thousands'
+                
+              },
+						ticks: {
+            },
+					}]
+				}
+			},
+			data: {
+        labels: [{% for label in assessmentyear %} '{{ label }}', {% endfor %}],
+				datasets: [{
+					label: [] ,
+					data: [{% for i in TotalTaxPayable %} {{ i }} , {% endfor %}]
+				},
+        {% comment %} {
+					label: [] ,
+					data: [{% for j in TotalTaxPayable %} {{ j }} , {% endfor %}]
+				} {% endcomment %}
+        
+        ]
+			}
+		});
+
+		// Save to jQuery object
+		$this.data('chart', salesChart);  
+  salesChart.update();
+
+
+	};
+
+
+	// Events
+
+	if ($chart.length) {
+		init($chart);
+	}
+
+})();
+</script>
+
+
+{% comment %} Page Refresh code Start  {% endcomment %}
+<script>
+
+$('#selectcountries').on('change', function() {
+    // Save value in localstorage
+    localStorage.setItem("mov_type", $(this).val());
+ });
+
+ $(document).ready(function() {
+  if ($('#selectcountries').length) {
+      $('#selectcountries').val(localStorage.getItem("mov_type"));
+   }
+});
+$('#selectcities').on('change', function() {
+  // Save value in localstorage
+  localStorage.setItem("mov_type1", $(this).val());
+});
+
+$(document).ready(function() {
+if ($('#selectcities').length) {
+    $('#selectcities').val(localStorage.getItem("mov_type1"));
+ }
+});
+
+
+if (localStorage.getItem("mov_type")!="Select"){
+  $(document).ready(function(){
+      var gst_number = $('#selectcountries').val();
+      $.ajax(
+        {
+            url: "business_gst_getdetails",
+            data:{
+              gst_number:gst_number
+            },
+            success: function(result) 
+            {
+              if (result[0].reg_name == null ){
+                    if (result[0].xml_condition == 'True'){
+                      $('#xml_file_data_show').show();
+                      $('#xml_file_data_hide').hide();
+                      $('#xml_file_data_hide1').hide();
+                      $("#selectcities option").remove();
+                      $("#selectcities2").remove();
+                      
+                      if (localStorage.getItem("mov_type1")=="Selected"){
+                          
+                        $("#selectcities").append('<option>'+ "Select" +'</option>');
+                        $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                        for (var i = result.length - 1; i >= 0; i--) {
+                          $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                          };
+                      }
+                      
+                      $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                      $("#selectcities").append('<option>'+localStorage.getItem("mov_type1")+'</option>');
+                      for (var i = result.length - 1; i >= 0; i--) {
+                          if (localStorage.getItem("mov_type1")==result[i].year){
+                          }
+                          else{
+                            $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                          }
+                      };
+                            
+                      }
+                    else{
+                      $('#xml_file_data_show').hide();
+                      $('#xml_file_data_hide').show();
+                      $('#xml_file_data_hide1').show();
+                      $("#selectcities option").remove();
+                      $("#selectcities2").remove();
+                      $(document).ready(function() {
+                        if ($('#selectcities').length) {
+                            $('#selectcities').val(localStorage.getItem("mov_type1"));
+                         }
+                        });
+
+                        if (localStorage.getItem("mov_type1")=="Selected"){
+                          $('#selectcities').remove();
+                          $("#selectcities").append('<option>'+ "Select" +'</option>');
+                          $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                          for (var i = result.length - 1; i >= 0; i--) {
+                            $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                            };
+                        }
+                        
+                        $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                        $("#selectcities").append('<option>'+localStorage.getItem("mov_type1")+'</option>');
+                        for (var i = result.length - 1; i >= 0; i--) {
+                            if (localStorage.getItem("mov_type1")==result[i].year){
+                            }
+                            else{
+                              $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                            }
+                        };
+                    }
+              }
+
+              else{
+                $('#xml_file_data_show').hide();
+                $('#xml_file_data_hide').show();
+                $('#xml_file_data_hide1').show();
+                $("#selectcities option").remove();
+                $("#selectcities2").remove();
+                $("#selectcities").append('<option>'+ "Select" +'</option>');
+                $("#selectcities1").append('<span id="selectcities2">'+ result[0].reg_name +'</span>');
+              };
+
+
+            }
+        })
+    });
+}
+
+</script>
+{% comment %} Page Refresh code End  {% endcomment %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+  
+$('#xml_file_data_show').hide();
+$('#xml_file_data_hide').show();
+$('#xml_file_data_hide1').show();
+
+  $('#selectcountries').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var gst_number   = optionSelected.text();
+    $.ajax(
+    {
+        url: "business_gst_getdetails",
+        data:{
+          gst_number:gst_number
+        },
+        success: function(result) 
+        {
+          if (result[0].reg_name == null ){
+                if (result[0].xml_condition == 'True'){
+                  $('#xml_file_data_show').show();
+                  $('#xml_file_data_hide').hide();
+                  $('#xml_file_data_hide1').hide();
+                  $("#selectcities option").remove();
+                  $("#selectcities2").remove();
+                  $("#selectcities").append('<option>'+ "Select" +'</option>');
+                  $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                  for (var i = result.length - 1; i >= 0; i--) {
+                    $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                    };  
+                    
+                  }
+                  
+                else{
+                  $('#xml_file_data_show').hide();
+                  $('#xml_file_data_hide').show();
+                  $('#xml_file_data_hide1').show();
+                  $("#selectcities option").remove();
+                  $("#selectcities2").remove();
+                  $("#selectcities").append('<option>'+ "Select" +'</option>');
+                  $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                  for (var i = result.length - 1; i >= 0; i--) {
+                    $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                    };
+                }
+          }
+
+          else{
+            $('#xml_file_data_show').hide();
+            $('#xml_file_data_hide').show();
+            $('#xml_file_data_hide1').show();
+            $("#selectcities option").remove();
+            $("#selectcities2").remove();
+            $("#selectcities").append('<option>'+ "Select" +'</option>');
+            $("#selectcities1").append('<span id="selectcities2">'+ result[0].reg_name +'</span>');
+          };
+
+
+        }
+     })
+     
+});
+</script>
+
+<script>
+
+$('#selectcountries1').on('change', function() {
+  // Save value in localstorage
+  localStorage.setItem("mov_type", $(this).val());
+});
+
+$(document).ready(function() {
+if ($('#selectcountries1').length) {
+    $('#selectcountries1').val(localStorage.getItem("mov_type"));
+ }
+});
+
+
+
+$('#selectcountries1').click(function(){  
+  var optionSelected = $(this).find("option:selected");
+  var pan_card_number   = optionSelected.text();
+  $.ajax(
+  {
+      url: "business_gst_ajax_call_for_registration_data",
+      data:{
+        pan_card_number:pan_card_number
+      },
+      success: function(result) 
+      {
+        $("#selectcities11 option").remove();
+                $("#selectcities21").remove();
+                $("#selectcities").append('<option>'+ "Select" +'</option>');
+                $("#selectcities111").append('<span id="selectcities21">'+ result[0].name +'</span>');
+                for (var i = result.length - 1; i >= 0; i--) {
+                  $("#selectcities11").append('<option>'+ result[i].year +'</option>');
+                  };
+      }
+    })
+});
+
+</script>
+
+
+
+<script type="text/javascript">
+{% comment %} Start Cache Data code {% endcomment %}
+  var year = localStorage.getItem("mov_type1");
+  var gst_number = localStorage.getItem("mov_type");
+
+  $.ajax(
+    {
+    url: "business_gst_getdetails_for_year_data",
+    data:{
+      year:year,
+      gst_number:gst_number
+    },
+    success: function(result1) 
+    {
+      var months_data_gst = [];
+      var months_name = [];
+      for (var i = result1[0].it_gst_y1.length-1; i >= 0; i--) {
+        months_data_gst.push(result1[0].it_gst_y1[i]['months_data']);
+        months_name.push(result1[0].it_gst_y1[i]['month']);
+      };
+<<<<<<< HEAD
+  
+      var total_months_itc_data = [];
+      for (var i = result1[0].total_months_data_itc.length - 1; i >= 0; i--) {
+        for (var j =months_name.length - 1; j >= 0; j--) {
+          if (months_name[j] == result1[0].total_months_data_itc[i]['month']){
+              total_months_itc_data.push(result1[0].total_months_data_itc[i]['months_data']);
+          }
+        };
+      };
+  
+=======
+  
+      var total_months_itc_data = [];
+      for (var i = result1[0].total_months_data_itc.length - 1; i >= 0; i--) {
+        for (var j =months_name.length - 1; j >= 0; j--) {
+          if (months_name[j] == result1[0].total_months_data_itc[i]['month']){
+              total_months_itc_data.push(result1[0].total_months_data_itc[i]['months_data']);
+          }
+        };
+      };
+  
+>>>>>>> 78695783a593dc237fff83d88654417c062414f5
+    var z = total_months_itc_data.reverse();
+    var zz = months_name.reverse();
+    $("#months_data option").remove();
+    $("#TotalTaxPayable1").remove();
+    $("#TDS1").remove();
+    $("#TotalChapVIADeductions1").remove();
+    $("#TCS1").remove();
+    $("#TotalTaxPayable").append('<span id="TotalTaxPayable1" >'+ result1[0].total_year_gst +'</span>');
+    $("#TDS").append('<span id="TDS1">'+ result1[0].total_year_itc +'</span>');
+    $("#TotalChapVIADeductions").append('<span id="TotalChapVIADeductions1">'+ result1[0].case_ledgel_y +'</span>');
+    $("#TCS").append('<span id="TCS1">'+ result1[0].credit_ledgel_y +'</span>');
+    $("#months_data").append('<option>'+ "Select" +'</option>');
+    for (var i = result1[0].total_months.length - 1; i >= 0; i--) {
+      $("#months_data").append('<option>'+ result1[0].total_months[i] +'</option>');
+    };
+    $('#year-data-tab').addClass('active');
+    $('#months-data-tab').removeClass('active');
+    $('#months-data-tab-pie').removeClass('active');
+    $('#year-data-tab-pie').addClass('active');
+      $('#chart-bars').hide();
+      $('#chart-bars12').show();
+      $('#chart-bars123').hide();
+      var BarsChart = (function() {
+<<<<<<< HEAD
+  
+        var $chart = $('#chart-bars12');
+      
+        // Init chart
+        function initChart($chart) {
+      
+          // Create chart
+          if(window.ordersChart != undefined) {
+            window.ordersChart.destroy();
+          }
+          window.ordersChart = new Chart($chart, {
+            type: 'bar',
+            data: {
+              labels: zz,
+              datasets: [{
+                label: 'GST',
+                backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+                data: months_data_gst.reverse(),
+                {% comment %} data: [{% for label in total_year_gst %} '{{ label }}', {% endfor %}], {% endcomment %}
+                borderWidth: 0,
+              },
+              {
+                label: 'ITC',
+                {% comment %} labels: [{% for label in year %} '{{ label }}', {% endfor %}], {% endcomment %}
+                backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+                data: z,
+      
+              }
+              ],
+              borderWidth: 0.2,
+              maxBarThickness:18
+              
+      
+            },
+            options: {
+              responsive: true,
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }],
+                xAxes: [{
+                  barThickness: 25
+                }]
+              }
+            }
+          });
+          // Save to jQuery object
+          $chart.data('chart', ordersChart);
+        }
+      
+      
+        // Init chart
+        if ($chart.length) {
+          initChart($chart);
+        }
+      
+      })(); 
+  
+    {% comment %} top card data end  {% endcomment %}
+  
+      {% comment %} chart variable  start{% endcomment %}
+      $('#TotalIncomeOfHP11').remove();
+      $("#CapitalGain11").remove();
+      $("#IncomeOthSrc11").remove();
+      $("#NetSalary11").remove();
+      $("#TotalChapVIADeductions11").remove();
+      $("#TotalIncomeOfHP").append('<span id="TotalIncomeOfHP11" >'+ result1[0].TotalIncomeOfHP)+ '</span>';
+      $("#TotalChapVIADeductions12").append('<span id="TotalChapVIADeductions11" >'+ result1[0].TotalChapVIADeductions+'</span>');
+      $("#CapitalGain").append('<span id="CapitalGain11" >'+ result1[0].CapitalGain+ '</span>');
+      $("#IncomeOthSrc").append('<span id="IncomeOthSrc11" >'+ result1[0].IncomeOthSrc+ '</span>');
+      $("#NetSalary").append('<span id="NetSalary11" >'+ result1[0].NetSalary+'</span>');
+      
+      
+      {% comment %} chart varible end {% endcomment %}
+      
+      var DoughnutChart = (function() {
+      var TotalIncomeOfHP = $("#TotalIncomeOfHP").text();
+      
+      var TotalChapVIADeductions12 = $("#TotalChapVIADeductions12").text();
+      var CapitalGain = $("#CapitalGain").text();
+      var IncomeOthSrc = $("#IncomeOthSrc").text();
+      var NetSalary = $("#NetSalary").text();
+      
+      var $chart = $('#chart-doughnut');
+      
+      function init($this) {
+        var randomScalingFactor = function() {
+          return Math.round(Math.random() * 100);
+        };
+        if(window.doughnutChart != undefined) {
+          window.doughnutChart.destroy();
+        }
+        window.doughnutChart = new Chart($this, {
+          type: 'doughnut',
+          data: {
+          labels: ['Total Deduction','Salary','Income From House Property','Income From Other Source','Total Capital Gain'],
+            datasets: [{
+              data: [ 1000 ,1405,1020,1020],
+              backgroundColor: [
+                Charts.colors.theme['danger'],
+                Charts.colors.theme['warning'],
+                Charts.colors.theme['success'],
+                Charts.colors.theme['primary'],
+                Charts.colors.theme['info'],
+              ],
+            }],
+          },
+          
+          options: {
+            responsive: true,
+            legend: {
+              position: 'center',
+            },
+            animation: {
+              animateScale: true,
+              animateRotate: true,
+            }
+          }
+        });
+        
+      $this.data('chart', doughnutChart);
+      };
+        if ($chart.length) {
+        init($chart);
+  
+=======
+  
+        var $chart = $('#chart-bars12');
+      
+        // Init chart
+        function initChart($chart) {
+      
+          // Create chart
+          if(window.ordersChart != undefined) {
+            window.ordersChart.destroy();
+          }
+          window.ordersChart = new Chart($chart, {
+            type: 'bar',
+            data: {
+              labels: zz,
+              datasets: [{
+                label: 'GST',
+                backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+                data: months_data_gst.reverse(),
+                {% comment %} data: [{% for label in total_year_gst %} '{{ label }}', {% endfor %}], {% endcomment %}
+                borderWidth: 0,
+              },
+              {
+                label: 'ITC',
+                {% comment %} labels: [{% for label in year %} '{{ label }}', {% endfor %}], {% endcomment %}
+                backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+                data: z,
+      
+              }
+              ],
+              borderWidth: 0.2,
+              maxBarThickness:18
+              
+      
+            },
+            options: {
+              responsive: true,
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }],
+                xAxes: [{
+                  barThickness: 25
+                }]
+              }
+            }
+          });
+          // Save to jQuery object
+          $chart.data('chart', ordersChart);
+        }
+      
+      
+        // Init chart
+        if ($chart.length) {
+          initChart($chart);
+        }
+      
+      })(); 
+  
+    {% comment %} top card data end  {% endcomment %}
+  
+      {% comment %} chart variable  start{% endcomment %}
+      $('#TotalIncomeOfHP11').remove();
+      $("#CapitalGain11").remove();
+      $("#IncomeOthSrc11").remove();
+      $("#NetSalary11").remove();
+      $("#TotalChapVIADeductions11").remove();
+      $("#TotalIncomeOfHP").append('<span id="TotalIncomeOfHP11" >'+ result1[0].TotalIncomeOfHP)+ '</span>';
+      $("#TotalChapVIADeductions12").append('<span id="TotalChapVIADeductions11" >'+ result1[0].TotalChapVIADeductions+'</span>');
+      $("#CapitalGain").append('<span id="CapitalGain11" >'+ result1[0].CapitalGain+ '</span>');
+      $("#IncomeOthSrc").append('<span id="IncomeOthSrc11" >'+ result1[0].IncomeOthSrc+ '</span>');
+      $("#NetSalary").append('<span id="NetSalary11" >'+ result1[0].NetSalary+'</span>');
+      
+      
+      {% comment %} chart varible end {% endcomment %}
+      
+      var DoughnutChart = (function() {
+      var TotalIncomeOfHP = $("#TotalIncomeOfHP").text();
+      
+      var TotalChapVIADeductions12 = $("#TotalChapVIADeductions12").text();
+      var CapitalGain = $("#CapitalGain").text();
+      var IncomeOthSrc = $("#IncomeOthSrc").text();
+      var NetSalary = $("#NetSalary").text();
+      
+      var $chart = $('#chart-doughnut');
+      
+      function init($this) {
+        var randomScalingFactor = function() {
+          return Math.round(Math.random() * 100);
+        };
+        if(window.doughnutChart != undefined) {
+          window.doughnutChart.destroy();
+        }
+        window.doughnutChart = new Chart($this, {
+          type: 'doughnut',
+          data: {
+          labels: ['Total Deduction','Salary','Income From House Property','Income From Other Source','Total Capital Gain'],
+            datasets: [{
+              data: [ 1000 ,1405,1020,1020],
+              backgroundColor: [
+                Charts.colors.theme['danger'],
+                Charts.colors.theme['warning'],
+                Charts.colors.theme['success'],
+                Charts.colors.theme['primary'],
+                Charts.colors.theme['info'],
+              ],
+            }],
+          },
+          
+          options: {
+            responsive: true,
+            legend: {
+              position: 'center',
+            },
+            animation: {
+              animateScale: true,
+              animateRotate: true,
+            }
+          }
+        });
+        
+      $this.data('chart', doughnutChart);
+      };
+        if ($chart.length) {
+        init($chart);
+  
+>>>>>>> 78695783a593dc237fff83d88654417c062414f5
+      }
+    })();
+      }
+   })
+{% comment %} End Cache Data code {% endcomment %}
+   
+
+
+  
+$('#selectcities').click(function(){  
+
+var optionSelected = $(this).find("option:selected");
+var year = optionSelected.text();
+var gst_number = $('#selectcountries').val();
+
+$.ajax(
+  {
+  url: "business_gst_getdetails_for_year_data",
+  data:{
+    year:year,
+    gst_number:gst_number
+  },
+  success: function(result1) 
+  {
+    var months_data_gst = [];
+    var months_name = [];
+    for (var i = result1[0].it_gst_y1.length-1; i >= 0; i--) {
+      months_data_gst.push(result1[0].it_gst_y1[i]['months_data']);
+      months_name.push(result1[0].it_gst_y1[i]['month']);
+    };
+<<<<<<< HEAD
+
+    var total_months_itc_data = [];
+    for (var i = result1[0].total_months_data_itc.length - 1; i >= 0; i--) {
+      for (var j =months_name.length - 1; j >= 0; j--) {
+        if (months_name[j] == result1[0].total_months_data_itc[i]['month']){
+            total_months_itc_data.push(result1[0].total_months_data_itc[i]['months_data']);
+        }
+      };
+    };
+
+=======
+
+    var total_months_itc_data = [];
+    for (var i = result1[0].total_months_data_itc.length - 1; i >= 0; i--) {
+      for (var j =months_name.length - 1; j >= 0; j--) {
+        if (months_name[j] == result1[0].total_months_data_itc[i]['month']){
+            total_months_itc_data.push(result1[0].total_months_data_itc[i]['months_data']);
+        }
+      };
+    };
+
+>>>>>>> 78695783a593dc237fff83d88654417c062414f5
+  var z = total_months_itc_data.reverse();
+  var zz = months_name.reverse();
+  $("#months_data option").remove();
+  $("#TotalTaxPayable1").remove();
+  $("#TDS1").remove();
+  $("#TotalChapVIADeductions1").remove();
+  $("#TCS1").remove();
+  $("#TotalTaxPayable").append('<span id="TotalTaxPayable1" >'+ result1[0].total_year_gst +'</span>');
+  $("#TDS").append('<span id="TDS1">'+ result1[0].total_year_itc +'</span>');
+  $("#TotalChapVIADeductions").append('<span id="TotalChapVIADeductions1">'+ result1[0].case_ledgel_y +'</span>');
+  $("#TCS").append('<span id="TCS1">'+ result1[0].credit_ledgel_y +'</span>');
+  $("#months_data").append('<option>'+ "Select" +'</option>');
+  for (var i = result1[0].total_months.length - 1; i >= 0; i--) {
+    $("#months_data").append('<option>'+ result1[0].total_months[i] +'</option>');
+  };
+  $('#year-data-tab').addClass('active');
+  $('#months-data-tab').removeClass('active');
+  $('#months-data-tab-pie').removeClass('active');
+  $('#year-data-tab-pie').addClass('active');
+    $('#chart-bars').hide();
+    $('#chart-bars12').show();
+    $('#chart-bars123').hide();
+    var BarsChart = (function() {
+
+      var $chart = $('#chart-bars12');
+    
+      // Init chart
+      function initChart($chart) {
+    
+        // Create chart
+        if(window.ordersChart != undefined) {
+          window.ordersChart.destroy();
+        }
+        window.ordersChart = new Chart($chart, {
+          type: 'bar',
+          data: {
+            labels: zz,
+            datasets: [{
+              label: 'GST',
+              backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+              data: months_data_gst.reverse(),
+              {% comment %} data: [{% for label in total_year_gst %} '{{ label }}', {% endfor %}], {% endcomment %}
+              borderWidth: 0,
+            },
+            {
+              label: 'ITC',
+              {% comment %} labels: [{% for label in year %} '{{ label }}', {% endfor %}], {% endcomment %}
+              backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+              data: z,
+    
+            }
+            ],
+            borderWidth: 0.2,
+            maxBarThickness:18
+            
+    
+          },
+          options: {
+            responsive: true,
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }],
+              xAxes: [{
+                barThickness: 25
+              }]
+            }
+          }
+        });
+        // Save to jQuery object
+        $chart.data('chart', ordersChart);
+      }
+    
+    
+      // Init chart
+      if ($chart.length) {
+        initChart($chart);
+      }
+    
+    })(); 
+
+  {% comment %} top card data end  {% endcomment %}
+
+    {% comment %} chart variable  start{% endcomment %}
+    $('#TotalIncomeOfHP11').remove();
+    $("#CapitalGain11").remove();
+    $("#IncomeOthSrc11").remove();
+    $("#NetSalary11").remove();
+    $("#TotalChapVIADeductions11").remove();
+    $("#TotalIncomeOfHP").append('<span id="TotalIncomeOfHP11" >'+ result1[0].TotalIncomeOfHP)+ '</span>';
+    $("#TotalChapVIADeductions12").append('<span id="TotalChapVIADeductions11" >'+ result1[0].TotalChapVIADeductions+'</span>');
+    $("#CapitalGain").append('<span id="CapitalGain11" >'+ result1[0].CapitalGain+ '</span>');
+    $("#IncomeOthSrc").append('<span id="IncomeOthSrc11" >'+ result1[0].IncomeOthSrc+ '</span>');
+    $("#NetSalary").append('<span id="NetSalary11" >'+ result1[0].NetSalary+'</span>');
+    
+    
+    {% comment %} chart varible end {% endcomment %}
+    
+    var DoughnutChart = (function() {
+    var TotalIncomeOfHP = $("#TotalIncomeOfHP").text();
+    
+    var TotalChapVIADeductions12 = $("#TotalChapVIADeductions12").text();
+    var CapitalGain = $("#CapitalGain").text();
+    var IncomeOthSrc = $("#IncomeOthSrc").text();
+    var NetSalary = $("#NetSalary").text();
+    
+    var $chart = $('#chart-doughnut');
+    
+    function init($this) {
+      var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+      };
+      if(window.doughnutChart != undefined) {
+        window.doughnutChart.destroy();
+      }
+      window.doughnutChart = new Chart($this, {
+        type: 'doughnut',
+        data: {
+        labels: ['Total Deduction','Salary','Income From House Property','Income From Other Source','Total Capital Gain'],
+          datasets: [{
+            data: [ 1000 ,1405,1020,1020],
+            backgroundColor: [
+              Charts.colors.theme['danger'],
+              Charts.colors.theme['warning'],
+              Charts.colors.theme['success'],
+              Charts.colors.theme['primary'],
+              Charts.colors.theme['info'],
+            ],
+          }],
+        },
+        
+        options: {
+          responsive: true,
+          legend: {
+            position: 'center',
+          },
+          animation: {
+            animateScale: true,
+            animateRotate: true,
+          }
+        }
+      });
+      
+    $this.data('chart', doughnutChart);
+    };
+      if ($chart.length) {
+      init($chart);
+
+    }
+  })();
+    }
+ })
+ 
+
+});
+
+</script>
+
+<script>
+  $('#selectchecklistdata').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    
+    var pan_card_number   = optionSelected.text();
+    $('#data_one').empty();
+    $('#list_pagination').empty();
+    if (pan_card_number.trim()=='Select'){
+      $("#data_one").append('{%for i in checklist_data%}<li class="line-content checklist-entry list-group-item  align-items-start py-4 px-4"><div class="checklist-item checklist-item-success"><div class="checklist-info"><h5 class="h4 checklist-title mb-0" >{{i}}</h5></div><div><div class="custom-control custom-checkbox custom-checkbox-success"><input class="custom-control-input" id="{{forloop.counter}}" type="checkbox" ><label class="custom-control-label" for="{{forloop.counter}}"></label></div></div></div></li>{%endfor%}');
+
+    };
+    $.ajax(
+    {
+        url: "ajax_call_for_dashboard_checklist",
+        data:{
+          pan_card_number:pan_card_number
+        },
+        success: function(result) 
+        {
+          $('#data_one').empty();
+          $('#list_pagination').empty();
+
+          
+
+         for(var i=0;i<result.length;i++){
+          $("#data_one").append('<li class="line-content checklist-entry list-group-item  align-items-start py-4 px-4"><div class="checklist-item checklist-item-success"><div class="checklist-info"><h5 class="h4 checklist-title mb-0" ><span id="data_one">'+result[i].Basic_details+'</span></h5></div><div><div class="custom-control custom-checkbox custom-checkbox-success"><input class="custom-control-input" id="chk-todo-task-'+(i+1)+'" type="checkbox" ><label class="custom-control-label" for="chk-todo-task-'+(i+1)+'"></label></div></div></div></li>');
+         };
+
+          if(result.length>0 && result.length<=4){
+            $('#list_pagination').append('<li class="page-item" disabled><span class="page-link1"  tabindex="-1"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></span></li><li class="page-item"><a class="page-link1 current" href="#">1</a></li><li class="page-item " disabled><span class="page-link1" ><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></span></li>');
+          }
+          
+          else if(result.length>0 && result.length<=8){
+             $('#list_pagination').append('<li class="page-item " disabled><span class="page-link1" href="" tabindex="-1"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></span></li><li class="page-item"><a class="page-link1 current" href="#">1</a></li><li class="page-item"><a class="page-link1" href="#">2</a></li><li class="page-item li"><span class="page-link1" href="#" disabled><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></span></li>');
+          }
+          else if(result.length>0 && result.length<=12){
+              $('#list_pagination').append('<li class="page-item " disabled><span class="page-link1" href="" tabindex="-1"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></span></li><li class="page-item"><a class="page-link1 current" href="#">1</a></li><li class="page-item"><a class="page-link1" href="#">2</a></li><li class="page-item"><a class="page-link1" href="#">3</a></li><li class="page-item"><span class="page-link1" disabled href=""><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></span></li>');
+          };
+          pageSize = 4;
+          showPage = function(page) {
+              $(".line-content").hide();
+              $(".line-content").each(function(n) {
+                  if (n >= pageSize * (page - 1) && n < pageSize * page)
+                      $(this).show();
+              });        
+          }
+          showPage(1);
+          $("#pagin li a").click(function() {
+              $("#pagin li a").removeClass("current");
+              $(this).addClass("current");
+              showPage(parseInt($(this).text())) 
+          });
+        }
+     });
+     
+});
+
+
+</script>
+<script>
+    $(document).ready(function(){
+      $("selected options").click(function(){
+        $.get("getdetail.html", function(data, status){
+        });
+      });
+    });
+</script>
+
+<script>
+$('.carousel').carousel({
+  interval: false,
+});
+</script>
+
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.home_dashbaord-item a').addClass('btn btn-primary text-white');
+$('.home_dashbaord-item a img').attr('src','/static/svg/dashboard_base/dashbaord_w.svg');
+
+</script>
+
+<script>
+var BarsChart = (function() {
+
+	var $chart = $('#chart-bars');
+
+	// Init chart
+	function initChart($chart) {
+
+		// Create chart
+		var ordersChart = new Chart($chart, {
+			type: 'bar',
+			data: {
+				labels: [{% for label in year %} '{{ label }}', {% endfor %}],
+				datasets: [{
+					label: 'GST',
+          backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+					data: [{% for label in total_year_gst %} '{{ label }}', {% endfor %}],
+          borderWidth: 0,
+				},
+        {
+					label: 'ITC',
+          labels: [{% for label in year %} '{{ label }}', {% endfor %}],
+          backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+					data: [{% for label in total_year_itc %} '{{ label }}', {% endfor %}],
+
+				}
+        ],
+        borderWidth: 0.2,
+        maxBarThickness:18
+        
+
+			},
+      options: {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            barThickness: 25
+          }]
+        }
+      }
+		});
+		// Save to jQuery object
+		$chart.data('chart', ordersChart);
+	}
+
+
+	// Init chart
+	if ($chart.length) {
+		initChart($chart);
+	}
+
+})();
+
+</script>
+
+
+<script>
+  var BarsChart = (function() {
+  
+    var $chart = $('#chart-bars1');
+  
+    // Init chart
+    function initChart($chart) {
+  
+      // Create chart
+      var ordersChart = new Chart($chart, {
+        type: 'bar',
+        data: {
+          labels: [{% for label in year %} '{{ label }}', {% endfor %}],
+          datasets: [{
+            label: 'GST',
+            backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+            data: [145],
+            borderWidth: 0,
+          },
+          {
+            label: 'ITC',
+            labels: [{% for label in year %} '{{ label }}', {% endfor %}],
+            backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+            data: [12],
+  
+          }
+          ],
+          borderWidth: 0.2,
+          maxBarThickness:18
+          
+  
+        },
+        options: {
+          responsive: true,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }],
+            xAxes: [{
+              barThickness: 25
+            }]
+          }
+        }
+      });
+      // Save to jQuery object
+      $chart.data('chart', ordersChart);
+    }
+  
+  
+    // Init chart
+    if ($chart.length) {
+      initChart($chart);
+    }
+  
+  })();
+  
+  </script>
+<script>
+  $('#year-data-tab').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var pan_card_number   = optionSelected.text();
+    var gst_number = $('#selectcountries').val();
+    var gst_year = $('#selectcities').val();
+
+
+    {% comment %} $.ajax(
+    {
+        url: "ajax_call_for_dashboard_checklist",
+        data:{
+          pan_card_number:pan_card_number
+        },
+        success: function(result) 
+        {
+          alert(result[0].length);
+        }
+      });
+  }); {% endcomment %}
+</script>
+
+<script>
+  $('#months_data').on('change', function() {
+    // Save value in localstorage
+    localStorage.setItem("gst_month", $(this).val());
+  });
+  {% comment %} alert(localStorage.getItem("gst_month")); {% endcomment %}
+  var gst_year = localStorage.getItem("mov_type1");
+  var gst_number = localStorage.getItem("mov_type");
+  var gst_month = localStorage.getItem("gst_month");
+  {% comment %} alert("gst month"+gst_month);
+  alert("gst gst_number"+gst_number);
+  alert("gst gst_year"+gst_year); {% endcomment %}
+  $.ajax(
+  {
+      url: "ajax_call_for_months_data",
+      data:{
+        gst_number:gst_number,
+        gst_month:gst_month,
+        gst_year:gst_year
+
+      },
+      success: function(result1) 
+      {
+        
+        {% comment %} alert(result1[0].total_month_gst); {% endcomment %}
+        $("#TotalTaxPayable1").remove();
+        $("#TDS1").remove();
+        $("#TotalChapVIADeductions1").remove();
+        $("#TCS1").remove();
+        $("#TotalTaxPayable").append('<span id="TotalTaxPayable1" >'+ result1[0].total_month_gst +'</span>');
+        $("#TDS").append('<span id="TDS1">'+ result1[0].total_month_itc +'</span>');
+        $("#TotalChapVIADeductions").append('<span id="TotalChapVIADeductions1">'+ result1[0].case_ledgel_m +'</span>');
+        $("#TCS").append('<span id="TCS1">'+ result1[0].credit_ledgel_m +'</span>');
+
+        $('#year-data-tab').removeClass('active');
+        $('#months-data-tab').addClass('active');
+        $('#months-data-tab-pie').addClass('active');
+        $('#year-data-tab-pie').removeClass('active');
+        $('#chart-bars').hide();
+        $('#chart-bars12').show();
+        var aa = [];
+        aa.push(parseInt(result1[0].total_month_gst));
+        var aaa = [];
+        aaa.push(result1[0].total_month_itc);
+        var BarsChart = (function() {
+          var $chart = $('#chart-bars12');
+        
+          // Init chart
+        function initChart($chart) {
+      
+          
+          // Create chart
+          if(window.ordersChart != undefined) {
+            window.ordersChart.destroy();
+          }
+          window.ordersChart = new Chart($chart, {
+            type: 'bar',
+            data: {
+              labels: [result1[0].total_months],
+              datasets: [{
+                label: 'GST',
+                backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+                {% comment %} data:[100], {% endcomment %}
+                data: aa,
+                {% comment %} data: [{% for label in total_year_gst %} '{{ label }}', {% endfor %}], {% endcomment %}
+                borderWidth: 0,
+              },
+              {
+                label: 'ITC',
+                {% comment %} labels: [{% for label in year %} '{{ label }}', {% endfor %}], {% endcomment %}
+                backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+                {% comment %} data: [120], {% endcomment %}
+                data: aaa,
+      
+              }
+              ],
+              borderWidth: 0.2,
+              maxBarThickness:18
+              
+      
+            },
+            options: {
+              responsive: true,
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }],
+                xAxes: [{
+                  barThickness: 25
+                }]
+              }
+            }
+          });
+          // Save to jQuery object
+          $chart.data('chart', ordersChart);
+          }
+          // Init chart
+          if ($chart.length) {
+            initChart($chart);
+          }
+        
+        })(); 
+      
+        {% comment %} top card data end  {% endcomment %}
+      
+          {% comment %} chart variable  start{% endcomment %}
+          $('#TotalIncomeOfHP11').remove();
+          $("#CapitalGain11").remove();
+          $("#IncomeOthSrc11").remove();
+          $("#NetSalary11").remove();
+          $("#TotalChapVIADeductions11").remove();
+          $("#TotalIncomeOfHP").append('<span id="TotalIncomeOfHP11" >'+ result1[0].TotalIncomeOfHP)+ '</span>';
+          $("#TotalChapVIADeductions12").append('<span id="TotalChapVIADeductions11" >'+ result1[0].TotalChapVIADeductions+'</span>');
+          $("#CapitalGain").append('<span id="CapitalGain11" >'+ result1[0].CapitalGain+ '</span>');
+          $("#IncomeOthSrc").append('<span id="IncomeOthSrc11" >'+ result1[0].IncomeOthSrc+ '</span>');
+          $("#NetSalary").append('<span id="NetSalary11" >'+ result1[0].NetSalary+'</span>');
+          
+          
+          {% comment %} chart varible end {% endcomment %}
+          
+          var DoughnutChart = (function() {
+          var TotalIncomeOfHP = $("#TotalIncomeOfHP").text();
+          
+          var TotalChapVIADeductions12 = $("#TotalChapVIADeductions12").text();
+          var CapitalGain = $("#CapitalGain").text();
+          var IncomeOthSrc = $("#IncomeOthSrc").text();
+          var NetSalary = $("#NetSalary").text();
+          
+          var $chart = $('#chart-doughnut');
+          
+          function init($this) {
+            var randomScalingFactor = function() {
+              return Math.round(Math.random() * 100);
+            };
+            if(window.doughnutChart != undefined) {
+              window.doughnutChart.destroy();
+            }
+            window.doughnutChart = new Chart($this, {
+              type: 'doughnut',
+              data: {
+              labels: ['Total Deduction','Salary','Income From House Property','Income From Other Source','Total Capital Gain'],
+                datasets: [{
+                  data: [ 100 ,145,120,120],
+                  backgroundColor: [
+                    Charts.colors.theme['danger'],
+                    Charts.colors.theme['warning'],
+                    Charts.colors.theme['success'],
+                    Charts.colors.theme['primary'],
+                    Charts.colors.theme['info'],
+                  ],
+                }],
+              },
+              
+              options: {
+                responsive: true,
+                legend: {
+                  position: 'center',
+                },
+                animation: {
+                  animateScale: true,
+                  animateRotate: true,
+                }
+              }
+            });
+            
+          $this.data('chart', doughnutChart);
+          };
+            if ($chart.length) {
+            init($chart);
+      
+          }
+        })();
+          }
+      
+   })
+ 
+
+</script>
+<script>
+  $('#months_data').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var gst_month  = optionSelected.text();
+    var gst_number = $('#selectcountries').val();
+    var gst_year   = $('#selectcities').val();
+    {% comment %} alert("gst month"+gst_month);
+    alert("gst gst_number"+gst_number);
+    alert("gst gst_year"+gst_year); {% endcomment %}
+    $.ajax(
+    {
+        url: "ajax_call_for_months_data",
+        data:{
+          gst_number:gst_number,
+          gst_month:gst_month,
+          gst_year:gst_year
+
+        },
+        success: function(result1) 
+        {
+          
+          {% comment %} alert(result1[0].total_month_gst); {% endcomment %}
+          $("#TotalTaxPayable1").remove();
+          $("#TDS1").remove();
+          $("#TotalChapVIADeductions1").remove();
+          $("#TCS1").remove();
+          $("#TotalTaxPayable").append('<span id="TotalTaxPayable1" >'+ result1[0].total_month_gst +'</span>');
+          $("#TDS").append('<span id="TDS1">'+ result1[0].total_month_itc +'</span>');
+          $("#TotalChapVIADeductions").append('<span id="TotalChapVIADeductions1">'+ result1[0].case_ledgel_m +'</span>');
+          $("#TCS").append('<span id="TCS1">'+ result1[0].credit_ledgel_m +'</span>');
+
+          $('#year-data-tab').removeClass('active');
+          $('#months-data-tab').addClass('active');
+          $('#months-data-tab-pie').addClass('active');
+          $('#year-data-tab-pie').removeClass('active');
+          $('#chart-bars').hide();
+          $('#chart-bars12').show();
+          var aa = [];
+          aa.push(parseInt(result1[0].total_month_gst));
+          var aaa = [];
+          aaa.push(result1[0].total_month_itc);
+          var BarsChart = (function() {
+            var $chart = $('#chart-bars12');
+          
+            // Init chart
+          function initChart($chart) {
+        
+            
+            // Create chart
+            if(window.ordersChart != undefined) {
+              window.ordersChart.destroy();
+            }
+            window.ordersChart = new Chart($chart, {
+              type: 'bar',
+              data: {
+                labels: [result1[0].total_months],
+                datasets: [{
+                  label: 'GST',
+                  backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+                  {% comment %} data:[100], {% endcomment %}
+                  data: aa,
+                  {% comment %} data: [{% for label in total_year_gst %} '{{ label }}', {% endfor %}], {% endcomment %}
+                  borderWidth: 0,
+                },
+                {
+                  label: 'ITC',
+                  {% comment %} labels: [{% for label in year %} '{{ label }}', {% endfor %}], {% endcomment %}
+                  backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+                  {% comment %} data: [120], {% endcomment %}
+                  data: aaa,
+        
+                }
+                ],
+                borderWidth: 0.2,
+                maxBarThickness:18
+                
+        
+              },
+              options: {
+                responsive: true,
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }],
+                  xAxes: [{
+                    barThickness: 25
+                  }]
+                }
+              }
+            });
+            // Save to jQuery object
+            $chart.data('chart', ordersChart);
+            }
+            // Init chart
+            if ($chart.length) {
+              initChart($chart);
+            }
+          
+          })(); 
+        
+          {% comment %} top card data end  {% endcomment %}
+        
+            {% comment %} chart variable  start{% endcomment %}
+            $('#TotalIncomeOfHP11').remove();
+            $("#CapitalGain11").remove();
+            $("#IncomeOthSrc11").remove();
+            $("#NetSalary11").remove();
+            $("#TotalChapVIADeductions11").remove();
+            $("#TotalIncomeOfHP").append('<span id="TotalIncomeOfHP11" >'+ result1[0].TotalIncomeOfHP)+ '</span>';
+            $("#TotalChapVIADeductions12").append('<span id="TotalChapVIADeductions11" >'+ result1[0].TotalChapVIADeductions+'</span>');
+            $("#CapitalGain").append('<span id="CapitalGain11" >'+ result1[0].CapitalGain+ '</span>');
+            $("#IncomeOthSrc").append('<span id="IncomeOthSrc11" >'+ result1[0].IncomeOthSrc+ '</span>');
+            $("#NetSalary").append('<span id="NetSalary11" >'+ result1[0].NetSalary+'</span>');
+            
+            
+            {% comment %} chart varible end {% endcomment %}
+            
+            var DoughnutChart = (function() {
+            var TotalIncomeOfHP = $("#TotalIncomeOfHP").text();
+            
+            var TotalChapVIADeductions12 = $("#TotalChapVIADeductions12").text();
+            var CapitalGain = $("#CapitalGain").text();
+            var IncomeOthSrc = $("#IncomeOthSrc").text();
+            var NetSalary = $("#NetSalary").text();
+            
+            var $chart = $('#chart-doughnut');
+            
+            function init($this) {
+              var randomScalingFactor = function() {
+                return Math.round(Math.random() * 100);
+              };
+              if(window.doughnutChart != undefined) {
+                window.doughnutChart.destroy();
+              }
+              window.doughnutChart = new Chart($this, {
+                type: 'doughnut',
+                data: {
+                labels: ['Total Deduction','Salary','Income From House Property','Income From Other Source','Total Capital Gain'],
+                  datasets: [{
+                    data: [ 100 ,145,120,120],
+                    backgroundColor: [
+                      Charts.colors.theme['danger'],
+                      Charts.colors.theme['warning'],
+                      Charts.colors.theme['success'],
+                      Charts.colors.theme['primary'],
+                      Charts.colors.theme['info'],
+                    ],
+                  }],
+                },
+                
+                options: {
+                  responsive: true,
+                  legend: {
+                    position: 'center',
+                  },
+                  animation: {
+                    animateScale: true,
+                    animateRotate: true,
+                  }
+                }
+              });
+              
+            $this.data('chart', doughnutChart);
+            };
+              if ($chart.length) {
+              init($chart);
+        
+            }
+          })();
+            }
+        
+     })
+     
+});
+
+</script>
+<script>
+
+
+</script>
+
+
+{% endblock script %}

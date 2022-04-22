@@ -1,0 +1,224 @@
+{% extends "dashboard_base_for_business.html" %}
+
+{% load static %}
+{% block style %}
+<style>
+.container{
+  max-width: 1250px;
+}
+.middle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<section class="mt-3 mx-3">
+  <div>
+    <div class="mt-3 card py-5">
+      <center><span class="text-center display-4">E-File Your Income Tax Return</span></center>
+      <center><span class="text-center font-weight-500 h2">Do it FREE For Yourself</span></center>
+    </div>
+    <div class="pb-1">
+    <div class="row ">
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center"><b>E-FILE Your Return With  <br> XML File</b> </h2>
+            <center> <a href="{% url 'business_income_tax_dashbaord_xmlfile' %}" class="btn btn-primary">Upload XML File  </a></center> <br>
+            <br>
+            <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span
+              class="h4 ml-1">Recomended for self member.</span>
+            <br>
+            <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="h4 ml-1">Helping
+              in the process.</span><br>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center"><b>E-FILE Your return with Form-16 Pdf</b> </h2>
+            <center><a href="{% url 'business_form16_data' %}" class="btn btn-success">Upload Form 16</a></center> <br>
+            <br>
+            <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="h4 ml-1"><b class="text-success"> Ask
+                Your HR.</b> If don't have form 16.</span>
+            <br>
+            <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="h4 ml-1">Upload
+              multiple form-16 Pdf.</span>
+              <br>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center"><b>E-FILE Your return without Form-16 Pdf</b> </h2>
+            <center> <a href="{% url 'business_paytax_personal_info' %}" class="btn btn-primary">Continue </a></center> <br>
+            <br>
+            <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span
+              class="h4 ml-1">Recomended for self member.</span>
+            <br>
+            <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="h4 ml-1">Helping
+              in the process.</span><br>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>  
+  </div>
+</section>
+
+<section class="mx-3">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="text-center">
+            <span class="text-center  display-4">Fourth Steps Process</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-auto"></div>
+            <div class="col-md-2">
+              <div class="middle">
+                <img src="{% static './svg/file_return/file_2.png' %}" alt="Rounded" class="p-2" style="width: 80px; height: 100px;">
+              </div>
+              <div class="text-center">
+                <b class="font-weight-bold">Upload Form-16 PDF</b>
+              </div> 
+            </div> 
+            <div class="middle col-md-1">
+              <div class="mb-5 d-none d-md-block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="123" height="16" viewBox="0 0 123 16" fill="none">
+                  <line y1="8" x2="123" y2="8" stroke="#3C4D69" stroke-width="2" stroke-dasharray="5 5"></line>
+                  <path d="M73.7071 8.70711C74.0976 8.31658 74.0976 7.68342 73.7071 7.29289L67.3431 0.928932C66.9526 0.538408 66.3195 0.538408 65.9289 0.928932C65.5384 1.31946 65.5384 1.95262 65.9289 2.34315L71.5858 8L65.9289 13.6569C65.5384 14.0474 65.5384 14.6805 65.9289 15.0711C66.3195 15.4616 66.9526 15.4616 67.3431 15.0711L73.7071 8.70711ZM62 9H73V7H62V9Z" fill="#3C4D69"></path>
+                </svg>
+              </div>
+              <div class="pt-5 d-md-none"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="middle">
+                <img src="{% static './svg/file_return/file_3.png' %}" alt="Rounded" class="p-2" style="width: 100px; height: 100px;">
+              </div>
+              <div class="text-center">
+                <b class="font-weight-bold">Edit &amp; Review</b>
+              </div>
+            </div>
+            <div class="middle col-md-1">
+              <div class="mb-5 d-none d-md-block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="123" height="16" viewBox="0 0 123 16" fill="none">
+                  <line y1="8" x2="123" y2="8" stroke="#3C4D69" stroke-width="2" stroke-dasharray="5 5"></line>
+                  <path d="M73.7071 8.70711C74.0976 8.31658 74.0976 7.68342 73.7071 7.29289L67.3431 0.928932C66.9526 0.538408 66.3195 0.538408 65.9289 0.928932C65.5384 1.31946 65.5384 1.95262 65.9289 2.34315L71.5858 8L65.9289 13.6569C65.5384 14.0474 65.5384 14.6805 65.9289 15.0711C66.3195 15.4616 66.9526 15.4616 67.3431 15.0711L73.7071 8.70711ZM62 9H73V7H62V9Z" fill="#3C4D69"></path>
+                </svg>
+              </div>
+              <div class="pt-5 d-md-none"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="middle">
+                <img src="{% static './svg/file_return/file_4.png' %}" alt="Rounded" class="p-2" style="width: 100px; height: 100px;">
+              </div>
+              <div class="text-center">
+                <b class="font-weight-bold">Edit &amp; Review</b>
+              </div>
+            </div>
+            <div class="middle col-md-1">
+              <div class="mb-5 d-none d-md-block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="123" height="16" viewBox="0 0 123 16" fill="none">
+                  <line y1="8" x2="123" y2="8" stroke="#3C4D69" stroke-width="2" stroke-dasharray="5 5"></line>
+                  <path d="M73.7071 8.70711C74.0976 8.31658 74.0976 7.68342 73.7071 7.29289L67.3431 0.928932C66.9526 0.538408 66.3195 0.538408 65.9289 0.928932C65.5384 1.31946 65.5384 1.95262 65.9289 2.34315L71.5858 8L65.9289 13.6569C65.5384 14.0474 65.5384 14.6805 65.9289 15.0711C66.3195 15.4616 66.9526 15.4616 67.3431 15.0711L73.7071 8.70711ZM62 9H73V7H62V9Z" fill="#3C4D69"></path>
+                </svg>
+              </div>
+              <div class="pt-5 d-md-none"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="middle">
+                <img src="{% static './svg/file_return/file_5.png' %}" alt="Rounded" class="p-2" style="width: 100px; height: 100px;">
+              </div>
+              <div class="text-center">
+                <b class="font-weight-bold">Edit &amp; Review</b>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <div class="mt-5 p-3 row">
+              <div class="col-xl-12">
+                <div class="py-3 row" style="border: 1px dashed black; border-radius:20px">
+                  <div class="middle col-md-4">
+                    <img src="{% static './svg/file_return/file_1.svg' %}" alt="Rounded" class="img-fluid" width="150" height="150"></div>
+                    <div class="middle py-5 col-md-4"><div>
+                      <span class="h1 display-3 text-center font-weight-600 mb-0">Your Safety</span>
+                      <h3 class="text-center font-weight-600">Is important to us</h3>
+                    </div>
+                  </div>
+                  <div class="middle col-md-4"><div>
+                    <div>
+                      <span class="font-weight-bold px-2" style="font-size: 30px; color: rgb(67, 161, 246);">✓</span>
+                      <span class="text-dark font-weight-bold h1">Data Protection.</span>
+                    </div>
+                    <div>
+                      <span class="font-weight-bold px-2" style="font-size: 30px; color: rgb(67, 161, 246);">✓</span>
+                      <span class="text-dark font-weight-bold h1">Data Encyrption.</span>
+                    </div>
+                    <div>
+                      <span class="font-weight-bold px-2" style="font-size: 30px; color: rgb(67, 161, 246);">✓</span>
+                      <span class="text-dark font-weight-bold h1">SSL Protections.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="middle col-md-3">
+              <img src="{% static './svg/file_return/file_6.png'%}" alt="Raise" class="img-fluid" style="width: 150px; height: 150px;"></div>
+              <div class="py-5 col-md-6">
+                <ul>
+                  <li class="font-weight-600" style="font-size: 20px;">Upload your documents and relax</li>
+                  <li class="font-weight-600" style="font-size: 20px;">Tax expert call you and file it for you</li>
+                  <li class="font-weight-600" style="font-size: 20px;">Help you plan for next financial year</li>
+                </ul>
+              </div>
+              <div class="middle col-md-3">
+                <button type="button" class="btn btn-success">
+                  <h3 class="text-white font-weight-600 mb-0">Do it for me</h3>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock content %}
+
+{% block script %}
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.file_return-item a').addClass('btn btn-primary text-white');
+$('.file_return-item a img').attr('src','/static/svg/dashboard_base/file_return_w.svg');
+
+</script>
+
+{% endblock script %}

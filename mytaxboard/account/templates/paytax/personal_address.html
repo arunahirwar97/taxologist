@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+
+
+
+<div class="container mt-9">
+    <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+        
+        <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+    </li>
+  </ul>
+  </div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_personal_info' %}#personal" >Personal Information</a>
+    </li>
+    <!-- <li class="nav-item"></li> -->
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'paytax_personal_address' %}#tabs-text-2" >Personal Address</a>
+    </li>
+    <li class="nav-item">
+        <!-- <a class="nav-link mb-sm-3 mb-md-0"  href="#tabs-text-2" >Personal</a> -->
+    </li>
+  </ul>
+
+<form>
+    <div class="container mt-5" id="address">
+        <h2>Your Address</h2>
+        <h4 class="my-4">You can enter either your current or permanent address here.</h4>
+        <div class="row">
+            <div class="col">
+
+                <div class="form-group row my-3">
+                    <div class="col-md-6">
+                    <label for="first_name">Flat/Door/Block Number <span class="text-danger">*</span> </label>
+                    <input type="text" placeholder="" class="form-control"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="">Premise Name This field is optional.</label>
+                    <input type="text" placeholder="" class="form-control">
+                </div>
+                <div class="col-md-6 mt-4">
+                    <label for="">Road / Street This field is optional.</label>
+                    <input type="text" placeholder="Doe" class="form-control">
+                </div>
+                <div class="col-md-6 mt-4">
+                    <label for="pincode" >Pincode <span class="text-danger">*</span> </label>
+                    <input type="number" placeholder="462003" class="form-control">
+                    
+                </div>
+                <div class="col-md-6 mt-4">
+                    <label for="">Area / Locality.</label>
+                    <input type="text" placeholder="" class="form-control">
+                </div>
+                <div class="col-md-6 mt-4">
+                    <label for="">Town / City.</label>
+                    <input type="text" placeholder="" class="form-control">
+                </div>
+                <div class="col-md-6 mt-4 ">
+                    <label for="Father name">Country <span class="text-danger">*</span> </label>
+                    <select class="form-control" data-trigger="" name="choices-single-default" id="choices-single-default">
+                        <option value="1">INDIA</option>
+                        <option value="2">Married</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mt-4 ">
+                    <label for="Father name">State<span class="text-danger">*</span> </label>
+                    <select class="form-control" data-trigger="" name="choices-single-default" id="choices-single-default">
+                        <option value="1">Unmarried</option>
+                        <option value="2">Married</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mt-4">
+                    <label for="number">Mobile Number<span class="text-danger">*</span> </label>
+                    <input type="number" placeholder="Mobile Number" class="form-control">
+                </div>
+                
+                <div class="col-md-6 my-4">
+                    <label for="Father name">Email Adress <span class="text-danger">*</span> </label>
+                    <input type="text" placeholder="John@mail.co" class="form-control">
+                </div>
+                <div class="col-md-6 my-4">
+                    <label for="Father name">Email Adress (Secondary) <span class="text-danger">*</span> </label>
+                    <br> <small>Tip: If you are using an official email ID, enter your personal ID here</small>
+                    <input type="text" placeholder="John@mail.co" class="form-control">
+                </div>
+                <div class="col-md-12 my-5">
+                    <button class="btn btn-primary">Save & Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                  <h4 class="card-title">Get a tax expert to file your return</h4>
+                  <h6 class="card-subtitle mb-2 text-muted">Hurry Up!!</h6>
+                  <p class="card-text">Filing return yourself is Free.
+
+                    If you need an expert's help, you can opt for our paid plans starting ₹999.</p>
+                  <a href="javascript:;" class="btn btn-success p-3"><b>SEE PLANS</b> </a>
+                </div>
+              </div>
+        </div>
+        </div>
+    </div></form>
+{%endblock%}
+
+{% block script %}
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.file_return-item a').addClass('btn btn-primary text-white');
+$('.file_return-item a img').attr('src','/static/svg/dashboard_base/file_return_w.svg');
+
+</script>
+
+{% endblock script %}

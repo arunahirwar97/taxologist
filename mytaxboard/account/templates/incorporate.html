@@ -1,0 +1,347 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% block style %}
+
+
+<style>
+    
+    .right {
+        list-style: none;
+    }
+
+    .right li:before {
+        content: '✓';
+    }
+
+    .container {
+        max-width: 1350px;
+    }
+
+    .checked{
+        color: orange;
+        font-size: 25px;
+    }
+
+    .black{
+        font-size: 17px;
+        color: black;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<!-- Main content -->
+
+<!-- Topnav -->
+
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="text-dark">Incorporate</h1>
+            <p class="text-dark font-weight-500">
+                A trademark is for your brand name or logo which identifies your product or services. Get your trademark
+                registered with Cleartax and secure legal protection for your brand name or logo.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!--navs start-->
+<div class="container">
+    <div class="nav-wrapper">
+        <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 active small" id="tabs-icons-text-1-tab" data-toggle="tab"
+                    href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">All
+                    Services (11)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 small" id="tabs-icons-text-2-tab" data-toggle="tab"
+                    href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
+                    aria-selected="false">Trademark Registration (5)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 small" id="tabs-icons-text-3-tab" data-toggle="tab"
+                    href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false">MSME
+                    Compliance Trademak Registration (1)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mb-sm-4 mb-md-0 small" id="tabs-icons-text-4-tab" data-toggle="tab"
+                    href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false">Renewal
+                    (2)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mb-sm-5 mb-md-0 small" id="tabs-icons-text-5-tab" data-toggle="tab"
+                    href="#tabs-icons-text-5" role="tab" aria-controls="tabs-icons-text-5"
+                    aria-selected="false">Management (1)</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+ {% for name in plan_name %}               
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="tab-content" id="">
+                            <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-1-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- <h3>Limited Liability Partership (LLP) Registration</h3> -->
+                                        <h3>{{ name.plan_name }} </h3>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="" style="font-size: 25px;">&#9733;</span>
+                                            </div>
+                                            <div class="col-md-4 mt-2">
+                                                <a href="#">17 Reviews</a>
+                                            </div>
+                                            <div class="col-md-3 mt-2">
+                                                <span class="black">&#8377; 9999</span> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offset-2">
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success rounded float-right font-weight-600">Buy Now</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mt-3">
+
+                                    <div class="col-md-6">
+                                        {% for service in service_covered %}
+                                        {% if name == service.plan_name %}
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2"> {{ service.service_covered }} </span>
+                                        <br>
+                                        <!-- <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Drafting of LLP Deed</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Drafting of E-Signature</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Account Opening</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Issue of incorporation certificate</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">If You don't have form 16.</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Drafting of E-Signature</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Account Opening</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Issue of incorporation certificate</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">If You don't have form 16.</span> -->
+
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-6" style="border-left: solid rgb(162, 159, 159);">
+                                    {% for about_plan in about_the_plan_detail %}
+                                    {% if name == about_plan.plan_name %}
+                                        <p class="font-weight-500">
+                                            <!-- We will never sell your personal data, and will only ever share it with organisations we work with where necessary and if its privacy and security -->
+                                            {{ about_plan.about_the_plan }}
+                                            <br> <a href="{% url 'detailplan' %}?plan_name= {{ name.plan_name }}">Read More...</a>
+                                        </p>
+                                    {% endif %}
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-2-tab">
+                                <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid.
+                                    Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel,
+                                    butcher voluptate nisi qui.</p>
+                            </div>
+        
+                            <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-3-tab">
+                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
+                                    Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
+                                    williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                                    synth.</p>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-3-tab">
+                                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
+                                    repellendus distinctio sequi dicta consequatur quidem veritatis deleniti quis eligendi
+                                    facilis?</p>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-icons-text-5" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-3-tab">
+                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
+                                    Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
+                                    williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                                    synth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                {% endfor %}
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="tab-content" id="">
+                            <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-1-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3>Limited Liability Partership (LLP) Registration</h3>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="fa fa-star checked">&#9733;</span>
+                                                <span class="" style="font-size: 25px;">&#9733;</span>
+                                            </div>
+                                            <div class="col-md-4 mt-2">
+                                                <a href="#">17 Reviews</a>
+                                            </div>
+                                            <div class="col-md-3 mt-2">
+                                                <span class="black">&#8377; 9999</span> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offset-2">
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success rounded float-right font-weight-600">Buy Now</button>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Filing of E-Form</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Drafting of LLP Deed</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Drafting of E-Signature</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Account Opening</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Issue of incorporation certificate</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">If You don't have form 16.</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Drafting of E-Signature</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Account Opening</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">Issue of incorporation certificate</span>
+                                        <br>
+                                        <span class="text-success font-weight-600" style="font-size: 20px;">&#10003;</span><span class=" ml-2">If You don't have form 16.</span>
+
+                                    </div>
+
+                                    <div class="col-md-6" style="border-left: solid rgb(162, 159, 159);">
+                                        <p class="font-weight-500">
+                                            We will never sell your personal data, and will only ever share it with organisations we work with where necessary and if its privacy and security
+                                            <br> <a href="">Read More...</a>
+                                        </p>
+                                    </div> 
+                                </div>
+                            </div>
+        
+        
+        
+        
+        
+                            <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-2-tab">
+                                <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid.
+                                    Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel,
+                                    butcher voluptate nisi qui.</p>
+                            </div>
+        
+                            <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-3-tab">
+                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
+                                    Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
+                                    williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                                    synth.</p>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-4-tab">
+                                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
+                                    repellendus distinctio sequi dicta consequatur quidem veritatis deleniti quis eligendi
+                                    facilis?</p>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-icons-text-5" role="tabpanel"
+                                aria-labelledby="tabs-icons-text-5-tab">
+                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
+                                    Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor,
+                                    williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                                    synth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3" >
+                <div class="card" style="background-color:#D2E3EE">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h2>Have Queris?</h2>
+                            <h3>Talk to Expert</h3>
+                        </div>
+                        <label class="labels">
+                            Name
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" name="firstName" placeholder=""
+                            aria-label="Cristopher" required="">
+                                <br>
+                            <label class="labels">
+                                Email Address
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" name="firstName" placeholder=""
+                                aria-label="Cristopher" required="">
+                            <br>
+                                <div class="row text-center">
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-primary mx-auto text-center">Request Feedback</button>
+                                    </div>
+                                </div>
+                    </div>
+                    
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--navs end-->
+
+
+
+
+
+    {% endblock content %}
+
+    {% block script %}
+
+   
+
+    {% endblock script %}

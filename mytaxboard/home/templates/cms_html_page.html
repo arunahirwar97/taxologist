@@ -1,0 +1,1737 @@
+{% extends 'base_for_another_page.html' %}
+
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% block content %}
+<style>
+  .content-set{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+  }
+  .home{
+    color: #08c;
+  }
+  .zoom {
+    transition: transform .2s;
+  }
+  .nav-btn{
+    color: #1d9df0;
+    background-color: white;
+  }
+  .na-btn:active{
+    background-color: #1d9df0;
+    color: white;
+  }
+  .richtext-image {
+    width:100%;
+  }
+  .hide-block{
+    display:none;
+  }
+  .show-block{
+    display:block;
+  }
+  .nav-margin {
+    padding-left:2.5%;          
+    padding-right:2.5%; 
+  }
+</style>
+<!--Fisrt Page -->
+<section class=""> 
+<div id='main-page'>
+  
+  <div class="py-3">
+    <div class="px-5">
+      <div class="row bg-default py-3" style="border-radius:5px">
+        <div class="col px-1 text-center">
+          <button id="gst" onclick="selectButton(0)" type="button" class="btn btn-default" style="border-radius:25px">GST</button>
+        </div>
+        <div class="col px-1 text-center">
+          <button id="income" onclick="selectButton(1)" type="button" class="btn btn-default" style="border-radius:25px">Income Tax</button>
+        </div>
+        <div class="col px-1 text-center">
+          <button id="registration" onclick="selectButton(2)" type="button" class="btn btn-default" style="border-radius:25px">Registration</button>
+        </div>
+        <div class="col px-1 text-center">
+          <button id="trademark" onclick="selectButton(3)" type="button" class="btn btn-default" style="border-radius:25px">Trademark</button>
+        </div>
+        <div class="col px-1 text-center">
+          <button id="document" onclick="selectButton(4)" type="button" class="btn btn-default" style="border-radius:25px">Documents</button>
+        </div>
+        <div class="col px-1 text-center">
+          <button id="roc" onclick="selectButton(5)" type="button" class="btn btn-default" style="border-radius:25px">ROC FILING</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 p-3">
+          <div id="gstBlock" class="hide-block">
+
+            
+            <span  id="main_data_for_gst">
+              
+            </span>
+            {% comment %} <div class="row py-3">
+              <div class="col">
+                <h3 class="font-weight-bold">GST Introduction</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row py-3">
+              <div class="col">
+                <h3 class="font-weight-bold">GST Basics</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://i0.wp.com/www.inventiva.co.in/wp-content/uploads/2021/03/GST-Software-Development.jpg?resize=780%2C470&ssl=1" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://i0.wp.com/www.inventiva.co.in/wp-content/uploads/2021/03/GST-Software-Development.jpg?resize=780%2C470&ssl=1" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://i0.wp.com/www.inventiva.co.in/wp-content/uploads/2021/03/GST-Software-Development.jpg?resize=780%2C470&ssl=1" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://i0.wp.com/www.inventiva.co.in/wp-content/uploads/2021/03/GST-Software-Development.jpg?resize=780%2C470&ssl=1" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://i0.wp.com/www.inventiva.co.in/wp-content/uploads/2021/03/GST-Software-Development.jpg?resize=780%2C470&ssl=1" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          </div>
+          <div id="incomeBlock" class="hide-block">
+            <span id="main_data_for_inc">
+            
+            </span>
+            {% comment %} <div class="row py-3">
+              <div class="col">
+                <h3 class="font-weight-bold">Income Introduction</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://www.centralbank.net/uploadedfiles/images/articles/lc-get-ready-for-tax-season.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://www.centralbank.net/uploadedfiles/images/articles/lc-get-ready-for-tax-season.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://www.centralbank.net/uploadedfiles/images/articles/lc-get-ready-for-tax-season.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://www.centralbank.net/uploadedfiles/images/articles/lc-get-ready-for-tax-season.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://www.centralbank.net/uploadedfiles/images/articles/lc-get-ready-for-tax-season.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          </div>
+          <div id="registrationBlock" class="hide-block">
+            <span id="main_data_for_reg">
+
+            </span>
+            {% comment %} <div class="row py-3">
+              <div class="col">
+                <h3 class="font-weight-bold">Registration Introduction</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          </div>
+          <div id="trademarkBlock" class="hide-block">
+            <span id="main_data_for_tra">
+            </span>
+            {% comment %} <div class="row py-3">
+              <div class="col">
+                <h3 class="font-weight-bold">Trademark Introduction</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          </div>
+          <div id="documentsBlock" class="hide-block">
+            <span id="main_data_for_doc">
+            </span>
+            {% comment %} <div class="row py-3">
+              <div class="col">
+                <h3 class="font-weight-bold">Documnets Introduction</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://whichfranchise.co.za/wp-content/uploads/2018/06/Tax-Filing-Season-1-900x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://whichfranchise.co.za/wp-content/uploads/2018/06/Tax-Filing-Season-1-900x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://whichfranchise.co.za/wp-content/uploads/2018/06/Tax-Filing-Season-1-900x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://whichfranchise.co.za/wp-content/uploads/2018/06/Tax-Filing-Season-1-900x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://whichfranchise.co.za/wp-content/uploads/2018/06/Tax-Filing-Season-1-900x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          </div>
+          <div id="rocBlock" class="hide-block">
+            <span id="main_data_for_roc">
+            </span>
+            {% comment %} <div class="row py-3">
+              <div class="col">
+                <h3 class="font-weight-bold">ROC Introduction</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4 py-3">
+                <div class="text-center">
+                  <img src="https://5.imimg.com/data5/JY/EE/NZ/SELLER-11077251/income-tax-return-filing-service-500x500.jpg" class="img-fluid rounded" alt="Responsive image">
+                </div>
+                <h2 class="font-weight-600 mt-3 mb-2">
+                  <a href="/cmsmeaning-of-a-blogger/" style="color:#43a1f6">Meaning of a Blogger</a>
+                </h2>
+                <p>
+                  <b>With the onset of social media, the demand for content creators and bloggers is ever on the rise. Blogging profession is</b>
+                </p>
+                <div class="post-meta">
+                  <span>
+                    <a href="#" style="color:#43a1f6">
+                      <i class="far fa-user"></i> By dcfvghnjmkl;
+                    </a>&nbsp; &nbsp;  
+                  </span>
+                  <span class="d-block mt-3">
+                    <a href="/cmsmeaning-of-a-blogger/" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">
+                      Read More
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>
+
+<!--Main Footer End-->
+{% include "includes/footer.html" %}
+
+{% endblock content %}
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  let active = 0;
+  let num = 0;
+  $('#gst').addClass('btn-white');
+  $('#gstBlock').show();
+  function selectButton(value){
+    active=value;
+    num=value;
+    
+    active == 0 ? $('#gst').addClass('btn-white') : $('#gst').removeClass('btn-white');
+    active == 1 ? $('#income').addClass('btn-white') : $('#income').removeClass('btn-white');
+    active == 2 ? $('#registration').addClass('btn-white') : $('#registration').removeClass('btn-white');
+    active == 3 ? $('#trademark').addClass('btn-white') : $('#trademark').removeClass('btn-white');
+    active == 4 ? $('#document').addClass('btn-white') : $('#document').removeClass('btn-white');
+    active == 5 ? $('#roc').addClass('btn-white') : $('#roc').removeClass('btn-white');
+
+    num == 0 ? $('#gstBlock').show() : $('#gstBlock').hide();
+    num == 1 ? $('#incomeBlock').show() : $('#incomeBlock').hide();
+    num == 2 ? $('#registrationBlock').show() : $('#registrationBlock').hide();
+    num == 3 ? $('#trademarkBlock').show() : $('#trademarkBlock').hide();
+    num == 4 ? $('#documentsBlock').show() : $('#documentsBlock').hide();
+    num == 5 ? $('#rocBlock').show() : $('#rocBlock').hide();
+  }
+
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "GST" %}
+    $('#main_data_for_gst').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_gst').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_page1%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{tmp_photo.url}}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "GST" %}
+    $('#main_data_for_gst').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_gst').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data2%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "GST" %}
+    $('#main_data_for_gst').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_gst').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data3%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "GST" %}
+    $('#main_data_for_gst').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_gst').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data4%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+{% comment %} #####################END GST blog data {% endcomment %}
+{% comment %} #####################start  INCOME TAX blog data {% endcomment %}
+
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "INCOME TAX" %}
+    $('#main_data_for_inc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_inc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_page1%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "INCOME TAX" %}
+    $('#main_data_for_inc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_inc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data2%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "INCOME TAX" %}
+    $('#main_data_for_inc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_inc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data3%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "INCOME TAX" %}
+    $('#main_data_for_inc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_inc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data4%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+{% comment %} #####################END  INCOME TAX blog data {% endcomment %}
+{% comment %} #####################start  REGISTRATION  blog data {% endcomment %}
+    
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "REGISTRATION" %}
+    $('#main_data_for_reg').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_reg').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_page1%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "REGISTRATION" %}
+    $('#main_data_for_reg').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_reg').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data2%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "REGISTRATION" %}
+    $('#main_data_for_reg').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_reg').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data3%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "REGISTRATION" %}
+    $('#main_data_for_reg').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_reg').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data4%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+{% comment %} #####################ENd  REGISTRATION  blog data {% endcomment %}
+{% comment %} #####################start  TRADEMARK  blog data {% endcomment %}
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "TRADEMARK" %}
+    $('#main_data_for_tra').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_tra').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_page1%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "TRADEMARK" %}
+    $('#main_data_for_tra').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_tra').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data2%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "TRADEMARK" %}
+    $('#main_data_for_tra').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_tra').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data3%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "TRADEMARK" %}
+    $('#main_data_for_tra').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_tra').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data4%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+{% comment %} #####################ENd  TRADEMARK  blog data {% endcomment %}
+{% comment %} #####################start  DOCUMENTS  blog data {% endcomment %}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "DOCUMENTS" %}
+    $('#main_data_for_doc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_doc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_page1%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "DOCUMENTS" %}
+    $('#main_data_for_doc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_doc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data2%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "DOCUMENTS" %}
+    $('#main_data_for_doc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_doc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data3%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "DOCUMENTS" %}
+    $('#main_data_for_doc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_doc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data4%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+{% comment %} #####################ENd  DOCUMENTS  blog data {% endcomment %}
+{% comment %} #####################start  ROC FILING  blog data {% endcomment %}
+
+    
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "ROC FILING" %}
+    $('#main_data_for_roc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_roc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_page1%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "ROC FILING" %}
+    $('#main_data_for_roc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_roc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data2%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "ROC FILING" %}
+    $('#main_data_for_roc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_roc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data3%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+
+    {%for j in main_data %}
+    {%if j.main_category.main_category == "ROC FILING" %}
+    $('#main_data_for_roc').append('<div  id="main_heading{{j.sub_categories|cut:" "}}">   </div>')
+    
+    $('#main_data_for_roc').append('<div class="row" id="main_data{{j.sub_categories|cut:" "}}">   </div>')
+    {%for i in main_data4%}
+  
+    {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    
+    $('#main_heading{{j.sub_categories|cut:" "}}').append('<div class="row py-3 {{j.sub_categories|cut:" "}}" ><div class="col"><h3 class="font-weight-bold">{{j.sub_categories}}</h3></div></div>')
+
+    $('#main_data{{j.sub_categories|cut:" "}}').append('<div class="col-md-4 py-3"><div class="text-center">{% image i.title_image width-680  as tmp_photo %}<img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/></div><h2 class="font-weight-600 mt-3 mb-2"><a href="{% pageurl i %}"  style="color:#43a1f6">{{i.title|richtext}}</a></h2><p><b>{{i.sort_description_body|richtext}}</b></p><div class="post-meta"><span><a href="#" style="color:#43a1f6"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;</span><span class="d-block mt-3"><a href="{% pageurl i %}" target="_blank" class="btn text-1 text-uppercase" style="background-color:#43a1f6; color:white; border-radius:25px">Read More</a></span></div></div>');        
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+    {%endfor%}
+{% comment %} #####################END  ROC FILING  blog data {% endcomment %}
+
+    {% comment %} $('#selectcountries1').click(function(){  
+      var optionSelected = $(this).find("option:selected");
+      var pan_card_number   = optionSelected.text();
+      $.ajax(
+      {
+          url: "ajax_call_for_registration_data",
+          data:{
+            pan_card_number:pan_card_number
+          },
+          success: function(result) 
+          {
+            $("#selectcities11 option").remove();
+                    $("#selectcities21").remove();
+                    $("#selectcities").append('<option>'+ "Select" +'</option>');
+                    $("#selectcities111").append('<span id="selectcities21">'+ result[0].name +'</span>');
+                    for (var i = result.length - 1; i >= 0; i--) {
+                      $("#selectcities11").append('<option>'+ result[i].year +'</option>');
+                      };
+          }
+        })
+    }); {% endcomment %}
+    
+    </script>
+<script>
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "GST" %}
+  {%for i in main_page1%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+    {% comment %} setTimeout(function(){$(".gst_one").not(':first').remove();},); {% endcomment %}
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "GST" %}
+  {%for i in main_data2%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+    {% comment %} setTimeout(function(){$(".gst_one").not(':first').remove();},); {% endcomment %}
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "GST" %}
+  {%for i in main_data3%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+    {% comment %} setTimeout(function(){$(".gst_one").not(':first').remove();},); {% endcomment %}
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "GST" %}
+  {%for i in main_data4%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+    {% comment %} setTimeout(function(){$(".gst_one").not(':first').remove();},); {% endcomment %}
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+</script>
+
+
+<script>
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "INCOME TAX" %}
+  {%for i in main_page1%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "INCOME TAX" %}
+  {%for i in main_data2%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "INCOME TAX" %}
+  {%for i in main_data3%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "INCOME TAX" %}
+  {%for i in main_data4%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+</script>
+
+
+<script>
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "REGISTRATION" %}
+  {%for i in main_page1%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "REGISTRATION" %}
+  {%for i in main_data2%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "REGISTRATION" %}
+  {%for i in main_data3%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "REGISTRATION" %}
+  {%for i in main_data4%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+</script>
+
+<script>
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "TRADEMARK" %}
+  {%for i in main_page1%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "TRADEMARK" %}
+  {%for i in main_data2%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "TRADEMARK" %}
+  {%for i in main_data3%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "TRADEMARK" %}
+  {%for i in main_data4%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+</script>
+
+<script>
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "DOCUMENTS" %}
+  {%for i in main_page1%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "DOCUMENTS" %}
+  {%for i in main_data2%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "DOCUMENTS" %}
+  {%for i in main_data3%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "DOCUMENTS" %}
+  {%for i in main_data4%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+
+</script>
+<script>
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "ROC FILING" %}
+  {%for i in main_page1%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "ROC FILING" %}
+  {%for i in main_data3%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "ROC FILING" %}
+  {%for i in main_data2%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+  {%for j in main_data %}
+  {%if j.main_category.main_category == "ROC FILING" %}
+  {%for i in main_data4%}
+  
+  {%if j.sub_categories == i.blog_sub_category.sub_categories %}
+    setTimeout(function(){$(".{{j.sub_categories|cut:" "}}").not(':first').remove();},);
+  {%endif%}
+  {%endfor%}
+  {%endif%}
+  {%endfor%}
+</script>
+
+
+
+{% endblock script %}

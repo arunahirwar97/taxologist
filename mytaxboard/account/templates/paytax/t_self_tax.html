@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active"  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_taxpaid_tds' %}#personal" >TDS</a>
+  </li>
+  <!-- <li class="nav-item"></li> -->
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'paytax_self_tax_payment' %}#tabs-text-2" >Self Tax Payment</a>
+  </li>
+</ul>
+
+<!-- head -->
+
+<div class="container mt-9">
+  <h5 class="text-dark ">Summary of Taxes Paid: Advance Tax and Self Assessment Tax
+  </h5>
+
+  <p class="text-dark text-center mt-3">Would you like to add entry on Taxes Paid?</p>
+  <p class="text-dark mt-3">Add entries here if you voluntarily deposited taxes to the government. Note: This is separate from TDS. This is tax you deposited to the government via Challan 280.</p>
+
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-2">
+        
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-primary btn-lg"> + Add Entry</button>
+
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-primary btn-lg"> >> Go To Next</button>
+
+      </div>
+      <div class="col-md-2">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <hr>
+  <h4 class="text-dark">You haven't added any Taxes paid entries.</h4>
+  <hr>
+</div>
+{%endblock%}

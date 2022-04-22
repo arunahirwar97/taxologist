@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<body>
+
+<!-- head -->
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_deduction' %}#personal" >Section 80 Deductions</a>
+  </li>
+  <!-- <li class="nav-item"></li> -->
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'paytax_more_deduction' %}#tabs-text-2" >More Deductions</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_other_deduction' %}#tabs-text-2" >Other Deductions</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_investment_detail' %}#tabs-text-2" >Investment Details</a>
+  </li>
+</ul>
+
+<!-- head -->
+  <div class="container-fluid mt-9">
+    <div class="row">
+      <div class="col-md-9">
+
+        <div class="container">
+          <fieldset>
+            <legend class="text-dark">Section 80D: Deductions for Medical Insurance</legend>
+            <div class="form-group ">
+              <div class="col-md-6">
+                <p class="text-dark">Deductions for Medical Insurance or Preventive Health Check-Up fees or Medical Expenditure incurred by you.</p>  
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <b class="mt-2">For Self and Family</b>
+                  </div>
+                <div class="col-md-4">
+                  <b class="mt-2">For Parents</b>
+                  <br>
+                  <input type="text" class="mt-2">
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-4 ">
+                  Medical Insurance Premium
+                </div>
+                <div class="col-md-4">
+                  
+                  <input type="text">
+                </div>
+                <div class="col-md-4">
+                  <input type="text">
+                </div>
+              </div>
+
+
+              <div class="text mt-2">
+                <cite> Medical insurance premium paid by you for Self, Spouse, Dependent Children and Parents.</cite>
+              </div>
+            
+              <div class="row mt-5">
+                <div class="col-md-4 ">
+                  Preventive Health Check-Up Fees
+                </div>
+                <div class="col-md-4">
+                  
+                  <input type="text">
+                </div>
+                <div class="col-md-4">
+                  <input type="text">
+                </div>
+              </div>
+              
+              <div class="text mt-2">
+                <cite> Health check-up expenses paid by you for Self, Spouse, Dependent Children and Parents.
+                </cite>
+              </div>
+
+              <div class="row mt-5">
+                <div class="col-md-4 ">
+                  Medical Expenditure
+                </div>
+                <div class="col-md-4">
+                  
+                  <input type="text">
+                </div>
+                <div class="col-md-4">
+                  <input type="text">
+                </div>
+              </div>
+              
+              <div class="text mt-2">
+                <cite> This expenditure can be claimed only for senior citizens who don't have medical insurance policy.
+                </cite>
+              </div>
+
+          </fieldset>
+        </div>
+      </div>
+    <div class="col-md-3">
+      <div class="card text-center" style="width: 20rem;">
+        <div class="card-body">
+          <b class="card-title">Get a tax expert to file your return</b>
+          <p class="card-text text-dark">Filing return yourself is Free. If you need an expert's help, you can opt for our paid plans starting ₹799.</p>
+          <a href="javascript:;" class="btn btn-primary">See Plans</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+
+      <div class="container">
+        <fieldset>
+          <legend class="text-dark">Section 80E - Education Loan on higher studies (Graduate or PostGraduate)</legend>
+          <div class="text-small">
+            <p class="text-dark">You can claim tax deduction on the <b>interest</b> paid on an education loan for higher studies</p>
+          </div>
+          <div class="form-group ">
+            <div class="col-md-9">
+              <b class="text-dark">Interest on higher education loan paid this year</b>
+              <br>
+              <cite class="small">Interest paid by you on loan taken out by you. Loan can be for yourself or your spouse or your children
+              </cite>
+              <input type="text" class="form-control">
+            </div>
+            
+      </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+
+      <div class="container">
+        <fieldset>
+          <legend class="text-dark">SSection 80CCC - Contribution to Pension Plan / Annuity Fund</legend>
+          <div class="form-group ">
+            <div class="col-md-9">
+              <b class="text-dark">Contribution amount to Pension Plan / Annuity Fund for Section 80CCC</b>
+              <input type="text" class="form-control" placeholder="00">
+            </div>
+            
+      </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+
+      <div class="container">
+        <fieldset>
+          <legend class="text-dark">Section 80CCD (1) and (1B) - Employee Contribution to New Pension Scheme (NPS).</legend>
+
+          <div class="text">
+            <p class="text-dark">Employee's contribution to the New Pension System (NPS).</p>
+          </div>
+          <div class="small">
+            <p class="text-dark small">Please enter your own contribution to NPS. <br>ClearTax will automatically split it into Section 80 CCD(1) and CCD(1B) in your tax return. <br>The split will be optimised to give you maximum tax savings. </p>
+            
+          </div>
+          <div class="form-group ">
+            <div class="col-md-9">
+              <b class="text-dark">Contribution towards Section 80CCD(1)</b>
+              <br>
+              <input type="text" class="form-control" placeholder="00">
+            </div>
+            
+      </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+
+      <div class="container">
+        <fieldset>
+          <legend class="text-dark">Section 80CCD(2) - Employer Contribution in NPS</legend>
+          <div class="form-group ">
+            <div class="col-md-9">
+              <b class="text-dark">Employers contribution towards NPS (upto 10% of Salary).</b>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mb-4 mt-2">
+  <button type="button" class="btn btn-primary mt-2 ml-3" data-container="body" data-toggle="popover" data-color="primary" data-placement="top" data-content="This is a very beautiful popover, show some love.">
+    Add Special Deductions
+  </button>
+   <br>
+    <button type="button" class="btn btn-primary mt-2 ml-3" data-container="body" data-toggle="popover" data-color="primary" data-placement="top" data-content="This is a very beautiful popover, show some love.">
+      Save
+    </button>
+  </div>
+</body>
+{%endblock%}

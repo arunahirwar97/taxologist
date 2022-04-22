@@ -1,0 +1,115 @@
+{% extends 'dashboard_base_for_business.html' %}
+{% load static %}
+{% block style %}
+
+{% endblock style %}
+
+
+{% block content %}
+<!-- section 3 -->
+
+<section class="bg-white shadow m-3" >
+  <div class="p-4">
+    <form action="">
+        <select class=" form-control col-md-4 text-black"  id="selectpan">
+            <option value="volvo" >Select Client</option>
+            {% for i in pan_number %}
+            <option value="volvo">{{i}}</option>
+            {% endfor %}
+        </select>
+      </form>
+  </div>  
+  <div class="mt-2">
+  <h3 class="ml-3">Order Summary</h3>
+ <!-- table -->
+  <div class="pt-4 table-responsive">
+    <table class="table">
+      <thead class="" style="background-color: #E9ECEF;" >
+          <tr class="">
+              <th class="" style="font-size:13px">Plan Name</th>
+              <th class="" style="font-size:13px">Plan ID</th>
+              <th class="" style="font-size:13px">Amount</th>
+              <th class="" style="font-size:13px">Date</th>
+              <th class="" style="font-size:13px">Time</th>
+              </div>
+          </tr>
+      </thead>
+      <tbody >
+  
+    {% for i in order %}
+    {% if i.status == "True" %}
+      <tr>
+        <td style="font-size:13px">{{i.pricing_plan.plan_name}}</td>
+        <td style="font-size:13px">{{i.pricing_plan.plan_id}}</td>
+        <td style="font-size:13px">{{i.amount}}</td>
+        <td style="font-size:13px">{{i.made_on.date}}</td>
+        <td style="font-size:13px">{{i.made_on.time}}</td>
+      </tr>
+    {% endif %}
+    {% endfor %}
+      </tbody>
+
+        <tr>
+          <td class=" text-capitalize" id="purchase_detail"></td>
+        </tr>
+    </table>
+    <span id="order_data">
+    
+
+    
+    </span>
+  </div>
+  </div>
+  
+</section>
+
+
+
+{% endblock content %}
+
+{% block script %}
+<script>
+  $('#selectpan').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var pan_card_number   = optionSelected.text();
+    $.ajax(
+    {
+        url: "ajax_call_for_my_order",
+        data:{
+          pan_card_number:pan_card_number
+        },
+        success: function(result) 
+        {
+        if (result.length == 0){
+          $('#remove1').remove();
+          $('#purchase_detail').append('<span id="remove1"><h4 class="text-center mt-4"><b> you do not perches any plan </b></h4></span>')
+        };
+        if (result.length >= 1 ){
+        $('#purchase_detail').remove();
+        }
+        $('#order_data').empty();
+        for(var i=0;i<=result.length;i++){
+          
+            {% comment %} var data = $('<tr><td style="font-size:13px">'+ result[i].order_id+'</td><td style="font-size:13px">'+result[i].plan_name+'</td><td style="font-size:13px">'+ result[i].plan_id+'</td><td style="font-size:13px">'+result[i].time+'</td><td style="font-size:13px">'+ result[i].date+'</td><td>'+'<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Button with data-target</button><div class="collapse" id="collapseExample"><div class="card card-body">Anim pariatur cliche reprehenderitAnim pariatur cliche reprehenderitAnim pariatur cliche reprehenderitAnim pariatur cliche reprehenderitAnim pariatur cliche reprehenderit, .</div></div>'+'</td>')
+              $('#order_data').append('data');                        {% endcomment %}
+              $('#order_data').append("<div class='accordion' id='accordionExample'><div class='card'><div class='card-header' id='headingOne' data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'><h5 class='mb-0'><th style='font-size:13px' class='m-8'>Plan Name</th></h5></div><div id='collapseOne' class='collapse show' aria-labelledby='headingOne' data-parent='#accordionExample'><div class='card-body'><p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p></div></div></div></div>");                        
+            }
+
+        }
+     })
+     
+});
+
+
+
+
+
+</script>
+<script>
+  $('.nav-item a').removeClass('btn btn-primary text-white');
+  $('.home_dashbaord-item a').addClass('btn btn-primary text-white');
+  $('.home_dashbaord-item a img').attr('src','/static/svg/dashboard_base/dashbaord_w.svg');
+  
+</script>
+
+{% endblock script %}

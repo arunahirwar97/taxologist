@@ -1,0 +1,155 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+{% block style %}
+<style>
+    .container {
+        max-width: 1350px;
+    }
+</style>
+{% endblock style %}
+{% block content %}
+
+<section class="mt-3">
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="card-body">
+                    <p class="display-4 text-center text-dark"> Your Order Summary</p>
+
+                    <div class="col-md-6 card-body" style="background-color: #F9F8F8;">
+                        <form class="js-validate">
+                            <div class="container">
+                                <h3 class="title mt-3 text-dark">Salaried Individual Tax Filling (Premium) (Plan ID :
+                                    itr-SAL-010)</h3>
+                                <h5 class="text-dark">Communication Email Address</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="labels">
+                                            Email
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="firstName" placeholder=""
+                                            aria-label="Cristopher" required="">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="js-form-message">
+                                            <label class="labels">
+                                                First Name
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="email" class="form-control" name="emailAddress" placeholder=""
+                                                aria-label="thompson@gmail.com" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="js-form-message">
+                                            <label class="labels">
+                                                Last Name
+                                            </label>
+                                            <input type="text" class="form-control" placeholder=""
+                                                aria-label="+4 (0762) 230991">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    {% comment %} <div class="col-md-4">
+                                        <div class="js-form-message">
+                                            <label class="labels">
+                                                Country Code
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" name="streetAddress"
+                                                placeholder="+91 IND" aria-label="420 Long Beach, CA" required="">
+                                        </div>
+                                    </div> {% endcomment %}
+                                    <div class="col-md-8">
+                                        <div class="js-form-message">
+                                            <label class="labels">
+                                                Contact Number
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" name="postcode" placeholder=""
+                                                aria-label="340112" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="custom-control custom-checkbox mb-3">
+                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                    <label class="custom-control-label text-dark" for="customCheck1">I agree to recieve
+                                        notification on whatsapp</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Do you have a GSTIN?
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="custom-control custom-radio mb-3">
+                                                <input name="custom-radio-1" class="custom-control-input"
+                                                    id="customRadio1" type="radio">
+                                                <label class="custom-control-label" for="customRadio1">Yes</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="custom-control custom-radio mb-3">
+                                                <input name="custom-radio-1" class="custom-control-input"
+                                                    id="customRadio2" checked="" type="radio">
+                                                <label class="custom-control-label" for="customRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="link2" class="tab-pane">
+                                <label class="labels">
+                                    State
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="" required="">
+                                <br>
+                            </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    
+</section>
+
+<!-- <section>
+    <div class="container mt-9">
+        <p>{{pricing_plan.item_group}}</p>
+        <p>{{pricing_plan.item}}</p>
+        <p>{{pricing_plan.plan_name}}</p>
+        <p>{{pricing_plan.plan_sort_name}}</p>
+        <p>{{pricing_plan.plan_id}}</p>
+        <p>{{pricing_plan.regullar_price}}</p>
+        <p>{{pricing_plan.discount}}</p>
+        <p>{{pricing_plan.gst}}</p>
+        <p>{{pricing_plan.total_discount}}</p>
+        <p>{{pricing_plan.our_price}}</p>
+        <p>{{pricing_plan.total_gst}}</p>
+        <p>{{pricing_plan.total_price_and_gst}}</p>
+        <p>{{pricing_plan.duration}}</p>
+        <p>{{pricing_plan.item}}</p>
+        <p>{{pricing_plan.item}}</p>
+    </div>
+</section> -->
+
+
+{% endblock content %}

@@ -1,0 +1,100 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  .container{
+    max-width: 1350px;
+  }
+  .middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <div class="container ">
+        <p class="display-4 ">How can be Help??</p>
+      </div>
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group has-primary">
+              <input type="text" placeholder="Search your blog" class="form-control is-" />
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <button type="button" class="btn btn-success btn-round">Search Your Blogs</button>
+          </div>
+         </div>
+      </div>
+      <div class="container mt-3">
+        <div class="row">
+          {%for i in data%}
+          <div class="col-md-4">
+            <a href="{{i.help_center_title_page_link}}">
+              {% if i.background_color_code is none%}
+                <div class="card card-pricing card-background" style="background-color:{{i.background_color_name}}">
+              {%else%}
+                <div class="card card-pricing card-background" style="background-color:{{i.background_color_code}}">
+              {%endif%}
+                <div class="card-body">
+                  
+                  <h3 class="card-title text-white text-center">{{i.help_center_title}}</h3>
+                  <h4 class="card-subtitle font-weight-normal text-white"> {{i.help_center_description|safe}}</h4>
+                </div>
+              </div>
+            </a>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="middle col-md-2">
+        <img class=" mx-auto p-2" src="/static/svg/tax_tool/help_center/idea.svg" alt="">
+      </div>
+      <div class="col-md-4 p-2 text-center">
+        <div>
+          <p class="display-4 text-left font-weight-600 mb-0">Out of box Question?</p>
+          <p class="font-weight-600 text-left">We love to here</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 p-2 mt-1">
+       <p class="font-weight-600 ">Send us email with more detail about your specific needs</p>
+      </div>
+
+      <div class="col-md-3 p-2 mt-3 middle">
+        <button class="btn btn-success ml-3">Send a Request</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock content %}
+<!-- First Panel -->
+
+{% block script %}
+
+<script>
+    $('.nav-item a').removeClass('btn btn-primary text-white');
+    $('.help_center-item a').addClass('btn btn-primary text-white');
+    $('.help_center-item a img').attr('src','/static/svg/dashboard_base/help_center_w.svg');
+
+    </script>
+{% endblock script %}

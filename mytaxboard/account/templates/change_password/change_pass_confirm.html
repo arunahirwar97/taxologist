@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="bg-light pb-5 pt-9">
+    <div class="container">
+        <h6>Password Change Successfully !!!</h6>
+        <a href="{% url 'login' %}">Go Back and Login  </a>
+    </div>
+    
+</section>
+
+{% include "footer.html" %}
+
+{% endblock content %}

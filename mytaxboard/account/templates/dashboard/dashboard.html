@@ -1,0 +1,1691 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block style %}
+<style>
+  .container{
+    max-width: 1350px;
+  }
+  .font_size{
+    color:black;font-size:25px;
+  }
+  .current {
+  background-color: #5e72e4;
+}
+
+.page-link1{
+    line-height: 1.25;
+    {% comment %} position: relative; {% endcomment %}
+    display: block;
+    margin-left: -1px;
+    padding: .5rem .75rem;
+    color: #8898aa;
+    border: 1px solid #dee2e6;
+    border-radius: 50%!important;
+    margin: 0 4px;
+
+}
+  {% comment %} .plus-main{
+    padding-top:100px;
+    margin-left:100 px;
+    font-size:27;
+  } {% endcomment %}
+
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  position: absolute;
+
+  {% comment %} color: white;
+  font-weight: bold;
+  {% comment %} border: 2px solid white; {% endcomment %}
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 80%;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-right:5px;
+  padding-left:5px; 
+  text-align: center;
+}
+
+
+  .container{
+    max-width: 1350px;
+  }
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+  background-color: yellow;
+  padding: 50px;
+  font-size: 20px;
+}
+
+@media(min-width:576px) and (max-width:1025px) 
+  {
+    #d_none{
+      display:none;
+    }
+}
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<!-- Main content -->
+
+<div class="main-content " id="panel" >
+
+  <div class="container">
+    
+    <div class="mb-2 card mt-2" id="xml_file_data_hide">
+      <div class="pb-3 card-body">
+          <div class="row">
+              <div class="col-md-10">
+                  <p class="font-weight-bold mb-0" style="font-size: 20px;">
+                      PLEASE UPLOAD XML OR JSON FILE 
+                      <span>
+                          <i class="fas fa-arrow-right ml-3 text-info" style="font-size: 25px;"></i>
+                      </span>
+                  </p>
+              </div>
+              <div class="col-md-2 mm col">
+                  <button type="button" class="btn btn-success" style="border-radius: 30px;">
+                      <a href="{% url 'xmlfile' %}"><h6 class="text-white font-weight-bold mb-0" style="font-size:10px;">Upload NOW</h6></a>
+                  </button>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="card mt-2">
+      <div class="m-3 pl-4">
+        <div class="row">
+          {% if xmldata %}
+                <div class="col-sm-4 p-1" >
+                  <div class="row">
+                    <div class="col-sm-4 pl-0 pr-0">
+                      <h2 class=""> NAME -</h2>
+                    </div>
+                    <div class="col-sm-8 pl-0 pr-0">
+                      <span id="selectcities1" style="font-size:20px;color:black" ></span>
+                    </div>
+                  </div>  
+                </div>
+                <div class="col-sm-3 p-1 pl-0 pr-0" >
+                    <h2 class="">PAN- <select class="form-control-sm"  style="border:0px;height:40px;width:auto; background:white;font-size:.9375rem;"  id="selectcountries"> <option>Select </option>
+                                                {% for xmldata in AssesseeVerPAN %}
+                                                <option >{{xmldata}}</option>
+                                                {% endfor %}
+                                                {% for xmldata in reg_data %}
+                                                <option>{{xmldata.pan_card_number}}</option>
+                                                {% endfor %}
+                                                {% for xmldata in add_client_data %}
+                                                <option>{{xmldata.pan_card_number}}</option>
+                                                {% endfor %}
+                                      </select>
+                    </h2>
+                </div>        
+          {% elif reg_data %}
+              
+                <div class="col-sm-4 pt-1 pb-1">
+                    <div class="row">
+                      <div class="col-sm-4 pl-0 pr-0">
+                        <h2 class=""> NAME -</h2>
+                      </div>
+                      <div class="col-sm-8 pl-0 pr-0">
+                        <span id="selectcities111" style="font-size:20px;color:black;"></span>
+                      </div>
+                    </div>  
+                </div>
+                
+                <div class="col-sm-3 p-1" >
+                    <h2 class="">PAN- <select  class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;" id="selectcountries1"> <option>Select </option>
+                                                {% for xmldata in reg_data %}
+                                                <option>{{xmldata.pan_card_number}}</option>
+                                                {% endfor %}
+                                                {% for xmldata in add_client_data %}
+                                                <option>{{xmldata.pan_card_number}}</option>
+                                                {% endfor %}
+                                      </select>
+                    </h2>
+                </div>       
+            {% elif data1 %} 
+             <h2 class="">NAME - {{data1.name}} <span class="ml-5">PAN - {{data1.pancard}}</span></h2>
+            {% endif %}
+          {% if xmldata %}
+          
+            <div class="col-sm-4 p-1" >
+                  <h2 class=""> AY- <select  id="selectcities" class="form-control-sm" style="border:0px;height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                      </select><span > <a href="{% url 'xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+              :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;">  <i class="ni ni-fat-add"></i></span> </a>
+                  </h2>
+            </div>
+          {% elif reg_data %}
+            <div class="col-sm-4 p-1" style="padding-left:0px;padding-bottom:0px;">
+                  <h2 class=""> AY-  <select class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                              {% comment %} {% for xmldata in reg_data %}
+                                              <option>  {{ xmldata.AssessmentYear }} </option>
+                                              {% endfor %} {% endcomment %}
+                                      </select><span > <a href="{% url 'xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+              :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;">  <i class="ni ni-fat-add"></i></span> </a>
+                  </h2>
+            </div>
+          {% elif data1 %}
+          
+            <div class="col-sm-4 p-1" style="padding-left:0px;padding-bottom:0px;">
+                  <h2 class=""> AY-  <select class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                              {% for xmldata in data1 %}
+                                              <option>  {{ xmldata.AssessmentYear }} </option>
+                                              {% endfor %}
+                                      </select><span > <a href="{% url 'xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+              :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;"><i class="ni ni-fat-add"></i></span> </a>
+                  </h2>
+            </div>
+          {% endif %}        {% comment %} xml fildata show  {% endcomment %}
+          {% comment %} {% if xmldata %}
+                {% for xmldata in xmldata %}
+                  <div class="col-3">
+                      <h2 class=""> PAN - <select class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;" style="display:flex;"> <option>Select </option>
+                                                  <option> {{xmldata.pan_card_number}}  </option>
+                                        </select> 
+                      </h2>  
+                  </div>
+                  
+                  <div class="col-3">
+                      <h2 class="">Name- <select class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;" > <option>Select </option>
+                                                  <option>  {{xmldata.first_name}} {{xmldata.last_name}}  </option>
+                                        </select>
+                      </h2>
+                  </div>        
+              {% endfor %}
+            {% else %}
+               <h2 class="">PAN - No Data <span class="ml-5">NAME - No Data </span></h2>
+            {% endif %}
+  
+              <div class="col-3">
+                    <h2 class=""> AY-  <select class="form-control-sm" style="height:40px;width:auto; background:white;font-size:.9375rem;"> <option>Select </option>
+                                                <option>  {{ xmldata.AssessmentYear }} </option>
+                                        </select><span > <a href="{% url 'reg_xmlfile' %}" class="btn btn-outline" style="padding-left:.1rem;padding-right:.1rem;padding-top:.1px;padding-bottom
+                :0.1rem;"> <span class="btn-inner--icon" style="font-size:27px;">  <i class="ni ni-fat-add"></i></span> </a>
+                    </h2>
+              </div>
+              
+            <div class="col-3">
+                <span  style="padding-left:11em;"><a href="{% url 'add_client' %}" class="btn btn-outline-success" style="padding-top:.1rem;padding-bottom:.0rem;padding-left:0.1rem;padding-right:0.1px;"> <span class="btn-inner--icon" style="font-size:27px;margin-left:.1rem;margin-right:.1rem;display:flex;">  <i class="ni ni-fat-add" style="display:flex;"></i> <i class="ni ni-single-02"></i> </span> </a>
+            </div>
+          </div>
+        </div> {% endcomment %}
+          
+          
+          <div class="col-sm-1 p-1">
+              <span  class="d-md-inline-block"><a href="{% url 'add_client' %}" class="btn btn-outline" style="padding-top:.1rem;padding-bottom:.0rem;padding-left:0.1rem;padding-right:0.1px;"> <span class="btn-inner--icon" style="font-size:27px;display:flex;"><i class="ni ni-single-02 p-0 m-0"></i><i class="ni ni-fat-add p-0 m-0" style="display:flex;"></i></a></span>
+          </div>
+        </div>
+
+    </div> 
+  </div>
+{% comment %} Start Condition {% endcomment %}
+    <div class="row mt-4" id="xml_file_data_show">
+      
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+              <h5 class="card-title text-uppercase text-muted mb-3">TAX PAYABLE</h5>
+            <div class="row">
+              <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+              </div>  
+                <div class="col-md-8" >
+                  {% if xmldata %}
+                  {% for xmldata in xmldata %}
+                   <span class="h2 font-weight-bold mb-0" data-id ="arun" id="TotalTaxPayable"></span>
+                  {% endfor %}
+                    <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                  {% else %}
+                    <span class="h2 font-weight-bold mb-0" >No Data</span>
+                    <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                  {% endif %}
+                </div> 
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+            <h5 class="card-title text-uppercase text-muted mb-3">TDS</h5>
+            <div class="row">
+              <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                </div>
+              </div> 
+              <div class="col-md-8" >
+
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id= "TDS"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                  <span class="h2 font-weight-bold mb-0">No Data</span>
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+              </div>                  
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+              <h5 class="card-title text-uppercase text-muted mb-3">DEDUCTION</h5>
+
+            <div class="row">
+            <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-up" style="font-size:30px;color:white"></i>
+                </div>
+            </div> 
+            <div class="col-md-8" >
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id="TotalChapVIADeductions"></span>
+                {% endfor %}
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0">No Data</span>
+                <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card card-stats">
+          <!-- Card body -->
+          <div class="card-body">
+            <h5 class="card-title text-uppercase text-muted mb-3">TCS</h5>
+            <div class="row">
+            <div class="col-md-4">
+                <div  class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
+                      <i class="fa fa-arrow-down" style="font-size:30px;color:white"></i>
+                </div>
+            </div> 
+            <div class="col-md-8" >
+                
+                {% if xmldata %}
+                {% for xmldata in xmldata %}
+                <span class="h2 font-weight-bold mb-0" id="TCS"></span>
+                {% endfor %}
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+                {% else %}
+                <span class="h2 font-weight-bold mb-0">No Data</span>
+                  <h4 class="font-weight-bold mb-0">100% Since last Year </h4>
+
+                {% endif %}
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <section class="container">
+        <div class="mt">
+          <div class="row">
+            <div class="col-md-8">
+              <!--* Card header *-->
+              <!--* Card body *-->
+              <!--* Card init *-->
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <!-- Surtitle -->
+                  <h6 class="surtitle">Overview</h6>
+                  <!-- Title -->
+                  <h5 class="h3 mb-0">Tax Paid</h5>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="chart">
+                    <!-- Chart wrapper -->
+                    <canvas id="chart-bars" class="chart-canvas"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      <div class="col-md-4">
+              <!--* Card header *-->
+              <!--* Card body *-->
+              <!--* Card init *-->
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <!-- Surtitle -->
+                  <h6 class="surtitle">Overview</h6>
+                  <!-- Title -->
+                  <h5 class="h3 mb-0">Tax Paid</h5>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="chart" id="chart123">
+                    <!-- Chart wrapper -->
+
+                    <canvas id="chart-doughnut" class="chart-canvas" onclick="removeData();">
+                    <span id="TotalIncomeOfHP"  change="updatedata();"></span>
+                    <span id="TotalChapVIADeductions12"  change="updatedata();"></span>
+                    <span id="NetSalary"  change="updatedata();"></span>
+                    <span id="IncomeOthSrc"  change="updatedata();"></span>
+                    <span id="CapitalGain"  change="updatedata();"></span>
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+        </div>
+      
+            
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+{% comment %} End conditions  {% endcomment %}
+
+
+{% comment %} <div class="bg-text" >
+  <section style="background:linear-gradient(#1171EF, #11CDEF);" >
+      <div class="container">
+          <div class="card">
+              <div class="card-body">
+                  <div class="row">
+                      <div class=" text-center card-body col-sm-6" >
+                          <img  style="max-width:100%;height:90%;" src="/static/svg/main_page_2.png" alt="">
+                      </div>
+                       <div class="col-md-6">
+                          <div class="text-center mt-5">
+                              <h2 class="text-center display-3">Upload XML/JSON Form</h2>
+                              <br>
+                              <button class="btn btn-success" style="font-size: 20px;"><a class="nav-link text-white" href="{% url 'xmlfile' %}" role="button">Upload </a></button>
+                          </div>
+                      </div>
+                    </div>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+    </section>
+
+  </div>
+</div> {% endcomment %}
+{% comment %} image bluer code finished {% endcomment %}
+    
+<div id="xml_file_data_hide1">
+  <div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card-stats card">
+            <div class="px-3 py-2 card-body">
+                <div class="p-2 row">
+                    <h5 class="text-uppercase text-muted mb-0 card-title">
+                        TAx PAYABLE
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="text-center" style="width: 30%;">
+                        <div class="icon icon-shape text-white rounded-circle shadow bg-gradient-success" style="height: 35px; width: 35px;">
+                            <i class="fa fa-arrow-up" style="font-size: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm my-1"><span class="font-weight-bold ml-2 text-success">0.00%</span></p>
+                        </div>
+                    </div>
+                    <div class="text-center" style="width: 70%;">
+                        <div>
+                            <span class="h4 font-weight-bold mb-0">0,000</span>
+                        </div>
+                        <div>
+                            <p class="text-sm mt-1">
+                                <span class="text-nowrap font-weight-bold ">Since last month</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card-stats card">
+            <div class="px-3 py-2 card-body">
+                <div class="p-2 row">
+                    <h5 class="text-uppercase text-muted mb-0 card-title">TDS</h5>
+                </div>
+                <div class="row">
+                    <div class="text-center" style="width: 30%;">
+                        <div class="icon icon-shape text-white rounded-circle shadow bg-gradient-success" style="height: 35px; width: 35px;">
+                            <i class="fa fa-arrow-up" style="font-size: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm my-1">
+                                <span class="font-weight-bold ml-2 text-success">0.00%</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-center" style="width: 70%;">
+                        <div>
+                            <span class="h4 font-weight-bold mb-0">0,000</span>
+                        </div>
+                        <div>
+                            <p class="text-sm mt-1">
+                                <span class="text-nowrap font-weight-bold ">Since last month</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card-stats card">
+            <div class="px-3 py-2 card-body">
+                <div class="p-2 row">
+                    <h5 class="text-uppercase text-muted mb-0 card-title">DEDUCTION</h5>
+                </div>
+                <div class="row">
+                    <div class="text-center" style="width: 30%;">
+                        <div class="icon icon-shape text-white rounded-circle shadow bg-gradient-danger" style="height: 35px; width: 35px;">
+                            <i class="fa fa-arrow-down" style="font-size: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm my-1"><span class="font-weight-bold ml-2 text-danger">0.00%</span></p>
+                        </div>
+                    </div>
+                    <div class="text-center" style="width: 70%;">
+                        <div>
+                            <span class="h4 font-weight-bold mb-0">0,000</span>
+                        </div>
+                        <div>
+                            <p class="text-sm mt-1"><span class="text-nowrap font-weight-bold ">Since last month</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card-stats card">
+            <div class="px-3 py-2 card-body">
+                <div class="p-2 row">
+                    <h5 class="text-uppercase text-muted mb-0 card-title">TCS</h5>
+                </div>
+                <div class="row">
+                    <div class="text-center" style="width: 30%;">
+                        <div class="icon icon-shape text-white rounded-circle shadow bg-gradient-success" style="height: 35px; width: 35px;">
+                            <i class="fa fa-arrow-up" style="font-size: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm my-1">
+                                <span class="font-weight-bold ml-2 text-success">0.00%</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-center" style="width: 70%;">
+                        <div>
+                            <span class="h4 font-weight-bold mb-0">0,000</span>
+                        </div>
+                        <div>
+                            <p class="text-sm mt-1">
+                                <span class="text-nowrap font-weight-bold ">Since last month</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      <div class="row">
+        <div class="col-xl-7">
+            <div class="card">
+                <div class="bg-transparent card-header">
+                    <h6 class="surtitle">Overview</h6>
+                    <h5 class="h3 mb-0">Tax Paid</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="text-center">
+                            <img src="/static/assets_design/img/bar-chart.png" alt="NoData" width="250" height="200">
+                            <h5 class="mt-3">No Data Found <a href="xmlfile" style="color:blue">Click here </a> to Upload</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="surtitle">Overview</h6>
+                    <h5 class="h3 mb-0">Tax Paid</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="text-center">
+                            <img src="/static/assets_design/img/pie-chart.png" alt="NoData" width="180" height="180">
+                            <h5 class="mt-3">No Data Found <a href="xmlfile" style="color:blue">Click here </a> to Upload</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <section class="section section-md pt-lg-1">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3" data-toggle="modal" data-target="#exampleModal" style="padding-bottom: 1.5rem !important;padding-bottom: 1.5rem !important;margin-bottom:2px;">
+                  <div class="card card-lift--hover shadow border-0">
+                    <div class="card-body py-2 text-center">
+                      <p class="description mt-4">
+                        <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/dashboardpiechart.png" alt="">
+                      </p>
+                      <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Genrate Report</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3" style="margin-bottom:1px;">
+                  <div class="card card-lift--hover shadow border-0">
+                    <a  href="{% url 'advance_chart' %}" >
+                      <div class="card-body py-2 text-center">
+                        <p class="description mt-4">
+                          <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/dashboardpiechart.png" alt="">
+                        </p>
+                        <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Advance Chart</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="card card-lift--hover shadow border-0">
+                    <a  href="{% url 'tax_planner' %}" >
+                      <div class="card-body py-2 text-center">
+                        <p class="description mt-4">
+                          <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/planner.png" alt="">
+                        </p>
+                        <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Tax Planner</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="card card-lift--hover shadow border-0">
+                    <a  href="{% url 'expert_assistant_2' %}" >
+                      <div class="card-body py-2 text-center">
+                        <p class="description mt-4">
+                          <img class="pr-lg-3 pl-lg-3"  src="/static/assets_design/img/headphones 1.png" alt="">
+                        </p>
+                        <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Expert Service</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="section section-md pt-lg-1" id="xml_file_data_report">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-3" data-toggle="modal" data-target="#exampleModal1" style="padding-bottom: 1.5rem !important;padding-bottom: 1.5rem !important;margin-bottom:2px;">
+                <div class="card card-lift--hover shadow border-0">
+                  <div class="card-body py-2 text-center">
+                    <p class="description mt-4">
+                      <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/dashboardpiechart.png" alt="">
+                    </p>
+                    <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Genrate Report</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3" style="margin-bottom:1px;">
+                <div class="card card-lift--hover shadow border-0">
+                  <a  href="{% url 'advance_chart' %}" >
+                    <div class="card-body py-2 text-center">
+                      <p class="description mt-4">
+                        <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/dashboardpiechart.png" alt="">
+                      </p>
+                      <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Advance Chart</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card card-lift--hover shadow border-0">
+                  <a  href="{% url 'tax_planner' %}" >
+                    <div class="card-body py-2 text-center">
+                      <p class="description mt-4">
+                        <img class="pr-lg-3 pl-lg-3" src="/static/assets_design/img/planner.png" alt="">
+                      </p>
+                      <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Tax Planner</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="card card-lift--hover shadow border-0">
+                  <a  href="{% url 'expert_assistant_2' %}" >
+                    <div class="card-body py-2 text-center">
+                      <p class="description mt-4">
+                        <img class="pr-lg-3 pl-lg-3"  src="/static/assets_design/img/headphones 1.png" alt="">
+                      </p>
+                      <h4 class="h3 mt-4 mb-4 text-black text-uppercase">Expert Service</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      <div class="container mb-5">
+          <div class="my-5 ">
+            <div class="card card-body mx-4" style="border-radius: 20px;background: linear-gradient(#1171EF, #11CDEF);">
+              <div class="row align-items-center">
+                <div class="col-md-8 text-white p-4">
+                  <p class=" text-white display-3">Start Filling your taxes now</p>
+                  <div class=" text-white display-4">Get your maximum refund with all the credits and deductions you deserve​</div>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-md-3 text-center">
+                  <a class="btn btn-lg btn-white" href="{% url 'services' %}"><b class="text-primary" style="font-size: 20px;"> Service
+                  </b></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% comment %} Start Tax Summary Model {% endcomment %}
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div>
+                <div class="card-header">
+                    <h5 class="h4">Tax Summary</h5>
+                </div>
+                <div class="text-center p-4 my-3">
+                    <img src="/static/assets_design/img/table.png" alt="NoData" width="250" height="200">
+                    <h5 class="mt-3">No Data Found <a href="xmlfile" style="color:blue">Click here </a> to Upload</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+{% comment %} End Tax Summary Model {% endcomment %}
+
+{% comment %} Start With XML data  Tax Summary Model {% endcomment %}
+
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+      <div class="col-sm-12"> 
+        <!-- Checklist -->
+        <div class="">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            
+          {% comment %} <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="12" height="12" rx="6" fill="#F75676"/> {% endcomment %}
+            <span class="h2 mb-0 ml-1">Tax Summary</span> 
+          </div>
+          <!-- Card body -->
+          <div class="card-body p-0">
+            <!-- List group -->
+            
+          <section class="w-200 h-200 my-12">
+            <div class="">
+              <div class="row">
+                <div class="col-md-12 mx-auto">
+                  <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      {% if xmldata %}
+                      {% for xmldata in xmldta %}
+                      <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"></li>
+                      {% comment %} <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> {% endcomment %}
+                      {% endfor %}
+                      {% endif %}
+                    </ol>
+                    
+                    <div class="carousel-inner">
+                      {% if xmldata %}
+                      {% for xmldata in xmldata %}
+                      {% if forloop.counter == 1 %}
+                      <div class="carousel-item active">
+                        <div class="card col-md-12 mb-0 container-fluid">
+                          <div class="row align-items-center">
+                            {% comment %} <div class="col-md-4 text-center">
+                              <img class="card-img-left img-fluid rounded-circle" src="/static/assets_design/img/home/client.jpg" alt="Card image cap" style="width: 180px; height:180px;">
+                            </div> {% endcomment %}
+                            <div class="col-md-12">
+                              <div class="card-body">
+                                <h4 class="h1 card-title font-weight-600 text-center">{{ xmldata.AssessmentYear }}</h4>
+                                {% comment %} {%for i in "*****"%}
+                                <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                {%endfor%} {% endcomment %}
+                                <div class="row" >
+                                  <div class="col-md-8">
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"><p class="font_size h3 mt-0">TOTAL SALARY </p>
+                                  <p class="font_size h3 mt-0"><hr style="margin-top:1rem;margin-bottom:1rem;"> TAX PAID </p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> TCS </p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;">TDS </p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;">DEDUCTION</p>
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;">
+                                  </div>
+                                  <div class='col-md-4'>
+                                  {% if xmldata.NetSalary == "Data Not Available"%}
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"><p class="font_size h3 mt-0">{{ xmldata.IncomeFromSal }}</p>
+                                  {% else %}
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"><p class="font_size h3 mt-0">{{ xmldata.NetSalary }}</p>
+                                  {% endif %}
+                                  <p class="font_size h3 mt-0"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TotalTaxesPaid }}</p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TCS }}</p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TDS }}</p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TotalChapVIADeductions }}</p>
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"> 
+                                  </div>
+                                </div>
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      {% else %}
+                      <div class="carousel-item">
+                        <div class="card col-md-12 mb-0 container-fluid">
+                          <div class="row align-items-center">
+                            {% comment %} <div class="col-md-4 text-center">
+                              <img class="card-img-left img-fluid rounded-circle" src="/static/assets_design/img/home/client.jpg" alt="Card image cap" style="width: 180px; height:180px;">
+                            </div> {% endcomment %}
+                            <div class="col-md-12">
+                              <div class="card-body">
+                                <h4 class="h1 card-title font-weight-600 text-center">{{ xmldata.AssessmentYear }}</h4>
+                                {% comment %} {%for i in "*****"%}
+                                <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                {%endfor%} {% endcomment %}
+                                <div class="row" >
+                                  <div class="col-md-8">
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"><p class="font_size h3 mt-0">TOTAL SALARY </p>
+                                  <p class="font_size h3 mt-0"><hr style="margin-top:1rem;margin-bottom:1rem;"> TAX PAID </p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> TCS </p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;">TDS </p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;">DEDUCTION</p>
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;">
+                                  </div>
+                                  <div class='col-md-4'>
+                                  {% if xmldata.NetSalary == "Data Not Available"%}
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"><p class="font_size h3 mt-0">{{ xmldata.IncomeFromSal }}</p>
+                                  {% else %}
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"><p class="font_size h3 mt-0">{{ xmldata.NetSalary }}</p>
+                                  {% endif %}
+                                  <p class="font_size h3 mt-0"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TotalTaxesPaid }}</p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TCS }}</p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TDS }}</p>
+                                  <p class="font_size h3 mt-4"><hr style="margin-top:1rem;margin-bottom:1rem;"> {{ xmldata.TotalChapVIADeductions }}</p>
+                                  <hr style="margin-top:1rem;margin-bottom:1rem;"> 
+                                  </div>
+                                </div>
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      {% endif %}
+                      {% endfor %}
+                    
+                      {% endif %}
+                      
+
+                      <!-- <div class="container">
+                    </div> -->
+                      <a class="carousel-control-prev" href="#carouselExampleIndicators" style="top:30px;width:10%;bottom:0px;align-items:start;" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon  text-dark h2" aria-hidden="true">
+                          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </span>
+                        <span class="sr-only ">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" style="top:30px;width:10%;align-items:start;" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon text-dark h2" aria-hidden="true">
+                          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+        </section>
+          </div>
+        </div>
+      </div>
+
+        </div>
+    </div>
+  </div>
+
+{% comment %} End With XML data  Tax Summary Model {% endcomment %}
+
+
+{% endblock content %}
+  <!-- Argon JS -->
+
+{% block script %}
+
+  
+  
+<script>
+var SalesChart = (function() {
+
+	// Variables
+
+	var $chart = $('#chart-sales');
+
+	// Methods
+
+	function init($this) {
+		var salesChart = new Chart($this, {
+			type: 'line',
+			options: {
+				scales: {
+        
+					yAxes: [
+          {
+        id: "A",
+        type: "linear",
+        position: "left",
+        ticks: {
+              stepSize: 100000,
+              fontColor: "blue",
+                    },
+        gridLines: {
+              display:false,
+						},
+      }, {
+        id: "B",
+        type: "linear",
+        position: "right",
+        ticks: {
+              fontColor: "red",
+                    },
+
+        gridLines: {
+						
+              display:false,
+						},
+      },
+          {
+					
+            scaleLabel: {
+                display: true,
+                labelString: 'Amount in thousands'
+                
+              },
+
+
+					}]
+				}
+			},
+			data: {
+        labels: [{% for label in AssessmentYear %} '{{ label }}', {% endfor %}],
+				datasets: [{
+					label: ['Total Income'] ,
+          yAxisID:'A',
+					data: [{% for i in total_income %} {{ i }} , {% endfor %}]
+				},
+        {
+					label: ['TotalTaxPayable'] ,
+          borderColor:'red',
+          yAxisID:'B',
+					data: [{% for j in TotalTaxPayable %} {{ j }} , {% endfor %}]
+				}
+        
+        ]
+			}
+		});
+
+		// Save to jQuery object
+
+		$this.data('chart', salesChart);
+
+	};
+
+
+	// Events
+
+	if ($chart.length) {
+		init($chart);
+	}
+
+})();
+</script>
+<script>
+var SalesChart = (function() {
+
+	// Variables
+
+	var $chart = $('#chart-sales1')	;
+	// Methods
+	function init($this) {
+		var salesChart = new Chart($this, {
+			type: 'line',
+			options: {
+				scales: {
+					yAxes: [{
+						gridLines: {
+							color: Charts.colors.gray[200],
+							zeroLineColor: Charts.colors.gray[200],
+						},
+
+            scaleLabel: {
+                display: true,
+                labelString: 'Amount in thousands'
+                
+              },
+						ticks: {
+            },
+					}]
+				}
+			},
+			data: {
+        labels: [{% for label in AssessmentYear %} '{{ label }}', {% endfor %}],
+				datasets: [{
+					label: [] ,
+					data: [{% for i in TotalTaxPayable %} {{ i }} , {% endfor %}]
+				},
+        {% comment %} {
+					label: [] ,
+					data: [{% for j in TotalTaxPayable %} {{ j }} , {% endfor %}]
+				} {% endcomment %}
+        
+        ]
+			}
+		});
+
+		// Save to jQuery object
+		$this.data('chart', salesChart);  
+  salesChart.update();
+
+
+	};
+
+
+	// Events
+
+	if ($chart.length) {
+		init($chart);
+	}
+
+})();
+</script>
+
+
+{% comment %} Page Refresh code Start  {% endcomment %}
+<script>
+
+$('#selectcountries').on('change', function() {
+    // Save value in localstorage
+    localStorage.setItem("mov_type", $(this).val());
+ });
+
+ $(document).ready(function() {
+  if ($('#selectcountries').length) {
+      $('#selectcountries').val(localStorage.getItem("mov_type"));
+   }
+});
+$('#selectcities').on('change', function() {
+  // Save value in localstorage
+  localStorage.setItem("mov_type1", $(this).val());
+});
+
+$(document).ready(function() {
+if ($('#selectcities').length) {
+    $('#selectcities').val(localStorage.getItem("mov_type1"));
+ }
+});
+
+
+if (localStorage.getItem("mov_type")!="Select"){
+  $(document).ready(function(){
+      var pan_card_number = $('#selectcountries').val();
+      $.ajax(
+        {
+            url: "getdetails",
+            data:{
+              pan_card_number:pan_card_number
+            },
+            success: function(result) 
+            {
+              if (result[0].reg_name == null ){
+                    if (result[0].xml_condition == 'True'){
+                      $('#xml_file_data_show').show();
+                      $('#xml_file_data_report').show();
+                      $('#xml_file_data_hide').hide();
+                      $('#xml_file_data_hide1').hide();
+                      $("#selectcities option").remove();
+                      $("#selectcities2").remove();
+                      
+                      if (localStorage.getItem("mov_type1")=="Selected"){
+                          
+                        $("#selectcities").append('<option>'+ "Select" +'</option>');
+                        $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                        for (var i = result.length - 1; i >= 0; i--) {
+                          $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                          };
+                      }
+                      
+                      $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                      $("#selectcities").append('<option>'+localStorage.getItem("mov_type1")+'</option>');
+                      for (var i = result.length - 1; i >= 0; i--) {
+                          if (localStorage.getItem("mov_type1")==result[i].year){
+                          }
+                          else{
+                            $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                          }
+                      };
+                            
+                      }
+                    else{
+                      $('#xml_file_data_show').hide();
+                      $('#xml_file_data_report').hide();
+
+                      $('#xml_file_data_hide').show();
+                      $('#xml_file_data_hide1').show();
+                      $("#selectcities option").remove();
+                      $("#selectcities2").remove();
+                      $(document).ready(function() {
+                        if ($('#selectcities').length) {
+                            $('#selectcities').val(localStorage.getItem("mov_type1"));
+                         }
+                        });
+
+                        if (localStorage.getItem("mov_type1")=="Selected"){
+                          $('#selectcities').remove();
+                          $("#selectcities").append('<option>'+ "Select" +'</option>');
+                          $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                          for (var i = result.length - 1; i >= 0; i--) {
+                            $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                            };
+                        }
+                        
+                        $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                        $("#selectcities").append('<option>'+localStorage.getItem("mov_type1")+'</option>');
+                        for (var i = result.length - 1; i >= 0; i--) {
+                            if (localStorage.getItem("mov_type1")==result[i].year){
+                            }
+                            else{
+                              $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                            }
+                        };
+                    }
+              }
+
+              else{
+                $('#xml_file_data_show').hide();
+                $('#xml_file_data_report').hie();
+
+                $('#xml_file_data_hide').show();
+                $('#xml_file_data_hide1').show();
+                $("#selectcities option").remove();
+                $("#selectcities2").remove();
+                $("#selectcities").append('<option>'+ "Select" +'</option>');
+                $("#selectcities1").append('<span id="selectcities2">'+ result[0].reg_name +'</span>');
+              };
+
+
+            }
+        })
+    });
+}
+
+</script>
+{% comment %} Page Refresh code End  {% endcomment %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+$('#xml_file_data_show').hide();
+$('#xml_file_data_report').hide();
+$('#xml_file_data_hide').show();
+$('#xml_file_data_hide1').show();
+
+  $('#selectcountries').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var pan_card_number   = optionSelected.text();
+    $.ajax(
+    {
+        url: "getdetails",
+        data:{
+          pan_card_number:pan_card_number
+        },
+        success: function(result) 
+        {
+          if (result[0].reg_name == null ){
+                if (result[0].xml_condition == 'True'){
+                  $('#xml_file_data_show').show();
+                  $('#xml_file_data_report').show();
+
+                  $('#xml_file_data_hide').hide();
+                  $('#xml_file_data_hide1').hide();
+                  $("#selectcities option").remove();
+                  $("#selectcities2").remove();
+                  $("#selectcities").append('<option>'+ "Select" +'</option>');
+                  $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                  for (var i = result.length - 1; i >= 0; i--) {
+                    $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                    };      
+                  }
+                else{
+                  $('#xml_file_data_show').hide();
+                  $('#xml_file_data_report').hide();
+
+                  $('#xml_file_data_hide').show();
+                  $('#xml_file_data_hide1').show();
+                  $("#selectcities option").remove();
+                  $("#selectcities2").remove();
+                  $("#selectcities").append('<option>'+ "Select" +'</option>');
+                  $("#selectcities1").append('<span id="selectcities2">'+ result[0].name +'</span>');
+                  for (var i = result.length - 1; i >= 0; i--) {
+                    $("#selectcities").append('<option>'+ result[i].year +'</option>');
+                    };
+                }
+          }
+
+          else{
+            $('#xml_file_data_show').hide();
+            $('#xml_file_data_report').hide();
+
+            $('#xml_file_data_hide').show();
+            $('#xml_file_data_hide1').show();
+            $("#selectcities option").remove();
+            $("#selectcities2").remove();
+            $("#selectcities").append('<option>'+ "Select" +'</option>');
+            $("#selectcities1").append('<span id="selectcities2">'+ result[0].reg_name +'</span>');
+          };
+
+
+        }
+     })
+     
+});
+</script>
+<script>
+
+{% comment %} tart name with year code  {% endcomment %}
+
+{% comment %} $(document).ready(function(){
+var pan = localStorage.getItem("mov_type");
+  $.ajax(
+  {
+      url: "ajax_call_for_registration_data",
+      data:{
+        pan_card_number:pan
+      },
+      success: function(result) 
+      {
+      alert(result[0].name);
+        
+        $("#selectcities11 option").remove();
+                $("#selectcities21").remove();
+                $("#selectcities").append('<option>'+ "Select" +'</option>');
+                $("#selectcities111").append('<span id="selectcities21">'+ result[0].name +'</span>');
+                for (var i = result.length - 1; i >= 0; i--) {
+                  $("#selectcities11").append('<option>'+ result[i].year +'</option>');
+                  };
+      }
+    })
+}); {% endcomment %}
+
+{% comment %} End name with code {% endcomment %}
+
+$('#selectcountries1').on('change', function() {
+  // Save value in localstorage
+  localStorage.setItem("mov_type", $(this).val());
+});
+
+$(document).ready(function() {
+if ($('#selectcountries1').length) {
+    $('#selectcountries1').val(localStorage.getItem("mov_type"));
+ }
+});
+
+
+
+$('#selectcountries1').click(function(){  
+  var optionSelected = $(this).find("option:selected");
+  var pan_card_number   = optionSelected.text();
+  $.ajax(
+  {
+      url: "ajax_call_for_registration_data",
+      data:{
+        pan_card_number:pan_card_number
+      },
+      success: function(result) 
+      {
+        $("#selectcities11 option").remove();
+                $("#selectcities21").remove();
+                $("#selectcities").append('<option>'+ "Select" +'</option>');
+                $("#selectcities111").append('<span id="selectcities21">'+ result[0].name +'</span>');
+                for (var i = result.length - 1; i >= 0; i--) {
+                  $("#selectcities11").append('<option>'+ result[i].year +'</option>');
+                  };
+      }
+    })
+});
+
+</script>
+
+{% comment %} <script type="text/javascript">
+  document.getElementById("cache_Data").value = getSavedValue("cache_Data");    // set the value to this input
+  /* Here you can add more inputs to set value. if it's saved */
+  //Save the value function - save it to localStorage as (ID, VALUE)
+  function saveValue(e){
+      var id = e.id;  // get the sender's id to save it . 
+      alert(id);
+      var val = e.value; // get the value. 
+      localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+  }
+
+  //get the saved value function - return the value of "v" from localStorage. 
+  function getSavedValue  (v){
+      if (!localStorage.getItem(v)) {
+          return "";// You can change this to your defualt value. 
+      }
+      return localStorage.getItem(v);
+  }
+</script> {% endcomment %}
+
+<script type="text/javascript">
+{% comment %} Start Cache Data code {% endcomment %}
+  var year = localStorage.getItem("mov_type1");
+  $.ajax(
+    {
+    url: "getdetails_for_year_data",
+    data:{
+      year:year
+    },
+    success: function(result1) 
+    {
+  
+    $("#TotalTaxPayable1").remove();
+    $("#TDS1").remove();
+    $("#TotalChapVIADeductions1").remove();
+    $("#TCS1").remove();
+    $("#TotalTaxPayable").append('<span id="TotalTaxPayable1" >'+ result1[0].TotalTaxPayable +'</span>');
+    $("#TDS").append('<span id="TDS1">'+ result1[0].TDS +'</span>');
+    $("#TotalChapVIADeductions").append('<span id="TotalChapVIADeductions1">'+ result1[0].TotalChapVIADeductions +'</span>');
+    $("#TCS").append('<span id="TCS1">'+ result1[0].TCS +'</span>');
+    {% comment %} top card data end  {% endcomment %}
+  
+                  {% comment %} chart variable  start{% endcomment %}
+                  $('#TotalIncomeOfHP11').remove();
+                  $("#CapitalGain11").remove();
+                  $("#IncomeOthSrc11").remove();
+                  $("#NetSalary11").remove();
+                  $("#TotalChapVIADeductions11").remove();
+                  $("#TotalIncomeOfHP").append('<span id="TotalIncomeOfHP11" >'+ result1[0].TotalIncomeOfHP)+ '</span>';
+                  $("#TotalChapVIADeductions12").append('<span id="TotalChapVIADeductions11" >'+ result1[0].TotalChapVIADeductions+'</span>');
+                  $("#CapitalGain").append('<span id="CapitalGain11" >'+ result1[0].CapitalGain+ '</span>');
+                  $("#IncomeOthSrc").append('<span id="IncomeOthSrc11" >'+ result1[0].IncomeOthSrc+ '</span>');
+                  $("#NetSalary").append('<span id="NetSalary11" >'+ result1[0].NetSalary+'</span>');
+                  
+                  
+                  {% comment %} chart varible end {% endcomment %}
+                  
+                  var DoughnutChart = (function() {
+                  var TotalIncomeOfHP = $("#TotalIncomeOfHP").text();
+                  
+                  var TotalChapVIADeductions12 = $("#TotalChapVIADeductions12").text();
+                  var CapitalGain = $("#CapitalGain").text();
+                  var IncomeOthSrc = $("#IncomeOthSrc").text();
+                  var NetSalary = $("#NetSalary").text();
+                  
+                  var $chart = $('#chart-doughnut');
+                  
+                  function init($this) {
+                    var randomScalingFactor = function() {
+                      return Math.round(Math.random() * 100);
+                    };
+                    if(window.doughnutChart != undefined) {
+                      window.doughnutChart.destroy();
+                    }
+                    window.doughnutChart = new Chart($this, {
+                      type: 'doughnut',
+                      data: {
+                      labels: ['Total Deduction','Salary','Income From House Property','Income From Other Source','Total Capital Gain'],
+                        datasets: [{
+                          data: [ TotalChapVIADeductions12 ,TotalIncomeOfHP,IncomeOthSrc,CapitalGain],
+                          backgroundColor: [
+                            Charts.colors.theme['danger'],
+                            Charts.colors.theme['warning'],
+                            Charts.colors.theme['success'],
+                            Charts.colors.theme['primary'],
+                            Charts.colors.theme['info'],
+                          ],
+                        }],
+                      },
+                      
+                      options: {
+                        responsive: true,
+                        legend: {
+                          position: 'center',
+                        },
+                        animation: {
+                          animateScale: true,
+                          animateRotate: true,
+                        }
+                      }
+                    });
+                    
+                  $this.data('chart', doughnutChart);
+                  };
+                    if ($chart.length) {
+                    init($chart);
+  
+                  }
+                })();
+      }
+   })
+ 
+{% comment %} End Cache Data code {% endcomment %}
+   
+
+
+  
+$('#selectcities').click(function(){  
+
+var optionSelected = $(this).find("option:selected");
+var year = optionSelected.text();
+
+$.ajax(
+  {
+  url: "getdetails_for_year_data",
+  data:{
+    year:year
+  },
+  success: function(result1) 
+  {
+
+  $("#TotalTaxPayable1").remove();
+  $("#TDS1").remove();
+  $("#TotalChapVIADeductions1").remove();
+  $("#TCS1").remove();
+  $("#TotalTaxPayable").append('<span id="TotalTaxPayable1" >'+ result1[0].TotalTaxPayable +'</span>');
+  $("#TDS").append('<span id="TDS1">'+ result1[0].TDS +'</span>');
+  $("#TotalChapVIADeductions").append('<span id="TotalChapVIADeductions1">'+ result1[0].TotalChapVIADeductions +'</span>');
+  $("#TCS").append('<span id="TCS1">'+ result1[0].TCS +'</span>');
+  {% comment %} top card data end  {% endcomment %}
+
+                {% comment %} chart variable  start{% endcomment %}
+                $('#TotalIncomeOfHP11').remove();
+                $("#CapitalGain11").remove();
+                $("#IncomeOthSrc11").remove();
+                $("#NetSalary11").remove();
+                $("#TotalChapVIADeductions11").remove();
+                $("#TotalIncomeOfHP").append('<span id="TotalIncomeOfHP11" >'+ result1[0].TotalIncomeOfHP)+ '</span>';
+                $("#TotalChapVIADeductions12").append('<span id="TotalChapVIADeductions11" >'+ result1[0].TotalChapVIADeductions+'</span>');
+                $("#CapitalGain").append('<span id="CapitalGain11" >'+ result1[0].CapitalGain+ '</span>');
+                $("#IncomeOthSrc").append('<span id="IncomeOthSrc11" >'+ result1[0].IncomeOthSrc+ '</span>');
+                $("#NetSalary").append('<span id="NetSalary11" >'+ result1[0].NetSalary+'</span>');
+                
+                
+                {% comment %} chart varible end {% endcomment %}
+                
+                var DoughnutChart = (function() {
+                var TotalIncomeOfHP = $("#TotalIncomeOfHP").text();
+                
+                var TotalChapVIADeductions12 = $("#TotalChapVIADeductions12").text();
+                var CapitalGain = $("#CapitalGain").text();
+                var IncomeOthSrc = $("#IncomeOthSrc").text();
+                var NetSalary = $("#NetSalary").text();
+                
+                var $chart = $('#chart-doughnut');
+                
+                function init($this) {
+                  var randomScalingFactor = function() {
+                    return Math.round(Math.random() * 100);
+                  };
+                  if(window.doughnutChart != undefined) {
+                    window.doughnutChart.destroy();
+                  }
+                  window.doughnutChart = new Chart($this, {
+                    type: 'doughnut',
+                    data: {
+                    labels: ['Total Deduction','Salary','Income From House Property','Income From Other Source','Total Capital Gain'],
+                      datasets: [{
+                        data: [ TotalChapVIADeductions12 ,TotalIncomeOfHP,IncomeOthSrc,CapitalGain],
+                        backgroundColor: [
+                          Charts.colors.theme['danger'],
+                          Charts.colors.theme['warning'],
+                          Charts.colors.theme['success'],
+                          Charts.colors.theme['primary'],
+                          Charts.colors.theme['info'],
+                        ],
+                      }],
+                    },
+                    
+                    options: {
+                      responsive: true,
+                      legend: {
+                        position: 'center',
+                      },
+                      animation: {
+                        animateScale: true,
+                        animateRotate: true,
+                      }
+                    }
+                  });
+                  
+                $this.data('chart', doughnutChart);
+                };
+                  if ($chart.length) {
+                  init($chart);
+
+                }
+              })();
+    }
+ })
+ 
+
+});
+
+</script>
+
+<script>
+  $('#selectchecklistdata').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    
+    var pan_card_number   = optionSelected.text();
+    $('#data_one').empty();
+    $('#list_pagination').empty();
+    if (pan_card_number.trim()=='Select'){
+      $("#data_one").append('{%for i in checklist_data%}<li class="line-content checklist-entry list-group-item  align-items-start py-4 px-4"><div class="checklist-item checklist-item-success"><div class="checklist-info"><h5 class="h4 checklist-title mb-0" >{{i}}</h5></div><div><div class="custom-control custom-checkbox custom-checkbox-success"><input class="custom-control-input" id="{{forloop.counter}}" type="checkbox" ><label class="custom-control-label" for="{{forloop.counter}}"></label></div></div></div></li>{%endfor%}');
+
+    };
+    $.ajax(
+    {
+        url: "ajax_call_for_dashboard_checklist",
+        data:{
+          pan_card_number:pan_card_number
+        },
+        success: function(result) 
+        {
+          $('#data_one').empty();
+          $('#list_pagination').empty();
+
+          
+
+         for(var i=0;i<result.length;i++){
+          $("#data_one").append('<li class="line-content checklist-entry list-group-item  align-items-start py-4 px-4"><div class="checklist-item checklist-item-success"><div class="checklist-info"><h5 class="h4 checklist-title mb-0" ><span id="data_one">'+result[i].Basic_details+'</span></h5></div><div><div class="custom-control custom-checkbox custom-checkbox-success"><input class="custom-control-input" id="chk-todo-task-'+(i+1)+'" type="checkbox" ><label class="custom-control-label" for="chk-todo-task-'+(i+1)+'"></label></div></div></div></li>');
+         };
+
+          if(result.length>0 && result.length<=4){
+            $('#list_pagination').append('<li class="page-item" disabled><span class="page-link1"  tabindex="-1"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></span></li><li class="page-item"><a class="page-link1 current" href="#">1</a></li><li class="page-item " disabled><span class="page-link1" ><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></span></li>');
+          }
+          
+          else if(result.length>0 && result.length<=8){
+             $('#list_pagination').append('<li class="page-item " disabled><span class="page-link1" href="" tabindex="-1"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></span></li><li class="page-item"><a class="page-link1 current" href="#">1</a></li><li class="page-item"><a class="page-link1" href="#">2</a></li><li class="page-item li"><span class="page-link1" href="#" disabled><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></span></li>');
+          }
+          else if(result.length>0 && result.length<=12){
+              $('#list_pagination').append('<li class="page-item " disabled><span class="page-link1" href="" tabindex="-1"><i class="fa fa-angle-left"></i><span class="sr-only">Previous</span></span></li><li class="page-item"><a class="page-link1 current" href="#">1</a></li><li class="page-item"><a class="page-link1" href="#">2</a></li><li class="page-item"><a class="page-link1" href="#">3</a></li><li class="page-item"><span class="page-link1" disabled href=""><i class="fa fa-angle-right"></i><span class="sr-only">Next</span></span></li>');
+          };
+          pageSize = 4;
+          showPage = function(page) {
+              $(".line-content").hide();
+              $(".line-content").each(function(n) {
+                  if (n >= pageSize * (page - 1) && n < pageSize * page)
+                      $(this).show();
+              });        
+          }
+          showPage(1);
+          $("#pagin li a").click(function() {
+              $("#pagin li a").removeClass("current");
+              $(this).addClass("current");
+              showPage(parseInt($(this).text())) 
+          });
+        }
+     });
+     
+});
+
+
+</script>
+<script>
+    $(document).ready(function(){
+      $("selected options").click(function(){
+        $.get("getdetail.html", function(data, status){
+        });
+      });
+    });
+</script>
+
+<script>
+$('.carousel').carousel({
+  interval: false,
+});
+</script>
+
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.home-item a').addClass('btn btn-primary text-white');
+$('.home-item a img').attr('src','/static/svg/dashboard_base/dashbaord_w.svg');
+
+</script>
+
+{% comment %} <script>
+if ((cached = $(".container")) {
+}
+</script> {% endcomment %}
+<script>
+
+  var BarsChart = (function() {
+  
+    var $chart = $('#chart-bars');
+    // Init chart
+    function initChart($chart) {
+  
+      // Create chart
+      var ordersChart = new Chart($chart, {
+        type: 'bar',
+        data: {
+          labels: [{% for label in AssessmentYear %} '{{ label }}', {% endfor %}],
+          datasets: [{
+            label: 'TOTAL INCOME',
+            backgroundColor: ['#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2','#37d5f2'],
+            data: [{% for j in total_income %} {{ j }} , {% endfor %}],
+            borderWidth: 0,
+          },
+          {
+            label: 'TotalTaxPayable',
+            labels: [{% for label in AssessmentYear %} '{{ label }}', {% endfor %}],
+            backgroundColor: ['#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3','#5e72e3'],
+            data: [{% for j in TotalTaxPayable %} {{ j }} , {% endfor %}],
+  
+          }
+          ],
+          borderWidth: 0.2,
+          maxBarThickness:18
+          
+  
+        },
+        
+      });
+      // Save to jQuery object
+      $chart.data('chart', ordersChart);
+    }
+  
+  
+    // Init chart
+    if ($chart.length) {
+      initChart($chart);
+    }
+  
+  })();
+  
+  </script>
+
+{% endblock script %}

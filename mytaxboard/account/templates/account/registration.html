@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.container{
+  max-width: 1250px;
+}
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<section class="mt-7">
+    <div class="container">
+      <div class="container mt-3">
+        <center><span class="text-center display-4">E-File Your Income Tax Return</span></center>
+        <center><span class="text-center lead">Do it FREE For Yourself</span></center>
+      </div>
+      <br class="mt-3">
+      <div class="pt-5 pb-1">
+      <div class="row ">
+  
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center"><b>E-FILE Your Return With XML File</b> </h2>
+              <center> <a href="{% url 'xmlfile' %}" class="btn btn-primary mt-4">Upload XML File  </a></center> <br>
+              <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span
+                class="small ml-1">Recomended for self member.</span>
+              <br>
+              <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="small ml-1">Helping
+                in the process.</span><br>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center"><b>E-FILE Your return with Form-16 Pdf</b> </h2>
+              <center><a href="{% url 'form16' %}" class="btn btn-success mt-4">Upload Form 16</a></center> <br>
+              <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="small ml-1"><b> Ask
+                  Your HR.</b> If You don't have form 16.</span>
+              <br>
+              <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="small ml-1">Upload
+                multiple form-16 Pdf.</span>
+                <br>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title text-center"><b>E-FILE Your return without Form-16 Pdf</b> </h2>
+              <center> <a href="{% url 'paytax_personal_info' %}" class="btn btn-primary mt-4">Continue </a></center> <br>
+              <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span
+                class="small ml-1">Recomended for self member.</span>
+              <br>
+              <span class="text-success font-weight-bold" style="font-size: 20px;">&#10003;</span><span class="small ml-1">Helping
+                in the process.</span><br>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>  
+    </div>
+  
+  </section>
+  {% endblock content %}

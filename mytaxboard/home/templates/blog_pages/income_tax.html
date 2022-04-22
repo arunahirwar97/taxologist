@@ -1,0 +1,907 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+<style>
+  @media(max-width: 576px){
+      .img-height{
+        height:200px
+      }
+      .img1{
+          display: none;
+      }
+      body{
+        max-width:100%;
+        width:100%;
+        margin:0px;
+        padding:0px;
+      }
+      .admin_user_text{
+        color:rgb(0,0,0);
+        font-size:16px;
+      }   
+  }
+  .fa {
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius:50%;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+  .fa-facebook {
+    background: #45bbff;
+    color: white;
+  }
+  .fa-instagram {
+    background: #cb2027;
+    color: white;
+  }
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+  
+  
+   {% comment %} end normal mobile  {% endcomment %}
+  
+  
+  @media(min-width:576px ) and (max-width:768px) 
+    {
+      {% comment %} #Home_1{padding-top: 150px;} {% endcomment %}
+      .base_body {
+          {% comment %} background-image: url('../../static//svg/Home_bg_svg_ipad.svg');
+          background-repeat: no-repeat; {% endcomment %}
+          {% comment %} background-position: right -170px top ; {% endcomment %}
+          {% comment %} padding-top: 150px; {% endcomment %}
+          z-index:200px;
+          padding-left:4%;          
+          padding-right:4%; 
+        }
+        .img_add{
+        display:none;
+      }
+      .text_size{
+        font-size:14px;
+      }
+      .admin_user_text{
+        color:rgb(0,0,0);
+        font-size:16px;
+      }
+      .img-height{
+        height:230px
+      }
+    }
+  
+  
+  
+  @media(min-width:769px) and (max-width:1025px) 
+    {
+      .base_body {
+  
+          {% comment %} background-image: url('../../static//svg/Home_bg_svg.svg');
+          background-repeat: no-repeat;
+          background-position: right -290px top ; {% endcomment %}
+          {% comment %} padding-top: 150px; {% endcomment %}
+          z-index:200px;
+          padding-left:7%;          
+          padding-right:7%;    
+        }
+        .img_add{
+        display:none;
+      }
+      .text_size{
+        font-size:16px;
+      }
+      #products_icon{
+        display:none;
+      }
+      #d_none{
+        display:none;
+      }
+      .admin_user_text{
+        color:rgb(255,255,255);
+        font-size:16px;
+      }
+      .img-height{
+        height:260px
+      }
+  }
+  
+  
+  
+  
+  
+  @media(min-width:1025px)
+    {
+      .base_body {
+          {% comment %} background-image: url('../../static//svg/Home_bg_svg.svg');
+          background-repeat: no-repeat;
+          background-position: right -100px top ; {% endcomment %}
+          {% comment %} padding-top: 150px; {% endcomment %}
+          z-index:200px;
+          padding-left:3%;          
+          padding-right:3%; 
+        }
+      .img_add{
+        display:none;
+      }
+      .text_size{
+        font-size:21px;
+      }
+      #d_none{
+        display:none;
+      }
+      .admin_user_text{
+        color:rgb(255,255,255);
+        font-size:16px;
+      }
+      .img-height{
+        height:300px
+      }
+    }
+  
+  
+    .container {
+      max-width: 1350px;
+    }
+  
+
+.content-set{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+.home{
+  color: #08c;
+}
+.zoom {
+  transition: transform .2s;
+}
+.nav-btn{
+  color: #1d9df0;
+  background-color: white;
+}
+.na-btn:active{
+  background-color: #1d9df0;
+  color: white;
+}
+
+.sidenav1 {
+  position: reletive;
+  top: 0;
+  background-color: #111;
+  overflow-x: hidden;
+}
+
+.sidenav1 a, .dropdown-btn1 {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.sidenav1 a:hover, .dropdown-btn1:hover {
+  color: #f1f1f1;
+}
+
+.dropdown-container1 {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+.richtext-image {
+  width:100%;
+}
+iframe{
+  width: 100%;
+  height: 25em;
+}
+</style>
+<!--Fisrt Page -->
+<section class="">
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center" >
+            {% image page.title_image width-680  as tmp_photo %}
+            <img style="width:100%; " src="{{ tmp_photo.url }}" class="img-fluid rounded img-height" alt="Responsive image"/>
+          </div>
+          <nav aria-label="breadcrumb" role="navigation" class="mt-3 bg-white">
+            <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{request.get_full_path }}">{{blog_cat}}</a></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id='main-page'>
+  <div class="py-3">
+    <div class="px-5">
+      <div class="row">
+        <div class="col-md-3 d-none d-md-block">
+          <div class="form-group mb-3">
+            <div class="input-group mb-4">
+              <input class="form-control" placeholder="Search" type="text">
+              <div class="btn btn-default py-2 px-3">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="font-weight-600 pt-4">Categories</h5>
+            <ul class="navbar-nav">
+              {%for j in main_data1 %}
+              
+              <li class="nav-item">
+                <a class="nav-link active collapsed" href="#aaa{{forloop.counter}}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-dashboards">
+                  
+                  <span class="nav-link-text">{{j.main_category}}</span><i class="ml-3 fas fa-caret-down"></i>
+
+                </a>
+                
+                <div class="collapse mr-4" id="aaa{{forloop.counter}}" style="">
+                  <ul class="nav nav-sm flex-column  pl-3">
+                      {%for i in main_data %}
+                      {%if j.main_category == i.main_category.main_category %}
+                        
+                      <li class="nav-item">
+                      <a href="{{i.sub_categories_links}}" class="nav-link">
+                        <span class="sidenav-normal"> {{i.sub_categories}} </span>
+                      </a>
+                    </li>
+                    
+                    {%endif%}
+                {%endfor%}
+                  </ul>
+                </div>
+              </li>
+            {%endfor%}
+              
+            </ul>
+            {% comment %} <ul class="nav nav-list flex-column mb-5">									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Design (2)</a>
+              </li>									
+              <li class="nav-item">										
+                <a class="nav-link active" href="#">Photos (4)</a>										
+                <ul style="list-style-type:disc;">											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Animals</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Business</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Sports</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">People</a>
+                  </li>										
+                </ul>									
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Videos (3)</a>
+              </li>									<li class="nav-item">
+                <a class="nav-link" href="#">Lifestyle (2)</a>
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Technology (1)</a>
+              </li>								
+            </ul> {% endcomment %}
+            <div>	
+              <div class="nav-wrapper">
+                <ul class="list-group list-group-horizontal nav nav-pills nav-fill" id="tabs-icons-text" role="tablist" style="list-style-type:none">
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">Popular</a>
+                    </li>
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Recents</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}											
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}			
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                      </ul>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}																
+                          												
+                      </ul>  
+                    </div>
+                  </div>
+                </div>
+              </div>															
+            </div>
+            {% comment %} <div class="pt-3">
+              <h5 class="font-weight-600">About Us</h5>
+              <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+            </div> {% endcomment %}
+          </div>
+        </div>
+        <div class="col-md-9 px-3">
+                {%for i in main_page1 %}
+                    {% if blog_cat == i.blog_category.main_category %}
+                        <div class="row mb-4">
+                          <div class="col-md-4">
+                            <div class="text-center">
+                              {% image i.title_image width-680  as tmp_photo %}
+                              <img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/>
+                            </div>
+                          </div>
+                          <div class="col-md-8">
+                            <h2 class="font-weight-600 mb-0">
+                              <a href="{% pageurl i %}" style="color:#5e72e4">
+                                {{i.title|richtext}}
+                              </a>
+                            </h2>
+                            {{i.sort_description_body|richtext}}
+                            {% comment %} <p></p> {% endcomment %}
+                            <div class="post-meta">
+                              <span><a href="#" style="color:#5e72e4"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;  </span>
+                              <span class="d-block mt-2"><a href="{% pageurl i %}"  target="_blank" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+                            </div>                                  
+                          </div>
+                        </div>
+                    {%endif%}
+                
+                {%endfor%}
+                {%for i in main_data2 %}
+                    {% if blog_cat == i.blog_category.main_category %}
+                    <div class="row mb-4">
+                      <div class="col-md-4">
+                        <div class="text-center">
+                          {% image i.title_image width-680  as tmp_photo %}
+                          <img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h2 class="font-weight-600 mb-0">
+                          <a href="{% pageurl i %}" style="color:#5e72e4">
+                            {{i.title|richtext}}
+                          </a>
+                        </h2>
+                        {{i.sort_description_body|richtext}}
+                        {% comment %} <p></p> {% endcomment %}
+                        <div class="post-meta">
+                          <span><a href="#" style="color:#5e72e4"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;  </span>
+                          <span class="d-block mt-2"><a href="{% pageurl i %}"  target="_blank" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+                        </div>                                  
+                      </div>
+                    </div>
+                  {%endif%}
+                {%endfor%}
+                {%for i in main_data3 %}
+                    {% if blog_cat == i.blog_category.main_category %}
+                    <div class="row mb-4">
+                      <div class="col-md-4">
+                        <div class="text-center">
+                          {% image i.title_image width-680  as tmp_photo %}
+                          <img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h2 class="font-weight-600 mb-0">
+                          <a href="{% pageurl i %}" style="color:#5e72e4">
+                            {{i.title|richtext}}
+                          </a>
+                        </h2>
+                        {{i.sort_description_body|richtext}}
+                        {% comment %} <p></p> {% endcomment %}
+                        <div class="post-meta">
+                          <span><a href="#" style="color:#5e72e4"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;  </span>
+                          <span class="d-block mt-2"><a href="{% pageurl i %}"  target="_blank" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+                        </div>                                  
+                      </div>
+                    </div>
+                  {%endif%}
+                {%endfor%}
+                {%for i in main_data4 %}
+                    {% if blog_cat == i.blog_category.main_category %}
+                    <div class="row mb-4">
+                      <div class="col-md-4">
+                        <div class="text-center">
+                          {% image i.title_image width-680  as tmp_photo %}
+                          <img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h2 class="font-weight-600 mb-0">
+                          <a href="{% pageurl i %}" style="color:#5e72e4">
+                            {{i.title|richtext}}
+                          </a>
+                        </h2>
+                        {{i.sort_description_body|richtext}}
+                        {% comment %} <p></p> {% endcomment %}
+                        <div class="post-meta">
+                          <span><a href="#" style="color:#5e72e4"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;  </span>
+                          <span class="d-block mt-2"><a href="{% pageurl i %}"  target="_blank" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+                        </div>                                  
+                      </div>
+                    </div>
+                  {%endif%}
+                {%endfor%}
+                {%for i in main_data5 %}
+                    {% if blog_cat == i.blog_category.main_category %}
+                    <div class="row mb-4">
+                      <div class="col-md-4">
+                        <div class="text-center">
+                          {% image i.title_image width-680  as tmp_photo %}
+                          <img src="{{ tmp_photo.url }}" class="img-fluid rounded" alt="Responsive image"/>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h2 class="font-weight-600 mb-0">
+                          <a href="{% pageurl i %}" style="color:#5e72e4">
+                            {{i.title|richtext}}
+                          </a>
+                        </h2>
+                        {{i.sort_description_body|richtext}}
+                        {% comment %} <p></p> {% endcomment %}
+                        <div class="post-meta">
+                          <span><a href="#" style="color:#5e72e4"><i class="far fa-user"></i> By {{i.writter_name|richtext }}</a>&nbsp; &nbsp;  </span>
+                          <span class="d-block mt-2"><a href="{% pageurl i %}"  target="_blank" class="btn text-1 text-uppercase" style="background-color:#5e72e4; color:white">Read More</a></span>
+                        </div>                                  
+                      </div>
+                    </div>
+                  {%endif%}
+                {%endfor%}   
+            </div>
+        </div>
+        <div class="col-md-2 d-md-none px-0">
+          <div class="form-group mb-3">
+            <div class="input-group mb-4">
+              <input class="form-control" placeholder="Search" type="text">
+              <div class="btn btn-default py-2 px-3">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="font-weight-600 pt-4">Categories</h5>
+            <ul class="navbar-nav">
+              {%for j in main_data1 %}
+              
+              <li class="nav-item">
+                <a class="nav-link active collapsed" href="#aaa{{forloop.counter}}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-dashboards">
+                  
+                  <span class="nav-link-text">{{j.main_category}}</span><i class="ml-3 fas fa-caret-down"></i>
+
+                </a>
+                
+                <div class="collapse mr-4" id="aaa{{forloop.counter}}" style="">
+                  <ul class="nav nav-sm flex-column  pl-3">
+                      {%for i in main_data %}
+                      {%if j.main_category == i.main_category.main_category %}
+                        
+                      <li class="nav-item">
+                      <a href="{{i.sub_categories_links}}" class="nav-link">
+                        <span class="sidenav-normal"> {{i.sub_categories}} </span>
+                      </a>
+                    </li>
+                    
+                    {%endif%}
+                {%endfor%}
+                  </ul>
+                </div>
+              </li>
+            {%endfor%}
+              
+            </ul>
+            {% comment %} <ul class="nav nav-list flex-column mb-5">									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Design (2)</a>
+              </li>									
+              <li class="nav-item">										
+                <a class="nav-link active" href="#">Photos (4)</a>										
+                <ul style="list-style-type:disc;">											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Animals</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Business</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Sports</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">People</a>
+                  </li>										
+                </ul>									
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Videos (3)</a>
+              </li>									<li class="nav-item">
+                <a class="nav-link" href="#">Lifestyle (2)</a>
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Technology (1)</a>
+              </li>								
+            </ul> {% endcomment %}
+            <div>	
+              <div class="nav-wrapper">
+                <ul class="list-group list-group-horizontal nav nav-pills nav-fill" id="tabs-icons-text" role="tablist" style="list-style-type:none">
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">Popular</a>
+                    </li>
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Recents</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}											
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}			
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "POPULAR" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                      </ul>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                      <ul class="p-0 my-0" style="list-style-type:none;">												
+                        {% for i in main_page1 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}
+                        {% for i in main_data11 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data2 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data3 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}	
+                        {% for i in main_data4 %}
+                        {%if i.slect_box == "RECENT" %}
+                        <li >													
+                          <div class="row" >												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="{% pageurl i %}" target="_blank">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">{{i.title}}</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">{{i.select_box_date}} {{i.select_box_time}} Read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>	
+                        {%endif%}
+                        {%endfor%}																
+                          												
+                      </ul>  
+                    </div>
+                  </div>
+                </div>
+              </div>															
+            </div>
+            {% comment %} <div class="pt-3">
+              <h5 class="font-weight-600">About Us</h5>
+              <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+            </div> {% endcomment %}
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!--Main Footer End-->
+{% include "includes/footer.html" %}
+
+{% endblock content %}
+
+{% block script %}
+
+
+{% endblock script %}

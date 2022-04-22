@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+  .content-set{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+  }
+  .home{
+    color: #08c;
+  }
+  .zoom {
+    transition: transform .2s;
+  }
+  .zoom:hover {
+    transform: scale(1.2);
+  }
+</style>
+<!--Fisrt Page -->
+<section class="mt-5" style="background-color:#f7f7f7">
+    <div class="py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-center">
+              <h1 class="page-title b-none">Grid Sidebar Both</h1>
+              <p class="page-sub-title">Check out our Latest News!</p>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<div class="container py-3" style="background-color:white">
+  <div class="rounded">
+      <a href="#">
+          <img src="https://www.okler.net/previews/porto/9.3.0/img/blog/wide/blog-11.jpg" class="img-fluid rounded" alt="">
+      </a>
+  </div>
+  <div class="pt-3">
+      <h6 class="font-weight-600" style="color:black">10 JAN 2022 . 7 min read</h6>
+  </div>
+  <div class="pt-3">
+
+      <h3 class="font-weight-semi-bold" style="color: #1d9bf0"><a href="#">Class aptent taciti sociosqu ad litora torquent</a></h3>
+
+      <div class="pb-3">
+          <span><i class="far fa-user"></i> By <a href="#" style="color:#5e72e4">Bob Doe</a>&nbsp; &nbsp;  </span>
+          <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span>
+          
+      </div>
+      <p style="color:black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lectus lacus, rutrum sit amet placerat et, bibendum nec mauris. Duis molestie, purus eget placerat viverra, nisi odio gravida sapien, congue tincidunt nisl ante nec tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit, mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent nec tempus nibh. Donec mollis commodo metus et fringilla. Etiam venenatis, diam id adipiscing convallis, nisi eros lobortis tellus, feugiat adipiscing ante ante sit amet dolor. Vestibulum vehicula scelerisque facilisis. Sed faucibus placerat bibendum. Maecenas sollicitudin commodo justo, quis hendrerit leo consequat ac. Proin sit amet risus sapien, eget interdum dui. Proin justo sapien, varius sit amet hendrerit id, egestas quis mauris.</p>
+      <p style="color:black">Ut ac elit non mi pharetra dictum nec quis nibh. Pellentesque ut fringilla elit. Aliquam non ipsum id leo eleifend sagittis id a lorem. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam massa mauris, viverra et rhoncus a, feugiat ut sem. Quisque ultricies diam tempus quam molestie vitae sodales dolor sagittis. Praesent commodo sodales purus. Maecenas scelerisque ligula vitae leo adipiscing a facilisis nisl ullamcorper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+      <p style="color:black">Curabitur non erat quam, id volutpat leo. Nullam pretium gravida urna et interdum. Suspendisse in dui tellus. Cras luctus nisl vel risus adipiscing aliquet. Phasellus convallis lorem dui. Quisque hendrerit, lectus ut accumsan gravida, leo tellus porttitor mi, ac mattis eros nunc vel enim. Nulla facilisi. Nam non nulla sed nibh sodales auctor eget non augue. Pellentesque sollicitudin consectetur mauris, eu mattis mi dictum ac. Etiam et sapien eu nisl dapibus fermentum et nec tortor.</p>
+      <p style="color:black">Curabitur nec nulla lectus, non hendrerit lorem. Quisque lorem risus, porttitor eget fringilla non, vehicula sed tortor. Proin enim quam, vulputate at lobortis quis, condimentum at justo. Phasellus nec nisi justo. Ut luctus sagittis nulla at dapibus. Aliquam ullamcorper commodo elit, quis ornare eros consectetur a. Curabitur nulla dui, fermentum sed dapibus at, adipiscing eget nisi. Aenean iaculis vehicula imperdiet. Donec suscipit leo sed metus vestibulum pulvinar. Phasellus bibendum magna nec tellus fringilla faucibus. Phasellus mollis scelerisque volutpat. Ut sed molestie turpis. Phasellus ultrices suscipit tellus, ac vehicula ligula condimentum et.</p>
+      <p style="color:black">Aenean metus nibh, molestie at consectetur nec, molestie sed nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec euismod urna. Donec gravida pharetra ipsum, non volutpat ipsum sagittis a. Phasellus ut convallis ipsum. Sed nec dui orci, nec hendrerit massa. Curabitur at risus suscipit massa varius accumsan. Proin eu nisi id velit ultrices viverra nec condimentum magna. Ut porta orci quis nulla aliquam at dictum mi viverra. Maecenas ultricies elit in tortor scelerisque facilisis. Mauris vehicula porttitor lacus, vel pretium est semper non. Ut accumsan rhoncus metus non pharetra. Quisque luctus blandit nisi, id tempus tellus pulvinar eu. Nam ornare laoreet mi a molestie. Donec sodales scelerisque congue. </p>
+
+      <div class="mt-5">
+          <h4 class="mb-3" style="color:black">Share this Post</h4>
+          <div class="col-lg-6 btn-wrapper px-0">
+              <button target="_blank" href="https://twitter.com/creativetim" rel="nofollow" class="btn btn-icon-only btn-twitter rounded-circle" data-toggle="tooltip" data-original-title="Follow us">
+                <span class="btn-inner--icon"><i class="fa fa-twitter"></i></span>
+              </button>
+              <button target="_blank" href="https://www.facebook.com/CreativeTim/" rel="nofollow" class="btn-icon-only rounded-circle btn btn-facebook" data-toggle="tooltip" data-original-title="Like us">
+                <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+              </button>
+              <button target="_blank" href="https://dribbble.com/creativetim" rel="nofollow" class="btn btn-icon-only btn-dribbble rounded-circle" data-toggle="tooltip" data-original-title="Follow us">
+                <span class="btn-inner--icon"><i class="fa fa-dribbble"></i></span>
+              </button>
+              <button target="_blank" href="https://github.com/creativetimofficial" rel="nofollow" class="btn btn-icon-only btn-github rounded-circle" data-toggle="tooltip" data-original-title="Star on Github">
+                <span class="btn-inner--icon"><i class="fa fa-github"></i></span>
+              </button>
+            </div>
+      </div>
+
+      <div class="mt-4 pt-2">
+          <h4 class="mb-3" style="color:black">Author</h4>
+          <div class="row">
+              <div class="col-sm-2 py-3 text-center" style="width:100px; height:100px; border-radius:50%">
+                  <a href="#">
+                      <img src="https://avatars.githubusercontent.com/u/53890201?v=4" alt="" style="width:100px; height:100px; border-radius:50%">
+                  </a>
+              </div>
+              <div class="col-sm-10 py-3">
+                  <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">Abhishek Dev, FAWSD</a></strong></p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui. </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!--Main Footer End-->
+{% include "includes/footer.html" %}
+
+{% endblock content %}
+
+{% block script %}
+
+
+{% endblock script %}

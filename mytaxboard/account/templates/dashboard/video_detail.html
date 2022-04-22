@@ -1,0 +1,36 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="row mt-4 ml-3">
+      <!--COLUMN FIRST-->
+      <div class="col-md-8">
+        <div class="card rounded">
+          <div style="height: 500px;">{{ video.video_url|safe }}</div>  
+          <div class="card-body">
+              <h4>{{video.title}}</h4>
+              <p>{{video.description}}</p>
+          </div>    
+        </div>
+      </div>
+      <div class="col-md-4 p-4"> 
+          {% for videos in videos %}
+          <div class="card rounded">
+            <div>{{videos.video_url|safe}}</div>  
+            <div class="card-body">
+                <h4>{{videos.title}}</h4>
+            </div>    
+          </div>
+          {% endfor %}
+              
+      </div>
+    </div>
+        
+</section>
+{% endblock content %}
+{% block script %}
+  <script>
+    $("iframe").css("width","100%").css("height","100%");
+  </script>
+{% endblock script %}

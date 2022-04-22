@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em;
+    border: 1px solid #ccc;
+  }
+
+  fieldset,
+  #IE8#HACK {
+    padding-top: 1.4em;
+  }
+
+
+  div.sticky {
+    position: fixed;
+    bottom: 560px;
+    right: 1000px;
+  }
+</style>
+
+<body>
+
+  <div class="container mt-9">
+    <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+        
+        <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+    </li>
+  </ul>
+  </div>
+
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_income_salary' %}#personal" >Salary</a>
+    </li>
+    <!-- <li class="nav-item"></li> -->
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_income_other_income' %}#tabs-text-2" >Other Income</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_income_house_property' %}#tabs-text-2" >House Property</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_income_capital_gain' %}#tabs-text-2" >Capital Gain</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'business_and_profession' %}#tabs-text-2" >Business & Profession</a>
+    </li>
+  </ul>
+
+
+  <!--First-->
+<div id="main" style="display: none;">
+   
+  <div class="container mt-9">
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-dark">Income from Business and Profession</h4>
+      </div>
+      <div class="col-md-4">
+        <p class="text-dark">Not running a business?</p>
+      </div>
+
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary btn-sm">Go To Next >></button>
+      </div>
+
+      <div class="ml-3 mt-5">
+        <p class="mt-1">Do you have income from a business or a professional practice? Freelancers, Proprietorship or Partner's Income is also considered under this section.</p>
+        <br>
+        <p class="small mt-1">Note: Intra-day trading and F&O trading is also considered as business income.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Click Here To Button-->
+  <div class="mb-3 mt-5 Center container m-auto">
+    <div class="row m-auto">
+      <button type="button" class="btn btn-primary m-auto">Add Income From Business</button>
+    </div>
+  </div>
+  <!--Click Here To End-->
+
+  <!--People-->
+  <div class="container mt-4 text-center">
+
+    <b class="text-center">For people with lot of share trading activity</b>
+    <br>
+    <a href=""> Click here to read on what to do when you have a lot of share trading activity</a>
+  </div>
+  <!--Pepole End-->
+ 
+</div>
+<div id="second">
+
+    
+    <div class="container mt-9">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="text-dark">Income from other sources</h4>
+          </div>
+          <div class="col-md-4">
+            <p class="text-dark"></p>
+          </div>
+    
+          <div class="col-md-2">
+            <button type="button" class="btn btn-primary btn-sm">Go To Next >></button>
+          </div>
+    
+          <div class="ml-3 mt-5">
+            <p class="mt-1">Did you sell any asset (shares, property, house, land, building, etc) between the period of
+              April 1, 2019 to March 31, 2020?</p>
+            <br>
+            <p class="small mt-1">Note: Intra-day trading and F&O trading is considered as business income. Go to Business &
+              Profession page and enter the data in the relevant fields.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <b class="display-4">Add a Business</b>
+    </div>
+
+      <div class="container mt-5">
+          <div class="row">
+              <div class="col-md-1"><b>1.</b></div>
+
+              <div class="col-md-6">
+                  <b class="text-dark">Remuneration from Partnership Firms</b> 
+                  <br>
+                <p>If you are partner in a firm(s), enter the details of the remuneration, income or profits from it.</p> 
+            </div>
+
+
+            <div class="offset-2">
+               
+            </div>
+              <div class="col-md-3">
+                  <button type="button" class="btn btn-primary mt-4">Add Remuneration</button>
+              </div>
+          </div>
+      </div>
+
+
+
+      <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-1"><b>2.</b></div>
+
+            <div class="col-md-6">
+                <b class="text-dark">Presumptive Income under Section 44AD (For Businesses)</b> 
+                <br>
+              <p>For businesses whose revenue is less than or equal to ₹2Cr. and profit is greater than or equal to 8% of the revenue (6% of the revenue from digital transactions).</p> 
+          </div>
+
+
+          <div class="offset-2">
+             
+          </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary mt-4">Add Income Under 44AD</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-1"><b>3.</b></div>
+
+            <div class="col-md-6">
+                <b class="text-dark">Presumptive Income Under Section 44ADA (For Professionals)</b> 
+                <br>
+              <p>For professions whose gross receipts/revenue is less than or equal to RS/- 50 Lakhs and profit is greater than or equal to 50% of the revenue.</p> 
+          </div>
+
+
+          <div class="offset-2">
+             
+          </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary mt-4">Add Income Under 44DA</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-1"><b>4.</b></div>
+
+            <div class="col-md-6">
+                <b class="text-dark">Presumptive Income Under Section 44AE (For Goods Carrier)</b> 
+                <br>
+              <p>This is applicable to goods carriers which have less than or equal to 10 vehicles.</p> 
+          </div>
+
+
+          <div class="offset-2">
+             
+          </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary mt-4">Add BSPL Income</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-1"><b>5.</b></div>
+
+            <div class="col-md-6">
+                <b class="text-dark">Balance Sheet with Profit & Loss Account</b> 
+                <br>
+              <p>This section contains details about sources & application of funds, credits & debits to your Manufacturing, Trading, and P&L Accounts.</p> 
+          </div>
+
+
+          <div class="offset-2">
+             
+          </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary mt-4">Add Remuneration</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-1"><b>6.</b></div>
+
+            <div class="col-md-6">
+                <b class="text-dark">Remuneration from Partnership Firms</b> 
+                <br>
+              <p>If you are partner in a firm(s), enter the details of the remuneration, income or profits from it.</p> 
+          </div>
+
+
+          <div class="offset-2">
+             
+          </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary mt-4">Add Remuneration</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-1"><b>7.</b></div>
+
+            <div class="col-md-6">
+                <b class="text-dark">Remuneration from Partnership Firms</b> 
+                <br>
+              <p>If you are partner in a firm(s), enter the details of the remuneration, income or profits from it.</p> 
+          </div>
+
+
+          <div class="offset-2">
+             
+          </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary mt-4">Add Remuneration</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+  <div class="container-fluid mt-5">
+    <fieldset>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="/static/img/faces/ali-pazani.jpg" alt="" width="200px" height="100px">
+        </div>
+
+        <div class="col-md-3">
+          <b>Need expert assistance?</b>
+          <br>
+          <span>We provide customized plans for users</span>
+          <br>
+          <span>Starting from 799.</span>
+          <br>
+        </div>
+
+        <div class="col-md-4">
+          <ol>
+            <li>Your data is reviewed and corrected</li>
+            <li>Best tax savings options suggestions</li>
+            <li>Post return filing support</li>
+          </ol>
+        </div>
+
+        <div class="col-md-2 mt-4">
+          <button type="button" class="btn btn-primary">Get Assistance?</button>
+        </div>
+
+      </div>
+    </fieldset>
+  </div>
+
+
+
+  {%endblock%}

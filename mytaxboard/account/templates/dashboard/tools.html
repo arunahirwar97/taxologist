@@ -1,0 +1,164 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block style %}
+<style>
+  .container{
+    max-width: 1350px;
+  }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+
+  <div class="container mt-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            
+          <h3 class="font-weight-600">Income Tax Calculator For FY 2021-22</h3>
+          <p class="font-weight-400">Check your estimated Income tax for Financial Year 2021-22 based on the budget presented by the Finance Minister, Government of India in Lok Sabha on 1st of February 2021.
+          </p>
+            <label for="first_name" class="small text-dark" id="inputGroup-sizing-sm">First Name<span
+                class="text-danger">*</span> </label>
+            <input type="text" placeholder="" class="form-control small" id="inputGroup-sizing-sm">
+            <label for="first_name" class="small" style="font-size: x-small;"></label>
+            <br>
+            <label for="first_name" class="small text-dark" id="inputGroup-sizing-sm">Email<span
+                class="text-danger">*</span> </label>
+            <input type="text" placeholder="" class="form-control small" id="inputGroup-sizing-sm">
+            <label for="first_name" class="small" style="font-size: x-small;"></label>
+            <br>
+            <label for="first_name" class="small text-dark" id="inputGroup-sizing-sm">Mobile Number<span
+                class="text-danger"></span> </label>
+            <input type="text" placeholder="" class="form-control small" id="inputGroup-sizing-sm">
+            <label for="first_name" class="small" style="font-size: x-small;"></label>
+            <br>
+            <label for="first_name" class="small text-dark" id="inputGroup-sizing-sm">Date of Birth<span
+                class="text-danger">*</span> </label>
+            <input type="text" placeholder="" class="form-control small" id="inputGroup-sizing-sm">
+            <label for="first_name" class="small" style="font-size: x-small;">This Value is Required.</label>
+            <br>
+            <label for="first_name" class="small text-dark" id="inputGroup-sizing-sm">Residential Status<span
+                class="text-danger">*</span> </label>
+            <input type="text" placeholder="" class="form-control small" id="inputGroup-sizing-sm">
+            <label for="first_name" class="small" style="font-size: x-small;">This Value is Required.</label>
+            <br>
+            <label for="first_name" class="small text-dark" id="inputGroup-sizing-sm">Salary<span
+                class="text-danger">*</span> </label>
+            <input type="text" placeholder="" class="form-control small" id="inputGroup-sizing-sm">
+            <label for="first_name" class="small" style="font-size: x-small;">This Value is Required.</label>
+            <br>
+            
+            <div class="mt-4">
+              <button class="btn btn-primary float-lg-right">Calculate</button>
+
+            </div>
+
+
+          </div>
+          <div class="offset-2">
+
+          </div>
+          
+          <div class="col-md-4">
+            
+            <div class="card">
+              <div class="card-body">
+                <center>
+                  <img src="{% static '/svg/tax_tool/tax_tool.svg' %}" alt="" style="">
+                </center>
+                <div class="card-title text-center mt-2">
+                  <h3 class="text-dark font-weight-600">Generate Rent Reciept</h3>
+                </div>
+                <div class="card-subtitle text-center">
+                  <p class="font-weight-400"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores aliquid ratione
+                    qui libero voluptates optio explicabo omnis. Alias sint iste illum illo saepe consequatur
+                    praesentium accusamus provident. Vitae, eius? Dignissimos?</p>
+                </div>
+                <p class="text-center">
+                  <button class="btn btn-primary" type="button">Generate Now</button>
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <center>
+                  <img src="{% static '/svg/tax_tool/tax_tool_2.svg' %}" alt="" style="">
+                </center>
+                <div class="card-title text-center mt-2">
+                  <h3 class="text-dark font-weight-600">Generate Rent Reciept</h3>
+                </div>
+                <div class="card-subtitle text-center">
+                  <p class="font-weight-400 "> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores aliquid ratione
+                    qui libero voluptates optio explicabo omnis. Alias sint iste illum illo saepe consequatur
+                    praesentium accusamus provident. Vitae, eius? Dignissimos?</p>
+                </div>
+                <p class="text-center">
+                  <button class="btn btn-primary " type="button">Generate Now</button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- <div class="container mb-4">
+    <div class="row">
+     <div class="card">
+       <div class="card-body">
+         <div class="card-title text-center display-3">
+          Help us grow. Refer us to your friends.
+         </div> 
+         <div class="card-subtitle text-center">
+          We will really appreciate, if you could refer us to your friends to use Our Tax Calculator to calculate taxes.
+          You can use the social share buttons below to refer (but nothing better than a word of mouth)
+         </div>
+         <div class="row mt-4">
+          <div class="offset-4">
+           
+           </div>
+           <div class="col-md-3">
+            <a href="javascript:;" class="btn btn-twitter btn-round">
+              <i class="fab fa-twitter"></i> Twitter · 2.5k
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="javascript:;" class="btn btn-facebook btn-round">
+              <i class="fab fa-facebook-square"></i> Facebook · 3.2k
+            </a>
+           </div>
+           <div class="offset-4">
+             
+          </div>
+         </div>
+       </div>
+     </div>
+    </div>
+  </div> -->
+
+
+
+  {% endblock content %}
+
+  {% block script %}
+
+    <script>
+    $('.nav-item a').removeClass('btn btn-primary text-white');
+    $('.tax_tool-item a').addClass('btn btn-primary text-white');
+    $('.tax_tool-item a img').attr('src','/static/svg/dashboard_base/tax_tool_w.svg');
+    </script>
+
+  {% endblock script %}

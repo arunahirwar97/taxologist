@@ -1,0 +1,217 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+
+{% block style %}
+<style>
+    .container{
+      max-width: 1350px;
+    }
+  </style>
+{% endblock style %}
+
+{% block content %}
+
+<div class="main-content mt-4" id="panel">
+    <div class="container">
+        <div class="row">
+          
+
+            <div class="col-md-12">
+                <div class="card">
+                <div class="row mt-4">
+                      <div class="col-md-6">
+                          <p class="mr-4 ml-4">Name - {% if tax_planner_name %} {{ tax_planner_name }} {% endif %}</p>
+                      </div>
+
+                      <div class="col-md-6">
+                            <p>Plan Code - {% if plan_code == "ITR 1" %} Individual (Salary) {% elif plan_code == "ITR 2" %} Individual and HUF {%elif plan_code == "ITR 3" %} Individual (Salary + Capital Gain) {%endif%}</p>
+                      </div>
+                      {% comment %} <div class="col-md-4">
+                          <p>Year - {% if year %} {{ year }} {% endif %}</p>
+                      </div> {% endcomment %}
+                </div>
+            
+                    {% for page_obj in page %}
+                        <p class="display-4 mt-4 text-center" style="margin-bottom:0px;" id="main_heading" name="{{page_obj.name}}">{{page_obj.name}}</p>
+                    {% endfor %}
+                        {% comment %} <div class="progress-wrapper col-md-6 mx-auto">
+                            <div class="progress-info">
+                              <div class="progress-percentage">
+                                <span class="text-info ml-4 ">20%</span>
+                              </div>
+                            </div>
+                            <div class="progress ml-4 mr-4">
+                              <div class="progress-bar bg-info " role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                            </div>
+                          </div> {% endcomment %}
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<form method="post" action=""> {% csrf_token %}        
+{% for page_obj in page %}
+{% for block_heading in page_obj.tax_plan_block_set.all %}
+<div class="container">
+    <div class="card">
+        <div class="row">
+            <div class="col-12 mt-4 mb-4">
+                    <svg  class="ml-3" width="25" height="25" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="20" height="20" fill="#7889E8"/>
+                    </svg>
+                        <input type="hidden" id="tax_plan_name" value="{{block_heading.tax_plan_name}}">
+                        <span class="ml-2 h1 text-dark " ><b>{{block_heading.sub_heading}}</b></span>
+                        <br>
+                        <br>
+                        <div class="row">
+
+                        {% for field in block_heading.tax_plan_fields_set.all %}
+                       <div class="col-1" >
+                         <svg class="ml-5" width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 9.5L0.249999 18.5933L0.25 0.406733L16 9.5Z" fill="#F75676"/>
+                        </svg>
+                        
+                       </div>
+                      <div class="col-7" style="padding:0px;margin:0px;min-width:100px;">
+                       
+                        <span  class="font-weight-600 text-dark">{{field.question|safe}}</span>
+                         </br></br></br>
+                      </div>
+                      <div class="col-4">                        
+            
+                          <div class="custom-control custom-radio custom-control-inline ml-8" >
+                            <input required type="radio" name="role{{ block_heading.heading }}{{forloop.counter}}"  id="yes_role{{ block_heading.sub_heading }}{{forloop.counter}}" value="{{field.question}}" data-get = "{{ block_heading.tax_plan_fields_set.all|length }}" block_h="{{block_heading.sub_heading}}" class="custom-control-input data-data">
+                            <label class="custom-control-label h1 " for="yes_role{{ block_heading.sub_heading }}{{forloop.counter}}" style="font-size:20px;">Yes</label>
+                          </div>
+                          <div class="custom-control custom-radio custom-control-inline ">
+                            <input  required type="radio" id="no_role{{ block_heading.sub_heading }}{{forloop.counter}}"  name="role{{ block_heading.heading }}{{forloop.counter}}" value="{{field.question}}" block_h="{{block_heading.sub_heading}}" data-get = "{{ block_heading.tax_plan_fields_set.all|length }}" id="no_role{{ block_heading.heading }}{{forloop.counter}}" class="custom-control-input data-data">
+                            <label class="custom-control-label h1 " for="no_role{{ block_heading.sub_heading }}{{forloop.counter}}" style="font-size:20px;">No</label>
+                          </div>
+                           </br></br></br>
+                      </div>
+                     
+          {% endfor %}
+                      </div>
+                        
+                        {% comment %} <input type="radio" class="data-data" name="role{{ block_heading.heading }}{{forloop.counter}}" id="yes_role{{ block_heading.heading }}{{forloop.counter}}" value="{{field.question}}">  YES
+
+                        <input type="radio" class="data-data" name="role{{ block_heading.heading }}{{forloop.counter}}" value="{{field.question}}" id="no_role{{ block_heading.heading }}{{forloop.counter}}">  NO</div>
+                        {% endcomment %}
+
+                        
+                     
+            </div>
+        
+                      
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+{% endfor %}
+{% endfor %}            
+
+
+
+<div class="container mb-9">
+    <div class="row">
+    <div class="col-md-2">
+        {% if page.has_previous %}
+            <!-- <a href="?page=1">&laquo; first</a> -->
+            <a class="btn btn-secondary text-dark float-left" href="?page={{ page.previous_page_number }}&&tax_planner_name={% if tax_planner_name %}{{tax_planner_name}}{% endif %}&&plan_code={% if plan_code %}{{plan_code}}{% endif %}">previous</a>
+            
+        {% endif %}
+        <!-- <button type="button" class="btn btn-secondary text-dark float-left">Back</button> -->
+
+    </div>
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-2 one">
+        {% if page.has_next %}
+        <!-- <a class="btn btn-success float-right" href="?page={{ page.next_page_number }}">next</a> -->
+        <a class="nav-link text-white" href="?page={{ page.next_page_number }}&&tax_planner_name={% if tax_planner_name %}{{tax_planner_name}}{% endif %}&&plan_code={% if plan_code %}{{plan_code}}{% endif %}" role="button" id="main_link"  onclick="get_btn(this)"><button type="submit" class="btn btn-success float-right">Next</button></a>
+        {% else %}
+        <a class="nav-link text-white" href="{% url 'tax_planner' %}?&&tax_planner_name={% if tax_planner_name %}{{tax_planner_name}}{% endif %}&&plan_code={% if plan_code %}{{plan_code}}{% endif %}" role="button"><button type="button" class="btn btn-success float-right" id ="final_submit" onClick="reply_click(this.id)">Finish</button></a>
+        {% endif %}
+  </div>
+</div>
+</div>
+</form>
+{% comment %} <div class="one">
+<a id="myAnchor" href="#"> Try it</a>
+</div> {% endcomment %}
+
+{% block script %}
+<script>
+  function myFunction() {
+    var copyText = document.getElementById("myInput");
+    document.getElementById("referralcopy").innerHTML = "Copied";
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+    //alert("Copied the text: " + copyText.value);
+  }
+  </script>
+
+  <script>
+  
+$(document).ready(function () {
+      data_of_question = []
+      data_of_answer = []
+    $('.data-data').click(function() {
+      var question = $(this).attr("value");
+      var answer_of_question_id = $(this).attr("id");
+      var total_len_of_sub_haeding = $(this).attr("data-get");
+      var main_heading = $("#main_heading").attr('name');
+      var block_h = $(this).attr('block_h');
+      var name = "{% if name %}{{ name }}{% endif %}";
+      var pan_card_number = "{% if pan_card_number %}{{pan_card_number}}{% endif %}";
+      var year = "{% if year %}{{year}}{% endif %}";
+      var button_id = $('div.one button a').attr('id');
+      var tax_plan_name = $("#tax_plan_name").attr('value');
+      var plan_code = "{% if plan_code %}{{plan_code}}{% endif %}"
+      var tax_planner_name = "{% if tax_planner_name %}{{tax_planner_name}}{% endif %}"
+      
+      $.ajax(
+      {
+          url: "ajax_call_for_tax_planner_2",
+          data:{
+            pan_card_number:pan_card_number,
+            'data_of_question':question,
+            'data_of_answer':answer_of_question_id,
+            year:year,
+            block_heading:block_h,
+            name:name,
+            main_heading:main_heading,
+            question:question,
+            'tax_plan_name':tax_plan_name,
+            'plan_code':plan_code,
+            'tax_planner_name':tax_planner_name,
+
+
+
+          },
+          success: function(result) 
+          {
+              {% comment %} alert("save data in database"); {% endcomment %}
+
+          }
+        })
+
+
+
+    });
+})
+  </script>
+
+
+<script>
+
+</script>
+{% endblock script %}
+{% endblock content %}

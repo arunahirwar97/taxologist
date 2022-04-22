@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<body>
+
+
+  <div class="container mt-9">
+    <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+        
+        <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+    </li>
+  </ul>
+  </div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" href="{% url 'paytax_income_salary' %}#personal" >Salary</a>
+    </li>
+    <!-- <li class="nav-item"></li> -->
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_income_other_income' %}#tabs-text-2" >Other Income</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_income_house_property' %}#tabs-text-2" >House Property</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_income_capital_gain' %}#tabs-text-2" >Capital Gain</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_income_business_and_profession' %}#tabs-text-2" >Business & Profession</a>
+    </li>
+  </ul>
+
+
+
+  <!--First-->
+  <div class="container mt-9">
+    <fieldset>
+      <legend>Employer Details</legend>
+
+      <label for="employer_name">Name of the Employer</label><span class="text-danger">*</span>
+      <br>
+      <div class="form-group ">
+        <div class="col-md-6">
+          <span class="small">The name of Company / Organization</span>
+          <input type="text" placeholder="Search For Employer Name..." class="form-control" />
+        </div>
+
+
+        <div class="col-md-4 mt-4">
+          <label for="gender ">Employer Type/Category<span class="text-danger">*</span> </label>
+          <select class="form-control" data-trigger="" name="choices-single-default" id="choices-single-default">
+            <option value="1">Private</option>
+            <option value="2">Central Goverment</option>
+            <option value="3">State Government</option>
+            <option value="4">Public Sector</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+
+  <!--First End-->
+
+
+  <!--Second-->
+  <div class="container">
+    <fieldset>
+      <legend>Salary Information</legend>
+
+      <div class="row">
+        <div class="col-md-8">
+          <span class="small">Please provide this information as per your Form-16 Part-B.
+            You can match each item with the field number in your Form-16</span>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-outline-primary">Click to see sample</button>
+        </div>
+      </div>
+<!--add item main start-->
+
+      <div class="accordion-1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 ml-auto">
+              <div class="accordion my-3" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link w-100 text-primary text-left" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                        <i class="ni ni-fat-add mt-1 mr-2 float-left"></i>
+                        <!--add item-->
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <span class="small">1(a) - Salary as per section 17(1)</span>
+                          </div>
+
+                          <div class="col-sm-4">
+
+                            <input type="text" placeholder="" class="form-control" />
+                          </div>
+                        </div>
+
+                        <!--add item end-->
+
+                      </button>
+                    </h5>
+                  </div>
+
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="card-body opacity-8">
+                      <span class="small">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <span class="small">1(a) - Salary as per section 17(1)</span>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                          <input type="text" placeholder="" class="form-control" />
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link w-100 text-primary text-left collapsed" type="button"
+                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                        aria-controls="collapseTwo">
+
+                        <i class="ni ni-fat-add mt-1 mr-2 float-left"></i>
+                        <!--add item-->
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <span class="small">1(a) - Salary as per section 17(1)</span>
+                          </div>
+
+                          <div class="col-sm-4">
+
+                            <input type="text" placeholder="" class="form-control" />
+                          </div>
+                        </div>
+
+                        <!--add item end-->
+
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body opacity-8">
+                      <span class="small">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <span class="small">1(a) - Salary as per section 17(1)</span>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                          <input type="text" placeholder="" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <span class="small">1(a) - Salary as per section 17(1)</span>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                          <input type="text" placeholder="" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link w-100 text-primary text-left collapsed" type="button"
+                        data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                        aria-controls="collapseThree">
+
+
+                        <i class="ni ni-fat-add mt-1 mr-2 float-left"></i>
+                        <!--add item-->
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <span class="small">1(a) - Salary as per section 17(1)</span>
+                          </div>
+
+                          <div class="col-sm-4">
+
+                            <input type="text" placeholder="" class="form-control" />
+                          </div>
+                        </div>
+
+                        <!--add item end-->
+
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                    data-parent="#accordionExample">
+                    <div class="card-body opacity-8">
+                      <span class="small">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <span class="small">1(a) - Salary as per section 17(1)</span>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                          <input type="text" placeholder="" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+
+
+  </fieldset>
+  </div>
+
+
+  <!--Second End-->
+
+
+  <!--Third-->
+  <div class="container">
+    <fieldset>
+      <legend>TDS Details</legend>
+
+      <label for="employer_name"><b>Tax Deducted at source on Salary</b></label><span class="text-danger"></span>
+      <div class="row">
+        <div class="col-sm-8">
+          <span class="small">In your Form-16, find this under Part-A: Total of Amount of tax deposited / Remitted
+          </span>
+        </div>
+
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-outline-primary">Click to see sample</button>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group ">
+        <div class="col-md-6">
+
+          <input type="text" placeholder="" class="form-control" />
+        </div>
+        <br>
+        <label for="employer_name"><b>TAN of the Employer</b></label><span class="text-danger"></span>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <span class="small">In your Form-16, find this under Part-A - TAN of Deductor </span>
+          </div>
+
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-outline-primary">Click to see sample</button>
+
+          </div>
+        </div>
+        <br>
+        <div class="form-group ">
+          <div class="col-md-6">
+
+            <input type="text" placeholder="" class="form-control" />
+          </div>
+
+
+
+
+
+    </fieldset>
+  </div>
+
+  {%endblock%}

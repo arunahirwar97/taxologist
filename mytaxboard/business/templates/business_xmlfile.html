@@ -1,0 +1,146 @@
+{% extends 'base_for_another_page.html' %}
+{% block style %}
+<style>
+.container{
+  max-width: 1250px;
+}
+@media(min-width:1025px)
+{
+  .base_body {
+      padding-left:3%;          
+      padding-right:3%; 
+    }
+  .img_add{
+    display:none;
+  }
+  .text_size{
+    font-size:21px;
+  }
+  #d_none{
+    display:none;
+  }
+}
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="container mt-5" >
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <div id="add_alert"></div>
+    </div>
+  </div>
+    <div class="row justify-content-center mb-5">
+      <div class=" col-md-8">
+        <!-- Card header -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="mb-0">Upload File</h3>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <form method="POST" enctype="multipart/form-data" accept-charset="utf-8" >{% csrf_token %}
+              <div class="custom-file">
+                <input type="file" name="xmlfile" class="custom-file-input" id="customFile" lang="en" onchange="uploadInfo()">
+                <label id="labelName" class="custom-file-label" for="customFileLang">Click here to chose file</label>
+                <label class="pt-3" for="">Please Chose A File XML Form</label>
+                <div id="uploaded" style="display:none;" class="pt-3">
+                  <ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+                    <li class="list-group-item px-0">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <div class="avatar">
+                                    <img id="imageFile" class="avatar-img rounded" src="..." alt="error" data-dz-thumbnail>
+                                </div>
+                            </div>
+                            <div class="col ml--3">
+                                <h4 id="fileName" class="mb-1 d-none d-md-block" style="font-size:18px"></h4>
+                                <h4 id="fileName1" class="mb-1 d-md-none" style="font-size:18px"></h4>
+                                <p id="fileSize" class="font-weight-bold text-dark mb-0"></p>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-trash-alt text-danger" style="font-size:20px" onclick="deleteFile()"></i>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="">
+                  <button type="submit" class="btn btn-primary my-4 col-lg-4">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div> 
+    </div>  
+</div>
+
+{% endblock content %}
+{% block script %}
+<script>
+  function bytesToSize(bytes) {
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+    if (bytes === 0) return 'n/a'
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+    if (i === 0) return `${bytes} ${sizes[i]})`
+    return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
+  }
+  function uploadInfo(){
+    var fileName = document.getElementById("customFile").files[0].name;
+    var fileSize = document.getElementById('customFile').files[0].size;
+    var fileType = document.getElementById('customFile').files[0].type;
+    var fileInput = document.getElementById('customFile');
+    var imageFile = document.getElementById("imageFile");
+    var allowedExtensions = 
+      /(\.xml|\.json)$/i;
+
+    var filePath = fileInput.value;
+
+    if (!allowedExtensions.exec(filePath)) {
+      document.getElementById("add_alert").innerHTML ='<div class="alert alert-warning alert-dismissible fade show" role="alert"><span class="alert-icon" style="font-size:18px"><i class="ni ni-like-2"></i></span><span class="alert-text" style="font-size:18px"><strong> Please !</strong> upload the Required file format (.xml / .json) !</span><button type="button" class="close text-white font-weight-bold" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+      document.getElementById("customFile").value = null;
+      document.getElementById("uploaded").style.display = "none";
+      document.getElementById("labelName").innerHTML = "Click here to chose file";
+    } 
+    else{
+
+      fileSize = bytesToSize(fileSize);
+      var fileName1 = (fileName.length < 15) ? fileName : (fileName.slice(0,13)+"...");
+      document.getElementById("uploaded").style.display = "block";
+      document.getElementById("add_alert").style.display = "none";
+      document.getElementById("fileName").innerHTML = fileName;
+      document.getElementById("fileName1").innerHTML = fileName1;
+      document.getElementById("fileSize").innerHTML = fileSize;
+      document.getElementById("labelName").innerHTML = fileName;
+
+      {% comment %} alert(fileName.length) {% endcomment %}
+
+      if(fileType==="application/json"){
+        imageFile.src = "../../static/svg/file-upload/json.svg";
+      }
+      else if(fileType==="txt/xml"){
+        imageFile.src = "../../static/svg/file-upload/xml.svg";
+      }
+      else{
+        imageFile.src = "../../static/svg/file-upload/xml.svg";
+      }
+    }
+
+    console.log(fileSize);
+
+    {% comment %} alert(fileName);  
+    alert(fileSize); {% endcomment %}
+    {% comment %} alert(fileType); {% endcomment %}
+  }
+  function deleteFile(){
+    document.getElementById("customFile").value = null;
+    document.getElementById("uploaded").style.display = "none";
+    document.getElementById("labelName").innerHTML = "Click here to chose file";
+  }
+</script>
+
+{% endblock script%}
+

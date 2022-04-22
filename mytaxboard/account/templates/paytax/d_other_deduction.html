@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<body>
+
+<!-- head -->
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_deduction' %}#personal" >Section 80 Deductions</a>
+  </li>
+  <!-- <li class="nav-item"></li> -->
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_more_deduction' %}#tabs-text-2" >More Deductions</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'paytax_other_deduction' %}#tabs-text-2" >Other Deductions</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_investment_detail' %}#tabs-text-2" >Investment Details</a>
+  </li>
+</ul>
+
+<!-- head -->
+
+
+
+<div class="container mt-9 text-center">
+  <h4>More deductions Under Section 80DD and Section 80U (For Disabilities)</h4>
+</div>  
+
+<div class="container text-center">
+  <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover"
+  data-color="primary" data-placement="top"
+  data-content="This is a very beautiful popover, show some love.">
+  Go to Next
+</button>
+</div> 
+
+  <!--First-->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="container">
+          <fieldset>
+            <legend class="text-dark"><b style="font-size:15px;">Section 80DD - Disabled dependent deduction. (Spouse/Children/Parents)</b></legend>
+            <div class="row">
+              <div class="col-md-6 mt-2">
+                <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover"
+                  data-color="primary" data-placement="top"
+                  data-content="This is a very beautiful popover, show some love.">
+                  Add a dependent with 40% disability
+                </button>
+              </div>
+              <div class="col-md-6 mt-2">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover"
+                  data-color="default" data-placement="top"
+                  data-content="This is a very beautiful popover, show some love.">
+                  Add a dependent with Severe disability
+                </button>
+              </div>
+            </div>
+
+
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card text-center" style="width: 20rem;">
+          <div class="card-body">
+            <b class="card-title">Get a tax expert to file your return</b>
+            <p class="card-text text-dark">Filing return yourself is Free. If you need an expert's help, you can opt for
+              our paid plans starting ₹799.</p>
+            <a href="javascript:;" class="btn btn-primary">See Plans</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="container">
+          <fieldset>
+            <legend class="text-dark"><b style="font-size:15px;">Section 80U - Disability</b></legend>
+            <div class="row">
+              <div class="col-md- mt-2">
+                <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover"
+                  data-color="primary" data-placement="top"
+                  data-content="This is a very beautiful popover, show some love.">
+                  Add 40% disability under Section 80U
+                </button>
+              </div>
+              <div class="col-md-6 mt-2">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover"
+                  data-color="default" data-placement="top"
+                  data-content="This is a very beautiful popover, show some love.">
+                  Add Severe disability under Section 80U
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+{%endblock%}

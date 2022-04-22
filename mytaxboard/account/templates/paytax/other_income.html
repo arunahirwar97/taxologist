@@ -1,0 +1,453 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em;
+    border: 1px solid #ccc;
+  }
+
+  fieldset,
+  #IE8#HACK {
+    padding-top: 1.4em;
+  }
+
+
+  div.sticky {
+    position: fixed;
+    bottom: 560px;
+    right: 1000px; 
+}
+</style>
+
+<body>
+
+  <div class="container mt-9">
+    <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+        
+        <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+    </li>
+  </ul>
+  </div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_income_salary' %}#personal" >Salary</a>
+    </li>
+    <!-- <li class="nav-item"></li> -->
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'paytax_income_other_income' %}#tabs-text-2" >Other Income</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_income_house_property' %}#tabs-text-2" >House Property</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_income_capital_gain' %}#tabs-text-2" >Capital Gain</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_income_business_and_profession' %}#tabs-text-2" >Business & Profession</a>
+    </li>
+  </ul>
+
+  <!--First-->
+
+  <div class="container mt-9">
+    <div class="row">
+      <div class="col-md-10">
+        <b class="text-dark">Income from other sources</b>
+      </div>
+
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary btn-sm">Go To Next >></button>
+      </div>
+
+      <div class="ml-3">
+        <p class="small mt-5">This section consists of interest income, dividend income, agricultural income and all
+          other incomes excluding salary, income from house property or capital gains or business/profession.</span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="container mt-5">
+    <fieldset>
+      <legend class="text-dark">Interest Income</legend>
+      <div class="form-group ">
+        <div class="col-md-8 mt-4">
+          <div class="row">
+            <div class="col-md-8">
+              <b class="text-dark">Interest Income from Saving Bank</b>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#exampleModal">WHERE CAN I FIND THIS?</button>
+              
+            </div>
+            
+          </div>
+          <br>
+          <span class="small">You can also enter income from post-office saving deposits here.</span>
+          <div class="row">
+            <input type="text" placeholder="" class="form-control col" />
+            <div class="col-1"></div>
+            <button class="btn-outline-warning col-1 rounded" title="Add Items" id="intrestIncomeShowHideListButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-menu-app" viewBox="0 0 16 16">
+                <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h2A1.5 1.5 0 0 1 5 1.5v2A1.5 1.5 0 0 1 3.5 5h-2A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-2zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+            </button>
+
+          </div>
+        </div>
+        <br>
+        <div class="col-md-8">
+          <div id="interestIncomeNarration" >
+            <small><b class="text-dark">Narration (Interest Income from Saving Banks)</b> <br><br></small> 
+            <div  id="interestIncomeNarrationRowItems">
+              <div class="row mb-2" id="interestIncomeNarration-0">
+                <input type="text" placeholder="Narration" class="form-control-sm col-md-5 mr-4" required />
+                <input type="text" placeholder="Amount" class="form-control-sm col-md-4" required/>
+                <!-- <div class="col-1"></div>
+                <div class="col-1"></div> -->
+                <div class="col-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="interestIncomeNarrationClose-0" onclick="interestIncomeNarrationClose(id);"
+                   width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"  style="cursor: pointer;">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+            <br>
+            <button class="btn-sm btn-warning" id="interestIncomeNarrationAddItems"><b>Add More Items</b></button>
+          </div>
+          
+        </div>
+
+        <div class="col-md-8 mt-4">
+          <br>
+          <b class="text-dark">Interest Income from Deposits</b>
+          <!-- <input type="text" placeholder="" class="form-control" /> -->
+<br>          
+        <!-- </div> -->
+        <br>
+        <span class="small">Interest from sweep accounts converted to FDs, post-office fixed deposits also specified here</span>
+        <div class="row">
+          <input type="text" placeholder="" class="form-control col" />
+          <div class="col-1"></div>
+          <button class="btn-outline-warning col-1 rounded" title="Add Items" id="intrestIncomedepositShowHideListButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-menu-app" viewBox="0 0 16 16">
+              <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h2A1.5 1.5 0 0 1 5 1.5v2A1.5 1.5 0 0 1 3.5 5h-2A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-2zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-8">
+        <div id="interestIncomeDepositNarration" >
+          <small><b class="text-dark">Narration (Interest Income from Saving Banks)</b> <br><br></small> 
+          <div  id="interestIncomeDepositNarrationRowItems">
+            <div class="row mb-2" id="interestIncomeDepositNarration-0">
+              <input type="text" placeholder="Narration" class="form-control-sm col-md-5 mr-4" required />
+              <input type="text" placeholder="Amount" class="form-control-sm col-md-4" required/>
+              <!-- <div class="col-1"></div>
+              <div class="col-1"></div> -->
+              <div class="col-2">
+                <svg xmlns="http://www.w3.org/2000/svg" id="interestIncomeDepositNarrationClose-0" onclick="interestIncomeDepositNarrationClose(id);"
+                 width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"  style="cursor: pointer;">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                </svg>
+              </div>
+            </div>
+
+          </div>
+          <br>
+          <button class="btn-sm btn-warning" id="interestIncomeDepositNarrationAddItems"><b>Add More Items</b></button>
+        </div>
+      
+
+
+      <p class="small"> <a href="#">Click Here</a> to add any other interest income (eg: interest from bonds, interest
+        from tax refund, etc).</p>
+    </fieldset>
+  </div>
+
+
+  <!--First End-->
+
+  <div class="container">
+    <fieldset>
+      <legend class="text-dark">Other Income</legend>
+      <div class="form-group ">
+        <div class="col-md-8">
+          <b class="text-dark">Any Other Income</b>
+          <br>
+          <span class="small">Report any other income which is not part of Income from Salary, House Property, Capital
+            Gain or Business and Profession.
+            Gifts can be declared as Income here.
+          </span>
+          
+          <div class="row">
+            <input type="text" placeholder="" class="form-control col" />
+            <div class="col-1"></div>
+            <button class="btn-outline-warning col-1 rounded" title="Add Items" id="intrestOtherIncomeShowHideListButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-menu-app" viewBox="0 0 16 16">
+                <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h2A1.5 1.5 0 0 1 5 1.5v2A1.5 1.5 0 0 1 3.5 5h-2A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-2zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+            </button>
+          </div>
+          <div id="interestOtherIncomeNarration" >
+            <small><b class="text-dark">Narration (Interest Income from Saving Banks)</b> <br><br></small> 
+            <div  id="interestOtherIncomeNarrationRowItems">
+              <div class="row mb-2" id="interestOtherIncomeNarration-0">
+                <input type="text" placeholder="Narration" class="form-control-sm col-md-5 mr-4" required />
+                <input type="text" placeholder="Amount" class="form-control-sm col-md-4" required/>
+                <!-- <div class="col-1"></div>
+                <div class="col-1"></div> -->
+                <div class="col-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="interestOtherIncomeNarrationClose-0" onclick="interestOtherIncomeNarrationClose(id);"
+                   width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"  style="cursor: pointer;">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                  </svg>
+                </div>
+              </div>
+  
+            </div>
+            <br>
+            <button class="btn-sm btn-warning" id="interestOtherIncomeNarrationAddItems"><b>Add More Items</b></button>
+          </div
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+
+
+  <!-- <div class="container">
+    <fieldset>
+      <legend class="text-dark">Exempt Income</legend>
+      <div class="row">
+        <div class="col-md-8">
+          <span class="small">Do you have any income from Dividend, Interests from PPF or Other Income which are exempt?
+          </span>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-primary btn-sm">Add Exempt Income</button>
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <b class="text-dark">Any Other Income</b>
+        <br>
+        <span class="small">Report any other income which is not part of Income from Salary, House Property, Capital
+          Gain or Business and Profession.
+          Gifts can be declared as Income here.
+        </span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+    </fieldset>
+  </div> -->
+
+  <div class="container">
+    <fieldset>
+      <legend class="text-dark">Agriculture Income</legend>
+      <div class="row">
+        <div class="col-md-8">
+          <span class="small">Do you have any Income from Agriculture?
+          </span>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-primary btn-sm" onclick="showAgri(this)">Add Agriculture Income</button>
+        </div>
+        <div id="agricultureForm">
+          <b> Gross Agriculture Receipt </b> <br>
+          Specify gross agricultural income <br>
+          <input type="text" name="" id="" class="form-control-sm mb-3"> <br>
+          <b>Expenditure On Agriculture</b> <br>
+          Specify expenditure on agriculture sources <br>
+          
+          <input type="text" name="" id="" class="form-control-sm mb-3"> <br>
+          <b>Unabsorbed Agriculture Loss</b>  <br>
+          Specify unabsorbed agriculture loss <br>
+          
+          <input type="text" name="" id="" class="form-control-sm mb-3"> <br>
+          <b>Net Agriculture Receipt</b> Auto-calculated <br>
+          <input type="text" name="" id="" class="form-control-sm mb-3" value="0"> <br>
+
+          <b>Agriculture Land Details</b> <br>
+          These fields are optional. Enter these values if Net Agriculture Receipt exceeds Rs. 5 Lakhs: <br>
+          <div id="agriFormContent">
+            <div class="row">
+              <div class="col">Name Of District</div>
+              <div class="col">Pincode</div>
+              <div class="col">Measurement (Acres)</div>
+              <div class="col">Ownership Status</div>
+              <div class="col">Source of water</div>
+            </div>
+            <div class="row my-2">
+              <div class="col"><input type="text" placeholder="Name Of District" class="form-control-sm"></div>
+              <div class="col"><input type="text" placeholder="Pincode" class="form-control-sm"></div>
+              <div class="col"><input type="text" placeholder="Measurement (Acres)" class="form-control-sm"></div>
+              <div class="col"><input type="text" placeholder="Ownership Status" class="form-control-sm"></div>
+              <div class="col"><input type="text" placeholder="Source of water" class="form-control-sm"></div>
+            </div>
+          </div>
+          
+          <button type="button" class="btn-sm btn-dark mt-5" onclick="addAgri(this)">Add more</button>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="container mt-5">
+  <div class="fixed-bottom mt-5">
+    <button class="btn btn-primary ml-8 mt-5 ">Save</button>
+  </div>
+</div>
+
+<div class="container mt-5">
+  
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header border-0 p-2">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="https://assets1.cleartax-cdn.com/img/interestincome.png" width="100%" alt="">
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+{%endblock%}
+
+{%block script%}
+<script>
+
+  $("#agricultureForm").hide()
+  function showAgri(e) {
+    e.remove()
+    $("#agricultureForm").fadeIn(1000)
+  }
+  function addAgri(e) {
+    
+    // e.remove()
+    $("#agriFormContent").append(`
+    <div class="row my-2">
+      <div class="col"><input type="text" placeholder="Name Of District" class="form-control-sm"></div>
+      <div class="col"><input type="text" placeholder="Pincode" class="form-control-sm"></div>
+      <div class="col"><input type="text" placeholder="Measurement (Acres)" class="form-control-sm"></div>
+      <div class="col"><input type="text" placeholder="Ownership Status" class="form-control-sm"></div>
+      <div class="col"><input type="text" placeholder="Source of water" class="form-control-sm"></div>
+    </div>
+    `)
+  }
+  $("#interestIncomeNarration ").hide()
+  $("#intrestIncomeShowHideListButton").click(function(){
+    $("#interestIncomeNarration ").toggle(50)
+  })
+  $("#interestIncomeDepositNarration").hide()
+  $("#intrestIncomedepositShowHideListButton").click(function(){
+    $("#interestIncomeDepositNarration").toggle(50)
+  })
+  $("#interestOtherIncomeNarration").hide()
+  $("#intrestOtherIncomeShowHideListButton").click(function(){
+    $("#interestOtherIncomeNarration").toggle(50)
+  })
+  var d = 1
+  $("#interestIncomeDepositNarrationAddItems").click(function(){
+    $("#interestIncomeDepositNarrationRowItems").append(`<div class="row mb-2" id="interestIncomeDepositNarration-${d}">
+                <input type="text" placeholder="Narration" class="form-control-sm col-md-5 mr-4" required />
+                <input type="text" placeholder="Amount" class="form-control-sm col-md-4" required/>
+                <!-- <div class="col-1"></div>
+                <div class="col-1"></div> -->
+                <div class="col-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="interestIncomeDepositNarrationClose-${d}" onclick="interestIncomeDepositNarrationClose(id);" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"  style="cursor: pointer;">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                  </svg>
+                </div>
+              </div>`)
+    d+=1
+  })
+  var c = 1
+  $("#interestIncomeNarrationAddItems").click(function(){
+    $("#interestIncomeNarrationRowItems").append(`<div class="row mb-2" id="interestIncomeNarration-${c}">
+                <input type="text" placeholder="Narration" class="form-control-sm col-md-5 mr-4" required />
+                <input type="text" placeholder="Amount" class="form-control-sm col-md-4" required/>
+                <!-- <div class="col-1"></div>
+                <div class="col-1"></div> -->
+                <div class="col-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="interestIncomeNarrationClose-${c}" onclick="interestIncomeNarrationClose(id);" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"  style="cursor: pointer;">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                  </svg>
+                </div>
+              </div>`)
+    c+=1
+  })
+  var ab = 1
+  $("#interestOtherIncomeNarrationAddItems").click(function(){
+    $("#interestOtherIncomeNarrationRowItems").append(`<div class="row mb-2" id="interestOtherIncomeNarration-${ab}">
+                <input type="text" placeholder="Narration" class="form-control-sm col-md-5 mr-4" required />
+                <input type="text" placeholder="Amount" class="form-control-sm col-md-4" required/>
+                <!-- <div class="col-1"></div>
+                <div class="col-1"></div> -->
+                <div class="col-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" id="interestOtherIncomeNarrationClose-${ab}" onclick="interestOtherIncomeNarrationClose(id);" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16"  style="cursor: pointer;">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                  </svg>
+                </div>
+              </div>`)
+    ab+=1
+  })
+  function interestIncomeNarrationClose(id){
+    var itemId =  id.slice(29)
+    $(`#interestIncomeNarration-${itemId}`).remove()
+    
+  }
+  function interestIncomeDepositNarrationClose(id){
+    var itemId =  id.slice(36)
+    // alert(itemId)
+    $(`#interestIncomeDepositNarration-${itemId}`).remove()
+    
+  }
+  function interestOtherIncomeNarrationClose(id){
+    var itemId =  id.slice(34,)
+    // alert(itemId)
+    $(`#interestOtherIncomeNarration-${itemId}`).remove()
+    
+  }
+  //   alert()
+  // })
+</script>
+
+{%endblock%}

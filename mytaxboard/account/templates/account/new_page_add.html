@@ -1,0 +1,810 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+{% comment %} #a {
+		-webkit-animation: rotation 5s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(359deg);
+		}
+} 
+
+#email_input::placeholder {
+  color: #555964;
+}
+#mobile_input::placeholder {
+  color: #555964;
+}
+  {% comment %} start normal mobile  {% endcomment %}
+@media(max-width: 576px){
+
+    .img1{
+        display: none;
+    }
+    body{
+      max-width:100%;
+      width:100%;
+      margin:0px;
+      padding:0px;
+    }
+}
+
+
+ {% comment %} end normal mobile  {% endcomment %}
+
+
+@media(min-width:576px ) and (max-width:768px) 
+  {
+    {% comment %} #Home_1{padding-top: 150px;} {% endcomment %}
+    .base_body {
+        background-image: url('../../static//svg/Home_bg_svg_ipad.svg');
+        background-repeat: no-repeat;
+        background-position: right -170px top ;
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:7%;          
+        padding-right:7%; 
+      }
+      .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:14px;
+    }
+  }
+
+
+
+@media(min-width:769px) and (max-width:1025px) 
+  {
+    .base_body {
+
+        background-image: url('../../static//svg/Home_bg_svg.svg');
+        background-repeat: no-repeat;
+        background-position: right -290px top ;
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:7%;          
+        padding-right:7%;    
+      }
+      .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:16px;
+    }
+    #products_icon{
+      display:none;
+    }
+    #d_none{
+      display:none;
+    }
+}
+
+
+
+
+
+@media(min-width:1025px)
+  {
+    .base_body {
+        background-image: url('../../static//svg/Home_bg_svg.svg');
+        background-repeat: no-repeat;
+        background-position: right -100px top ;
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:7%;          
+        padding-right:7%; 
+      }
+    .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:21px;
+    }
+    #d_none{
+      display:none;
+    }
+  }
+
+
+  .container {
+    max-width: 1350px;
+  }
+
+  .text-info {
+    color: #324CDD !important;
+  }
+
+  .btn-info {
+    background-color: #324CDD !important;
+  }
+
+  .card-pricing {
+    border-radius: 20px;
+  }
+
+  h2 {
+    font-weight: 700;
+  }
+
+  .details .content {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content {
+    background: #17a2b8;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+  
+
+  .details:hover .content {
+    color: white;
+    padding: 20px;
+  }
+  
+  /* 2 */
+  .details .content2 {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content2 {
+    background:#28a745;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+  
+
+
+  .details:hover .content2 {
+    color: white;
+    padding: 20px;
+  }
+  
+  /* 3 */
+  .details .content3 {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content3 {
+    background:#dc3545;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+  
+
+
+  .details:hover .content3 {
+    color: white;
+    padding: 20px;
+  }
+  
+  /* 4 */
+  .details .content4 {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content4 {
+    background:#e78223;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+
+  .details:hover .content4 {
+    color: white;
+    padding: 20px;
+  }
+
+  .zoom {   
+    transition: transform .3s; /* Animation */
+  }
+  
+  .zoom:hover {
+    transform: scale(1.1); /* (150% zoom)*/
+  }
+  @media (min-width:996px) and (max-width:1096px){
+    .stickynote {
+      height: auto;
+      weight:auto;
+      position: fixed;
+      z-index: 1;
+      top: 40px;
+      right: 21px;
+      background-color: #111;
+      overflow-x: hidden;
+      width:250px;
+    }
+  }
+  @media (min-width:1096px){
+    .stickynote {
+      height: auto;
+      weight:auto;
+      position: fixed;
+      z-index: 1;
+      top: 30px;
+      {% comment %} right: 39px;
+      background-color: #111; {% endcomment %}
+      overflow-x: hidden;
+      width:300px
+    }
+  }
+  .middle{display: flex; justify-content: center; align-items: center;}
+  .accordion {
+    color: #000;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: 0px solid #fff;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+  
+  .active, .accordion:hover {
+    outline: none;
+    border: none;
+  }
+  .active, .accordion: {
+    outline: none;
+    border: none;
+  }
+  .accordion:after {
+    content: '\002B';
+    color: #000;
+    font-weight: bold;
+    font-size:20px;
+    float: right;
+    margin-left: 20px;
+    border: 1px solid #000;
+    border-radius:50%;
+    padding:0px 8px;
+  }
+  
+  .active:after {
+    content: "\2212";
+  }
+  
+  .panel {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  .bordernull {
+    border: none;
+  }
+</style>
+<!--Fisrt Page -->
+<section class="" >
+    <div class="card card-body bg-secondary" >
+        <div class="">
+            <div class="row">
+                <div class="col-md-8" >
+                    {%for i in plan_name%}
+                    <div class="row" >
+                        <div class="col-sm-12 ">
+                            <div class="card" style="min-height:24em; border-radius: 10px; border: 1px solid rgb(67, 161, 246);">      
+                                <div class="card-body middle">
+                                    <div>
+                                    <h1 class="font-weight-bold" style="font-size:43px;">
+                                      <b>{{plan_detail.plan_name|safe}}</b>
+                                    </h1>
+                                    <p class="font-weight-600" style="font-size: 20px;"> {{i.sort_description_plan|safe}} </p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                    <div class='row'>
+                      <div class="d-md-none col-md-6" >
+                        <div class="" >
+                            <div class="">
+                                <div class="card" style="border-radius: 10px; border: 1px solid rgb(67, 161, 246);">
+                                    <div class="text-center pt-5 card-body" style="height:24em;">
+                                        <h1 class="font-weight-600" style="font-family: Gilroy;">{{plan_detail.plan_name}}</h5>
+                                        <h2 class="text-dark font-weight-bold mt-4 mb-0">₹ {{plan_detail.our_price}}</h2>
+                                        <h2><span class="text-muted font-weight-600" style="text-decoration-line: line-through; text-decoration-style: solid;">₹ {{plan_detail.regullar_price}} </span>
+                                            <span class="text-warning">({{plan_detail.discount}}% off)</span>
+                                        </h2>
+                                        <a class="mt-5 mb-2 font-weight-600 btn btn- btn-md" href="{% url 'plan_detail' plan_detail.plan_id %}" style="width: 80%; border-radius: 20px; background-color: rgb(67, 161, 246);">
+                                            
+                                            <h2 class="text-white font-weight-600">Buy Now</h2>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    {% comment %} <div class="d-md-none mt-3 row" >
+                        <div class="col" >
+                            <div class="sticky-outer-wrapper">
+                                <div class="sticky-inner-wrapper" style="position: relative; transform: translate3d(0px, 0px, 0px);">
+                                    <div class="card" >
+                                        <div class="text-center px-5 card-body">
+                                            <h5 class="font-weight-600"></h5>
+                                            <h3 class="text-dark font-weight-600 mt-5 mb-0 " style="font-size:230px;">₹{{plan_detail.plan_name}}</h3>
+                                            <h5 class="text-muted font-weight-600">
+                                                <span style="text-decoration-line: line-through; text-decoration-style: solid;">
+                                                    ₹ 1200 
+                                                </span>
+                                                <b class="text-warning">( 40% off )</b>
+                                            </h5>
+                                            <a class="mt-5 mb-2 font-weight-600 btn btn- btn-md" href="/auth/buyplan" style="width: 100%; border-radius: 20px; background-color: rgb(67, 161, 246);">
+                                                <h5 class="text-white font-weight-600">Buy Now</h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="card card-body shadowless">
+                      <div class="row">
+                        
+                        <div class="col">
+                            <h1 class="font-weight-600">About This Plan</h1>
+                        </div>
+                    </div>
+                    <div class="pt-1 row">
+                        <div class="col">
+                    <p class="font-weight-600" style="font-size: 20px;">{{ about_the_plan_detail.about_the_plan|safe }}</p>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="mb-3 row">
+                        <div class="col-auto pr-0 middle col">
+                            <i class="fas fa-chevron-circle-right" style=" font-size: 25px;"></i>
+                        </div>
+                        <div class="col">
+                            <h1 class="font-weight-600 mb-0">Services Covered</h1>
+                        </div>
+                    </div>
+                    <div class="justify-content-center row">
+                        <div class="col-md-10">
+                            {%for i in service_covered%}
+                            <div class="row">
+                                <div class="col-auto mt-3 col">
+                                    <i class="fas fa-check-square text-success  pt-2" style="font-size: 20px;"></i>
+                                </div>
+                                <div class="col">
+                                    <p class="font-weight-600 " style="font-size: 20px;">{{i.plan_service_covered|safe}}</p>
+                                </div>
+
+                            </div>
+                            {%endfor%} 
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="mb-3 row">
+                        <div class="col-auto pr-0 middle col">
+                            <i class="fas fa-chevron-circle-right" style=" font-size: 25px;"></i>
+                        </div>
+                        <div class="col">
+                            <h1 class="font-weight-600 mb-0">Who Should Buy</h1>
+                        </div>
+                    </div>
+                    <div class="justify-content-center row">
+                        <div class="col-md-10">
+                          {%for i in who_should_buy %}
+                          <div class="row">
+                              <div class="col-auto mt-3 col">
+                                  <i class="fas fa-check-square text-success  pt-2" style="font-size: 20px;"></i>
+                              </div>
+                              <div class="col">
+                                  <p class="font-weight-600" style="font-size: 20px;">{{i.who_should_buy|safe}}</p>
+                              </div>
+                          </div>
+                          {%endfor%}
+ 
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="mb-3 row">
+                            <div class="col-auto pr-0 middle col">
+                            <i class="fas fa-chevron-circle-right" style=" font-size: 25px;"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="font-weight-600 mb-0">How It's Work</h1>
+                            </div>
+                        </div>
+                        {% for i in detail_page_how_its_work_heading_days_name%}
+                        <div class="row">
+                            <div class="col">
+                                <p class="font-weight-600" style="font-size: 20px;">{{i.main_heading_name|safe}}</p>
+                            </div>
+                        </div>
+                        {%endfor%}
+                          <div class="justify-content-center row">
+                              <div class="col-sm-10">
+                                {% for i in detail_page_how_its_work_heading_days_name%}
+                                    <h1 class="font-weight-600 mb-5">{{i.estimated_days}}</h1>
+                                {%endfor%}
+                                <div class="timeline timeline-one-side" data-timeline-axis-style="dotted" data-timeline-content="axis">
+                                  {% for i in how_its_work %}
+                                   
+                                    {% if i.last1 != 'True'%}
+                                    
+                                      <div class="timeline-block">
+                                        <span class="timeline-step ">
+                                            <i class='fa fa-check-circle' style="font-size:30px;color: #43a1f6;"></i>
+                                        </span>
+                                        <div class="timeline-content">
+                                            <p class="font-weight-600 mb-0" style="font-size: 20px;">{{i.detail_of_how_its_work|safe}}</p>
+                                        </div>
+                                      </div>
+                                    {% elif i.last1 == 'True'%}
+                                      <div class="timeline-block">
+                                        <span class="timeline-step">
+                                            <i class='fa fa-check-circle' style="font-size:30px;color:green;"></i>
+                                        </span>
+                                        <div class="timeline-content">
+                                            <p class="font-weight-600 mb-0" style="font-size: 20px;">{{i.detail_of_how_its_work|safe}}</p>
+                                        </div>
+                                      </div>
+
+                                    {%endif%}
+                                  {%endfor%}
+                                </div>
+                            </div>
+                          </div>
+                        
+                        <hr class="my-4">
+                        <div class="mb-3 row">
+                            <div class="col-auto pr-0 middle col">
+                            <i class="fas fa-chevron-circle-right" style=" font-size: 25px;"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="font-weight-600 mb-0 heading_size">Documents To Be Submitted</h1>
+                            </div>
+                        </div>
+                        <div class="justify-content-center row">
+                            <div class="col-sm-11">
+                                <div class="mt-3 row">
+                                    {% comment %} <div class="col-md-6">
+                                        <div class="pt-4 row">
+                                            <div class="col-auto col">
+                                                <span class="rounded-circle p-3 badge badge-info">
+                                                    <i class="fas fa-suitcase-rolling" style="font-size: 25px;"></i>
+                                                </span>
+                                            </div>
+                                            <div class="my-auto col">
+                                                <p class="font-weight-600 mb-0" style="font-size: 20px;">Form 16 from your company</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pt-4 row">
+                                            <div class="col-auto col">
+                                                <span class="rounded-circle p-3 badge badge-danger">
+                                                    <i class="fas fa-shield-virus" style="font-size: 25px;"></i>
+                                                </span>
+                                            </div>
+                                            <div class="my-auto col">
+                                                <p class="font-weight-600 mb-0" style="font-size: 20px;">Additional Form 16</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pt-4 row">
+                                            <div class="col-auto col">
+                                                <span class="rounded-circle p-3 badge badge-warning">
+                                                    <i class="fas fa-cloud-upload-alt" style="font-size: 20px;"></i>
+                                                </span>
+                                            </div>
+                                            <div class="my-auto col">
+                                                <p class="font-weight-600 mb-0" style="font-size: 20px;">Form 26AS Tax Credit Statement</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pt-4 row">
+                                            <div class="col-auto col">
+                                                <span class="rounded-circle p-3 badge badge-success">
+                                                    <i class="fas fa-id-card" style="font-size: 20px;"></i>
+                                                </span>
+                                            </div>
+                                            <div class="my-auto col">
+                                                <p class="font-weight-600 mb-0" style="font-size: 20px;">Aadhar Card</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pt-4 row">
+                                            <div class="col-auto col">
+                                                <span class="rounded-circle p-3 badge badge-info">
+                                                    <i class="fas fa-university" style="font-size: 25px;"></i>
+                                                </span>
+                                            </div>
+                                            <div class="my-auto col">
+                                                <p class="font-weight-600 mb-0" style="font-size: 20px;">Bank statement if interest received is above Rs. 10,000/-</p>
+                                            </div>
+                                        </div>
+                                    </div> {% endcomment %}
+                                    {%for i in information_guide%}
+                                    <div class="col-md-6">
+                                        <div class="pt-4 row">
+                                            <div class="col-auto col">
+                                                <span class="rounded-circle p-3 badge badge-{%if i.badge_color %}{{i.badge_color}}{%else%}success {%endif%}">
+                                                    <i class="{%if i.icon_code %}{{i.icon_code}}{%else%}fas fa-file{%endif%}" style="font-size: 25px;"></i>
+                                                </span>
+                                            </div>
+                                            <div class="my-auto col">
+                                                <p class="font-weight-600 mb-0" style="font-size: 20px;">{{i.information_guide|safe}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {%endfor%}
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="mb-3 row">
+                            <div class="col-auto pr-0 middle col">
+                            <i class="fas fa-chevron-circle-right" style=" font-size: 25px;"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="font-weight-600 mb-0">FAQ'S</h1>
+                            </div>
+                        </div>
+
+                        {%for i in question_and_answer%}
+                        
+                        <div class="row">
+                            <div class="col">
+                                
+                                <div class="accordion font-weight-600" style="font-size:20px;">Q.{{forloop.counter}} {{i.question}}</div>
+                                <div class="panel">
+                                    <p class="font-weight-500" style="font-size:20px">{{i.answer|safe}}</p>
+                                  </div>
+                                <hr class="mx-3 mt-0 mb-1" style="width:100%; height:0.1px; background-color:black" />
+                            </div>
+                        </div>
+                        {% comment %} <div class="pt-4 row">
+                            <div class="col">
+                                <div class="panel">
+                                    <p class="py-3 font-weight-500" style="font-size:20px">{{i.answer|safe}}</p>
+                                  </div>
+                                <hr class="mx-3 mt-0 mb-1" style="width:100%; height:0.1px; background-color:black" />
+                                  
+                                <p class="font-weight-600" style="font-size: 15px;">{{i.answer|safe}}</p>
+                            </div>
+                        </div> {% endcomment %}
+                        <hr class="my-3">
+                        {%endfor%}
+                        
+                        <div class="mb-3 row">
+                            <div class="col-auto pr-0 middle col">
+                            <i class="fas fa-chevron-circle-right" style=" font-size: 25px;"></i>
+                            </div>
+                            <div class="col">
+                                <h1 class="font-weight-600 mb-0">Review's</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            {%for i in reviews_name_and_msg%}
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4 class="font-weight-600 text-dark mb-0">{{i.reviews_name}}</h4>
+                                                <p class="font-weight-600" style="font-size: 18px;">
+                                                    {{i.reviews_rating}}
+                                                    {%for j in i.reviews_rating_star%}
+                                                    <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                                    {%endfor%}
+                                                    {%for j in i.reviews_rating_blank%}
+                                                    <i class="far fa-star text-orange" aria-hidden="true"></i>
+                                                    {%endfor%}
+                                                </p>
+                                            </div>
+                                            <div class="col-auto col">
+                                              {%if i.more_About_page_header_image %}
+                                                <img src="https://mytaxboard-production-files.s3.amazonaws.com/media/{{i.more_About_page_header_image}}" alt="error" class="avatar rounded-circle">
+                                              {%else%}
+                                              <img src="{% static '/assets_dashboard/img/theme/team-4.jpg' %}" alt="error" class="avatar rounded-circle">
+                                              {%endif%}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="font-weight-600" style="font-size: 18px;">{{i.reviews_msg|safe}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endfor%}
+                            {% comment %} <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4 class="font-weight-600 text-dark mb-0">vinod Kumar</h4>
+                                                <p class="font-weight-600" style="font-size: 18px;">
+                                                    4.2
+                                                    <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                                    <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                                    <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                                    <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                                    <i class="far fa-star text-orange" aria-hidden="true"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-auto col">
+                                                <img src="https://i.pinimg.com/originals/10/91/94/1091948c6b80b65b9eef8c163f0ae42a.jpg" alt="error" class="avatar rounded-circle">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="font-weight-600" style="font-size: 18px;">Filing taxes is something I have never got right doing it by myself. Thanks to MytaxBoard, my tax filing for the last 3 years has been quick and accurate. Their expert CA's get the job done everytime! </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                             {% endcomment %}
+                        </div> 
+                      </div>                         
+                    </div>                            
+                    
+                    
+                    {% comment %} <div class="col-lg-3 px-3 py-3 text-center">
+                        <div class="card bg-white shadow border-0 mb-0" id="mynote" style="width:300px">   
+                          <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                              <large class="text-default font-weight-bold">Get Expert Assistance</large>
+                            </div>
+                            <form role="form">
+                              <div class="form-group mb-3">
+                                <div class="input-group input-group-alternative">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                  </div>
+                                  <input class="form-control" placeholder="Email" type="email">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                  </div>
+                                  <input class="form-control" placeholder="Phone number" type="number">
+                                </div>
+                              </div>
+                              <div class="text-center">
+                                <button type="button" class="btn btn-primary my-4">Request a callback</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div> {% endcomment %}
+                    
+                    <div class="d-none d-md-block col-md-3 " >
+                                <div class="sticky-outer-wrapper" style="width:300px" id="mynote" >
+                                    <div class="sticky-inner-wrapper" style="position: relative; transform: translate3d(0px, 0px, 0px);">
+                                        <div class="card" style="border-radius: 10px; border: 1px solid rgb(67, 161, 246);">
+                                            <div class="text-center pt-5 card-body" style="height:24em;">
+                                                <h1 class="font-weight-600" style="font-family: Gilroy;">{{plan_detail.plan_name}}</h5>
+                                                <h2 class="text-dark font-weight-bold mt-4 mb-0">₹ {{plan_detail.our_price}}</h2>
+                                                <h2><span class="text-muted font-weight-600" style="text-decoration-line: line-through; text-decoration-style: solid;">₹ {{plan_detail.regullar_price}} </span>
+                                                    <span class="text-warning">({{plan_detail.discount}}% off)</span>
+                                                </h2>
+                                                <a class="mt-5 mb-2 font-weight-600 btn btn- btn-md" href="{% url 'plan_detail' plan_detail.plan_id %}" style="width: 80%; border-radius: 20px; background-color: rgb(67, 161, 246);">
+                                                    
+                                                    <h2 class="text-white font-weight-600">Buy Now</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-md-none col-md-3 " >
+                      <div>
+                          <div class="">
+                              <div class="card" style="border-radius: 10px; border: 1px solid rgb(67, 161, 246);">
+                                  <div class="text-center pt-5 card-body" style="height:24em;">
+                                      <h1 class="font-weight-600" style="font-family: Gilroy;">{{plan_detail.plan_name}}</h5>
+                                      <h2 class="text-dark font-weight-bold mt-4 mb-0">₹ {{plan_detail.our_price}}</h2>
+                                      <h2><span class="text-muted font-weight-600" style="text-decoration-line: line-through; text-decoration-style: solid;">₹ {{plan_detail.regullar_price}} </span>
+                                          <span class="text-warning">({{plan_detail.discount}}% off)</span>
+                                      </h2>
+                                      <a class="mt-5 mb-2 font-weight-600 btn btn- btn-md" href="{% url 'plan_detail' plan_detail.plan_id %}" style="width: 80%; border-radius: 20px; background-color: rgb(67, 161, 246);">
+                                          
+                                          <h2 class="text-white font-weight-600">Buy Now</h2>
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+<Section>
+
+{% endblock content %}
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+      
+      
+      window.onscroll = function() {myFunction()};
+    
+      var header = document.getElementById("mynote");
+      var sticky = header.offsetTop;
+    
+      function myFunction() {
+        if (window.pageYOffset > 350) {
+          console.log(sticky)
+          header.classList.add("stickynote");
+        } else {
+          header.classList.remove("stickynote");
+        }
+      } 
+</script>
+
+    <script>
+          $("#check_data").click(function(){
+              $("#check_data").text("-");
+            $("#toggle_text").toggle();
+
+          });
+</script>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+{% endblock script %}

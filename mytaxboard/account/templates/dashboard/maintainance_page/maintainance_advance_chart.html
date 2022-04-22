@@ -1,0 +1,37 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block style %}
+
+
+{% endblock style %}
+
+
+{% block content %}
+ <!-- Main content -->
+    <div class="container">
+      <div class="row mt-6">
+          <div class="col-sm-5 text-center card-body py-5" style="display: flex; justify-content: center; align-items: center;">
+            <div>
+              <h1 class="display-3"> We have got something<br>special in store for you</h1><br>
+              <p class="h2 text-dark">And we can't wait for you to see it. <span class="text-success">Please check back soon.</span></p>
+            </div>
+          </div>
+          <div class="col-sm-7 card-body" style="display: flex; justify-content: center; align-items: center;">
+          <img  src="/static/svg/maintainance.svg " class="img-fluid"  alt="">
+              
+          </div>
+        </div>
+    </div>
+  
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+    $('.nav-item a').removeClass('btn btn-primary text-white');
+    $('.advance_chart-item a').addClass('btn btn-primary text-white');
+    $('.advance_chart-item a img').attr('src','/static/svg/dashboard_base/advance_chart_white.svg');
+    
+</script>
+{% endblock script %}

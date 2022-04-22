@@ -1,0 +1,1033 @@
+{% extends "dashboard_base_for_home_service_page.html" %}
+
+{% load static %}
+{% block style %}
+<meta name="google-signin-client_id" content={%for i in login_id%}{{i.login_id}}{%endfor%}>
+
+<style>
+    .container {
+        max-width: 1350px;
+    }
+    html {
+        scroll-behavior: smooth !important;
+        width:100%;
+        height:100%;
+        padding:0px;
+        margin:0px;
+        overflow-x:hidden;
+    }
+    .base_body, .base_body1 {
+        padding-left:3%;          
+        padding-right:3%; 
+    }
+    @media(max-width: 576px){
+        .base_body {
+            padding-left:0px;          
+            padding-right:0px; 
+        }
+        .Summary{
+            padding:5%;
+        }
+    }
+    @media(min-width: 576px){
+        .Summary{
+            padding:8%;
+        }
+    }
+    @media (min-width:996px) and (max-width:1096px){
+        .stickynote {
+          height: auto;
+          weight:auto;
+          position: fixed;
+          z-index: 1;
+          top: 40px;
+          right: 21px;
+          background-color: #111;
+          overflow-x: hidden;
+          width:250px;
+        }
+      }
+      @media (min-width:1096px){
+        .stickynote {
+          height: auto;
+          weight:auto;
+          position: fixed;
+          z-index: 1;
+          top: 30px;
+          {% comment %} right: 39px;
+          background-color: #111; {% endcomment %}
+          overflow-x: hidden;
+          width:300px
+        }
+      }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static '/assets_dashboard/vendor/sweetalert2/dist/sweetalert2.min.css' %}">
+
+<div class="container mt-3">
+    <div class="mb-5">
+        <div class="card-body">
+            <p class="display-4 text-center text-dark"> Your Order Summary</p>    
+        </div>
+        <form method="post">{% csrf_token %}             
+            {% if request.user.is_authenticated %}
+            <div class="row">
+                <div class="col-md-6" >
+                    <div class="mt-4 shadow" style="height:95%">
+                        <div class="Summary pb-5" style=" width:100%">
+                            <h4 class="title mt-3 text-dark">{{pricing_plan.ind_popular_plan_sort_name}} (Plan ID : {{pricing_plan.plan_id}})</h4>
+                            <h5 class="text-dark">Communication Email Address</h5>
+
+                            <div class="row pt-5">
+                                <div class="col-md-12">
+                                    <label class="labels">
+                                        Email
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="email" class="form-control" id ="email_id" name="email" placeholder="" value="{{request.user.username}}" aria-label="Cristopher" required="">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            First Name
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder=""
+                                            aria-label="thompson@gmail.com" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            Last Name
+                                        </label>
+                                        <input type="text" name="last_name" class="form-control" id="last_name" placeholder="" aria-label="+4 (0762) 230991">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            Country Code
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="streetAddress" placeholder="+91 IND" aria-label="420 Long Beach, CA" required="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            Contact Number
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="contact_number" id ='contact_id' placeholder=""aria-label="340112" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="my-3 row">
+                                    <div class="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                            <label class="custom-control-label" for="customCheck1">I agree to receive updates on WhatsApp
+                                                <span><i class="fab fa-whatsapp-square text-success" style="font-size: 25px;"></i></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="labels" id="stateLabel">
+                                        State
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    {% comment %} <input type="text" class="form-control" name="state" placeholder=""
+                                        aria-label="Cristopher" required=""> {% endcomment %}
+                                    <form>
+                                        <select name="state" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Select State">
+                                            <option>Default select</option>
+                                            <option>Andaman and Nicobar (UT)</option>
+                                            <option>Andhra Pradesh</option>
+                                            <option>Arunachal Pradesh</option>
+                                            <option>Assam</option>
+                                            <option>Bihar</option>
+                                            <option>Chandigarh (UT)</option>
+                                            <option>Chhattisgarh</option>
+                                            <option>Dadra and Nagar Haveli (UT)</option>
+                                            <option>Daman and Diu (UT)</option>
+                                            <option>Delhi</option>
+                                            <option>Goa</option>
+                                            <option>Gujraj</option>
+                                            <option>Haryana</option>
+                                            <option>Himachal Predesh</option>
+                                            <option>Jammu and Kashmir</option>
+                                            <option>Jharkhand</option>
+                                            <option>Karnataka</option>
+                                            <option>Kerala</option>
+                                            <option>Lakshadweep (UT)</option>
+                                            <option>Madhya Pradesh</option>
+                                            <option>Maharashtra</option>
+                                            <option>Manipur</option>
+                                            <option>Meghalaya</option>
+                                            <option>Mizoram</option>
+                                            <option>Nagaland</option>
+                                            <option>Orissa</option>
+                                            <option>Puducherry (UT)</option>
+                                            <option>Punjab</option>
+                                            <option>Rajasthan</option>
+                                            <option>Sikkim</option>
+                                            <option>Tamil Nadu</option>
+                                            <option>Telangana</option>
+                                            <option>Tripura</option>
+                                            <option>Uttar Pradesh</option>
+                                            <option>Uttarakhand</option>
+                                            <option>West Bengal</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="my-3 row">
+                                <div class="col">
+                                    <h5 class="text-dark font-weight-600">Do you have a GSTIN ?</h5>
+                                </div>
+                                <div class="text-right mt-1 col">
+                                    <label class="custom-toggle">
+                                        <input type="checkbox" id="gstin">
+                                        <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-dark font-weight-600">If you are registered as a business, we will need your GSTIN so that you can claim Input Tax Credit under the GST Regulations.</p>
+                                </div>
+                            </div>
+                            <div id="gstinInput">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="gstin">GSTIN
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="gstin" placeholder="Please enter your company / firm's GSTIN here" id="gstin" type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="code">Company / Firm's Name (as per GSTIN)
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="company_name" placeholder="Please enter your company / firm's name here" id="code" type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Company / Firm Address (as per GSTIN)
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="company_add" placeholder="Please enter your company / firm's adderess here" id="exampleFormControlTextarea1" rows="3" type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="gstin">Pin Code
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="pin_code" placeholder="Please enter your area pin code here" id="gstin" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="col-sm-6">
+                    <div class="mt-4 shadow" style="height:95%">
+                        <div class="Summary" style="width:100%">
+                            <h4 class="mt-3 title text-dark">Payment Details</h4>
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="mt-4"><b>Original Amount </b></h5>
+                                </div>
+                                <div class="col-auto">
+                                    <h5 class="mt-4">
+                                        <b>
+                                            <span id="change_original_price">₹ <span id="org_a_c">{{pricing_plan.ind_popular_regullar_price}}</span></span>
+                                        </b>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="mt-4"><b>Plan Amount </b></h5>
+                                </div>
+                                <div class="col-auto">
+                                    <h5 class="mt-4">
+                                        <b>
+                                            <span id="change_plan_price">₹ <span id="prc_a_c">{{pricing_plan.ind_popular_our_price}}</span></span>
+                                        </b>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mt-4"><b>Tax</b></p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mt-4">
+                                        <b>
+                                            <span>{{pricing_plan.gst}} %</span>
+                                        </b>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mt-4"><b>Total GST & Service Tax</b></p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mt-4">
+                                        <b>
+                                            <span id="total_gst_and_tax_service_price">₹ <span id="total_gst_and_tax_service"> {{pricing_plan.ind_popular_total_gst}}</span></span>
+                                        </b>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr class="w-100 my-2">
+                            <div class="row">
+                                <div class="col">
+                                    <p ><b>Quantity</b></p>
+                                </div>
+                                <div class="col-5">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" id="down" class="btn btn-outline-primary btn-round p-2" onclick="increase_plan()"><i class="ni ni-fat-delete" style="font-size:20px"></i></button>
+                                        </div>
+                                        {% comment %} <input type="text" id="myNumber" class="form-control input-number px-2" value="1" /> {% endcomment %}
+                                        <span  class="form-control input-number text-center" id="plan_increase_show"><span id="one_r">1</span></span>
+                                        <div class="input-group-btn">
+                                            <button type="button" id="up" class="btn btn-outline-primary btn-round p-2" onclick="increase_plan()"><i class="ni ni-fat-add" style="font-size:20px"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 row">
+                                <div class="col">
+                                    <h5 class="text-primary font-weight-600">Have a coupon code ?</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input id="example-text-input" type="text" class="form-control" placeholder="Coupon Code">
+                                    </div>
+                                </div>
+                                <div class="col-auto col">
+                                    <button type="button" class="btn btn-primary">Apply</button>
+                                </div>
+                            </div>
+                            <hr class="w-100 my-2">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="mt-4"><b>Total</b></h5>
+                                </div>
+                                <div class="col-auto">
+                                    <h5 class="mt-4">
+                                        <b>
+                                            <span class="float-lg-right" id="total_price" >₹ <span id="total" >{{pricing_plan.ind_popular_total_price_and_gst}}</span></span>
+                                        </b>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="text-dark  mr-auto">Service Provider's GSTIN: 
+                                                <b>**********************</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {% comment %} <input type="text" id="myNumber" class="form-control input-number px-2" value="1" /> {% endcomment %}
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" id="customCheck2" type="checkbox">
+                                                <label class="custom-control-label" for="customCheck2">I accept MytaxBoard 
+                                                    <b class="text-primary">Terms of use, Privacy Policy</b> 
+                                                    and 
+                                                    <b class="text-primary">Refund Policy.</b>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" value="{{pricing_plan.ind_popular_total_price_and_gst}}" name="total_amt">
+                            <input type="hidden" value="1" name="total_plan">
+                            <p class="mt-3 text-center">
+                                <button type="submit" class="btn btn-success data_save" id="rzp-button111">PROCEED TO PAY
+                                    <span  class="ml-5"><i class="ni ni-bold-right"></i></span>
+                                </button>
+                            </p>
+                            <div class="py-3 row">
+                                <div class="col">
+                                    <p class="text-dark ">By checking out you agree with our TOS. We will process your data for the fulfillment of your order and other purposes as per our Privacy Policy.</p>
+                                </div>
+                            </div>
+                            <div class="row py-4">
+                                <div class="col">
+                                    <img src="https://assets.hostinger.com/cart/images/gateways/processout_apm-36b71754b7.dlocalupi.png" alt="error" width="100" class="img-fluid">
+                                </div>
+                                <div class="col">
+                                    <img src="https://assets.hostinger.com/cart/images/gateways/processout_apm-52a6374ce1.dlocalpaytmwallet.png" alt="error" width="100" class="img-fluid">
+                                </div>
+                                <div class="col">
+                                    <img src="https://assets.hostinger.com/lang/en-in/cart/images/gateways/processout-4c40b28011.png" alt="error" width="100" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+            <form>
+            {% else %}
+        <form method="post">{% csrf_token %}             
+            
+            <div class="row one-sss" style="display:flex; justify-content:center; " >
+                
+                {% comment %} ####################### Start ############### {% endcomment %}
+                
+                <div class="col-md-6" id="add_card_add">
+                    <div class="mt-4 shadow" style="height:95%">
+                        <div class="Summary pb-5" style=" width:100%">
+                            <h4 class="title mt-3 text-dark">{{pricing_plan.plan_sort_name}} (Plan ID : {{pricing_plan.ind_popular_plan_id}})</h4>
+                            <h5 class="text-dark">Communication Email Address</h5>
+
+                            <div class="row pt-5">
+                                <div class="col-md-12">
+                                    <label class="labels">
+                                        Email
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="email" class="form-control" id ="email_id" name="" placeholder="" value="{{request.user.username}}" aria-label="Cristopher" required="">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            First Name
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder=""
+                                            aria-label="thompson@gmail.com" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            Last Name
+                                        </label>
+                                        <input type="text" name="last_name" class="form-control" id="last_name" placeholder="" aria-label="+4 (0762) 230991">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            Country Code
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="streetAddress" placeholder="+91 IND" aria-label="420 Long Beach, CA" required="" >
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="js-form-message">
+                                        <label class="labels">
+                                            Contact Number
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" name="contact_number" id ='contact_id' placeholder=""aria-label="340112" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="my-3 row">
+                                    <div class="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                            <label class="custom-control-label" for="customCheck1">I agree to receive updates on WhatsApp
+                                                <span><i class="fab fa-whatsapp-square text-success" style="font-size: 25px;"></i></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="labels" id="stateLabel">
+                                        State
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    {% comment %} <input type="text" class="form-control" name="state" placeholder=""
+                                        aria-label="Cristopher" required=""> {% endcomment %}
+                                    <form>
+                                        <select name="state" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Select State">
+                                            <option>Default select</option>
+                                            <option>Andaman and Nicobar (UT)</option>
+                                            <option>Andhra Pradesh</option>
+                                            <option>Arunachal Pradesh</option>
+                                            <option>Assam</option>
+                                            <option>Bihar</option>
+                                            <option>Chandigarh (UT)</option>
+                                            <option>Chhattisgarh</option>
+                                            <option>Dadra and Nagar Haveli (UT)</option>
+                                            <option>Daman and Diu (UT)</option>
+                                            <option>Delhi</option>
+                                            <option>Goa</option>
+                                            <option>Gujraj</option>
+                                            <option>Haryana</option>
+                                            <option>Himachal Predesh</option>
+                                            <option>Jammu and Kashmir</option>
+                                            <option>Jharkhand</option>
+                                            <option>Karnataka</option>
+                                            <option>Kerala</option>
+                                            <option>Lakshadweep (UT)</option>
+                                            <option>Madhya Pradesh</option>
+                                            <option>Maharashtra</option>
+                                            <option>Manipur</option>
+                                            <option>Meghalaya</option>
+                                            <option>Mizoram</option>
+                                            <option>Nagaland</option>
+                                            <option>Orissa</option>
+                                            <option>Puducherry (UT)</option>
+                                            <option>Punjab</option>
+                                            <option>Rajasthan</option>
+                                            <option>Sikkim</option>
+                                            <option>Tamil Nadu</option>
+                                            <option>Telangana</option>
+                                            <option>Tripura</option>
+                                            <option>Uttar Pradesh</option>
+                                            <option>Uttarakhand</option>
+                                            <option>West Bengal</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="my-3 row">
+                                <div class="col">
+                                    <h5 class="text-dark font-weight-600">Do you have a GSTIN ?</h5>
+                                </div>
+                                <div class="text-right mt-1 col">
+                                    <label class="custom-toggle">
+                                        <input type="checkbox" id="gstin">
+                                        <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-dark font-weight-600">If you are registered as a business, we will need your GSTIN so that you can claim Input Tax Credit under the GST Regulations.</p>
+                                </div>
+                            </div>
+                            <div id="gstinInput">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="gstin">GSTIN
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="gstin" placeholder="Please enter your company / firm's GSTIN here" id="gstin" type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="code">Company / Firm's Name (as per GSTIN)
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="company_name" placeholder="Please enter your company / firm's name here" id="code" type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Company / Firm Address (as per GSTIN)
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="company_add" placeholder="Please enter your company / firm's adderess here" id="exampleFormControlTextarea1" rows="3" type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="gstin">Pin Code
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input name="pin_code" placeholder="Please enter your area pin code here" id="gstin" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                {% comment %} ################## End ##################3 {% endcomment %}
+                <div class=" col-sm-6" id="remove_card">
+                    <div class="mt-4 shadow" style="height:40em; background-color:#F9F8F8;">
+                        <div class="Summary">
+                            <div class="pb-5"> 
+                                <div class="text-muted text-center mt-3 mb-4"><h4 class="title text-dark">Sign Up</h4></div>
+                                    
+                                <div class="btn-wrapper text-center" style="display: flex; justify-content: center; align-items: center;">
+                                    <a class="display: flex; justify-content: center; align-items: center;">
+                                        <div class="row" >
+                                          <div class="col-sm-12 text-center m-0 p-0 g-signin2"
+                                           data-onsuccess="onSignIn1" 
+                                           data-accesstype="online"
+                                           data-scope="https://www.googleapis.com/auth/plus.login"
+                                           data-theme="dark"
+                                           style="width:240px;height:40px;color:white;font-weight:bold;"
+                                           >
+                                          </div>
+                                        </div>
+                                      </a> 
+                                  </div>
+                                
+                                {% comment %} <div class="btn-wrapper text-center">
+                                        <a href=""class="">
+                                        <span class="btn-inner--icon"><img class="mr-1" style="height: 40px;width:40px;" src="/static/assets_design/img/icons/common/linkedin.jpg"></span>
+                                        <span class="btn-inner--text"></span>
+                                        </a>
+                                        <a href="" class="">
+                                        <span class="btn-inner--icon"><img src="/static/assets_design/img/icons/common/google.svg"></span>
+                                        <span class="btn-inner--text"></span>
+                                        </a>
+                                        <a href="" class="">
+                                        <span class="btn-inner--icon"><img class="ml-1" style="height: 38px;width:38px;" src="/static/assets_design/img/icons/common/facebook.png"></span>
+                                        <span class="btn-inner--text"></span>
+                                        </a>
+                                    </div> {% endcomment %}
+                                </div>
+            
+                                <div class="card shadow-none px-lg-4 py-lg-2" style="background-color: #F9F8F8;">
+                                    {% comment %} <div class="text-center text-muted mb-4">
+                                        <plogin with credentials</p>
+                                    </div> {% endcomment %}
+                                    {% comment %} <div class="text-center text-muted mb-4">
+                                        <span id="error_msg"></span>
+                                    </div> {% endcomment %}
+                                    <div class="form-group mb-3  pb-4 pt-4">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-email-83" style="color:black"></i></span>
+                                            </div>
+                                            <input class="form-control" id="username" name="username" placeholder="Email" type="email"  required style="color:black">
+                                        </div>
+                                    </div>                                                                                     
+                                    <div class="form-group  pb-4 pt-4">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-lock-circle-open" style="color:black"></i></span>
+                                            </div>
+                                            <input class="form-control" id="password" name="password" placeholder="Password" type="password"  required style="color:black">
+                                        </div>
+                                    </div>
+                                    <div class="form-group pb-4 pt-4">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-lock-circle-open" style="color:black"></i></span>
+                                            </div>
+                                            <input class="form-control" id="pass_conf" name="password_confirm" placeholder="Password confirm" type="password" required style="color:black">
+                                        </div>
+                                    </div>
+                                    <div class="text-center" style="background-color: #F9F8F8;">
+                                        <button type="button" class="btn btn-primary my-4" id="click_button" data-toggle="modal" data-target="#modal-notification">Create Account </button>
+                                        {% comment %} <button type="button" class="btn btn-block btn-warning mb-3" >Notification</button> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mt-4 shadow" style="height:95%">
+                            <div class="Summary" style="width:100%">
+                                <h4 class="mt-3 title text-dark">Payment Details</h4>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="mt-4"><b>Original Amount </b></h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h5 class="mt-4">
+                                            <b>
+                                                <span id="change_original_price">₹ <span id="org_a_c">{{pricing_plan.ind_popular_regullar_price}}</span></span>
+                                            </b>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="mt-4"><b>Plan Amount </b></h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h5 class="mt-4">
+                                            <b>
+                                                <span id="change_plan_price">₹ <span id="prc_a_c">{{pricing_plan.ind_popular_our_price}}</span></span>
+                                            </b>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="mt-4"><b>Tax</b></p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <p class="mt-4">
+                                            <b>
+                                                <span>{{pricing_plan.gst}} %</span>
+                                            </b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="mt-4"><b>Total GST & Service Tax</b></p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <p class="mt-4">
+                                            <b>
+                                                <span id="total_gst_and_tax_service_price">₹ <span id="total_gst_and_tax_service"> {{pricing_plan.ind_popular_total_gst}}</span></span>
+                                            </b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr class="w-100 my-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <p ><b>Quantity</b></p>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button type="button" id="down" class="btn btn-outline-primary btn-round p-2" onclick="increase_plan()"><i class="ni ni-fat-delete" style="font-size:20px"></i></button>
+                                            </div>
+                                            {% comment %} <input type="text" id="myNumber" class="form-control input-number px-2" value="1" /> {% endcomment %}
+                                            <span  class="form-control input-number text-center" id="plan_increase_show"><span id="one_r">1</span></span>
+                                            <div class="input-group-btn">
+                                                <button type="button" id="up" class="btn btn-outline-primary btn-round p-2" onclick="increase_plan()"><i class="ni ni-fat-add" style="font-size:20px"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-4 row">
+                                    <div class="col">
+                                        <h5 class="text-primary font-weight-600">Have a coupon code ?</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input id="example-text-input" type="text" class="form-control" placeholder="Coupon Code">
+                                        </div>
+                                    </div>
+                                    <div class="col-auto col">
+                                        <button type="button" class="btn btn-primary">Apply</button>
+                                    </div>
+                                </div>
+                                <hr class="w-100 my-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="mt-4"><b>Total</b></h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h5 class="mt-4">
+                                            <b>
+                                                <span class="float-lg-right" id="total_price" >₹ <span id="total" >{{pricing_plan.ind_popular_total_price_and_gst}}</span></span>
+                                            </b>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-dark  mr-auto">Service Provider's GSTIN: 
+                                                    <b>**********************</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class="col">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" id="customCheck2" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck2">I accept MytaxBoard 
+                                                        <b class="text-primary">Terms of use, Privacy Policy</b> 
+                                                        and 
+                                                        <b class="text-primary">Refund Policy.</b>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" value="{{pricing_plan.ind_popular_total_price_and_gst}}" name="total_amt">
+                                <input type="hidden" value="1" name="total_plan">
+                                <p class="mt-3 text-center">
+                                    <button type="submit" class="btn btn-success data_save button_hide" id="rzp-button111"  disabled>PROCEED TO PAY
+                                        <span  class="ml-5"><i class="ni ni-bold-right"></i></span>
+                                    </button>
+                                </p>
+                                <div class="py-3 row">
+                                    <div class="col">
+                                        <p class="text-dark ">By checking out you agree with our TOS. We will process your data for the fulfillment of your order and other purposes as per our Privacy Policy.</p>
+                                    </div>
+                                </div>
+                                <div class="row py-4">
+                                    <div class="col">
+                                        <img src="https://assets.hostinger.com/cart/images/gateways/processout_apm-36b71754b7.dlocalupi.png" alt="error" width="100" class="img-fluid">
+                                    </div>
+                                    <div class="col">
+                                        <img src="https://assets.hostinger.com/cart/images/gateways/processout_apm-52a6374ce1.dlocalpaytmwallet.png" alt="error" width="100" class="img-fluid">
+                                    </div>
+                                    <div class="col">
+                                        <img src="https://assets.hostinger.com/lang/en-in/cart/images/gateways/processout-4c40b28011.png" alt="error" width="100" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>                   
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                        <div class="modal-content bg-gradient-danger">
+                        
+                            {% comment %} <div class="modal-header">
+                                <h6 class="modal-title" id="modal-title-notification"></h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" class="ml-4">NEXT</span>
+                                </button>
+                            </div> {% endcomment %}
+                        
+                            <div class="modal-body">
+                                <div class="py-3 text-center">
+                                    {% comment %} <i class="ni ni-bell-55 ni-3x"></i> {% endcomment %}
+                                <h4 class="heading mt-4">  <span id="error_msg"><span id="error_msg1">Please All Detaill </span></span> </h4>
+                                    {% comment %} <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> {% endcomment %}
+                                </div> 
+                            </div>
+                            <div class="modal-footer" style="justify-content:center">
+                            <button type="button" class="btn btn-white "  data-dismiss="modal" ><span id="error_btn" value="done"><span id="error_msg2">Ok</span></span> </button>
+                            {% comment %} <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}     
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock content %}
+
+{% block script %}
+<script>
+    $('#add_card').hide();
+    $("#gstinInput").hide();
+    $("#add_card_add").hide();
+</script>
+
+<script>
+    var switchStatus = false;
+    $("#gstin").on("change", function(){
+        if($(this).is(":checked")){
+            switchStatus = $(this).is(":checked");
+            $("#stateLabel").html("State (as per GSTIN) <span class='text-danger'>*</span>")
+            $("#gstinInput").show();
+            
+        }
+        else{
+            switchStatus = $(this).is(":checked");
+            $("#stateLabel").html("State <span class='text-danger'>*</span>")
+            $("#gstinInput").hide();
+            
+        }
+    })
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+  $("#click_button").click(function(){
+      var pass_conf = $('#pass_conf').val();
+      var username = $('#username').val();
+      var password = $('#password').val();
+      $.ajax(
+    {
+        url: "/account/ajax_call_for_pricing_plan_create_user",
+        data:{
+          pass_conf:pass_conf,
+          username:username,
+          password:password,
+        },
+        success: function(result) 
+        {   
+            if (result.error == 'Password Does Not Match !!!!'){
+                $('#error_msg1').remove();
+                $('#error_msg2').remove();
+                $('#error_msg').append('<span id="error_msg1">'+result.error+'</span>');
+                $('#error_btn').append('<span id="error_msg2">Try </span>');
+            }
+            else if (result.error == 'This email is all ready exist !!!'){
+                $('#error_msg2').remove();
+                $('#error_msg1').remove();
+                $('#error_msg').append('<span id="error_msg1">'+result.error+'</span>');
+                $('#error_btn').append('<span id="error_msg2">Ok </span>');
+
+            }
+            else if (result.user_created == 'user_created'){
+                var data_val = document.getElementById('error_btn').getAttribute('value');
+                $('#error_msg2').remove();
+                $('#error_msg1').remove();
+                $('#error_msg').append('<span id="error_msg1">Your Account is created</span>');
+                $('#error_btn').append('<span id="error_msg2">Pay Now </span>');
+
+                $("#error_btn").click(function(){
+                    if (data_val == 'done'){
+                        $('#remove_card').hide();
+                        $("#add_card_add").show();
+                        $('.button_hide').prop("disabled", false);
+                        $("#email_id").val(result.email),
+                        document.getElementById("#add_card").style.display = "block";
+                        
+                    }
+                });
+            } 
+
+        }
+     })
+
+  });
+</script>
+
+
+<script>
+    
+    $("#down").click(function(){
+        data = $("#one_r").text();
+        original_price = $("#org_a_c").text();
+        plan_price = $("#prc_a_c").text();
+        total_gst_and_tax_service_price = $("#total_gst_and_tax_service").text();
+        total_price = $("#total").text();
+        var one_p = parseInt(data)-1;
+                                    {% comment %} alert(total_price);
+                                    alert(original_price); {% endcomment %}
+        if (one_p == 0){
+            $("#down").addAttr("disabled");
+            $('#total_price').append('<span id="total">'+total_price+'</span>');
+            $('#plan_increase_show').append('<span id="one_r">'+data+'</span>');
+    
+        }
+        else{
+
+        f_oringinal_price = parseInt(original_price)/2;
+        f_total_price = parseInt(total_price)-parseInt(original_price);
+
+        var one_p = parseInt(data)-1;
+        $('input[name="total_amt"]').val(f_total_price);
+        $('input[name="total_plan"]').val(one_p);
+
+        $('#total').remove();
+        $('#total_price').append('<span id="total">'+f_total_price+'</span>');
+
+        $('#one_r').remove();
+        $('#plan_increase_show').append('<span id="one_r" style="display: flex; justify-content: center; align-items: center;">'+one_p+'</span>');
+
+        };
+        
+      });
+    
+    
+    $("#up").click(function(){
+        data = $("#one_r").text();
+        original_price = $("#org_a_c").text();
+        plan_price = $("#prc_a_c").text();
+        total_gst_and_tax_service_price = $("#total_gst_and_tax_service").text();
+        total_price = $("#total").text();
+
+        f_total_price = parseInt(total_price)+parseInt(original_price);
+        var one_p = parseInt(data)+1;
+
+        if (one_p == 51){
+            $("#up").addAttr("disabled");
+
+        }
+        $('input[name="total_amt"]').val(f_total_price);
+        $('input[name="total_plan"]').val(one_p);
+
+        $('#total').remove();
+        $('#total_price').append('<span id="total">'+f_total_price+'</span>');
+
+        $('#one_r').remove();
+        $('#plan_increase_show').append('<span id="one_r" style="display: flex; justify-content: center; align-items: center;">'+one_p+'</span>');
+
+    });
+</script>
+
+
+
+<script>
+
+    
+    function onSignIn1(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      $('#remove_card').hide();
+      $("#add_card_add").show();
+        $('.button_hide').prop("disabled", false);
+        {% comment %} $("#email").text(profile.getEmail()); {% endcomment %}
+        {% comment %} alert(profile.getEmail()); {% endcomment %}
+        $('#username').val(profile.getEmail());
+        $('#pass_conf').val(profile.getId());
+        $('#password').val(profile.getId());
+        document.getElementById("#add_card").style.display = "block";
+
+
+      $.ajax(
+        {
+          url: "ajax_call_for_login_and_signup_for_business_using_javascript_for_buy_plan",
+          data:{
+            'name':profile.getName(),
+            'email':profile.getEmail(),
+            'image':profile.getImageUrl(),
+            'uid':profile.getId(),
+  
+          },
+          success: function(result) 
+          {
+                        
+          }
+        });
+    }
+  </script>
+  
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    window.onscroll = function() {myFunction()};
+  
+    var header = document.getElementById("mynote");
+    var sticky = header.offsetTop;
+  
+    function myFunction() {
+      if (window.pageYOffset > 700) {
+        console.log(sticky)
+        header.classList.add("stickynote");
+      } else {
+        header.classList.remove("stickynote");
+      }
+    } 
+</script>
+
+{% endblock script %}
+

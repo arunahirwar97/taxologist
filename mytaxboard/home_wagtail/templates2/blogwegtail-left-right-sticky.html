@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+  .content-set{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+  }
+  .home{
+    color: #08c;
+  }
+  @media (min-width:996px) and (max-width:1096px){
+    .stickynote {
+      height: auto;
+      weight:auto;
+      position: fixed;
+      z-index: 1;
+      top: 40px;
+      right: 21px;
+      background-color: #111;
+      overflow-x: hidden;
+      width:250px;
+    }
+  }
+  @media (min-width:1096px){
+    .stickynote {
+      height: auto;
+      weight:auto;
+      position: fixed;
+      z-index: 1;
+      top: 30px;
+      right: 39px;
+      background-color: #111;
+      overflow-x: hidden;
+      width:300px
+    }
+  }
+</style>
+<!--Fisrt Page -->
+<section class="mt-5" style="background-color:#f7f7f7">
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center">
+            <h1 class="page-title b-none">Grid Sidebar Both</h1>
+            <p class="page-sub-title">Check out our Latest News!</p>
+          </div>
+          <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Library</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id='main-page'>
+  <div class="py-3">
+    <div class="px-5">
+      <div class="row">
+        <div class="col-lg-2 p-3">
+          <div class="form-group mb-3">
+            <div class="input-group mb-4">
+              <input class="form-control" placeholder="Search" type="text">
+              <div class="btn btn-default py-2 px-3">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h5 class="font-weight-600 pt-4">Categories</h5>
+            <ul class="nav nav-list flex-column mb-5">									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Design (2)</a>
+              </li>									
+              <li class="nav-item">										
+                <a class="nav-link active" href="#">Photos (4)</a>										
+                <ul style="list-style-type:disc;">											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Animals</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Business</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Sports</a>
+                  </li>											
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">People</a>
+                  </li>										
+                </ul>									
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Videos (3)</a>
+              </li>									<li class="nav-item">
+                <a class="nav-link" href="#">Lifestyle (2)</a>
+              </li>									
+              <li class="nav-item">
+                <a class="nav-link" href="#">Technology (1)</a>
+              </li>								
+            </ul>
+            <div>	
+              <div class="nav-wrapper">
+                <ul class="list-group list-group-horizontal nav nav-pills nav-fill" id="tabs-icons-text" role="tablist" style="list-style-type:none">
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">Popular</a>
+                    </li>
+                    <li class="nav-item mx-auto text-center" style="width:45%">
+                        <a class="nav-link p-1" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Recents</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="card shadow">
+                <div class="card-body p-2">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+                      <ul class="p-0" style="list-style-type:none;">												
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="#">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">Nullam Vitae Nibh</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">10, NOV 2021 . 7 min read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>												
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="#">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">Nullam Vitae Nibh</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">10, NOV 2021 . 7 min read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>		
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="#">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">Nullam Vitae Nibh</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">10, NOV 2021 . 7 min read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>													
+                      </ul>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                      <ul class="p-0" style="list-style-type:none;">												
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="#">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">Nullam Vitae Nibh</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">10, NOV 2021 . 7 min read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>														
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="#">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">Nullam Vitae Nibh</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">10, NOV 2021 . 7 min read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>		
+                        <li >													
+                          <div class="row" style="width:100%">												
+                            <div class="col-sm-12 pr-0">														
+                              <a href="#">
+                                <p class="text-primary mb-0" style="font-size:12px; font-weight:bold">Nullam Vitae Nibh</p>
+                              </a>														
+                              <div class="post-meta">
+                                <p style="font-family: 'Open Sans', sans-serif; font-size: 11px; font-weight: bold;">10, NOV 2021 . 7 min read</p>
+                              </div>
+                            </div>
+                          </div>												
+                        </li>													
+                      </ul>  
+                    </div>
+                  </div>
+                </div>
+              </div>															
+            </div>
+            <div class="pt-3">
+              <h5 class="font-weight-600">About Us</h5>
+              <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7 p-3">
+          <div class="rounded">
+            <a href="#">
+                <img src="https://www.okler.net/previews/porto/9.3.0/img/blog/wide/blog-11.jpg" class="img-fluid rounded" alt="">
+            </a>
+          </div>
+          <div class="pt-3">
+              <h6 class="font-weight-600" style="color:black">10 JAN 2022 . 7 min read</h6>
+          </div>
+          <div class="pt-3">
+            <h3 class="font-weight-semi-bold" style="color: #1d9bf0"><a href="#">Class aptent taciti sociosqu ad litora torquent</a></h3>
+            <div class="pb-3">
+              <span><i class="far fa-user"></i> By <a href="#" style="color:#5e72e4">Bob Doe</a>&nbsp; &nbsp;  </span>
+              <span><i class="far fa-folder"></i> <a href="#" style="color:#5e72e4">News</a>, <a href="#" style="color:#5e72e4">Design</a> &nbsp; &nbsp; </span>
+                
+            </div>
+            <p style="color:black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lectus lacus, rutrum sit amet placerat et, bibendum nec mauris. Duis molestie, purus eget placerat viverra, nisi odio gravida sapien, congue tincidunt nisl ante nec tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit, mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent nec tempus nibh. Donec mollis commodo metus et fringilla. Etiam venenatis, diam id adipiscing convallis, nisi eros lobortis tellus, feugiat adipiscing ante ante sit amet dolor. Vestibulum vehicula scelerisque facilisis. Sed faucibus placerat bibendum. Maecenas sollicitudin commodo justo, quis hendrerit leo consequat ac. Proin sit amet risus sapien, eget interdum dui. Proin justo sapien, varius sit amet hendrerit id, egestas quis mauris.</p>
+            <p style="color:black">Ut ac elit non mi pharetra dictum nec quis nibh. Pellentesque ut fringilla elit. Aliquam non ipsum id leo eleifend sagittis id a lorem. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam massa mauris, viverra et rhoncus a, feugiat ut sem. Quisque ultricies diam tempus quam molestie vitae sodales dolor sagittis. Praesent commodo sodales purus. Maecenas scelerisque ligula vitae leo adipiscing a facilisis nisl ullamcorper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+            <p style="color:black">Curabitur non erat quam, id volutpat leo. Nullam pretium gravida urna et interdum. Suspendisse in dui tellus. Cras luctus nisl vel risus adipiscing aliquet. Phasellus convallis lorem dui. Quisque hendrerit, lectus ut accumsan gravida, leo tellus porttitor mi, ac mattis eros nunc vel enim. Nulla facilisi. Nam non nulla sed nibh sodales auctor eget non augue. Pellentesque sollicitudin consectetur mauris, eu mattis mi dictum ac. Etiam et sapien eu nisl dapibus fermentum et nec tortor.</p>
+            <p style="color:black">Curabitur nec nulla lectus, non hendrerit lorem. Quisque lorem risus, porttitor eget fringilla non, vehicula sed tortor. Proin enim quam, vulputate at lobortis quis, condimentum at justo. Phasellus nec nisi justo. Ut luctus sagittis nulla at dapibus. Aliquam ullamcorper commodo elit, quis ornare eros consectetur a. Curabitur nulla dui, fermentum sed dapibus at, adipiscing eget nisi. Aenean iaculis vehicula imperdiet. Donec suscipit leo sed metus vestibulum pulvinar. Phasellus bibendum magna nec tellus fringilla faucibus. Phasellus mollis scelerisque volutpat. Ut sed molestie turpis. Phasellus ultrices suscipit tellus, ac vehicula ligula condimentum et.</p>
+            <p style="color:black">Aenean metus nibh, molestie at consectetur nec, molestie sed nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec euismod urna. Donec gravida pharetra ipsum, non volutpat ipsum sagittis a. Phasellus ut convallis ipsum. Sed nec dui orci, nec hendrerit massa. Curabitur at risus suscipit massa varius accumsan. Proin eu nisi id velit ultrices viverra nec condimentum magna. Ut porta orci quis nulla aliquam at dictum mi viverra. Maecenas ultricies elit in tortor scelerisque facilisis. Mauris vehicula porttitor lacus, vel pretium est semper non. Ut accumsan rhoncus metus non pharetra. Quisque luctus blandit nisi, id tempus tellus pulvinar eu. Nam ornare laoreet mi a molestie. Donec sodales scelerisque congue. </p>
+      
+          <div class="mt-5">
+            <h4 class="mb-3" style="color:black">Share this Post</h4>
+            <div class="col-lg-6 btn-wrapper px-0">
+                <button target="_blank" href="https://twitter.com/creativetim" rel="nofollow" class="btn btn-icon-only btn-twitter rounded-circle" data-toggle="tooltip" data-original-title="Follow us">
+                  <span class="btn-inner--icon"><i class="fa fa-twitter"></i></span>
+                </button>
+                <button target="_blank" href="https://www.facebook.com/CreativeTim/" rel="nofollow" class="btn-icon-only rounded-circle btn btn-facebook" data-toggle="tooltip" data-original-title="Like us">
+                  <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+                </button>
+                <button target="_blank" href="https://dribbble.com/creativetim" rel="nofollow" class="btn btn-icon-only btn-dribbble rounded-circle" data-toggle="tooltip" data-original-title="Follow us">
+                  <span class="btn-inner--icon"><i class="fa fa-dribbble"></i></span>
+                </button>
+                <button target="_blank" href="https://github.com/creativetimofficial" rel="nofollow" class="btn btn-icon-only btn-github rounded-circle" data-toggle="tooltip" data-original-title="Star on Github">
+                  <span class="btn-inner--icon"><i class="fa fa-github"></i></span>
+                </button>
+              </div>
+            </div>
+      
+            <div class="mt-4 pt-2">
+                <h4 class="mb-3" style="color:black">Author</h4>
+                <div class="row">
+                    <div class="col-sm-2 py-3 text-center" style="width:100px; height:100px; border-radius:50%">
+                        <a href="#">
+                            <img src="https://avatars.githubusercontent.com/u/53890201?v=4" alt="" style="width:100px; height:100px; border-radius:50%">
+                        </a>
+                    </div>
+                    <div class="col-sm-10 py-3">
+                        <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">Abhishek Dev, FAWSD</a></strong></p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui. </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 px-3 py-3 text-center">
+            <div class="card bg-white shadow border-0 mb-0" id="mynote" style="width:300px">   
+              <div class="card-body px-lg-5 py-lg-5">
+                <div class="text-center text-muted mb-4">
+                  <large class="text-default font-weight-bold">Get Expert Assistance</large>
+                </div>
+                <form role="form">
+                  <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Email" type="email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Phone number" type="number">
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary my-4">Request a callback</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Main Footer End-->
+{% include "includes/footer.html" %}
+
+{% endblock content %}
+
+{% block script %}
+<script>
+    {% comment %} var stickyOffset = $('#mynote').offset().top;
+  
+    $(window).scroll(function(){
+      var sticky = $('#mynote');
+      scroll = $(window).scrollTop();
+  
+      if (scroll >= 200) {
+        alert("top");
+        sticky.addClass('stickynote');
+      }
+      else {
+        alert("noooo");
+        sticky.removeClass('stickynote');
+      }
+    }); {% endcomment %}
+    
+    
+    window.onscroll = function() {myFunction()};
+  
+    var header = document.getElementById("mynote");
+    var sticky = header.offsetTop;
+  
+    function myFunction() {
+      if (window.pageYOffset > 350) {
+        console.log(sticky)
+        header.classList.add("stickynote");
+      } else {
+        header.classList.remove("stickynote");
+      }
+    } 
+  </script>
+{% endblock script %}

@@ -1,0 +1,137 @@
+{% extends "base_for_chat_page.html" %}
+
+{% load static %}
+{% block style %}
+<style>
+
+  @media(max-width: 576px){
+
+    .img1{
+        display: none;
+    }
+    body{
+      max-width:100%;
+      width:100%;
+      margin:0px;
+      padding:0px;
+    }
+    .admin_user_text{
+      color:rgb(0,0,0);
+      font-size:16px;
+    }   
+}
+
+
+ {% comment %} end normal mobile  {% endcomment %}
+
+
+@media(min-width:576px ) and (max-width:768px) 
+  {
+    {% comment %} #Home_1{padding-top: 150px;} {% endcomment %}
+    .base_body {
+        {% comment %} background-image: url('../../static//svg/Home_bg_svg_ipad.svg');
+        background-repeat: no-repeat;
+        background-position: right -170px top ; {% endcomment %}
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:3%;          
+        padding-right:3%; 
+      }
+      .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:14px;
+    }
+    .admin_user_text{
+      color:rgb(0,0,0);
+      font-size:16px;
+    }
+  }
+
+
+
+@media(min-width:769px) and (max-width:1025px) 
+  {
+    .base_body {
+
+        {% comment %} background-image: url('../../static//svg/Home_bg_svg.svg');
+        background-repeat: no-repeat;
+        background-position: right -290px top ; {% endcomment %}
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:3%;          
+        padding-right:3%;    
+      }
+      .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:16px;
+    }
+    #products_icon{
+      display:none;
+    }
+    #d_none{
+      display:none;
+    }
+    .admin_user_text{
+      color:rgb(255,255,255);
+      font-size:16px;
+    }
+}
+
+
+
+
+
+@media(min-width:1025px)
+  {
+    .base_body {
+        {% comment %} background-image: url('../../static//svg/Home_bg_svg.svg');
+        background-repeat: no-repeat;
+        background-position: right -100px top ; {% endcomment %}
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:3%;          
+        padding-right:3%; 
+      }
+    .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:21px;
+    }
+    #d_none{
+      display:none;
+    }
+    .admin_user_text{
+      color:rgb(255,255,255);
+      font-size:16px;
+    }
+
+  }
+
+
+  .container{
+  max-width: 1250px;
+}
+
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="base_body mt-3">
+    <div class="row " style="display: flex; justify-content: center; align-items: center;">
+      <div class="col-sm-6 d-none d-md-block">
+        <img src="/static/assets_design/img/home/Live_chat.svg" alt="" class="img-fluid">
+      </div>
+      <div class="col-sm-6 mt-5">
+            <iframe src="https://chat.absolutecompliance.in/livechat?mode=popout" style="width:100%;height:38em;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}

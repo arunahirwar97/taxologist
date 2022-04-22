@@ -1,0 +1,73 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+{% block style %}
+  <style>
+    .container{
+      max-width: 1350px;
+    }
+  </style>
+{% endblock style %}
+{% block content %}
+<div class="carousel-inner">
+  <div class="carousel-item active">
+    <img src="../../static/svg/services/gst.svg" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+      <h5>...</h5>
+      <p>...</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="../../static/svg/services/gst.svg" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+      <h5>...</h5>
+      <p>...</p>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="../../static/svg/services/gst.svg" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+      <h5>...</h5>
+      <p>...</p>
+    </div>
+  </div>
+</div>
+<section class="ml-3 mt-2">
+  
+  <nav class="shadow bg-white p-3" aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'knowledge_center' %}">Categary</a></li>
+      {% for category in video_category %}
+      <li class="breadcrumb-item"><a href="{% url 'knowledge_center' %}?category={{category.id}}">{{category.category_name}}</a></li>
+      {% endfor %}
+    </ol>
+  </nav>
+
+  <div class="container card">
+    <!--First Row-->
+    <div class="row mt-4 ">
+      <!--COLUMN FIRST-->
+      {% for video in category %}
+      <div class="col-md-4">
+        <div class="card rounded">
+          <!-- <img class="card-img-top rounded" src="https://pixnio.com/free-images/2017/08/22/2017-08-22-09-44-04.jpg"
+            alt="Card image cap"> -->
+          <div>{{video.video_url|safe}}</div> 
+          <div class="card-body">
+            <a href="{% url 'video_detail' video.title %}">
+              <h4>{{video.title}}</h4>
+            </a>
+          </div>
+        </div>
+      </div>
+        
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
+{% block script %}
+  <script>
+    $("iframe").css("width","100%").css("height","100%");
+  </script>
+{% endblock script %}

@@ -1,0 +1,206 @@
+{% extends 'base_for_another_page.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .container {
+    max-width: 1350px;
+
+  }
+  .container1 {
+    max-width: 1040px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+  }
+  label, .logo{
+    color:black
+  }
+    @media(min-width:1025px)
+  {
+    .base_body {
+        padding-left:3%;          
+        padding-right:3%; 
+      }
+    .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:21px;
+    }
+    #d_none{
+      display:none;
+    }
+  }
+</style>
+
+{% comment %} <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+    <span class="alert-text"><strong>Primary!</strong> This is a primary alert—check it out!</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div> {% endcomment %}
+<div class="base_padding">
+{% if messages %}
+<div class="alert alert-primary mt-1 ml-7 mr-7" role="alert">
+    {% for message in messages %}
+      <span class="alert-text text-white" style="font-size:18px;"> {{ message }}</span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+    {% endfor %}
+</div>
+
+{% endif %}
+<section class="base_body1 mt-5">
+
+<!-- Ask Me Anything -->
+<div class="contactus-4" style="background:linear-gradient(
+104.34deg, #6683EC 10.63%, rgba(56, 144, 133, 0.2) 91.07%), linear-gradient(
+244.68deg, #11CDEF 16.78%, rgba(255, 255, 255, 0) 82.86%);
+">
+    <div class="container1" >
+      <div class="row mt-4">
+        <div class="col-md-12 mt-4 ml-4">
+          <h3 class="display-2 ml-4 text-white">Get in Touch</h3>
+          <h5 class="ml-4 text-white">Ask anything, we'll reply fast</h5>
+          <br>
+          <br>
+        </div>
+
+        <div class="col-md-12 m-auto pl-lg-6 pr-lg-6">
+          <div class="card  card-raised">
+            <div class="row">
+              <div class="col-lg-7 col-md-7 pr-md-0">
+                <form role="form" class="p-3" id="contact-form" method="POST" onsubmit="Formsubmit()">{% csrf_token %}
+                  <div class="card-header">
+                    <h4 class="card-title">Send us a message</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>First name</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="ni ni-circle-08 logo"></i></span>
+                            </div>
+                            <input type="text" required class="form-control" name="first_name" placeholder="First Name..." aria-label="First Name...">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Last name</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="ni ni-collection logo"></i></span>
+                            </div>
+                            <input type="text" required name="last_name" class="form-control" placeholder="Last Name..." aria-label="Last Name...">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Email address</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-email-83 logo"></i></span>
+                        </div>
+                        <input type="email" name="email" class="form-control" placeholder="Email Here..." required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Your message</label>
+                      <textarea name="message" class="form-control" id="message" rows="6" required></textarea>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="custom-control custom-checkbox mb-3">
+                          <input class="custom-control-input" id="customCheck2" type="checkbox" required>
+                          <label class="custom-control-label" for="customCheck2">
+                            <span>I'm not a robot</span>
+                        </label></div>
+                      </div>
+                      <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary pull-right">Send Message</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg-5 col-md-5 ">
+                <div class="info text-left" style="background-color:#e1e2e6;">
+                  <h4 class="card-title text-black">Contact information</h4>
+                  <div class="info info-horizontal mt-lg-5 mb-9" >
+                    <div class="icon icon-shape bg-white rounded-circle text-primary">
+                      <i class="ni ni-square-pin"></i>
+                    </div>
+                    <div class="description">
+                      <p class="info-title text-black mt-2 mb-2">
+                        <b>B115, PRIYADARSHNI SOCIETY BAGSEWANIYA, BAGMUGALIYA BHOPAL MP 462026 IN</b>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="info info-horizontal mt-lg-2 ">
+                    <div class="icon icon-shape bg-white rounded-circle text-primary">
+                      <i class="ni ni-mobile-button"></i>
+                    </div>
+                    <div class="description">
+                      <p class="info-title text-black mt-2">
+                        <b>+91 9993777025</b>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="info info-horizontal mt-lg-2 ">
+                    <div class="icon icon-shape bg-white rounded-circle text-primary">
+                      <i class="ni ni-email-83"></i>
+                    </div>
+                    <div class="description">
+                      <p class="info-title text-black mt-2">
+                        <b>care@mytaxboard.in</b>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Section: Contact v.2-->
+  <div class="mb-5">
+      {% include 'follow_us.html' %}
+  </div>
+  <!--Second Page End-->
+<section class="mt-5">
+  <div class="bg-dark mt-4 pl-6 pr-6">
+    <div class="container text-center px-4">
+      <h2 class="py-6 text-white">
+        {%for i in topic%}
+        {{i}}
+        {%endfor%}
+      </h2>
+      {%for i in review_database1 %}
+      <div class="text-left ml-2 text-white ">
+        <h5 class="text-white font-weight-600 mt-3">
+          {{i.question}}
+        </h5>
+        <p class="font-weight-400">{{i.answer}}</p>
+      </div>
+          
+        {% endfor %}
+    </div>
+    <div class="p-4"></div>
+  </div>
+</section>
+</div>
+
+{% include 'includes/footer.html' %}
+{% endblock content %}

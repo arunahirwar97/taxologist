@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<!-- head -->
+
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+<!-- head -->
+
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_tax_filing' %}#personal" >Bank Info</a>
+    </li>
+    <!-- <li class="nav-item"></li> -->
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'paytax_tax_filing' %}#tabs-text-2" >More Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_e_filing' %}#tabs-text-2" >E-Filing</a>
+    </li>
+  </ul>
+  
+<div class="container mt-6">
+  <div class="row">
+    <div class="col-md-9">
+      <h4>[Optional] Advanced Info, required only in a few cases</h4>
+     <br> <p>These sections are not required in most cases.
+        If any of these details are applicable for you, enter the details below. Else click "Go to Next > >".
+      </p>
+      <br>
+      <div  id="template">
+       <!-- style="display: none;"> -->
+        <p>Are any of these following applicable to you? If not, you can just skip this section.</p>
+        <ul >
+          <li>You are a NRI or have spent time outside India.</li>
+          <li>You own shares of an Unlisted company (shares that are not listed on any stock exchange).</li>
+          <li>You are a Director of any company in India.</li>
+          <li>You are a resident and have Foreign Assets or Income or you have paid taxes outside India.</li>
+          <li>You have total income more than ₹50 Lakhs</li>
+          <li>You have deposited more than ₹1 crore in one or more current accounts, during the previous year.</li>
+          <li>You have incurred expenditure of more than ₹1 Lakh on electricity consumption or more than ₹2 lakhs on foreign country travel, during the previous year.</li>
+        </ul>
+        <div class="my-5">
+          <button class="btn btn-primary" id="lounchBTN">Yes, one of these conditions applies to me</button>
+          <button class="btn ml-4 btn-warning" >Go To Next >></button>
+        </div>
+        
+      </div>
+    </div>  
+    <div class="col-md-3 text-left">
+      <button class="btn btn-warning">Go To Next >> </button>
+    </div>  
+  </div>
+</div>
+<div class="container">
+  <div id="inputBox" style="display: none;">
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Residential Status</b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>Current residential status: Resident <br>
+  
+            You were in India for 182 days or more from 1 April 2019 to 31 March 2020
+  
+            The residential status in your tax return depends on the number of days you were in India.
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Change Residential Status</small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Unlisted Shares</b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>If you have owned shares in any unlisted company in India, you need to report the details to the tax department (unlisted company is typically a "Pvt. Ltd" instead of a "Public Ltd.").
+            <br>
+            Note: You do not need to report details about shares in a public company here (listed on NSE / BSE).
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Change Unlisted Shares</small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Directorship Details</b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>If you are a director of a company, please fill these details. <br>
+        </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Add Directorship Details</small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;">Foreign Assets, Incomes & Taxes </b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>Do you have any Foreign Assets or Income?
+            <br>
+            Have you paid taxes outside India?
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Change Foreign Assets, Incomes & Taxes </small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Schedule AL: Assets & Liabilities </b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>It is mandatory to fill Schedule AL if your total income is more than ₹50 lakhs.<br>
+            Please enter your assets and liabilities at the end of financial year.
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Change Schedule AL: Assets & Liabilities </small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Current Account Deposits</b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>If you have deposited more than ₹1 crore aggregating to all your current 
+            accounts between 1 April 2019 to 31 March 2020, please enter the total amount deposited.
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Change Current Account Deposits</small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Expenditure on Foreign Travel</b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>
+            If you have incurred an expenditure of a total amount of more than ₹ 2 lakhs on Foreign Travel between 1 April 2019 to 31 March 2020, please enter the total expense amount.
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Change Expenditure on Foreign Travel
+</small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Expenditure on Electricity Consumption </b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>If you have incurred an expenditure of a total amount of more than ₹ 1 lakh on electricity consumption between 1 April 2019 to 31 March 2020, please enter the total expense amount.
+
+
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Add Electricity bill details</small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <fieldset class="px-5">
+      <legend class="text-dark">
+        <b style="font-size:15px;"> Residential Status</b>
+      </legend>
+      <diuv class="row">
+        <div class="col-8">
+          <small>Current residential status: Resident <br>
+  
+            You were in India for 182 days or more from 1 April 2019 to 31 March 2020
+  
+            The residential status in your tax return depends on the number of days you were in India.
+          </small>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary">
+            <small>Change Residential Status</small></button>
+        </div>
+      </diuv>
+    </fieldset>
+    <div class="my-5">
+      <button class="btn btn-primary"> Save & Next</button>
+    </div>
+  </div>
+</div>
+
+
+{%endblock%}
+
+{%block script%}
+<script>
+  $("#lounchBTN").click(function(){
+    $("#template").fadeOut(500);
+    $("#inputBox").fadeIn(1000);
+    
+  })
+</script>
+{%endblock%}

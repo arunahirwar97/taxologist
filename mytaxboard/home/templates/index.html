@@ -1,0 +1,1416 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+{% comment %} #a {
+		-webkit-animation: rotation 5s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(359deg);
+		}
+} 
+
+
+  {% comment %} start normal mobile  {% endcomment %}
+  .middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+#email_input::placeholder {
+  color: #525f7f;
+}
+#mobile_input::placeholder {
+  color: #525f7f;
+}
+
+@media(max-width: 576px){
+
+    .img1{
+        display: none;
+    }
+    body{
+      max-width:100%;
+      width:100%;
+      margin:0px;
+      padding:0px;
+    }
+    .admin_user_text{
+      color:rgb(0,0,0);
+      font-size:16px;
+    }   
+}
+
+
+ {% comment %} end normal mobile  {% endcomment %}
+
+
+@media(min-width:576px ) and (max-width:768px) 
+  {
+    {% comment %} #Home_1{padding-top: 150px;} {% endcomment %}
+    .base_body {
+        background-image: url('../../static//svg/Home_bg_svg_ipad.svg');
+        background-repeat: no-repeat;
+        background-position: right -170px top ;
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:7%;          
+        padding-right:7%; 
+      }
+      .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:14px;
+    }
+    .admin_user_text{
+      color:rgb(0,0,0);
+      font-size:16px;
+    }
+  }
+
+
+
+@media(min-width:769px) and (max-width:1025px) 
+  {
+    .base_body {
+
+        background-image: url('../../static//svg/Home_bg_svg.svg');
+        background-repeat: no-repeat;
+        background-position: right -290px top ;
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:7%;          
+        padding-right:7%;    
+      }
+      .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:16px;
+    }
+    #products_icon{
+      display:none;
+    }
+    #d_none{
+      display:none;
+    }
+    .admin_user_text{
+      color:rgb(255,255,255);
+      font-size:16px;
+    }
+}
+
+
+@media(min-width:1025px)
+  {
+    .base_body {
+        background-image: url('../../static//svg/Home_bg_svg.svg');
+        background-repeat: no-repeat;
+        background-position: right -100px top ;
+        {% comment %} padding-top: 150px; {% endcomment %}
+        z-index:200px;
+        padding-left:3%;          
+        padding-right:3%; 
+      }
+    .img_add{
+      display:none;
+    }
+    .text_size{
+      font-size:21px;
+    }
+    #d_none{
+      display:none;
+    }
+    .admin_user_text{
+      color:rgb(255,255,255);
+      font-size:16px;
+    }
+
+  }
+
+
+  .container {
+    max-width: 1350px;
+  }
+
+  .text-info {
+    color: #324CDD !important;
+  }
+
+  .btn-info {
+    background-color: #324CDD !important;
+  }
+
+  .card-pricing {
+    border-radius: 20px;
+  }
+
+  h2 {
+    font-weight: 700;
+  }
+
+  .details .content {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content {
+    background: #17a2b8;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+  
+
+  .details:hover .content {
+    color: white;
+    padding: 20px;
+  }
+  
+  /* 2 */
+  .details .content2 {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content2 {
+    background:#28a745;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+  
+
+
+  .details:hover .content2 {
+    color: white;
+    padding: 20px;
+  }
+  
+  /* 3 */
+  .details .content3 {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content3 {
+    background:#dc3545;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+  
+
+
+  .details:hover .content3 {
+    color: white;
+    padding: 20px;
+  }
+  
+  /* 4 */
+  .details .content4 {
+    display: none;
+    position: relative;
+  }
+
+  .details:hover .content4 {
+    background:#e78223;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 8px;
+  }
+
+  .details:hover .content4 {
+    color: white;
+    padding: 20px;
+  }
+
+  .zoom {   
+    transition: transform .3s; /* Animation */
+  }
+  
+  .zoom:hover {
+    transform: scale(1.1); /* (150% zoom)*/
+  }
+
+  .trynow{
+    color:white; 
+    font-size: 25px;
+    background-color: #324CDD;
+    border: 2px solid #ffffff;
+  }
+
+  .trynow:hover{
+    color: #324CDD;
+    border : 2px solid #324CDD;
+    background-color: #ffffff;
+    border-radius: 5px;
+  }
+  
+  input[type=text], select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  input[type=email] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  input[type=text]:hover, select:hover {
+    border: 1px solid #324CDD;
+    border-radius: 5px;
+  }
+
+  input[type=email]:hover {
+    border: 1px solid #324CDD;
+    border-radius: 5px;
+  }
+  input[type=text]:focus, select:focus {
+    border: 2px solid #324CDD;
+    border-radius: 5px;
+  }
+
+  input[type=email]:focus {
+    border: 2px solid #324CDD;
+    border-radius: 5px;
+  }
+
+</style>
+<!--Fisrt Page -->
+<section class="mt-5" >
+
+
+  <div class="container" >
+    <div class="row ">
+
+
+    <div class="col-md">
+      <div id="animation4" class="img1" style="position:absolute; right:0px; bottom:30%; width:15%; height:75px">
+        <img id="rocketanimation" src="../../static/assets_design/img/rocket.svg" alt="" width="50px" height="50px" >
+      </div>
+          <h1 class="display-2">
+            Free Tax Dashboard <br>
+            Hire an Expert <br>
+            Save Money
+            <!-- <span class="text-primary"> Develop Anything.</span></h1> -->
+            <!-- <p class="lead pb-4">We aim high at being focused on building relationships with our clients and community. Using our creative gifts drives this foundation.</p> -->
+
+            <div class="mt-5">
+              <a class="btn btn-roun px-5 p-3 font-weight-900 trynow" href="{% url 'signup' %}" style="">Try Now</a>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-3 text-center">
+                <svg width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M17.4764 12.1388H34.3441C34.7873 12.1388 35.1465 11.7834 35.1465 11.3451C35.1465 10.9067 34.7873 10.5514 34.3441 10.5514H17.4764C17.0331 10.5514 16.6738 10.9067 16.6738 11.3451C16.6738 11.7834 17.0331 12.1388 17.4764 12.1388Z"
+                      fill="#00008B" />
+                    <path
+                      d="M2.39042 19.899H19.258C19.7012 19.899 20.0605 19.5437 20.0605 19.1053C20.0605 18.667 19.7012 18.3118 19.258 18.3118H2.39042C1.94718 18.3118 1.58789 18.667 1.58789 19.1053C1.58789 19.5437 1.94718 19.899 2.39042 19.899Z"
+                      fill="#00008B" />
+                    <path
+                      d="M6.91895 28.065C6.91895 28.5034 7.27824 28.8588 7.72147 28.8588H24.5891C25.0323 28.8588 25.3916 28.5034 25.3916 28.065C25.3916 27.6267 25.0323 27.2714 24.5891 27.2714H7.72147C7.27824 27.2714 6.91895 27.6267 6.91895 28.065Z"
+                      fill="#00008B" />
+                    <path
+                      d="M16.5724 37.2894H1.41678C0.97355 37.2894 0.614258 37.6446 0.614258 38.083C0.614258 38.5213 0.97355 38.8767 1.41678 38.8767H16.5724C17.0156 38.8767 17.3749 38.5213 17.3749 38.083C17.3749 37.6446 17.0156 37.2894 16.5724 37.2894Z"
+                      fill="#00008B" />
+                    <path
+                      d="M43.842 17.1149C46.2627 17.1149 48.2252 15.1739 48.2252 12.7797C48.2252 10.3856 46.2626 8.44464 43.842 8.44464C41.4208 8.44464 39.458 10.3857 39.458 12.7797C39.4579 15.1739 41.4207 17.1149 43.842 17.1149Z"
+                      fill="#00008B" />
+                    <path
+                      d="M51.0527 15.8666C48.5358 19.3534 45.1654 19.7572 41.5386 17.6278C41.2918 17.483 40.1964 16.8862 39.9539 16.7437C34.1195 13.3182 28.2919 14.6615 24.3837 20.0743C22.723 22.3764 26.564 24.5585 28.2061 22.2832C30.2254 19.4866 32.793 18.6774 35.6011 19.5632C34.1633 22.0315 32.9062 24.4848 31.1324 27.9704C29.3581 31.4559 25.4407 34.2394 21.6767 32.0624C18.9607 30.4924 16.5114 34.3513 19.2192 35.9164C24.358 38.8867 30.3834 37.0627 33.4594 33.2017C33.5661 33.2581 33.6788 33.309 33.8025 33.3518C36.3153 34.2176 39.6093 36.5228 40.613 37.3397C41.6163 38.1567 43.3403 42.3186 44.364 44.4097C45.606 46.947 49.6168 45.099 48.3703 42.5509C47.2098 40.1783 45.2619 35.4431 43.7426 34.2451C42.5238 33.2843 40.1577 31.496 38.1509 30.4816C39.5086 27.8807 40.9223 25.3079 42.4104 22.7795C47.1541 24.2169 51.6629 22.5237 54.8742 18.075C56.5363 15.7732 52.6961 13.5911 51.0527 15.8666Z"
+                      fill="#00008B" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <rect width="54.6684" height="54.0665" fill="white" transform="translate(0.614258)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                <p class="display-4" style="font-size:18px">Fast & Simple</p>
+              </div>
+
+              <div class="col-md-3 px-0 text-center">
+                
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M35.9156 19.5959L36.2641 19.0333L35.9156 18.4703C35.8572 18.3763 34.4549 16.138 31.7308 13.8948C28.1075 10.9118 23.8391 9.33481 19.3865 9.33481C14.9351 9.33481 10.6562 10.9109 7.01224 13.8926C4.27248 16.1346 2.85439 18.3713 2.7954 18.4655L2.43945 19.0333L2.7954 19.601C2.85439 19.6952 4.27248 21.9319 7.01224 24.1739C10.6562 27.1556 14.9351 28.7317 19.3865 28.7317C23.8391 28.7317 28.1075 27.1548 31.7308 24.1717C34.4549 21.9285 35.8572 19.6902 35.9156 19.5959ZM30.2792 22.5633C27.0199 25.2269 23.3549 26.5772 19.3865 26.5772C15.4167 26.5772 11.7399 25.2261 8.45842 22.5608C6.76124 21.1824 5.6106 19.7867 5.04705 19.0333C5.61088 18.2793 6.76152 16.8838 8.45842 15.5055C11.7399 12.8405 15.4164 11.489 19.3865 11.489C23.3549 11.489 27.0196 12.8396 30.2792 15.5029C31.9687 16.8835 33.1094 18.2812 33.6653 19.0333C33.1089 19.7856 31.9684 21.1833 30.2792 22.5633Z"
+                      fill="#00008B" />
+                    <path
+                      d="M19.3538 12.5611C15.7453 12.5611 12.8096 15.4645 12.8096 19.0333C12.8096 22.602 15.7453 25.5054 19.3538 25.5054C22.9623 25.5054 25.898 22.602 25.898 19.0333C25.898 15.4645 22.9623 12.5611 19.3538 12.5611ZM19.3538 23.3512C16.9464 23.3512 14.9878 21.4141 14.9878 19.0333C14.9878 16.6524 16.9464 14.7153 19.3538 14.7153C21.7612 14.7153 23.7198 16.6524 23.7198 19.0333C23.7198 21.4141 21.7612 23.3512 19.3538 23.3512Z"
+                      fill="#00008B" />
+                    <path d="M2.9448 2.80485H7.49178V0.650635H0.766602V7.22099H2.9448V2.80485Z" fill="#00008B" />
+                    <path d="M31.2158 0.650635V2.80485H35.7628V7.22099H37.941V0.650635H31.2158Z" fill="#00008B" />
+                    <path d="M2.9448 30.8455H0.766602V37.4159H7.49178V35.2617H2.9448V30.8455Z" fill="#00008B" />
+                    <path d="M35.7628 35.2617H31.2158V37.4159H37.941V30.8455H35.7628V35.2617Z" fill="#00008B" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <rect width="37.1745" height="36.7653" fill="white" transform="translate(0.766602 0.650635)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="display-4" style="font-size:18px">Charts</p>
+              </div>
+
+              <div class="col-md-3 text-center">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M33.9209 6.76662L19.69 0.923169C19.3335 0.776826 18.9328 0.776754 18.5764 0.923169L4.34551 6.76662C3.8035 6.98922 3.4502 7.51255 3.4502 8.09297V15.1965C3.4502 24.9776 9.42781 33.7759 18.5844 37.4721C18.9361 37.6141 19.3302 37.6141 19.682 37.4721C28.8384 33.7759 34.8162 24.9776 34.8162 15.1965V8.09297C34.8162 7.51255 34.463 6.98922 33.9209 6.76662ZM31.9119 15.1965C31.9119 23.5114 26.9747 31.1658 19.1332 34.5826C11.5012 31.2571 6.35445 23.7367 6.35445 15.1965V9.05174L19.1332 3.8045L31.9119 9.05174V15.1965ZM17.5282 20.0373L23.7697 13.8645C24.3368 13.3037 25.2562 13.3037 25.8233 13.8645C26.3904 14.4254 26.3904 15.3347 25.8232 15.8955L18.555 23.0838C17.9878 23.6447 17.0683 23.6445 16.5014 23.0838L12.4431 19.0702C11.876 18.5093 11.876 17.6 12.4431 17.0392C13.0102 16.4784 13.9296 16.4783 14.4967 17.0392L17.5282 20.0373Z"
+                      fill="#00008B" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <rect width="37.1745" height="36.7653" fill="white" transform="translate(0.545898 0.813293)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="display-4" style="font-size:18px">Safe & Secure</p>
+              </div>
+
+              <div class="offset-3">
+
+              </div>
+            </div>
+        </div>
+        <div class="col-md py-5">
+          <div id="animation1" class="img1" style="position:absolute; left:10px; top:-20px; width:15%; height:75px">
+            <img id="calendaranimation" src="../../static/assets_design/img/calendar.svg" alt="" width="45px" height="45px" >
+          </div>
+          <div id="animation2" class="img1"style="position:absolute; right:50px; top:-20px; width:15%; height:75px">
+            <img id="bellanimation" src="../../static/assets_design/img/bellanimation.svg" alt="" width="45px" height="45px">
+          </div>
+          {% comment %} <div id="animation3" style="position:absolute; right:0px; bottom:20px; width:50%; height:75px">
+            <img id="capanimation" src="../../static/assets_design/img/graduation-cap.png" alt="" width="45px" height="45px" >
+          </div> {% endcomment %}
+          
+          {% comment %} <div id="animation5" style="position:absolute; left:-20px; top:10%; width:75px; height:60%">
+            <img id="messageanimation" src="../../static/assets_design/img/comment.png" alt="" width="45px" height="45px" >
+          </div> {% endcomment %}
+          <img class="ml-lg-5 mx-auto w-100 mr-9 " src="./static/assets_design/img/Group116.png">
+        </div>
+
+      </div>
+    </div>
+
+</section>
+<!--Fisrt Page End -->
+
+
+<!--three card-->
+<section class="container mt-7">
+
+  <div class="row align-items-top p-0 text-center">
+    <div class="col-md">
+      <div class="card col-md-12 shadow-none  pl-0 " style="border-radius:20%;">
+        <h2 class=" display-3">Plans for everyone</h2>
+        <p class="display-4">
+          Carefully crafted best plan for you and your business
+        </p>
+      </div>
+
+          
+      
+    <div class="project-2" >
+      <div class="container">
+        <div class="row ">
+          <div class=" col-sm-3">
+            <div class="card text-center"  style="height:19em;">
+              <div class="card-body " >
+                <span class="details">
+                  <img class=" img-fluid" style="height:13em;width:100%;" src="../../static/assets_design/img/home/self_emplyee.svg" 
+                    alt="self Employee">
+                  <div class=" d-flex align-items-center mt-4">
+                    <b class=" text_size">Self Employed </b>
+                    <i class="ni ni-bold-right ml-auto"></i>
+                  </div>
+                  <div class="content">
+                    <h3 class="text-center text-white " >For Professionals</h3>
+                    <p class="font-weight-600" style="font-size:20px;">File income Tax returns with help of expert assistance tax planning and more. <br></p>
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class=" col-sm-3">
+            <div class="card text-center" style="height:19em;">
+              <div class="card-body">
+                <span class="details">
+                  <img class=" img-fluid " style="height:13em;" src="../../static/assets_design/img/home/individual1.svg" alt="self Employee">
+                  <div class=" d-flex align-items-center text-justify mt-4">
+                    <b class=" text_size">Individual </b>
+                    <i class="ni ni-bold-right ml-auto "></i>
+                  </div>
+                  <div class="content2">
+                    <h3 class="text-center text-white " >For salaried Individual</h3>
+                    {% comment %} <h3 class="text-center text-white " >For more individual Professionals </h3> {% endcomment %}
+                    <p class="font-weight-600" style="font-size:20px;">File income Tax returns with help of expert assistance tax planning and more. <br></p>
+                    {% comment %} <p class="font-weight-600">File income Tax returns in just 10 mins invest and your wealth with expert assistance income Tax returns.<br></p> {% endcomment %}
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class=" col-sm-3">
+            <div class="card text-center" style="height:19em;">  
+              <div class="card-body">
+                <div class="details">
+                  <img class="img-fluid "  style="height:13em;" src="../../static/assets_design/img/home/startup_company.svg" 
+                    alt="self Employee">
+                  <div class="d-flex align-items-center mt-4">
+                    <b class=" text_size" >Startup Company</b>
+                    <i class="ni ni-bold-right ml-auto"></i>
+                  </div>
+                  <div class="content3">
+                    <h3 class="text-center text-white" >For startup companies</h3>
+                    <p class="font-weight-600" style="font-size:20px;">File income Tax returns and Registration with help of expert assistance.<br></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 text-center">
+            <div class="card text-center" style="height:19em;">
+              <div class="card-body">
+                <span class="details">
+                  <img class="img-fluid" style="height:13em;" src="../../static/assets_design/img/home/bussiness.svg" 
+                    alt="self Employee">
+                  <div class="d-flex align-items-center mt-4">
+                    <b class="text_size" >Business</b>
+                    <i class="ni ni-bold-right ml-auto  "></i>
+                  </div>
+                  <div class="content4">
+                    <h3 class="text-center text-white mt-2" >For Business</h3>
+                    
+                    <p class="font-weight-600" style="font-size:20px">File income Tax returns and GST with help of expert assistance<br></p>
+                  </div>
+                </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+  </div>
+    
+  </div>
+  <section>
+    <div class="container mt-6">
+      <h2 class="text-center display-3">How it works</h2>
+      <div class="row mt-5">
+        <div class="col-md text-center">
+          <div class="text-center">
+            <div class="mt-4 flex" ><img  src="../../static/assets_design/img/how its work/img1.svg" alt="" width="85%"></div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="">
+            <div class="img_add mt-5 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/1.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Register Yourself</b></p>
+            </div>
+            <div class=" mt-8 img1 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/1.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Register Yourself</b></p>
+            </div>
+            <p class="h5" >Register yourself with Pan and other Details for Accurate tax filling and maintenance of records</p>
+          </div>
+        </div>
+        {% comment %} <div class="col-md text-center">
+          <div class="text-center">
+            <!-- <div class="text-center"><img src="../../static/assets_design/img/home/checked (4) 6.png" alt=""></div> -->
+            <div class="mt-4"><img src="../../static/assets_design/img/home/rating 1.png" alt=""></div>
+            <p class="h6 mt-3">Talk to Tax Expert</p>
+          </div>
+        </div> {% endcomment %}
+        
+      </div>
+  {% comment %} Line Enter  {% endcomment %}
+      <div class="row">
+        <div class="col-md text-center">
+          <div class="text-center">
+            <div class="mt-4 "><img class="img1" src="../../static/assets_design/img/how its work/line2.svg" alt="" width="50%"></div>
+            <div class="mt-5 flex img_add"  ><img  src="../../static/assets_design/img/how its work/img4.svg" alt="" width="85%"></div>
+          </div>
+  
+        </div>
+      </div>
+  {% comment %} Line end  {% endcomment %}
+  {% comment %} staRT IMG2  {% endcomment %}
+      <div class="row">
+        
+        <div class="col-md">
+          <div class="">
+            <div class="img_add mt-5 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/2.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Purchase Plan</b></p>
+            </div>
+            <div class="img1 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/2.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Purchase Plan</b></p>
+            </div>
+            <p class="h5">We have a wide range of plans for Private employee, Government employee, large corporate, small business, NRI, Non-profit organization</p>
+          </div>
+        </div>
+        
+        <div class="col-md text-center">
+          <div class="text-center">
+            <div class="img_add mt-5 flex"><img  src="../../static/assets_design/img/how its work/img2.svg" alt="" width="90%"></div>
+            <div class="img1 flex"><img  src="../../static/assets_design/img/how its work/img4.svg" alt="" width="90%"></div>
+        </div>
+      </div>
+      </div>
+  {% comment %} END IMG2  {% endcomment %}
+      <div class="row">
+        <div class="col-md text-center">
+          <div class="text-center">
+            <div class=""><img class="img1" src="../../static/assets_design/img/how its work/line1.svg" alt="" width="50%"></div>
+          </div>
+        </div>
+      </div>
+  {% comment %} staRT IMG3  {% endcomment %}
+      <div class="row">
+        <div class="col-md text-center">
+          <div class="text-center">
+            <div class="img1 flex"><img src="../../static/assets_design/img/how its work/img2.svg" alt="" width="80%"></div>
+          </div>
+        
+        </div>
+        <div class="col-md">
+          <div class="">
+            <div class="img_add mt-5 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/3.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Talk to an expert</b></p>
+            </div>
+            <div class="img1 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/3.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Talk to an expert</b></p>
+            </div>
+            <p class="h5">Meet with our expert, He will help you to gather your documents and answer any of your Doubts</p>
+          </div>
+        </div>
+        </div>
+  
+  {% comment %} END IMG3  {% endcomment %}
+  {% comment %} Line Enter  {% endcomment %}
+      <div class="row">
+        <div class="col-md text-center">
+          <div class="text-center">
+            <div class="img_add mt-5 flex"><img src="../../static/assets_design/img/how its work/img3.svg" alt="" width="80%"></div>
+            <div class=""><img class="img1" src="../../static/assets_design/img/how its work/line2.svg" alt="" width="50%"></div>
+          </div>
+        </div>
+      </div>
+  {% comment %} Line end  {% endcomment %}
+  {% comment %} staRT IMG2  {% endcomment %}
+      <div class="row">
+        
+        <div class="col-md">
+          <div class="">
+            <div class="img_add mt-5 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/4.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Upload documents and Relax</b></p>
+            </div>
+            <div class=" img1 text-center">
+              <img class="" src="../../static/assets_design/img/how its work/4.svg" alt="" width="50px" height="50px">
+              <p class="display-4 mt-2"><b>Upload documents and Relax</b></p>
+            </div>
+            <p class="h5">Guidance will be provided by our experts to upload documents than relax rest is on us </p>
+          </div>
+        </div>
+        
+        <div class="col-md text-center">
+          <div class="text-center">
+            <div class="img1 flex"><img src="../../static/assets_design/img/how its work/img3.svg" alt="" width="90%"></div>
+        </div>
+      </div>
+      </div>
+  {% comment %} END IMG2  {% endcomment %}
+  
+      </div>
+    </div>
+  </section>
+  
+</section>
+
+<section class="container py-6">
+  <div class="row align-items-center">
+    <div class="col-md">
+      <img src="../../static/assets_design/img/home/dashboard_desinged_by_expert.svg" alt="" class="w-100">
+    </div>
+    <div class="col-md ml-3">
+      <h2 class="mb-5 display-3">Dashboard Designed for you</h2>
+      <div class="my-4 display-4">
+        <i class="fa fa-check" aria-hidden="true"></i>
+         Easy To Import Data</div>
+      <div class="my-4 display-4">
+        <i class="fa fa-check" aria-hidden="true"></i>
+         Super Friendly Interface</div>
+      <div class="my-4 display-4">
+        <i class="fa fa-check" aria-hidden="true"></i>
+         Advance Chats for Insights</div>
+      <div class="my-4 display-4">
+        <i class="fa fa-check" aria-hidden="true"></i>
+         Expert on One Click</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="w-100" style="background-image: linear-gradient(to right,#1171EF , #11CDEF); background-repeat:no-repeat;background-position: center;background-size: 100%;">
+  <div class="container p-5 ">
+    <div class="row align-items-center">
+      <div class="col-md-7">
+        <h2 class="mb-5 text-white display-2">Privacy & Security</h2>
+        <div class="my-3  h5 text-white font-weight-600"><i class="fa fa-check-circle mr-1" aria-hidden="true"></i>
+          SSL encryption: Every piece of information you transmit </div>
+        <div class="my-3  h5 text-white font-weight-600"><i class="fa fa-check-circle mr-1" aria-hidden="true"></i>
+          Activity monitoring: We'll let you know about account activity
+        </div>
+        <div class="my-3  h5 text-white font-weight-600"><i class="fa fa-check-circle mr-1" aria-hidden="true"></i>
+          Layered Defense Strategy: We've put in place multiple layers</div>
+        <!-- <div class="my-3 ml-4">/ Super friendly support team</div> -->
+      </div>
+      <div class="col-md-5">
+        <img src="../../static/assets_design/img/services/privacy44.png" alt="" class="w-100">
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container">
+
+  <div class="card   shadow-none pl-0 mt-6 text-center">
+    <h2 class="display-3 text-info" >We are a click way</h2>
+    <p class="display-4">Submit your email address to get in touch
+    </p>
+    
+    <form class="mt-4" action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-sm-4 p-2">
+        <input type="email" id="email_input" class="form-control" placeholder="Email" name="email" required style="color:black; height:50px; text-align:center;  font-size:20px">
+      </div>
+      <div class="col-sm-4 p-2">
+        <input type="text" id="mobile_input" class="form-control" placeholder="Contact" name="mobile_input" required style="color:black; height:50px; text-align:center;  font-size:20px">
+      </div>
+      <div class="col-sm-4 text-center p-2"> 
+          <select class=" form-control" name="options" id="cars"  required style=" height:50px; text-align:center; font-size:20px">
+            <option >Select Option</option>
+            <option >Self Employed</option>
+            <option >Individual</option>
+            <option >Startup Company</option>
+            <option >Business</option>
+          </select>
+      </div>
+    </div>
+    <div style="text-align:center;" class="mt-5">
+      <button type="submit" class="btn text-center trynow"  data-toggle="modal" data-target="#exampleModal" style="font-size: 20px;">Request A Callback</button>
+    </div>
+  </form>
+</div>
+
+<section class="base_padding">
+  <!--pricing Cards-->
+  <div class="pricing-2 pt-5" id="pricing-2">
+    <div class="container" style="max-width:1040px">
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center mb-3">
+          <h2 class="">Popular plans</h2>
+          <!-- <p class="lead ">You have Free Unlimited Updates and Premium Support on each package.</p> -->
+          <!-- <div class="section-space"></div> -->
+        </div>
+      </div>
+      <div class="space-100"></div>
+      <div class="row">
+        <div class="nav-wrapper mx-auto mr-3 mb-3">
+          <ul class="nav nav-pills nav-pills-primary nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link mb-sm-3 mb-md-0  font-weight-bold active" id="tabs-month" data-toggle="tab" 
+                href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="false"><i
+                  class="mr-2" ></i><b style="font-size: 24px;">Individual</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mb-sm-3 mb-md-0  font-weight-bold" id="tabs-year" data-toggle="tab" 
+                role="tab" href="#tabs-icons-text-2" aria-controls="tabs-icons-text-2" aria-selected="true"><i
+                  class=" mr-2"></i><b style="font-size: 24px;">Business</b></a>
+            </li>
+          </ul>
+        </div>
+      </div> 
+          
+        {% comment %} <div class="card shadow"> {% endcomment %}
+            {% comment %} start individual {% endcomment %}
+            <div class="container">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+               <div class="">
+                        <div class="row justify-content-center ">
+                          {% for plan in individual_popular_plan1 %}
+                          {% if forloop.counter <= 3 %}
+                           {% if forloop.counter == 2 %} 
+                          <div class="col-md-4">
+                            <div class="card card-pricing text-center zoom" style="background-image: url('/static/assets_design/img/home/bg\ shape.png');background-size: cover;">
+                              <div class="middle" style="min-height:150px">
+                                 <button type="button" class="btn btn-secondary btn-round mt-4 text-dark" style="font-size: 20px;">{{plan.ind_popular_plan_name}}</button>
+                              </div>
+                            {% if plan.ind_popular_pr_img1 %}
+                            <img src="{{ plan.ind_popular_pr_img1.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.ind_popular_pr_img2 %}
+                            <img src="{{ plan.ind_popular_pr_img2.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.ind_popular_pr_img3 %}
+                            <img src="{{ plan.ind_popular_pr_img3.url }}" alt="connect" style="margin-top:-63px;">
+                          {% endif %} 
+                              <div class="card-body">
+                                
+                                <div class="display-2 text-white">₹ {{plan.ind_popular_our_price}}/-</div>
+                                                                <ul class="list-unstyled my-4">
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white" >{{plan.ind_popular_plan_detail1}}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white" >{{ plan.ind_popular_plan_detail2 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white" style="height:40px">{{ plan.ind_popular_plan_detail3 }} </span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white" >{{ plan.ind_popular_plan_detail4 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                                <a style="color:white" href="{% url 'plan_detail_without_page_for_business_ind' %}?plan_id={{plan.ind_popular_plan_id}}" class="text-center font-weight-bold">More Details...</a>
+                                <br><br>
+                                <a href="{% url 'plan_detail_for_ind_plan' %}?plan_id={{plan.ind_popular_plan_id}}" type="button" class="btn btn-secondary mb-3 text-blue">Buy Now</a> 
+                                
+                              </div>
+                              </div>
+                              </div>
+                            {% else %}
+
+
+                          <div class="col-md-4">
+                            <div class="card card-pricing text-center zoom">
+                          {% if plan.ind_popular_pr_img1 %}
+                            <img src="{{ plan.ind_popular_pr_img1.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.ind_popular_pr_img2 %}
+                            <img src="{{ plan.ind_popular_pr_img2.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.ind_popular_pr_img3 %}
+                            <img src="{{ plan.ind_popular_pr_img3.url }}" alt="connect" style="margin-top:-63px;">
+                          {% endif %} 
+                              <div class="card-body">
+                                <div class="middle" style="min-height:150px">
+                                  <h6 class="text-center display-4 mt-3">{{plan.ind_popular_plan_name}}</h6>
+                                </div>
+                                <div class="display-2 text-dark">₹ {{plan.ind_popular_our_price}}/-</div>
+                                <ul class="list-unstyled my-4">
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark" >{{plan.ind_popular_plan_detail1}}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark">{{ plan.ind_popular_plan_detail2 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark">{{ plan.ind_popular_plan_detail3 }} </span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark">{{ plan.ind_popular_plan_detail4 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                                <a href="{% url 'plan_detail_without_page_for_business_ind' %}?plan_id={{plan.ind_popular_plan_id}}" class="text-center font-weight-bold">More Details...</a>
+                                <br><br>
+                                <a href="{% url 'plan_detail_for_ind_plan' %}?plan_id={{plan.ind_popular_plan_id}}" type="button" class="btn btn-primary mb-3">Buy Now</a> 
+                                
+                              </div>
+
+                            </div>
+                          </div>
+                          {% endif %}
+                          {% endif %}
+                          {% endfor %}  
+
+
+                        </div>
+                      </div>
+                {% comment %} <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p> {% endcomment %}
+            </div>
+            {% comment %} end individual {% endcomment %}
+            {% comment %} start bussines {% endcomment %}
+                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                      <div class="">
+                        <div class="row justify-content-center">
+                          {% for plan in bussiness_popular_plan1 %}
+                          {% if forloop.counter <= 3 %}
+                          {% if forloop.counter == 2 %} 
+                          <div class="col-md-4">
+                            <div class="card card-pricing text-center zoom" style="background-image: url('/static/assets_design/img/home/bg\ shape.png');background-size: cover;">
+                              <div class="middle" style="min-height:150px">
+                                 <button type="button" class="btn btn-secondary btn-round mt-4" style="font-size: 20px;">{{plan.buss_popular_plan_name}}</button>
+                              </div>
+                            {% if plan.buss_popular_pr_img1 %}
+                            <img src="{{ plan.buss_popular_pr_img1.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.buss_popular_pr_img2 %}
+                            <img src="{{ plan.buss_popular_pr_img2.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.ind_popular_pr_img3 %}
+                            <img src="{{ plan.buss_popular_pr_img3.url }}" alt="connect" style="margin-top:-63px;">
+                          {% endif %}
+                              <div class="card-body">
+                                <div class="display-2 text-white">₹ {{plan.buss_popular_our_price}}/-</div>
+                                <ul class="list-unstyled my-4">
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white">{{ plan.buss_popular_plan_detail1 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white">{{ plan.buss_popular_plan_detail2 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white">{{ plan.buss_popular_plan_detail3 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-white">{{ plan.buss_popular_plan_detail4 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                                <a style="color:white" href="{% url 'plan_detail_without_login_for_bus' %}?plan_id={{plan.buss_popular_plan_id}}" class="text-center font-weight-bold">More Details...</a>
+                                <br><br>
+                                <a href="{% url 'plan_detail_for_buss_plan' %}?plan_id={{plan.buss_popular_plan_id}}" type="button" class="btn btn-secondary mb-3 text-blue">Buy Now</a> 
+                                
+                              </div>
+                              </div>
+                              </div>
+                            {% else %}
+
+                          <div class="col-md-4">
+                            <div class="card card-pricing text-center zoom">
+                            {% if plan.buss_popular_pr_img1 %}
+                            <img src="{{ plan.buss_popular_pr_img1.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.buss_popular_pr_img2 %}
+                            <img src="{{ plan.buss_popular_pr_img2.url }}" alt="connect" style="margin-top:-63px;">
+                          {% elif plan.ind_popular_pr_img3 %}
+                            <img src="{{ plan.buss_popular_pr_img3.url }}" alt="connect" style="margin-top:-63px;">
+                          {% endif %}
+                              <div class="card-body">
+                                <div class="middle" style="min-height:150px">
+                                  <h6 class="text-center display-4 mt-3" style="font-size:20px">{{plan.buss_popular_plan_name}}</h6>
+                                </div>
+                                
+                                <div class="display-2 text-dark">₹ {{plan.buss_popular_our_price}}/-</div>
+                                <ul class="list-unstyled my-4">
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark">{{ plan.buss_popular_plan_detail1 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px"> 
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark">{{ plan.buss_popular_plan_detail2 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark">{{ plan.buss_popular_plan_detail3 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center" style="height:40px">
+                                      <div>
+                                        <div class="icon icon-xs icon-shape bg-success shadow rounded-circle text-white">
+                                          <i class="ni ni-check-bold"></i>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <span class="pl-2 text-sm text-dark">{{ plan.buss_popular_plan_detail4 }}</span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                                <a href="{% url 'plan_detail_without_login_for_bus' %}?plan_id={{plan.buss_popular_plan_id}}" class="text-center font-weight-bold">More Details...</a>
+                                <br><br>
+                                <a href="{% url 'plan_detail_for_buss_plan' %}?plan_id={{plan.buss_popular_plan_id}}" type="button" class="btn btn-primary mb-3">Buy Now</a> 
+                                
+                              </div>
+
+                            </div>
+                          </div>
+                          {% endif %}
+                          {% endif %}
+                          {% endfor %}  
+
+
+                        </div>
+                      </div>
+                </div>
+              {% comment %} end business {% endcomment %}
+            </div>
+        </div>
+      </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="slider11">
+  <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab" >
+    <h2 class="text-center mb-3 mt-5 display-3">What Client’s Say</h2>
+
+    <div class="row">             
+      <div class="col-md-12 mx-auto">
+        <div id="carouselExampleIndicators11" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+          {% for i in page_reviews %}
+            {% if page_reviews.review_category == "INDEX" %}
+              {% if page_reviews.review_unique_category == "INDEX_FRONT" %}
+                <li data-target="#carouselExampleIndicators15" data-slide-to="{{ forloop.counter }}" class="active"></li>
+              {% else %}
+              <li data-target="#carouselExampleIndicators15" data-slide-to="{{forloop.counter}}"></li>
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+          </ol>
+          <div class="carousel-inner">
+          
+            {% for page_reviews in page_reviews %}
+            {% if page_reviews.review_category == "INDEX" %}
+            {% if page_reviews.review_unique_category == "INDEX_FRONT" %}
+            <div class="carousel-item active">
+              <div class="card col-md-9 mb-3 container-fluid" style="border-radius: 20px;">
+                <div class="row align-items-center">
+                  <div class="col-md-4 text-center">
+                    <img class="card-img-left img-fluid rounded-circle" src="{{ page_reviews.review_image.url }}" alt="Card image cap" style="width: 180px; height:180px;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title font-weight-600">{{ page_reviews.review_name }}</h4>
+                      {%for i in page_reviews.total_start  %}
+                      <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                      {%endfor%}
+                      <p class="card-text mt-2 font-weight-600">{{ page_reviews.review_message }}
+                      </p>
+                      <p class="card-text"><small class="text-muted">Last updated {{ page_reviews.review_updated_time }} ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            {% else %}
+            <div class="carousel-item">
+              <div class="card col-md-9 mb-3 container-fluid" style="border-radius: 20px;">
+                <div class="row align-items-center">
+                  <div class="col-md-4 text-center">
+                    <img class="card-img-left img-fluid rounded-circle" src="{{ page_reviews.review_image.url }}" alt="Card image cap" style="width: 180px; height:180px;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title font-weight-600">{{ page_reviews.review_name }}</h4>
+                      {%for i in page_reviews.total_start %}
+                      <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                      {%endfor%}
+                      <p class="card-text mt-2 font-weight-600">{{ page_reviews.review_message }}
+                      </p>
+                      <p class="card-text"><small class="text-muted">Last updated {{ page_reviews.review_updated_time }} ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            {% endif %}
+
+              {% endif %}
+              {% endfor %}
+
+            <!-- <div class="container">
+          </div> -->
+            <a style="width:10%" class="carousel-control-prev " href="#carouselExampleIndicators11" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon  text-dark h2" aria-hidden="true">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+              </span>
+              <span class="sr-only ">Previous</span>
+            </a>
+            <a style="width:10%" class="carousel-control-next " href="#carouselExampleIndicators11" role="button" data-slide="next">
+              <span class="carousel-control-next-icon text-dark h2" aria-hidden="true">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              </span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="w-100 h-100 bg-secondary base_padding">
+  <div class="section container  mt-5 ">
+    <div class=" text-center pb-7">
+      <h2 class="display-3">Why we are different</h2>
+      <!-- <p class="lead ">You have Free Unlimited Updates and Premium Support on each package. Unlimited Updates and Premium Support on each package.</p> -->
+    </div>
+    <div class="project-2 my-3">
+      <div class="container">
+
+        <div class="row">
+          <div class=" col-md-4">
+            <div class="card card-project bg-gradient-info">
+  
+              <div class="card-body">
+                <h4 class="display-4 text-center font-weight-700 text-white ">Tax Tips</h4>
+                <p class="h5 text-center font-weight-400 mt-5 text-white">Subscribe our “Tax Tips” newsletter and answer some basic questions, then we provide you Pro tips for Lifetime. 
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class=" col-md-4">
+            <div class="card card-project bg-gradient-info">
+             
+              <div class="card-body">
+                <h4 class="display-4 text-center font-weight-700 text-white">Maximum tax Benefits</h4>
+                <p class="h5 text-center font-weight-400 mt-5  text-white">We provide maximum claim & deductions on your taxes and achieve your financial goals with us.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class=" col-md-4">
+            <div class="card card-project bg-gradient-info">
+             
+              <div class="card-body">
+                <h4 class="display-4 text-center font-weight-700 text-white">Cloud Import</h4>
+                <p class="h5 text-center font-weight-400 mt-5 text-white">We understand filling taxes tends to become a hectic with huge data so we are here to minimise your efforts with cloud facilities.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Second Page-->
+{% comment %} 
+<div class="py-5 base_padding w-100" >
+  <div class="container ">
+    <div class="row justify-content-center align-items-center">
+
+      <div class="row" style="width:100%; display: flex; justify-content: center; align-items: center;">
+        <div class="col-md-5 text-center">
+          <h3 class="display-3"> Download This App</h3>
+          <p class="font-weight-600 display-4">
+            All in one Plateform<br>
+            Download to explore more features <br>and save taxes.
+          </p>
+
+          <div class="row" style="display: flex; justify-content: center; align-items: center;">
+            <div class="col-md-4 m-1">
+              <a href=""><img src="/static/assets_design/img/home/App_store.png" alt=""></a>
+            </div>
+            <div class="col-md-4 m-1"><a href=""><img src="/static/assets_design/img/home/google_play.png" alt=""></a></div>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-center mt-4 mb-3" style="display: flex; justify-content: center; align-items: center;"> 
+          <img class="img-fluid " src="/static/assets_design/img/home/orcode.png" alt=""> 
+        </div>
+        
+
+        <div class="col-md-4 text-center " style="display: flex; justify-content: center; align-items: center;">
+          <img class=" w-100 h-60 img-fluid" src="/static/assets_design/img/home/Group.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+
+
+<section>
+  <div class="mx-3" >
+    <div class=" text-center my-3 pb-3">
+      <h2 class="display-3">Business Associates</h2>
+      <!-- <p class="lead ">You have Free Unlimited Updates and Premium Support on each package. Unlimited Updates and Premium Support on each package.</p> -->
+    </div>
+    <div class="row d-flex align-items-center justify-content-between">
+      <div class="col-md text-center">
+        <img class="img-fluid p-5" src="/static/assets_design/img/home/woodhouse.png" alt="">
+      </div>
+      <div class="col-md text-center">
+        <img class="img-fluid p-5" src="/static/assets_design/img/home/compass.png" alt="">
+      </div>
+      <div class="col-md text-center">
+        <img class="img-fluid p-5" src="/static/assets_design/img/home/random.png" alt="">
+      </div>
+      <div class="col-md text-center">
+        <img class="img-fluid p-3" src="/static/assets_design/img/home/dotstect.png" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="container mb-5">
+    <div class="my-5 ">
+      <div class="card card-body " style="border-radius: 20px;background: linear-gradient(#1171EF, #11CDEF);">
+        <div class="row align-items-center">
+          <div class="col-md-8 text-white p-4">
+            <p class=" text-white display-3">Start Filling your taxes now</p>
+            <div class=" text-white display-4">Get your maximum refund with all the credits and deductions you deserve​
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-md-3 text-center">
+            <a class="btn btn-lg btn-white" href="{% url 'signup' %}"><b class="text-black" style="font-size: 20px;"> Get Started </b></a>
+          </div>
+        </div>
+    </div>
+</div>
+    <!-- live chat -->
+    <div class="container mt-5">
+      <div class="row align-items-center">
+        <div class="col-md-7 p-4 text-center">
+          <img src="/static/assets_design/img/home/Live_chat.svg" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-5 p-4 text-center">
+          <h1 class="text-dark text-dark display-3"> <b>Live Chat <b></h1>
+          <h2 class="mt-4 display-4">Ask your query<br>we are here to serve you</h2>
+          <a href="{% url "chat_new_page" %}" target="_blank"><button type="button" class="btn btn-round trynow text-center mt-3" style="font-size: 23px">Chat Now</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'follow_us.html' %}
+{{main_topic.topic}}
+<!--Second Page End-->
+<section class="mt-5">
+  <div class="bg-dark mt-4 pl-6 pr-6">
+    <div class="container text-center px-4">
+      <h2 class="py-6 text-white">
+      {{topic}}
+      </h2>
+      {%for i in review_database1 %}
+      <div class="text-left ml-2 text-white ">
+        <h5 class="text-white font-weight-600 mt-3">
+          {{i.question}}
+        </h5>
+        <p class="font-weight-400">{{i.answer}}</p>
+      </div>
+          
+        {% endfor %}
+    </div>
+    <div class="p-4"></div>
+  </div>
+</section>
+
+
+
+<!-- Modal -->
+
+{% if messages %}
+ {% for message in messages %}
+   
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         {{message}}
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary">Save changes</button>
+       </div>
+     </div>
+   </div>
+ </div>
+ {% endfor %}
+{% endif %}
+  
+
+
+<!--Main Footer End-->
+{% include "includes/footer.html" %}
+
+
+
+{% endblock content %}
+{% block script %}
+
+  {% comment %} <script src="https://unpkg.com/aos@next/dist/aos.js"></script> {% endcomment %}
+  
+  {% comment %} <script>
+    AOS.init();
+  
+    function Formsubmit(){
+      event.preventDefault()
+    }
+
+    $(window).on('load', function() {
+      AOS.refresh();
+    });
+    
+  </script> {% endcomment %}
+
+<!-- Start of Rocket.Chat Livechat Script -->
+<!-- Meta Pixel Code -->
+  <!-- End Meta Pixel Code -->
+{% endblock script %}

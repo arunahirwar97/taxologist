@@ -1,0 +1,199 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% block style %}
+
+
+<style>
+    
+    .right {
+        list-style: none;
+    }
+
+    .right li:before {
+        content: '✓';
+    }
+
+    .container {
+        max-width: 1350px;
+    }
+
+    .checked{
+        color: orange;
+        font-size: 25px;
+    }
+
+    .black{
+        font-size: 17px;
+        color: black;
+    }
+    div.scrollmenu {
+      background-color: #333;
+      overflow: auto;
+      white-space: nowrap;
+    }
+    
+    div.scrollmenu a {
+      display: inline-block;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+    }
+    
+    div.scrollmenu a:hover {
+      background-color: #777;
+    }
+    .hide {
+  display: none;
+    }
+    
+    .myDIV:hover + .hide {
+    display: block;
+    color:black;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+
+    
+    
+    <div class="scrollmenu" style="margin-top: 150px;">
+      <a href="#about" style="margin-left: 70px;">About</a>
+      <a href="#how_its_done">How Its Done</a>
+      <a href="#information_guide">Information Guide</a>
+      <!-- <a href="#about">About</a> -->
+      <a href="#faq">FAQ'S</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    
+    <!-- about section -->
+    <section id="about">
+        <div style="margin-left: 70px;margin-top: 40px;width: 650px;">
+            <img src="/static/img/about plan.svg" width="52" height="55" alt=""><b style="margin-left: 25px;font-size: 32px;color: black;padding-top: 50px;">About the plan </b>   
+            <!-- {{ plan_name }}
+            {{ get_plan_name }}
+            {{ about_the_plan_detail }} -->
+            <p style="margin-top: 20px;color: black;"><b>{{ about_the_plan_detail }}</b></p>
+        <!-- <p style="margin-top: 20px;color: black;"><b>One person company (OPC) as a concept allows an individiual to reap benefits  of being a company with a limited liability. The individual can take  riskier decisions  without having to worry about losing  personal assets and this has encouraged  many startups and young entrepreneurs to register as an OPC. Now that you know of the perks, opt for this plan,and get all the registration , legal and compliance formalities in place!</b></p> -->
+        <div style="margin-top: 62px;"></div>
+        <hr style="color: black;">
+
+        <div style="margin-top: 20px;color: black;list-style-type:none;">
+            <h1>Service Covered</h1>
+            <div style="margin-left: 220px;">
+                <li>&#9989;<spna style="margin-left: 7px;"> Filing of E-forms </spna> </li>
+                <li>&#9989;<spna style="margin-left: 7px;"> Name approval </spna> </li>
+                <li>&#9989;<spna style="margin-left: 7px;"> DSC Class -2 (1 No.) </spna> </li>
+                <li>&#9989;<spna style="margin-left: 7px;"> Includes Govt Fees & Stamp duty for Authorized Capital upto Rs. 1 Lakh </spna> </li>
+            </div>
+            <hr style="margin-left: 200px;margin-top: 45px;margin-bottom: 45px;">
+            <h1>Who Should Buy</h1>
+            <div style="margin-left: 220px;list-style-type: circle;">
+                <li>&#9989;<spna style="margin-left: 7px;"> Filing of E-forms </spna> </li>
+                <li>&#9989;<spna style="margin-left: 7px;"> Name approval </spna> </li>
+                <li>&#9989;<spna style="margin-left: 7px;"> DSC Class -2 (1 No.) </spna> </li>
+                <li>&#9989;<spna style="margin-left: 7px;"> Includes Govt Fees & Stamp duty for Authorized Capital upto Rs. 1 Lakh </spna> </li>
+            </div>
+        </div>
+
+    </section>
+    <!-- end about section -->
+
+<!-- start how its done -->
+    <section id="how_its_done">
+        <div style="margin-left: 70px;margin-top: 40px;width: 650px;">
+        <span style="margin-top: 65px;"> <hr> </span>
+
+            <div style="margin-top: 45px;">
+                <img src="/static/img/how its done.png" alt="">
+                
+            </div>
+        </div>
+    </section>
+<!-- end how its done -->
+
+<!-- start information guide -->
+
+<section id="information_guide">
+    <div style="margin-left: 70px;margin-top: 40px;width: 650px;">
+    <span style="margin-top: 65px;"> <hr> </span>
+
+        <div style="margin-top: 45px;">
+            <img src="/static/img/PDP-section-documents-icon.svg" alt="" width="60"><b style="margin-left: 25px;font-size: 32px;color: black;padding-top: 50px;">Information Guide </b>
+        </div>
+        <div style="margin-top: 20px;">
+            <p style="font-size: 30px;">Documents To Be Submitted </p>
+            <div style="width: 400px;">
+            <ol >
+                <li style="margin-top: 25px;margin-bottom: 22px;">Passport size photo directories</li><hr>
+                <!-- <li class="myDIV">Adress Proof of directors <span style="float: right;">&#10095;</span></li><hr> -->
+                <li style="margin-top: 25px;margin-bottom: 22px;">Adress Proof of directors </li><hr>
+                <li style="margin-top: 25px;margin-bottom: 22px;">Photo Id proof directories</li><hr>
+                <li style="margin-top: 25px;margin-bottom: 22px;">Self declaration about your directorship in other companies</li><hr>
+                <li style="margin-top: 25px;margin-bottom: 22px;">Rent agreement of your registered office</li><hr>
+            </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end information guide  -->
+
+<!-- start FAQ'S     -->
+<section id="faq">
+    <div style="margin-left: 70px;margin-top: 40px;width: 650px;">
+        <span style="margin-top: 65px;"> <hr> </span>
+    
+            <div style="margin-top: 45px;">
+                <img src="/static/img/faqs-icon.svg" alt="" width="60"><b style="margin-left: 25px;font-size: 32px;color: black;padding-top: 50px;">FAQ'S </b>
+            </div>
+        <div style="list-style-type: none;"> 
+            <li style="margin-top: 40px;">
+                <span style="font-size: 25px;">Q.</span> <b>What is the minimum capital requirement to start an OPC </b>
+            </li>
+            <li style="margin-top: 25px;"><span style="font-size: 25px;">Ans.</span><b>An OPC can be started with a minimum authorised capital of Rs. 1 lakh. There is no mandatory requirement for a minimum paid up capital. Hence, you can start as an OPC with a capital contribution as low as Rs. 2. However when the paid up capital exceeds Rs. 50 lakh, OPC must mandatorily convert to a private limited company( pvt. ltd.). Also, when the average turnover for 3 consecutive years becomes Rs. 2 crore or more, there is a need to convert into a pvt. ltd. </span></b></li>
+        </div>
+        
+</section >
+<!-- end faqs -->
+<!-- start reviews -->
+<section id="reviews">
+    <div style="margin-left: 70px;margin-top: 40px;width: 650px;">
+        <span style="margin-top: 65px;"> <hr> </span>
+    </div>
+    
+</section>
+</div>
+
+    <!--navs end-->
+
+
+
+
+
+    {% endblock content %}
+
+    {% block script %}
+    <script>
+        window.onscroll = function() {myFunction()};
+        
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+        
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+          } else {
+            navbar.classList.remove("sticky");
+          }
+        }
+        </script>
+        
+   
+
+    {% endblock script %}

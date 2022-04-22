@@ -1,0 +1,160 @@
+{% extends 'dashboard_base_for_business.html' %}
+
+{% block content %}
+  <section>
+    <div class="container">
+      <div>
+        <div class="wrapper">
+          <div class="bg-secondary">
+            <div class="container bg-white card mb-0">
+          
+                <div class="col-md-12 ml-auto">
+                  <div class="section">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="link1">
+                          <header>
+                            <h2 class="text-uppercase mt-5">General information</h2>
+                          </header>
+                          <hr class="line-primary"><br>
+                          <form action="" method="POST">{% csrf_token %}
+                          
+
+                          <div class="">
+                            
+
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col-md-3 align-self-center">
+                              <label class="labels" for="#firstName">Business Type</label>
+                            </div>
+                            <div class="col-md-9 align-self-center">
+                              <div class="form-group">
+                                <select class="form-control" name="company_type" data-trigger name="choices-single-default" id="choices-single-default">
+                                  <option value="1">Chose Type</option>
+                                  <option value="2">Partnership</option>
+                                  <option value="3">Private Company/OPC</option>
+                                  <option value="4">Public Company</option>
+                                  <option value="5">NPO Company</option>
+                                  <option value="6">Society/NGO</option>
+                                  <option value="7">Sole/Proprietor</option>
+                                  <option value="8">NRI</option>
+                                  
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="formData">
+
+                          
+                          <div class="row">
+                              <div class="col-md-3 align-self-center">
+                                <label class="labels" for="#email">Partner Name / Company Name</label>
+                              </div>
+                              <div class="col-md-9 align-self-center">
+                                <div class="form-group">
+                                  <input id="dob" name="dob" class="form-control" value="{{user.update_profile.dob}}"  type="text" required="required">
+                                </div>
+                              </div>
+                            </div>
+                          
+                          <div class="row">
+                            <div class="col-md-3 align-self-center">
+                              <label class="labels" for="#email">Email</label>
+                            </div>
+                            <div class="col-md-9 align-self-center">
+                              <div class="form-group">
+                                <input id="email" name="email" class="form-control" type="email" value="{{user.update_profile.email}}" required="required">
+                              </div>
+                            </div>
+                          </div>
+                          
+                          
+                          <div class="row">
+                            <div class="col-md-3 align-self-center">
+                              <label class="labels" for="#phone">Mobile Number</label>
+                            </div>
+                            <div class="col-md-4 align-self-center">
+                              <div class="form-group">
+                                <input id="phone" name="phone" class="form-control" type="tel" value="{{request.user.update_profile.mobile_number}}" required="required">
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="row">
+                              <div class="col-md-3 align-self-center">
+                                <label class="labels" for="#phone">PAN Number</label>
+                              </div>
+                              <div class="col-md-4 align-self-center">
+                                <div class="form-group">
+                                  <input id="phone" name="input" class="form-control" type="tel" value="{{request.user.update_profile.pan_number}}" required="required">
+                                </div>
+                              </div>
+                            </div>
+
+              
+                            
+                        </div>
+                        <div class="row">
+                          <div class="col-md-3 align-self-center">
+                            <!-- <label class="labels" for="#phone">PAN Number</label> -->
+                          </div>
+                          <div class="col-md-4 align-self-center">
+                            <div class="form-group">
+                              <button type="submit" class="btn btn-primary my-4">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>        
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+  {% block script %}
+  <script>
+    const data = {
+      '2' : ["firm name","email","mobile no.","pan no."],
+      "3" : ["company name","cin",  "email","mobile no.","pan no."],
+      "4" : ["company name","cin","email","mobile no.","pan no."],
+      "5" : ["name","r.no./cin","email","mobile no.","pan no."],
+      "6" : ["name","r.no./cin","email","mobile no.","pan no."],
+      "7" : ["proprietor","r.no.","email","mobile no.","pan no."],
+      "8" : ["name","email","mobile no.","uin"],
+      
+}
+
+
+$("#choices-single-default").change(()=>{
+  const name = $( "#choices-single-default option:selected" ).val();
+  var val  = data[name]
+  form_data = $("#formData")
+  form_data.empty()
+  for (let i = 0; i < val.length; i++) {
+    const element = val[i];
+    console.log(element);
+    form_data.append(`
+      
+    <div class="row">
+      <div class="col-md-3 align-self-center">
+        <label class="labels text-capitalize" for="#firstName">${element}</label>
+      </div>
+      <div class="col-md-9 align-self-center">
+        <div class="form-group">
+          <input id="firstName" name="${element}" class="form-control" type="input" value="" required="required">
+        </div>
+      </div>
+      
+    </div>
+    `)
+  }
+})
+</script>
+
+{% endblock script %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+
+
+
+<div class="container mt-9">
+    <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+        
+        <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+    </li>
+  </ul>
+  </div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" href="{% url 'paytax_personal_info' %}#tabs-text-1" >Personal Information</a>
+    </li>
+    <!-- <li class="nav-item"></li> -->
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_personal_address' %}#address" >Personal Address</a>
+    </li>
+    <li class="nav-item">
+        <!-- <a class="nav-link mb-sm-3 mb-md-0"  href="#tabs-text-2" >Personal</a> -->
+    </li>
+  </ul>
+    <div class="container mt-5" id="personal">
+        <div class="">
+            <h2>Permanent Information</h2>
+            <h4 class="my-4">Please enter your information here.</h4>
+            <form action="" method="POST">{% csrf_token %}
+                <div class="form-group ">
+                    <div class="col-md-6">
+                        <label for="first_name">First Name <span class="text-danger">*</span> </label>
+                        <input type="text" name="first_name" placeholder="john" class="form-control"/>
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <label for="middle_name">Middle Name</label>
+                        <input type="text" name="middle_name" placeholder="Kumar" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="last_name">Last Name <span class="text-danger">*</span> </label>
+                        <input type="text" name="last_name" placeholder="Doe" class="form-control">
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <label for="gender " >Gender <span class="text-danger">*</span> </label>
+                        <select class="form-control" data-trigger="" name="gender" id="choices-single-default">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 my-4 ">
+                        <label for="dob">Date of Birth <span class="text-danger">*</span> </label>
+                        <input type="date" name="date_of_birth" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="pan_number">PAN Card No.<span class="text-danger">*</span> </label>
+                        <input type="pan" name="pan_number" placeholder="pan number" class="form-control">
+                    </div>
+                    <div class="col-md-6 my-4">
+                        <label for="Father name">Father Name <span class="text-danger">*</span> </label>
+                        <input type="text" name="father_name" placeholder="John ke papa" class="form-control">
+                    </div>
+                    <div class="col-md-6 ">
+                        <label for="Father name">Martial Status <span class="text-danger">*</span> </label>
+                        <select class="form-control" data-trigger="" name="merried_status" id="choices-single-default">
+                            <option >Unmarried</option>
+                            <option >Married</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 my-5">
+                        <button type="submit" class="btn btn-primary">Save & Next</button>
+                    </div>
+                </div>
+            </form>
+</div>
+</div>
+{%endblock%}
+
+{% block script %}
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.file_return-item a').addClass('btn btn-primary text-white');
+$('.file_return-item a img').attr('src','/static/svg/dashboard_base/file_return_w.svg');
+
+</script>
+
+{% endblock script %}

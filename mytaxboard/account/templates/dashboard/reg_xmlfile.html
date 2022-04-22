@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+.container{
+  max-width: 1250px;
+}
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="container" style="padding-top: 150px;">
+    <div class="row ">
+
+      <div class="col-md-3"></div>
+      
+      <div class="card col-md-6">
+            <!-- Card header -->
+            <div class="card-header">
+              <h3 class="mb-0">Upload File</h3>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+              <form method="POST" enctype="multipart/form-data" accept-charset="utf-8" >{% csrf_token %}
+                <div class="custom-file">
+                  <input type="file" name="xmlfile" class="custom-file-input" id="customFileLang" lang="en">
+                  <label class="custom-file-label" for="customFileLang">Click here to chose file</label>
+                  <label class="pt-3" for="">Please Chose A File XML Form</label>
+                  <div class="">
+                    <button type="submit" class="btn btn-primary my-4 col-lg-4">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+      </div>        
+      
+      <div class="col-md-3"></div>
+    
+          
+    
+        </div>
+</div>
+
+{% endblock content %}
+
+

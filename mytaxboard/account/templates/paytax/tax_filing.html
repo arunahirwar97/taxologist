@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+
+<style>
+  fieldset {
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<!-- head -->
+
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+<!-- head -->
+
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+    <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" href="{% url 'paytax_tax_filing' %}#personal" >Bank Info</a>
+    </li>
+    <!-- <li class="nav-item"></li> -->
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_filing_more_info' %}#tabs-text-2" >More Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_e_filing' %}#tabs-text-2" >E-Filing</a>
+    </li>
+  </ul>
+  
+  <div class="container mt-9">
+    <h4 class="text-dark">Additional Information needed for Income Tax Return.</h4>
+    <fieldset>
+      <legend>
+        Aadhaar Details
+      </legend>
+  
+      <div class="container">
+        <p class="small">Your Aadhaar details are mandatory for filing your Income Tax Return.</p>     
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <p class="small">Aadhaar Card Number * <a href="">CLICK TO SEE SAMPLE</a></p>
+          </div>
+          <div class="col-md-2">
+            
+          </div>
+          <div class="col-md-5">
+            <p class="small">Aadhaar Enrollment Number <a href="">CLICK TO SEE SAMPLE</a></p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <p class="small">Don't remember your Aadhaar Number?<br><a href="">Search it here.</a></p>
+          </div>
+          <div class="col-md-2">
+            <b>(OR)</b>
+          </div>
+          <div class="col-md-5">
+            <p class="small">Don't remember your Aadhaar Enrollment Number?<br><a href="">Search it here.</a></p>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="text">
+          </div>
+          <div class="col-md-2">
+            
+          </div>
+          <div class="col-md-5">
+           <input type="text">
+          </div>
+        </div>
+      </div>
+  </fieldset>
+  </div>
+  
+  
+  <div class="container">
+    
+    <fieldset>
+      <legend>
+        Primary Bank Account
+      </legend>
+  
+      <div class="container">
+        <p class="small">This is where you will receive your refund (if applicable).</p>     
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <b class="small">Bank Account Number *</b>
+            <br>
+            <input type="text">
+          </div>
+          <div class="col-md-2">
+            
+          </div>
+          <div class="col-md-5">
+            <b class="small">IFSC code of your Branch*</b>
+            <br>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+  
+      <div class="container mt-2">
+        <div class="row">
+          <div class="col-md-5">
+            <b class="small">Name of your Bank*</b>
+            <br>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+  
+    </fieldset>
+  </div>
+  
+  
+  <div class="container">
+    
+    <fieldset>
+      <legend>
+        Primary Bank Account
+      </legend>
+  
+      <div class="container">
+        <p class="small">This is where you will receive your refund (if applicable).</p>     
+      </div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <input type="text">
+          </div>
+          <div class="col-md-3">
+            <input type="text">
+          </div>
+          <div class="col-md-3">
+            <input type="text">
+          </div>
+          <div class="col-md-3">
+            <input type="text">
+          </div>
+        </div>
+      </div>
+       <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary btn-sm">Add a bank account</button>
+          </div>
+        </div>
+      </div>
+  </fieldset>
+  </div>
+  
+  
+  
+  <div class="container">
+    <fieldset>
+      <legend>
+        Primary Bank Account
+      </legend>
+  
+      <div class="container">
+        <p class="small">This is where you will receive your refund (if applicable).</p>     
+      </div>
+  
+  
+  <div class="container">
+    <div class="row">
+  
+      <div class="col-md-6">
+        <b class="small">Mobile Phone number (secondary)</b>
+        <br>
+        <input type="text">
+      </div>
+  
+      <div class="col-md-6">
+        <b class="small">STD Code</b>
+        <br>
+        <input type="text">
+      </div>
+    </div>
+  </div>  
+  
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-6">
+        <b class="small">Landline Telephone number</b>
+        <br>
+        <input type="text">
+      </div>
+    </div>
+  </div>
+  
+  </fieldset>
+  </div>
+  
+{%endblock%}

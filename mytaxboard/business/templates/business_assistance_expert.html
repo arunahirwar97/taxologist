@@ -1,0 +1,761 @@
+{% extends 'dashboard_base_for_business.html' %}
+{% load static %}
+{% block style %}
+<style>
+  #upload-border {
+    height: 30px;
+    border: 1px dotted #2077C9;
+    display: inline-block;
+    padding-left: 7px;
+    margin: 20px 0;
+  }
+
+  #upload-name {
+    border: 2px dashed red;
+  }
+
+  #upload-button {
+    height: 40%;
+    padding: 0 30px;
+    border: none;
+    background: #2077C9;
+    color: white;
+    cursor: pointer;
+  }
+
+  #upload-name:focus,
+  #upload-button:focus {
+    outline: none;
+  }
+
+  .container{
+    max-width: 1400px;
+  }
+
+  #myBar {
+    width: 10%;
+    height: 22px;
+    background-color: #5e72e4;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+.dz-message {
+  
+    padding: 5rem 1rem;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    cursor: pointer;
+    transition: all .15s ease;
+    text-align: center;
+    color: #8898aa;
+    border: 1px dashed #dee2e6;
+    border-radius: .375rem;
+    background-color: #fff;
+    order: -1;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* popo up box */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+
+/* Modal Content/Box */
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content1 {
+  width: 30%; 
+ 
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  /* Could be more or less, depending on screen size */
+}
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<section >
+  <div class="row bg-white shadow p-3 m-3" style="border-radius:5px">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-md-4">
+          <form action="/action_page.php">
+            <select class="form-control" name="cars"  id="selectcountries">
+              <option value="volvo">Select Client</option>
+              {% for pan in pan_number %}
+              <option>{{ pan }}</option>
+              {% endfor %}
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <table class="table table-borderless row-bottom-margin mt-4">
+            <tr>
+              <th scope="col"><b>PAN</b></th>
+              <th scope="col"><b><span id="selectpan"></span></b></th>
+            </tr>
+            <tr>
+              <th scope="col"><b>Financial Year</b></th>
+              <th scope="col"><b><span id="selectyear"></span></b></th>
+            </tr>
+            <tr>
+              <th scope="col"><b>Active Plan</b></th>
+              <th scope="col"><b><span id="active_plans"></span></b></th>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-md-4 mt-5 text-center">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="p-4 mb-3">
+                    <img src="/static/assets_design/img/request_call-back.svg" alt="error" class="fluid img-fluid">
+                  </div>
+                  <div class="btn btn-primary px-1" style="width:100%" data-toggle="modal" data-target="#exampleModal">Request Call Back</div>
+                </div>
+              </div>
+              <form action="{% url 'assistance_expert' %}" method="post"  id="assistance_expert_form" onsubmit="return false">
+                {% csrf_token %}
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="form-group centered">
+                        <h5 class="modal-title" for="validationServer02" id="exampleModalLabel">Please enter contact number</h5><br>
+                      </div>
+                      <div class="form-group centered">
+                        <div class="col-sm-7">
+                          <input type="text" class="form-control input" name="Contact_number" id="num" onkeypress="return isNumberKey(event)"pattern="{0-9}[10]" style="height: 35px;" name="Contact_number" max-length="10" pattern="[0-9]{10}" placeholder="154115448" required>
+                        </div>
+                      </div>
+                      <div class="form-group centered">
+                        <button type="submit" class="btn btn-primary button" id="myBtn" name="audio_call1" onsubmit="return validateForm()">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-4 mt-5 text-center">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="p-4  mb-3">
+                    <img src="/static/assets_design/img/request_video_chat.svg" alt="error" class="fluid img-fluid">
+                  </div>
+                  <div class="btn btn-primary px-1 button" style="width:100%"  id="myBtn1">Request video chat</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mt-5 text-center">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="p-4 mb-3">
+                    <img src="/static/assets_design/img/live_chat.svg" alt="error" class="fluid img-fluid">
+                  </div>
+                  <div class="btn btn-primary px-1 button" style="width:100%"  id="myBtn1">Live Chat</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form enctype='multipart/form-data' action="upload/" method='POST' class="dropzone dz px-0" id="my-dropzone" style="border:none">
+            {% csrf_token %}
+            <div class="fallback">
+              <input name="file" type="file" multiple />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- section 2 -->
+
+<section class="container m-3 shadow bg-white">
+    
+    <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" >
+    {% csrf_token %}
+    <div class="row" style="margin-bottom: auto;">
+      <div class="col-md-9 mt-3 mb-3">
+        <!-- Dropzone start -->
+          <div class="custom-file">
+              <input type="file" name = "upload" class="custom-file-input" id="customFileLang" lang="en" multiple>
+              <label class="custom-file-label" for="customFileLang">Select file</label>
+          </div>
+      <!-- Dropzone end -->
+      </div>
+      <!-- <div class="offset-1">
+      </div>
+       -->
+    
+
+
+    <div class="col-md-2 mt-3">
+      <img src="../../static/svg/expert_assistance/upload.svg" alt="" class="img-fluid text-center mx-auto d-block">
+      <!-- <button class="btn btn-success mx-auto d-block">Upload Now</button> -->
+      <button onclick="move()" class="btn btn-success mx-auto d-block" type="submit">Submit</button>
+    </div>
+  </div>
+  </form>
+
+  <!-- move -->
+  <div class="row mt-4" style="margin-top: auto;">
+    <div class="col-md-12 mb-3"  data-toggle="quill" data-quill-placeholder="Quill WYSIWYG">
+      <div style="border-radius: 15px;" id="myProgress">
+        <div style="border-radius: 15px;" id="myBar" style="width:25%">10%</div>
+      </div>      
+    </div>
+  </div>
+  <!-- move -->
+</section>
+
+
+
+  <!-- section 3 -->
+  <section class="bg-white shadow m-3 container">
+    <div class="p-4">
+      <h3>List of uploaded files</h3>
+      <div class="mt-3">
+        <form action="/action_page.php">
+          <select class=" form-control col-md-4 " name="cars" id="selectclients1">
+           <option value="volvo">Select Client</option>
+          {% for pan in pan_number %}
+          <option>{{ pan }}</option>
+          {% endfor %}
+        </select>
+        </form>
+      </div>
+      <p class="pt-4">show entries <span class=" float-right">Search <input type="text"></span></p>
+
+
+      <!-- table -->
+      <div class="pt-4 table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="">S. NO.</th>
+              <th>Form</th>
+              <th>Uploader</th>
+              <th>Downloader</th>
+              <th class="">Time</th>
+              <th class="">Date</th>
+            </tr>
+          </thead>
+          <tbody id="file_information">
+
+          </tbody>
+
+            {% comment %} {% for i in '12345' %}
+
+            <tr>
+              <td class="">1</td>
+              <td>Form16</td>
+              <td>User</td>
+              <td><a href="">click here</a></td>
+              <td class="">12:00 am</td>
+              <td class="">
+                12/12/2012
+              </td>
+            </tr>
+            {% endfor %} {% endcomment %}
+
+
+        </table>
+      </div>
+      <div>
+        <p class="pt-5">Showing 1 to 10 of 57 entries <span>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">
+                    <i class="ni ni-bold-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    <i class="ni ni-bold-right"></i>
+                    <span class="sr-only" >Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </span></p>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- popup -->
+
+  <div id="myModal" class="modal" style="margin-top: 200px;">
+    <!-- Modal content -->
+    
+    <div class="modal-content1">  
+ 
+        <form method="post" action=""> 
+          {% csrf_token %}       
+          <!--pop up box-->
+          <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+            <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+              <div class="swal2-header"><ul class="swal2-progresssteps" style="display: none;"></ul>
+                <div class="swal2-icon swal2-error" style="display: none;">
+                  <span class="swal2-x-mark"> 
+                  <span class="swal2-x-mark-line-left"></span>
+                  <span class="swal2-x-mark-line-right"></span>
+                  </span>
+                </div>
+  
+                <div class="swal2-icon swal2-question" style="display: none;">
+                  <span class="swal2-icon-text">?</span>
+                </div>
+  
+                <div class="swal2-icon swal2-warning" style="display: none;">
+                  <span class="swal2-icon-text">!</span>
+                </div>
+  
+                <div class="swal2-icon swal2-info" style="display: none;">
+                  <span class="swal2-icon-text">i</span>
+                </div>
+  
+                <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                  <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);">
+                  </div>
+                  <span class="swal2-success-line-tip"></span>
+                  <span class="swal2-success-line-long"></span>
+                  <div class="swal2-success-ring"></div> 
+                  <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                  <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+                </div>
+  
+                  <img class="swal2-image" style="display: none;">
+                  <h2 class="swal2-title" id="swal2-title" style="display: flex;">Thank You</h2>
+                  <button type="button" class="swal2-close" style="display: none;">×</button>
+              </div>
+  
+              <div class="swal2-content">
+                  <div id="swal2-content" style="display: block;">we will send you the link on your registered Email ID</div>
+                  <input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;">
+                  <div class="swal2-range" style="display: none;"><input type="range"><output></output></div>
+                  <select class="swal2-select" style="display: none;"></select>
+                  <div class="swal2-radio" style="display: none;"></div>
+  
+                  <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
+                    <input type="checkbox"><span class="swal2-label"></span>
+                  </label>
+  
+                  <textarea class="swal2-textarea" style="display: none;"></textarea>
+                <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+              </div>
+  
+              <div class="swal2-actions" style="display: flex;">
+                <button type="submit" class="swal2-confirm btn btn-success" aria-label="" id="audio_call" name="audio_call" value="audio_call">OK</button>
+                <button type="submit" class="swal2-cancel" aria-label="" style="display: none;">Cancel</button>
+              </div>
+  
+              <div class="swal2-footer" style="display: none;"></div>
+            </div>
+          </div>
+          <!--End Pop up Box-->
+        </form>   
+    </div>
+   </div>
+  
+  
+   <!--end first modal-->
+   <!-- end popup -->
+
+
+  <!--start second modal-->
+  <div id="myModal1" class="modal1" style="margin-top: 200px;">
+    <!-- Modal content -->
+    <div class="modal-content1">  
+      <form method="post" action=""> 
+        {% csrf_token %}       
+        <!--pop up box-->
+        <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+          <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+            <div class="swal2-header"><ul class="swal2-progresssteps" style="display: none;"></ul>
+              <div class="swal2-icon swal2-error" style="display: none;">
+                <span class="swal2-x-mark"> 
+                <span class="swal2-x-mark-line-left"></span>
+                <span class="swal2-x-mark-line-right"></span>
+                </span>
+              </div>
+
+              <div class="swal2-icon swal2-question" style="display: none;">
+                <span class="swal2-icon-text">?</span>
+              </div>
+
+              <div class="swal2-icon swal2-warning" style="display: none;">
+                <span class="swal2-icon-text">!</span>
+              </div>
+
+              <div class="swal2-icon swal2-info" style="display: none;">
+                <span class="swal2-icon-text">i</span>
+              </div>
+
+              <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);">
+                </div>
+                <span class="swal2-success-line-tip"></span>
+                <span class="swal2-success-line-long"></span>
+                <div class="swal2-success-ring"></div> 
+                <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+              </div>
+
+                <img class="swal2-image" style="display: none;">
+                <h2 class="swal2-title" id="swal2-title" style="display: flex;">Thank You</h2>
+                <button type="button" class="swal2-close" style="display: none;">×</button>
+            </div>
+
+            <div class="swal2-content">
+                <div id="swal2-content" style="display: block;">we will send you the link on your registered Email ID</div>
+                <input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;">
+                <div class="swal2-range" style="display: none;"><input type="range"><output></output></div>
+                <select class="swal2-select" style="display: none;"></select>
+                <div class="swal2-radio" style="display: none;"></div>
+
+                <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
+                  <input type="checkbox"><span class="swal2-label"></span>
+                </label>
+
+                <textarea class="swal2-textarea" style="display: none;"></textarea>
+              <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+            </div>
+
+            <div class="swal2-actions" style="display: flex;">
+              <button type="submit" class="swal2-confirm btn btn-success" aria-label="" name="video_call" id="video_call" value="video_call">OK</button>
+              <button type="submit" class="swal2-cancel" aria-label="" style="display: none;">Cancel</button>
+            </div>
+
+            <div class="swal2-footer" style="display: none;"></div>
+          </div>
+        </div>
+        <!--End Pop up Box-->
+      </form>   
+    </div>   
+  </div>
+  <!--end Seond modal-->
+
+
+  {% endblock content %}
+
+  {% block script %}
+   
+   <!-- popup box -->
+   <script>
+          // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      
+
+      // When the user clicks on the button, open the modal
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+   </script>
+  <!-- end popup -->
+
+  <script>
+    // Get the modal
+    var modal1 = document.getElementById("myModal1");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn1");
+  
+    var span = document.getElementsByClassName("close1")[0];
+  
+    
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal1.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal1.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal1) {
+        modal1.style.display = "none";
+      }
+    }
+    </script>
+    
+
+
+  <script>
+    //adds event listener to the file uploader button
+    document.querySelector("#upload-button").addEventListener("click", () => {
+      //clicks on the file input
+      document.querySelector("#hidden-upload").click();
+    });
+
+    //adds event listener on the hidden file input to listen for any changes
+    document.querySelector("#hidden-upload").addEventListener("change", (event) => {
+      //gets the file name
+      document.querySelector("#upload-name").value = event.target.files[0].name;
+    });
+  </script>
+
+  <!-- move script -->
+  <script>
+    var i = 0;
+    function move() {button};
+  </script>
+
+<script >
+let input = document.querySelector(".input");
+let button = document.querySelector(".button");
+button.disabled = true;
+input.addEventListener("change", stateHandle);
+
+function stateHandle() {
+    if(document.querySelector(".input").value ==="") {
+        button.disabled = true;
+    } else {
+        button.disabled = false;
+    }
+}
+</script>
+
+<script>
+
+  function isNumberKey(evt){
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+          return false;
+      return true;
+  }
+  </script>
+  <script type="text/javascript">
+    $("#assistance_expert_form").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var url = form.attr('action');
+    var contact_number = $('#num').val();
+    var status = $('#myBtn').attr('name');
+    data = {'contact_number': contact_number,'status':status};
+    $.ajax({
+           url: "assistance_expert_ajax_call",
+           data:{'contact_number': contact_number,'status':status} , // serializes the form's elements.
+           success: function(data)
+           {
+               {% comment %} alert(data); // show response from the php script. {% endcomment %}
+           }
+         });
+
+    
+});
+
+  </script>
+
+
+
+<script>
+  $('#selectcountries').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var pan_card_number   = optionSelected.text();
+
+    $.ajax(
+    {
+        url: "ajax_call_assistance_expert",
+        data:{
+          pan_card_number:pan_card_number,
+        },
+        success: function(result) 
+        {
+       					 	$("#selectcities option").remove();
+       					 	$("#selectcities2").remove();
+       					 	$("#selectcities3").remove();
+       					 	$("#active_plans12").remove();
+                  $("#selectpan").append('<span id="selectcities2">'+ result[0].pan_number +'</span>');
+                  $("#selectyear").append('<span id="selectcities3">'+ result[0].current_date +'</span>');
+                  $("#active_plans").append('<span id="active_plans12">'+ result[0].active_plans +'</span>');
+        }
+     })
+     
+});
+
+
+
+</script>
+
+
+<script>
+  $('#selectclients1').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var pan_card_number   = optionSelected.text();
+    $.ajax(
+    {
+        url: "ajax_call_assistance_expert_download_file",
+        data:{
+          pan_card_number:pan_card_number,
+        },
+        success: function(result) 
+        {
+       					 	$("#selectclients option").remove();
+                  
+                  $('#file_information').empty();
+                  for(var i=0;i<=result.length;i++){
+                     var data = $('<tr><td>'+ (i+1) +'</td><td>'+result[i].form+ '</td><td>' + result[i].uploader +'</td><td><a href='+result[i].download+" download>"+"Download"+'</a></td><td>'+result[i].current_time+'</td><td>'+ result[i].current_date+'</td<td>')
+                        $('#file_information').append(data);                       
+                     }
+        }
+     })
+     
+});
+
+
+
+</script>
+
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.expert_assitance1-item a').addClass('btn btn-primary text-white');
+</script>
+
+   <!-- <script>
+        
+//           $(document).ready(function(){
+//        $("#mobile-num").on("blur", function(){
+//         var mobNum = $(this).val();
+//         var filter = /^\d*(?:\.\d{1,2})?$/;
+
+//           if (filter.test(mobNum)) {
+//             if(mobNum.length==10){
+//               $("#mobile-valid").removeClass("hidden");
+//               $("#folio-invalid").addClass("hidden");
+//              } 
+//             else if(mobNum== '') {
+
+//                 // alert('Please put 10  digit mobile number');
+//                $("#folio-invalid").ssName("");
+//               // alert('Please put 10  digit mobile number');
+//                $("#folio-invalid").removeClass("hidden");
+//                $("#mobile-valid").addClass("hidden");
+//                 return false;
+//             }removeClass("hidden");
+//                $("#mobile-valid").addClass("hidden");
+//                 return false;
+//               }
+//             else
+//             {
+              
+//               // document.getElementByClass("has-error");
+// // 
+//               // $('.btn.danger').button('toggle').addClass('fat')
+//               // data-toggle="notify"
+//               // $(document).on('.alert.data-api')
+//               // document.getElementsByCla
+//             }
+//             else {
+//               // alert('Not a valid number');
+//               $("#folio-invalid").removeClass("hidden");
+//               $("#mobile-valid").addClass("hidden");
+//               return false;
+//            }
+    
+//   });
+  
+// });
+        
+    
+// </script> -->
+
+
+  {% endblock script %}

@@ -1,0 +1,227 @@
+{% load cms_tags menu_tags sekizai_tags static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>{% block title %}This is my new project home page{% endblock title %}</title>
+        
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <!-- CSS only -->
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+      
+        <!-- Nucleo Icons -->
+        <link href="{% static '/css/nucleo-icons.css' %}" rel="stylesheet" />
+        <link href="{% static '/css/nucleo-svg.css' %}" rel="stylesheet" />
+        <!-- Font Awesome Icons -->
+        <link href="{% static '/css/font-awesome.css' %}" rel="stylesheet" />
+        <link href="{% static '/css/nucleo-svg.css' %}" rel="stylesheet" />
+        <!-- CSS Files -->
+        <link href="{% static '/css/argon-design-system.css' %}" rel="stylesheet" />
+        <!-- <link href="{% static '/css/argon.min.css' %}" rel="stylesheet" /> -->
+      
+      
+      
+        <style type="text/css">
+            .container{
+                max-width: 1350px;
+            }
+            .sidebar {
+                float: left;
+                width: 20%;
+            }
+        </style>
+        {% render_block "css" %}
+    </head>
+    <body>
+        {% cms_toolbar  %}
+
+
+		<nav id="navbar-main" class="navbar navbar-main navbar-expand-lg py-2 fixed-top " style="">
+			<div class="container-fluid ">
+			  <a class="navbar-brand mr-lg-5" href="/">
+				<img class="w-100 h-100" src="/static/img/logo.png">
+			  </a>
+			  <button class="navbar-toggler bg-info" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon text-white "><i class="fa fa-bars mt-1" aria-hidden="true"></i>
+				</span>
+			  </button>
+			  <div class="navbar-collapse collapse" id="navbar_global">
+				<div class="navbar-collapse-header">
+				  <div class="row">
+					<div class="col-6 collapse-brand">
+					  <a href="/">
+						<img src="../static/img/logo.png">
+					  </a>
+					</div>
+					<div class="col-6 collapse-close">
+					  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global"
+						aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+						<span></span>
+						<span></span>
+					  </button>
+					</div>
+				  </div>
+				</div>
+				<ul class="navbar-nav navbar-nav-hover align-items-lg-center ">
+		
+				  <li class="nav-item dropdown">
+					<a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+					  aria-expanded="false">
+					  <span class="nav-link-inner--text">Products</span>
+		
+					  <i class="ni ni-bold-down ml-2"></i>
+					</a>
+					<div class="dropdown-menu  dropdown-menu-right ">
+					  <!-- <div class="dropdown-header noti-title">
+						<h6 class="text-overflow m-0">Welcome!</h6>
+					  </div> -->
+					  <a href="#" class="dropdown-item">
+						<!-- <i class="ni ni-single-02"></i> -->
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>
+		
+						<span>Tax Planner</span>
+					  </a>
+		
+					  <a href="#" class="dropdown-item">
+						<i class="ni ni-mobile-button" aria-hidden="true"></i>
+						<span>Mobile</span>
+					  </a>
+					  <a href="#" class="dropdown-item">
+						<i class="fa fa-arrows-alt" aria-hidden="true"></i>
+						<span>Tax Tools</span>
+					  </a>
+					  <a href="#" class="dropdown-item">
+						<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+						<span>Tax Learn</span>
+					  </a>
+					  <a href="#" class="dropdown-item">
+						<i class="fa fa-desktop" aria-hidden="true"></i>
+		
+						<span>Knowlebge Center</span>
+					  </a>
+					</div>
+				  </li>
+		
+				  <li class="nav-item">
+					<a href="/pricing" class="nav-link">
+					  <i class="ni ni-ui-04 d-lg-none"></i>
+					  <span class="nav-link-inner--text">Services</span>
+					</a>
+				  </li>
+				</ul>
+				<ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
+				  <div class="d-flex ml-auto align-items-center">
+					<li class="nav-item ">
+					  <a href="" class="nav-link pr-2">
+						<i class="ni ni-single-copy-04 d-lg-none"></i>
+						<span class="text-white nav-link-inner--text">About</span>
+					  </a>
+					</li>
+					<li class="nav-item">
+					  <a href="%}" class="nav-link">
+						<i class="ni ni-tablet-button d-lg-none"></i>
+						<span class="text-white nav-link-inner--text">Contact</span>
+					  </a>
+		
+					</li>
+		
+		
+					{% if request.user.is_authenticated %}
+					<li class="nav-item">
+					  <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+						<li class="nav-item dropdown">
+						  <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">
+							<div class="media align-items-center">
+							  <span class="avatar avatar-sm rounded-circle" style="height: 40px; width: 40px;">
+								<img class="w-100 h-100" alt="Image placeholder" src="{% if request.user.update_profile.profile_image %}
+								  {{request.user.update_profile.profile_ima {%else%}
+								  {% static '/img/theme/team-4.jpg' %}
+								  {%endif%}
+								  " style="object-fit: cover;" height="40px">
+							  </span>
+							  <div class="media-body  d-none d-lg-block">
+								<span class="mb-0 text-sm  font-weight-bold">{{request.user.username}}</span>
+							  </div>
+							</div>
+						  </a>
+						  <div class="dropdown-menu  dropdown-menu-right ">
+							<div class="dropdown-header noti-title">
+							  <h6 class="text-overflow m-0">Welcome!</h6>
+							</div>
+							<a href="quest.user.username %}" class="dropdown-item">
+							  <i class="ni ni-single-02"></i>
+							  <span>My profile</span>
+							</a>
+		
+							<a href="#!" class="dropdown-item">
+							  <i class="ni ni-support-16"></i>
+							  <span>Support</span>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a href=" class="dropdown-item">
+							  <i class="ni ni-user-run"></i>
+							  <span>Logout</span>
+							</a>
+						  </div>
+						</li>
+					  </ul>
+					</li>
+					{% else %}
+					<li class="nav-item">
+					  <button type="button" class="btn btn-white text-info  mr-3" data-toggle="modal"
+						data-target=".bd-example-modal-lg"> Log In </button>
+					</li>
+		
+		
+					<li class="nav-item">
+					  <button type="button" class="btn btn-white text-info " data-toggle="modal" data-target="#signuu_model">
+						Sign Up </button>
+					</li>
+					{% endif %}
+				  </div>
+		
+				</ul>
+			  </div>
+			</div>
+		  </nav>
+
+        <div class="">
+            {% block content %}{% endblock content %}
+        </div>
+        {% render_block "js" %}
+    </body>
+    {% include 'footer.html' %}
+</html>
+ <!--   Core JS Files   -->
+ <script src="{% static '/js/core/jquery.min.js' %}" type="text/javascript"></script>
+ <script src="{% static '/js/core/popper.min.js' %}" type="text/javascript"></script>
+ <script src="{% static '/js/core/bootstrap.min.js' %}" type="text/javascript"></script>
+ <script src="{% static '/js/plugins/perfect-scrollbar.jquery.min.js' %}"></script>
+ <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+ <script src="{% static '/js/plugins/bootstrap-switch.js' %}"></script>
+ <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+ <script src="{% static '/js/plugins/nouislider.min.js' %}" type="text/javascript"></script>
+ <!--  Plugin for the Carousel, full documentation here: http://jedrzejchalubek.com/ -->
+ <script src="{% static '/js/plugins/glide.js' %}" type="text/javascript"></script>
+ <!--  Plugin for the DatePicker, full documentation here: https://flatpickr.js.org/ -->
+ <script src="{% static '/js/plugins/moment.min.js' %}"></script>
+ <!--	Plugin for Select, full documentation here: https://joshuajohnson.co.uk/Choices/ -->
+ <script src="{% static '/js/plugins/choices.min.js' %}" type="text/javascript"></script>
+ <!--  Plugin for the DateTimePicker, full documentation here: https://flatpickr.js.org/ -->
+ <script src="{% static '/js/plugins/datetimepicker.js' %}" type="text/javascript"></script>
+ <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+ <script src="{% static '/js/plugins/jasny-bootstrap.min.js' %}"></script>
+ <!-- Plugin for Headrom, full documentation here: https://wicky.nillia.ms/headroom.js/ -->
+ <script src="{% static '/js/plugins/headroom.min.js' %}"></script>
+ <!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
+ <!--  Google Maps Plugin    -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+ <script src="{% static '/js/argon-design-system.min.js' %}" type="text/javascript"></script>
+ <!-- JavaScript Bundle with Popper -->

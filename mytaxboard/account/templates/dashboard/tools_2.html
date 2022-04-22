@@ -1,0 +1,97 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block style %}
+
+{% endblock style %}
+
+
+{% block content %}
+
+<style>
+    .container {
+        max-width: 1350px;
+    }
+</style>
+
+<section>
+    <div class="container mt-3">
+        
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                          <center>
+                            <img src="../../static/svg/services/gst.svg" alt="" style="">
+                          </center>
+                          <div class="card-title text-center mt-2">
+                            <h3 class="text-dark font-weight-600">Generate Tax Reciept</h3>
+                          </div>
+                          <div class="card-subtitle text-center">
+                            <p class="font-weight-400"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores aliquid ratione
+                              qui libero voluptates optio explicabo omnis. Alias sint iste illum illo saepe consequatur
+                              praesentium accusamus provident. Vitae, eius? Dignissimos?</p>
+                          </div>
+                          <p class="text-center">
+                            <button class="btn btn-primary" type="button"><a class="nav-link text-white" href="{% url 'tools' %}" role="button">Generate Now</a></button>
+                          </p>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                          <center>
+                            <img src="../../static/svg/services/registration.svg" alt="" style="">
+                          </center>
+                          <div class="card-title text-center mt-2">
+                            <h3 class="text-dark font-weight-600">Generate GST Reciept</h3>
+                          </div>
+                          <div class="card-subtitle text-center">
+                            <p class="font-weight-400"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores aliquid ratione
+                              qui libero voluptates optio explicabo omnis. Alias sint iste illum illo saepe consequatur
+                              praesentium accusamus provident. Vitae, eius? Dignissimos?</p>
+                          </div>
+                          <p class="text-center">
+                            <button class="btn btn-primary" type="button"> <a class="nav-link text-white" href="{% url 'tools' %}" role="button">Generate Now</a></button>
+                          </p>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                          <center>
+                            <img src="../../static/svg/services/income_tax.svg" alt="" style="">
+                          </center>
+                          <div class="card-title text-center mt-2">
+                            <h3 class="text-dark font-weight-600">Generate Rent Reciept</h3>
+                          </div>
+                          <div class="card-subtitle text-center">
+                            <p class="font-weight-400"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores aliquid ratione
+                              qui libero voluptates optio explicabo omnis. Alias sint iste illum illo saepe consequatur
+                              praesentium accusamus provident. Vitae, eius? Dignissimos?</p>
+                          </div>
+                          <p class="text-center">
+                            <button class="btn btn-primary" type="button"><a class="nav-link text-white" href="{% url 'tools' %}" role="button">Generate Now</a></button>
+                          </p>
+                        </div>
+                      </div>
+                </div>
+
+                
+            </div>
+        </div>
+    
+</section>
+
+{% endblock content %}
+
+{% block script %}
+    <script>
+    $('.nav-item a').removeClass('btn btn-primary text-white');
+    $('.tax_tool-item a').addClass('btn btn-primary text-white');
+    $('.tax_tool-item a img').attr('src','/static/svg/dashboard_base/tax_tool_w.svg');
+
+    </script>
+
+{% endblock script %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+
+{% include 'paytax/em_details.html' %}
+<!--input 1-->
+
+<style>
+    fieldset {
+      padding: 0 1.4em 1.4em 1.4em;
+      margin: 0 0 1.5em 0;
+      border: 1px solid #ccc;
+    }
+  </style>
+  
+  <body>
+  
+  
+    <!--First-->
+    <div class="container">
+      <fieldset>
+        <legend>Employer Details</legend>
+  
+        <label for="employer_name">Name of the Employer</label><span class="text-danger">*</span>
+        <br>
+        <div class="form-group ">
+          <div class="col-md-6">
+            <span class="small">The name of Company / Organization</span>
+            <input type="text" placeholder="Search For Employer Name..." class="form-control" />
+          </div>
+          
+  
+          <div class="col-md-4 mt-4">
+            <label for="gender ">Employer Type/Category<span class="text-danger">*</span> </label>
+            <select class="form-control" data-trigger="" name="choices-single-default" id="choices-single-default">
+              <option value="1">Private</option>
+              <option value="2">Central Goverment</option>
+              <option value="3">State Government</option>
+              <option value="4">Public Sector</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+{%endblock%}

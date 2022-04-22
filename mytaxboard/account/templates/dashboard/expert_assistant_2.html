@@ -1,0 +1,53 @@
+{% extends "dashboard_base.html" %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .container{
+      max-width: 1350px;
+    }
+  </style>
+
+<section>
+    <div class="container mt-4">
+        <div class="card " style="height:75%">
+            <div class="card-body">
+                 <div class="row">
+            <div class="col-md-6">
+                <img src="/static/svg/main_page_1.svg" alt="" style="max-width:100%;height:auto;"> 
+            </div>
+            <div class="col-md-6">
+
+                <div class="text-center mt-5">
+            <h2 class="text-center display-3">No one assigned to you</h2>
+            <br>
+            {% if disabled == 'disabled' %}
+            <a href="services"><button type="button" class="btn btn-success" style="font-size: 20px;" >Get Assistance</button></a>
+            {%else%}
+            <button type="button" class="btn btn-success" style="font-size: 20px;" {{disabled}}><a class="nav-link text-white" href="{% url 'assistance_expert' %}" role="button" >Get Assistance</a></button>
+            {%endif%}
+            
+            </div>
+                
+            </div>
+        </div>
+            </div>
+       
+    </div>
+    </div>
+</section>
+
+{% endblock content %}
+<!-- First Panel -->
+
+{% block script %}
+
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.expert_assitance1-item a').addClass('btn btn-primary text-white');
+$('.expert_assitance1-item a img').attr('src','/static/svg/dashboard_base/expert_assistance_w.svg');
+
+</script>
+
+{% endblock script %}

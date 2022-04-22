@@ -1,0 +1,418 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block content %}
+<body>
+  
+<!--First Page-->
+
+
+<div class="container mt-9">
+  <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+      
+      <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{% url 'paytax_personal_info' %}" >Personal Info</a>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-2-tab" href="{% url 'paytax_income_salary' %}" >Income Source</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-text-3-tab" href="{% url 'paytax_deduction' %}#tabs-text-3" >Deduction</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  id="tabs-text-4-tab" href="{% url 'paytax_taxpaid_tds' %}" >Taxes Paid</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-5-tab" href="{% url 'paytax_tax_filing' %}#tabs-text-5" >Tax Filing</a>
+  </li>
+</ul>
+</div>
+<!--input 1-->
+<ul class="nav nav-pills container nav-fill flex-column flex-lg-row mt-6"  role="tablist">
+  <li class="nav-item">
+    <a class="nav-link mb-sm-3 mb-md-0 " href="{% url 'paytax_income_salary' %}#personal" >Salary</a>
+  </li>
+  <!-- <li class="nav-item"></li> -->
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 "  href="{% url 'paytax_income_other_income' %}#tabs-text-2" >Other Income</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'paytax_income_house_property' %}#tabs-text-2" >House Property</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0 active"  href="{% url 'paytax_income_capital_gain' %}#tabs-text-2" >Capital Gain</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link mb-sm-3 mb-md-0"  href="{% url 'business_and_profession' %}#tabs-text-2" >Business & Profession</a>
+  </li>
+</ul>
+
+
+
+
+<!--Navbar With Three coloumn-->
+
+
+
+<!--For individul-->
+<div class="pricing-4" id="pricing-5">
+        <div id="individul" class="container mt-3">
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center">
+              <h2 class="title">Text Filling</h2>
+              
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-3">
+              <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+                <div class="card-header">
+                  <img src="./assets/img/theme/vue.jpg" class="img-center shadow">
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h5 class="text-uppercase">Standard Pack</h5>
+                      <span>£ 39</span>
+                      <hr class="bg-info">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <ul class="list-group">
+                      <li class="list-group-item">50 messages</li>
+                      <li class="list-group-item">100 emails</li>
+                      <li class="list-group-item">No Support</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-footer text-center bg-transparent">
+                  <button class="btn btn-primary mb-3">Get plan</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+                <div class="card-header">
+                  <img src="./assets/img/theme/react.jpg" class="img-center shadow">
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h5 class="text-uppercase">Premium Pack</h5>
+                      <span>£ 49</span>
+                      <hr class="bg-info">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <ul class="list-group">
+                      <li class="list-group-item">100 messages</li>
+                      <li class="list-group-item">1K emails</li>
+                      <li class="list-group-item">Premium Support</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-footer text-center bg-transparent">
+                  <button class="btn btn-primary mb-3">Get plan</button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-3">
+              <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+                <div class="card-header">
+                  <img src="./assets/img/theme/react.jpg" class="img-center shadow">
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h5 class="text-uppercase">Premium Pack</h5>
+                      <span>£ 49</span>
+                      <hr class="bg-info">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <ul class="list-group">
+                      <li class="list-group-item">100 messages</li>
+                      <li class="list-group-item">1K emails</li>
+                      <li class="list-group-item">Premium Support</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-footer text-center bg-transparent">
+                  <button class="btn btn-primary mb-3">Get plan</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+                <div class="card-header">
+                  <img src="./assets/img/theme/sketch.jpg" class="img-center shadow">
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h5 class="text-uppercase">Platinum Pack</h5>
+                      <span>£ 69</span>
+                      <hr class="bg-info">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <ul class="list-group">
+                      <li class="list-group-item">350 messages</li>
+                      <li class="list-group-item">10K emails</li>
+                      <li class="list-group-item">24/7 Support</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-footer text-center bg-transparent">
+                  <button class="btn btn-primary mb-3">Get plan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container mt-5">
+        <h1 class="text-center">All Plans Includes</h1>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="media align-items-center">
+              
+              <img alt="Image" src="images/angular.jpg" class="avatar shadow">
+              <div class="media-body">
+                <h6 class="mb-0 d-block">Charlie Watson</h6>
+                <span class="text-muted text-small">last seen today at 1:53am</span>
+              </div>
+            </div>
+          
+          </div>
+          <div class="col-md-4">
+            <div class="media align-items-center">
+              
+              <img alt="Image" src="images/angular.jpg" class="avatar shadow">
+              <div class="media-body">
+                <h6 class="mb-0 d-block">Charlie Watson</h6>
+                <span class="text-muted text-small">last seen today at 1:53am</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="media align-items-center">
+              
+              <img alt="Image" src="images/angular.jpg" class="avatar shadow">
+              <div class="media-body">
+                <h6 class="mb-0 d-block">Charlie Watson</h6>
+                <span class="text-muted text-small">last seen today at 1:53am</span>
+              </div>
+            </div>
+            </p>
+          </div>
+        </div>
+      </div>
+
+<!--For Professional-->
+
+<div class="pricing-4" id="pricing-5">
+  <div id="Professional" class="container mt-3">
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+          <div class="card-header">
+            <img src="./assets/img/theme/vue.jpg" class="img-center shadow">
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h5 class="text-uppercase">Standard Pack</h5>
+                <span>£ 39</span>
+                <hr class="bg-info">
+              </div>
+            </div>
+            <div class="row">
+              <ul class="list-group">
+                <li class="list-group-item">50 messages</li>
+                <li class="list-group-item">100 emails</li>
+                <li class="list-group-item">No Support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer text-center bg-transparent">
+            <button class="btn btn-primary mb-3">Get plan</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+          <div class="card-header">
+            <img src="./assets/img/theme/react.jpg" class="img-center shadow">
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h5 class="text-uppercase">Premium Pack</h5>
+                <span>£ 49</span>
+                <hr class="bg-info">
+              </div>
+            </div>
+            <div class="row">
+              <ul class="list-group">
+                <li class="list-group-item">100 messages</li>
+                <li class="list-group-item">1K emails</li>
+                <li class="list-group-item">Premium Support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer text-center bg-transparent">
+            <button class="btn btn-primary mb-3">Get plan</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+          <div class="card-header">
+            <img src="./assets/img/theme/sketch.jpg" class="img-center shadow">
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h5 class="text-uppercase">Platinum Pack</h5>
+                <span>£ 69</span>
+                <hr class="bg-info">
+              </div>
+            </div>
+            <div class="row">
+              <ul class="list-group">
+                <li class="list-group-item">350 messages</li>
+                <li class="list-group-item">10K emails</li>
+                <li class="list-group-item">24/7 Support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer text-center bg-transparent">
+            <button class="btn btn-primary mb-3">Get plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+  <h1 class="text-center">All Plans Includes</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="media align-items-center">
+        
+        <img alt="Image" src="images/angular.jpg" class="avatar shadow">
+        <div class="media-body">
+          <h6 class="mb-0 d-block">Charlie Watson</h6>
+          <span class="text-muted text-small">last seen today at 1:53am</span>
+        </div>
+      </div>
+    
+    </div>
+    <div class="col-md-4">
+      <div class="media align-items-center">
+        
+        <img alt="Image" src="images/angular.jpg" class="avatar shadow">
+        <div class="media-body">
+          <h6 class="mb-0 d-block">Charlie Watson</h6>
+          <span class="text-muted text-small">last seen today at 1:53am</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="media align-items-center">
+        
+        <img alt="Image" src="images/angular.jpg" class="avatar shadow">
+        <div class="media-body">
+          <h6 class="mb-0 d-block">Charlie Watson</h6>
+          <span class="text-muted text-small">last seen today at 1:53am</span>
+        </div>
+      </div>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!--For Business-->
+<div class="pricing-4" id="pricing-5">
+  <div id="Professional" class="container mt-3">
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <div class="card-body">
+          <p class="text-center mt-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, ducimus.</p>
+          <img src="images/angular.jpg" alt="">
+        </div>
+               
+      </div>
+
+
+
+      <div class="col-md-4">
+        <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+          <div class="card-header">
+            <img src="./assets/img/theme/react.jpg" class="img-center shadow">
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h5 class="text-uppercase">Premium Pack</h5>
+                <span>£ 49</span>
+                <hr class="bg-info">
+              </div>
+            </div>
+            <div class="row">
+              <ul class="list-group">
+                <li class="list-group-item">100 messages</li>
+                <li class="list-group-item">1K emails</li>
+                <li class="list-group-item">Premium Support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer text-center bg-transparent">
+            <button class="btn btn-primary mb-3">Get plan</button>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-md-4">
+        <div class="card card-pricing card-coin" style="background-image: url('./assets/img/">
+          <div class="card-header">
+            <img src="./assets/img/theme/sketch.jpg" class="img-center shadow">
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h5 class="text-uppercase">Platinum Pack</h5>
+                <span>£ 69</span>
+                <hr class="bg-info">
+              </div>
+            </div>
+            <div class="row">
+              <ul class="list-group">
+                <li class="list-group-item">350 messages</li>
+                <li class="list-group-item">10K emails</li>
+                <li class="list-group-item">24/7 Support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer text-center bg-transparent">
+            <button class="btn btn-primary mb-3">Get plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

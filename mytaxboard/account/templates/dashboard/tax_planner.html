@@ -1,0 +1,223 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block style %}
+
+
+{% endblock style %}
+
+{% block content %}
+
+<section class="bg-white shadow m-3" >
+  <div class="pt-5 pb-4 pl-4">
+    <div class="row">
+      {% comment %} <div class="col-md-4">
+          <select class="form-control col-md-11 " name="cars" id="selectpan">
+              <option value="select pan">Select Client</option>
+              {% for i in pan_number%}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+              {% for i in super_pan%}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+              {% for i in reg_pan%}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+          </select>
+      </div>{% endcomment %}
+      <div class="col-md-5">
+          <input type="text" id="tax_planner_name" class="form-control" placeholder="Enter Your Name">
+      </div> 
+      <div class="col-md-5">
+        <select class=" form-control col-md-11 " name="cars" id="select_plan">
+            <option value="Select Plan">Select Plan </option>
+            <option value="ITR 1">Individual (Salary)</option>
+            <option value="ITR 2">Individual and HUF</option>
+            <option value="ITR 3">Individual (Salary + Capital Gain)</option>
+        </select>
+    </div>
+      <div class="col-md-2">
+        {% comment %} <button class="btn btn-primary" id="play_now">PLAN NOW</button> {% endcomment %}
+        <button class="btn btn-primary" id="play_now" disabled>PLAN NOW</button>
+      </div>
+    </div>
+  </div>  
+</section>
+
+<section>
+  <section class="bg-white shadow m-3" >
+    {% comment %} <div class="p-4">
+          <select class=" form-control col-md-4 " name="cars" id="selectpanreturn">
+              <option value="volvo">Select Client</option>
+              {% for i in pan_number%}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+              {% for i in super_pan%}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+              {% for i in reg_pan%}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+          </select>
+    </div>  
+    <div class=""> {% endcomment %}
+    <h3 class="ml-3 mb-4">Tax Planner Report</h3>
+    <!-- table -->
+    <div class="bg-transparent table-responsive">
+      <table class="table ">
+        <thead class="" style="background-color: #E9ECEF;">
+            <tr class="">
+                <th class="">S.No.</th>
+                <th class="">Plan Code</th>
+                <th class="">Name</th>
+                <th class="">Download</th>
+                <th class="">Time</th>
+                <th class="">Date</th>
+            </tr>
+        </thead>
+        <tbody id="order_data">
+      </tbody>
+      </table>
+    </div>
+    </div>
+    <div>
+      <p class="pl-4">Showing 1 to 10 of 57 entries <span><nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">
+              <i class="ni ni-bold-left"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">
+              <i class="ni ni-bold-right"></i>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav></span></p>
+      
+    </div>
+    
+  </section>
+  
+</section>
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+  $('#selectpan').click(function(){  
+    var optionSelected = $(this).find("option:selected");
+    var pan_card_number   = optionSelected.text();
+    $.ajax(
+    {
+        url: "ajax_call_for_taxlearn_pannumber",
+        data:{
+          pan_card_number:pan_card_number
+        },
+        success: function(result) 
+        {
+          var currentTime = new Date();
+          var year = currentTime.getFullYear()
+                  $('select#selectyear option').remove();
+       						$("#selectyear").append('<option>'+ "Select Year" +'</option>');
+       					 		$("#selectyear").append('<option>'+ year +'</option>');
+        }
+     })
+     
+});
+
+
+
+</script>
+
+
+<script>
+  
+  $('#selectyear').click(function(){  
+    var pan_card_number = $("select#selectpan").val();
+    var year_data = $("select#selectyear").val();
+
+    $.ajax(
+    {
+        url: "ajax_call_for_tax_planner_question_and_answer",
+        data:{
+          pan_card_number:pan_card_number,
+          year_data:year_data
+        },
+        success: function(result) 
+        {
+                  $('select#select_plan option').remove();
+       						$("#select_plan").append('<option>'+ "Select Plan" +'</option>');
+                  
+                  {% comment %} $('#selectyear1').remove(); {% endcomment %}
+       						{% comment %} $("#selectyear").append('<option id="selectyear1">'+ "Select Year" +'</option>'); {% endcomment %}
+                   plan_code = ['ITR 1','ITR 2','ITR 3']
+                   for (var j = plan_code.length - 1; j >= 0; j--) {
+                    $("#select_plan").append('<option>'+ plan_code[j] +'</option>');
+                  };
+                  for (var i = result.length - 1; i >= 0; i--) {
+       					 		$("#selectyear").append('<option>'+ result[i].year +'</option>');
+       					 	};
+        }
+     })
+     
+});
+
+
+
+
+
+
+</script>
+
+
+<script>
+  $('#select_plan').click(function(){  
+    {% comment %} var pan_card_number = $("select#selectpan").val();
+    var year_data = $("select#selectyear").val(); {% endcomment %}
+    var plan_code = $("select#select_plan").val();
+    var tax_planner_name = $("#tax_planner_name").val();
+    {% comment %} if (pan_card_number !="Select Client" & year_data != "Select Year" & plan_code != "Select Plan"){ {% endcomment %}
+    if (tax_planner_name.length >=3 & plan_code != "Select Plan"){
+      $("#play_now").replaceWith('<a style="color:white;" href="{% url 'tax_planner_2' %}?plan_code='+plan_code+'&&tax_planner_name='+tax_planner_name+'"role="button"><button id="play_now" class="btn btn-primary">'+'PLAN NOW'+'</button></a>');
+    }
+    else if (plan_code == "Select Plan"){
+    $("#play_now").replaceWith('<button id="play_now" class="btn btn-primary" disabled>'+'PLAN NOW'+'</button>');
+    }
+});
+</script>
+
+
+<script>
+  $.ajax(
+    {
+        url: "ajax_call_for_tax_planner_pdf_generator",
+        data:{
+          pan_card_number:"pan_card_number",
+        },
+        success: function(result1) 
+        {
+          $('#order_data').empty();
+          for(var i=0;i<=result1.length;i++){
+            var data = $('<tr><td style="font-size:13px">'+ (i+1)+'</td><td style="font-size:13px">'+result1[i].plan_code+'</td><td style="font-size:13px">'+ result1[i].name+'</td><td style="font-size:13px"><a target="_blank" href="{% url "pdf_generat_for_tax_planer"%}?date='+result1[i].date+'&&time='+result1[i].time+'&&tax_planner_name='+result1[i].name+'&&plan_code='+result1[i].plan_code+'" >'+"Download"+'</td><td style="font-size:13px">'+ result1[i].time+'</td><td style="font-size:13px">'+ result1[i].date+'</td>')
+            $('#order_data').append(data);                       
+            }
+        }
+     });
+     
+</script>
+
+<script>
+$('.nav-item a').removeClass('btn btn-primary text-white');
+$('.tax_planner-item a').addClass('btn btn-primary text-white');
+$('.tax_planner-item a img').attr('src','/static/svg/dashboard_base/tax_planner_w.svg');
+
+</script>
+
+{% endblock script %}
