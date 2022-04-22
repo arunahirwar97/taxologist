@@ -5,6 +5,7 @@ import os
 from decouple import config
 from unipath import Path
 from socket import gethostname, gethostbyname
+import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = Path(__file__).parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -327,3 +328,9 @@ SECURE_HSTS_SECONDS = 31536000 # 1 year
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
+
+django_heroku.settings(locals())
+
+
+gunicorn
+django-heroku

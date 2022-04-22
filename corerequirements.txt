@@ -16,3 +16,5 @@ unipath
 django-ckeditor
 emails
 django-social-share
+gunicorn
+django-heroku
