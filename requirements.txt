@@ -41,3 +41,4 @@ emails
 django-social-share
 gunicorn
 django-heroku
+django-mathfilters

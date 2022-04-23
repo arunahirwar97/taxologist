@@ -206,7 +206,7 @@ def plan_detail(request,plan_id):
                 'INDUSTRY_TYPE_ID': 'Retail',
                 'WEBSITE': settings.PAYTM_WEBSITE,
                 'CHANNEL_ID': 'WEB',
-                'CALLBACK_URL': 'https://mytaxboard.in/handlerequest/', #'http://127.0.0.1:8000/carts/handlerequest/', #
+                'CALLBACK_URL': 'https://floating-garden-30216.herokuapp.com/handlerequest/', #'http://127.0.0.1:8000/carts/handlerequest/', #
             }
             param_dict['CHECKSUMHASH'] = generate_checksum(param_dict, MERCHANT_KEY)
             param_dict['order_id1'] = str(transaction.order_id)
@@ -255,7 +255,7 @@ def plan_detail(request,plan_id):
                     'INDUSTRY_TYPE_ID': 'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID': 'WEB',
-                    'CALLBACK_URL': 'https://mytaxboard.in/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
+                    'CALLBACK_URL': 'https://floating-garden-30216.herokuapp.com/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
                     # 'CALLBACK_URL': 'https://localhost:8000/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
                 }
                 param_dict['CHECKSUMHASH'] = generate_checksum(param_dict, MERCHANT_KEY)
@@ -559,7 +559,7 @@ def plan_detail_for_ind_plan(request):
                 'INDUSTRY_TYPE_ID': 'Retail',
                 'WEBSITE': settings.PAYTM_WEBSITE,
                 'CHANNEL_ID': 'WEB',
-                'CALLBACK_URL': 'https://mytaxboard.in/handlerequest/', #'http://127.0.0.1:8000/carts/handlerequest/', #
+                'CALLBACK_URL': 'https://floating-garden-30216.herokuapp.com/handlerequest/', #'http://127.0.0.1:8000/carts/handlerequest/', #
             }
             param_dict['CHECKSUMHASH'] = generate_checksum(param_dict, MERCHANT_KEY)
             param_dict['order_id1'] = str(transaction.order_id)
@@ -597,7 +597,7 @@ def plan_detail_for_ind_plan(request):
                     'INDUSTRY_TYPE_ID': 'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID': 'WEB',
-                    'CALLBACK_URL': 'https://mytaxboard.in/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
+                    'CALLBACK_URL': 'https://floating-garden-30216.herokuapp.com/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
                     # 'CALLBACK_URL': 'https://localhost:8000/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
                 }
                 param_dict['CHECKSUMHASH'] = generate_checksum(param_dict, MERCHANT_KEY)
@@ -723,7 +723,7 @@ def plan_detail_for_buss_plan(request):
                 'INDUSTRY_TYPE_ID': 'Retail',
                 'WEBSITE': settings.PAYTM_WEBSITE,
                 'CHANNEL_ID': 'WEB',
-                'CALLBACK_URL': 'https://mytaxboard.in/handlerequest/', #'http://127.0.0.1:8000/carts/handlerequest/', #
+                'CALLBACK_URL': 'https://floating-garden-30216.herokuapp.com/handlerequest/', #'http://127.0.0.1:8000/carts/handlerequest/', #
             }
             param_dict['CHECKSUMHASH'] = generate_checksum(param_dict, MERCHANT_KEY)
             param_dict['order_id1'] = str(transaction.order_id)
@@ -761,7 +761,7 @@ def plan_detail_for_buss_plan(request):
                     'INDUSTRY_TYPE_ID': 'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID': 'WEB',
-                    'CALLBACK_URL': 'https://mytaxboard.in/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
+                    'CALLBACK_URL': 'https://floating-garden-30216.herokuapp.com/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
                     # 'CALLBACK_URL': 'https://localhost:8000/handlerequest_without_signup/', #'http://127.0.0.1:8000/carts/handlerequest/', #
                 }
                 param_dict['CHECKSUMHASH'] = generate_checksum(param_dict, MERCHANT_KEY)

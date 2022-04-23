@@ -67,8 +67,7 @@ INSTALLED_APPS = [
     'notifications_app',
     'storages',  
     'django_social_share',
-
-
+    'mathfilters',
     # 'django.contrib.sites',
     # 'allauth',
     # 'allauth.account',
