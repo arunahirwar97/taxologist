@@ -67,8 +67,8 @@ class assistanceexpertcalldata(models.Model):
 class XMLFile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True) 
     # xmlfile = models.FileField(upload_to="xml_files")
-    # xmlfile = models.FileField(upload_to="xml_files",)
-    xmlfile = models.FileField(upload_to="xml_files",storage=PrivateMediaStorage())
+    xmlfile = models.FileField(upload_to="xml_files",)
+    # xmlfile = models.FileField(upload_to="xml_files",storage=PrivateMediaStorage())
 
 
 class XMLFileData(models.Model):
@@ -501,7 +501,7 @@ class ManualForm16(models.Model):
 
     email = models.EmailField(blank=True, null=True)
      
-    pdf = models.FileField(upload_to="form-16-pdf/", blank=True, null=True,storage=PrivateMediaStorage())
+    pdf = models.FileField(upload_to="form-16-pdf/", blank=True, null=True)
     # pdf = models.FileField(upload_to="form-16-pdf/", blank=True, null=True,storage=PrivateMediaStorage())
     # def __str__(self):
     #     return self.first_name
@@ -547,8 +547,8 @@ class Tax_Learn_video(models.Model):
     description = RichTextField(blank=True,null=True,default=None)
     sort_description = RichTextField(blank=True,null=True,default=None)
     video_url = models.TextField(blank=False,null=True)
-    video_image = models.ImageField(storage=PublicMediaStorage(),upload_to="video_url_category/video_image/",blank = True,null=True)
-    # video_image = models.ImageField(upload_to="video_url_category/video_image/",blank = True,null=True)
+    # video_image = models.ImageField(storage=PublicMediaStorage(),upload_to="video_url_category/video_image/",blank = True,null=True)
+    video_image = models.ImageField(upload_to="video_url_category/video_image/",blank = True,null=True)
     
     def __str__(self):
         return self.sub_category or " "
@@ -920,7 +920,7 @@ class detail_page_reviews1(models.Model):
     plan_name = models.ForeignKey(Detail_plan_name1,on_delete=models.CASCADE,blank=True, null=True)
     reviews_name = models.CharField(max_length=800,blank=True, null=True)
     reviews_rating = models.CharField(max_length=10000,blank=True, null=True)
-    more_About_page_header_image = models.ImageField(upload_to='more_detail_page/reviews/images',storage=PublicMediaStorage(), null=True,blank = True)
+    more_About_page_header_image = models.ImageField(upload_to='more_detail_page/reviews/images', null=True,blank = True)
     reviews_rating_star = models.CharField(max_length=10000,blank=True,null=True)
     reviews_rating_blank = models.CharField(max_length=10000,blank=True,null=True)
     reviews_msg = RichTextField(default=None,max_length=10000,blank=True,null=True)
@@ -1047,7 +1047,7 @@ class plan_detail_8_howitsworks_image1(Detail_plan_name1):
 # class Detail_plan_name(models.Model):
 #     id = models.AutoField(primary_key=True)
 #     plan_name = models.CharField(max_length=1000,blank=True, null=True)
-#     # more_About_page_header_image = models.ImageField(upload_to='more_detail_page/header/images',blank=True, null=True)
+        # more_About_page_header_image = models.ImageField(upload_to='more_detail_page/header/images',blank=True, null=True)
 #     more_About_page_header_image = models.ImageField(storage=PrivateMediaStorage(),upload_to='more_detail_page/header/images',blank=True,default=None, null=True)
 #     class Meta:
 #         verbose_name = 'plan more detail page plan name data' or " "
@@ -1424,7 +1424,7 @@ class service_page_reviews(models.Model):
     review_message = models.CharField(blank=True, null=True, max_length=5000)
     review_updated_time = models.CharField(blank=True, null=True, max_length=500)
     review_unique_category = models.CharField(blank=True, null=True, max_length=500)
-    review_image = models.ImageField(upload_to="service_page_reviews/review_image/",null=True,storage=PublicMediaStorage())
+    review_image = models.ImageField(upload_to="service_page_reviews/review_image/",null=True)
     total_start = models.CharField(blank=True, null=True, max_length=6)
     class Meta:
         verbose_name = 'service_page_review'  

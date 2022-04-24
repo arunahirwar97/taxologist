@@ -1087,7 +1087,6 @@ def xmlfile(request):
                 xml_file_save.save()
                 xml_url = xml_file_save.xmlfile.url    
                 pdf_url = settings.BASE_DIR + xml_url 
-                print(pdf_url)
                 with open(pdf_url, 'r') as f:
                     data = f.read() 
                 print(data)

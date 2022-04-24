@@ -77,8 +77,8 @@ class Business_Profile(models.Model):
 
 class BUSINESS_GST_DASHBAORD_XMLFile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True) 
-    json_file = models.FileField(upload_to="business_dashbaord/gst/",storage=PrivateMediaStorage())
-    # json_file = models.FileField(upload_to="business_dashbaord/gst/")
+    # json_file = models.FileField(upload_to="business_dashbaord/gst/",storage=PrivateMediaStorage())
+    json_file = models.FileField(upload_to="business_dashbaord/gst/")
 
 
 
@@ -165,14 +165,14 @@ class business_gst_dashbaord_super_user_registrations(models.Model):
 
 class BUSINESS_INCOME_TAX_DASHBAORD_XMLFile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True) 
-    # xmlfile = models.FileField(upload_to="business_income_tax/xml_file/")
-    xmlfile = models.FileField(upload_to="business_income_tax/xml_file/",storage=PrivateMediaStorage())
+    xmlfile = models.FileField(upload_to="business_income_tax/xml_file/")
+    # xmlfile = models.FileField(upload_to="business_income_tax/xml_file/",storage=PrivateMediaStorage())
 
 
 class BUSINESS_INCOME_TAX_DASHBAORD_JSON_File(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True) 
-    # json_file = models.FileField(upload_to="business_income_tax/xml_file/")
-    xmlfile = models.FileField(upload_to="business_income_tax/xml_file/",storage=PrivateMediaStorage())
+    json_file = models.FileField(upload_to="business_income_tax/xml_file/")
+    # xmlfile = models.FileField(upload_to="business_income_tax/xml_file/",storage=PrivateMediaStorage())
 
 
 class BUSINESS_INCOME_TAX_DASHBAORD_JSON_FILEDATA(models.Model):
@@ -1117,8 +1117,8 @@ class gst_dashbaord_data(models.Model):
     months  = models.CharField(blank=True, null=True, max_length=500)
     gstin  = models.CharField(blank=True, null=True, max_length=500)
     trade_name  = models.CharField(blank=True, null=True, max_length=500)
-    gst3_pdf = models.FileField(upload_to="GST3/", blank=True, null=True,storage=PrivateMediaStorage())
-    # gst3_pdf = models.FileField(upload_to="GST3/", blank=True, null=True)
+    # gst3_pdf = models.FileField(upload_to="GST3/", blank=True, null=True,storage=PrivateMediaStorage())
+    gst3_pdf = models.FileField(upload_to="GST3/", blank=True, null=True)
 
     class Meta:
         verbose_name = 'gst_dashbaord_data'  

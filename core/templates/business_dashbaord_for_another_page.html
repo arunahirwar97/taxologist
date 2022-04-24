@@ -124,15 +124,15 @@
                   </div>
                 </div> {% endcomment %}
                 {% if product|length == 0 %}
-                <div class="col-md-4">
+                <!-- <div class="col-md-6">
                   <div class="column ">
                         <div class="row justify-content-center">
                             <a href="" class="link-primary h5 font-weight-bold text-center"><img src="../static/svg/dashboard_base/absolute.jpeg" width="25" height="25" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Absolute Compliance</span></a>
                         </div>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="col-md-4 ">
+                <div class="col-md-6 ">
                   <div class="column">
                       <div class="row justify-content-center">
                           <a href="" class="link-primary h6 font-weight-bold text-center"><img src="../static/svg/dashboard_base/tax_learn_black.svg"  width="26" height="26" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Knowledge Center</span></a>
@@ -140,7 +140,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="column">
                       <div class="row justify-content-center">
                         <a href="" class="link-primary h6  text-center"><img src="../static/svg/dashboard_base/tax_planner_black.svg"  width="25" height="25" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Tax Planner</span></a>
@@ -150,9 +150,9 @@
                 {%endif%}
 
 
-                {%for i in product %}
+                <!-- {%for i in product %}
                 {%if i.select_link_title == "ABC" %}
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="column ">
                         <div class="row justify-content-center">
                           {%if i.select_link_title == "ABC" %}<a href="{{i.title_url}}" class="link-primary h5 font-weight-bold text-center">{%endif%}<img src="../static/svg/dashboard_base/absolute.jpeg" width="25" height="25" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Absolute Compliance</span></a>
@@ -161,7 +161,7 @@
                 </div>
                 {%endif%}
                 {%if i.select_link_title != "KDC" and i.select_link_title != "TXP" and i.select_link_title != "ABC"  %}
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="column ">
                         <div class="row justify-content-center">
                             <a href="" class="link-primary h5 font-weight-bold text-center">ddfssdf<img src="../static/svg/dashboard_base/absolute.jpeg" width="25" height="25" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Absolute Compliance</span></a>
@@ -169,11 +169,11 @@
                   </div>
                 </div>
                 {%endif%}
-                {%endfor%}
+                {%endfor%} -->
 
                 {%for i in product %}
                 {% if i.select_link_title == "KDC" %}
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <div class="column">
                         <div class="row justify-content-center">
                           {% if i.select_link_title == "KDC" %}<a href="{{i.title_url}}" class="link-primary h6 font-weight-bold text-center">{%endif%}<img src="../static/svg/dashboard_base/tax_learn_black.svg"  width="26" height="26" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Knowledge Center</span></a>
@@ -182,7 +182,7 @@
                 </div>
                 {%endif%}
               {%if i.select_link_title != "KDC" and i.select_link_title != "TXP" and i.select_link_title != "ABC"  %}
-                <div class="col-md-4 ">
+                <div class="col-md-6 ">
                   <div class="column">
                       <div class="row justify-content-center">
                           <a href="" class="link-primary h6 font-weight-bold text-center"><img src="../static/svg/dashboard_base/tax_learn_black.svg"  width="26" height="26" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Knowledge Center</span></a>
@@ -194,7 +194,7 @@
 
               {%for i in product %}
               {%if i.select_link_title != "KDC" and i.select_link_title != "TXP" and i.select_link_title != "ABC"  %}
-              <div class="col-md-4">
+              <div class="col-md-6">
                   <div class="column">
                       <div class="row justify-content-center">
                         <a href="" class="link-primary h6  text-center"><img src="../static/svg/dashboard_base/tax_planner_black.svg"  width="25" height="25" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Tax Planner</span></a>
@@ -203,7 +203,7 @@
                 </div>
                 {%endif%}
                 {% if i.select_link_title == "TXP" %}
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <div class="column">
                         <div class="row justify-content-center">
                           {% if i.select_link_title == "TXP" %} <a href="{{i.title_url}}" class="link-primary h6  text-center">{%endif%}<img src="../static/svg/dashboard_base/tax_planner_black.svg"  width="25" height="25" alt="enterprise"><span class="h5 text-center">&nbsp;&nbsp;Tax Planner</span></a>

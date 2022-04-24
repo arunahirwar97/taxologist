@@ -2222,19 +2222,19 @@ def business_income_tax_dashbaord_xmlfile(request):
 
                 ############# Start local run ############## 
 
-                # pdf_url = settings.BASE_DIR + xml_url 
+                pdf_url = settings.BASE_DIR + xml_url 
                 
-                # with open(pdf_url,'r') as str:
-                #     z = str.read()
-                #     data = xmltodict.parse(z)
-                # print(data)
+                with open(pdf_url,'r') as str:
+                    z = str.read()
+                    data = xmltodict.parse(z)
+                print(data)
                 ############# End local run ############## 
                 ###########3 For aws 
 
-                data_xml_file = urlopen(xml_url)
-                data = xmltodict.parse(data_xml_file.read())
+                # data_xml_file = urlopen(xml_url)
+                # data = xmltodict.parse(data_xml_file.read())
                 
-                ######### End 
+                # ######### End 
                 iterate_multidimensional(data)
                 print(data_key)
                 for i in range(len(data_key)):
@@ -2725,9 +2725,9 @@ def business_income_tax_dashbaord_xmlfile(request):
                 data_xml_file = urlopen(xml_url)
                 data = xmltodict.parse(data_xml_file.read())
                 
-                # with open(data_xml_file,'r') as str:
-                #     my_dict=json.load(str)
-                # print(data_key)
+                with open(data_xml_file,'r') as str:
+                    my_dict=json.load(str)
+                print(data_key)
                 iterate_multidimensional(data)
                 # print(data_key)
 

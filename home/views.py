@@ -23,11 +23,11 @@ from account.views import my_order,login,terms_and_conndition_with_privacy_polic
 from business.views import change_dashbaord
 from django.db import models
 
-# from wagtail.core.models import Page
-# from wagtail.core.fields import RichTextField
-# from wagtail.admin.edit_handlers import FieldPanel
-# from wagtail.images.edit_handlers import ImageChooserPanel
-# from home_wagtail.models import *
+from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
+from home_wagtail.models import *
 
 MERCHANT_KEY = settings.PAYTM_SECRET_KEY
 
